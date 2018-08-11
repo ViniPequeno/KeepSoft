@@ -8,11 +8,14 @@ import android.arch.persistence.room.PrimaryKey;
 import java.util.Calendar;
 import java.util.Date;
 
+import io.reactivex.annotations.NonNull;
+
 @Entity(indices = {
-        @Index(value = "emailIndex", unique = true)
+        @Index(value = "email", unique = true)
 })
 public class Usuario {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    private long id;
     private String login;
     private String email;
     private String nome;
@@ -20,11 +23,11 @@ public class Usuario {
     private String telefone;
 
     public Usuario() {
-        login="";
-        email="";
-        nome="";
-        senha="";
-        telefone="";
+        login = "";
+        email = "";
+        nome = "";
+        senha = "";
+        telefone = "";
     }
 
     public Usuario(String login, String email, String nome, String senha, String telefone) {
@@ -33,6 +36,14 @@ public class Usuario {
         this.nome = nome;
         this.senha = senha;
         this.telefone = telefone;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getLogin() {
@@ -75,45 +86,5 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    public static class Perfil {
-        long id;
-        Date dataInicio;
-        Date dataFim;
 
-        public Perfil() {
-            id=0;
-            dataInicio = Calendar.getInstance().getTime();
-        }
-
-        public Perfil(long id, Date dataInicio, Date dataFim) {
-            this.id = id;
-            this.dataInicio = dataInicio;
-            this.dataFim = dataFim;
-        }
-
-        public long getId() {
-            return id;
-        }
-
-        public void setId(long id) {
-            this.id = id;
-        }
-
-        public Date getDataInicio() {
-
-            return dataInicio;
-        }
-
-        public void setDataInicio(Date dataInicio) {
-            this.dataInicio = dataInicio;
-        }
-
-        public Date getDataFim() {
-            return dataFim;
-        }
-
-        public void setDataFim(Date dataFim) {
-            this.dataFim = dataFim;
-        }
-    }
 }

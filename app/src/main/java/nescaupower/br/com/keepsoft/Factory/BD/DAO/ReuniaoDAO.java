@@ -19,7 +19,7 @@ public interface ReuniaoDAO {
     List<Reuniao> loadAllByIds(int[] codigos);
 
     @Query("SELECT * FROM reuniao WHERE nome LIKE :nome")
-    Reuniao findByName(String nome, String email);
+    Reuniao findByName(String nome);
 
     @Insert
     void insertAll(Reuniao... reuniaos);

@@ -2,12 +2,17 @@ package nescaupower.br.com.keepsoft.Factory.BD.Database;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 
-import com.example.user.keepsoft.DAO.*;
-import com.example.user.keepsoft.models.*;
+
+import nescaupower.br.com.keepsoft.Factory.BD.DAO.*;
+import nescaupower.br.com.keepsoft.Factory.Model.*;
+import nescaupower.br.com.keepsoft.Utils.Converters;
+
 
 @Database(entities = {Usuario.class, Projeto.class, RequisitoStatus.class, Reuniao.class, Sprint.class, Status.class, Requisito.class},
         version = 1)
+@TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UsuarioDAO usuarioDAO();

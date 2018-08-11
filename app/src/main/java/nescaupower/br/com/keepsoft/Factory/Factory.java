@@ -12,17 +12,17 @@ import nescaupower.br.com.keepsoft.R;
 public abstract class Factory {
 
 
-    public AppDatabase startDatabase(Context context){
+    public static AppDatabase startDatabase(Context context){
         String database = context.getString(R.string.app_database);
-        AppDatabase db = Room.databaseBuilder(context, AppDatabase.class, database).build();
+        AppDatabase db = Room.databaseBuilder(context, AppDatabase.class, database).allowMainThreadQueries().build() ;
         return db;
     }
 
-    public Usuario startUsuario(){
+    public static Usuario startUsuario(){
         return new Usuario();
     }
 
-    public Projeto startProjet(){
+    public static Projeto startProjet(){
         return new Projeto();
     }
 

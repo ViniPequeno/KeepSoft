@@ -6,7 +6,8 @@ import android.arch.persistence.room.PrimaryKey;
 import java.util.Calendar;
 import java.util.Date;
 
-@Entity(foreignKeys = {
+@Entity(primaryKeys = {"codigoRequisito", "idStatus"},
+        foreignKeys = {
         @ForeignKey(
                 entity = Requisito.class,
                 parentColumns = "codigo",
@@ -19,12 +20,10 @@ import java.util.Date;
         )
 })
 public class RequisitoStatus {
-    @PrimaryKey
-    long codigoRequisito;
-    @PrimaryKey
-    long idStatus;
-    Date dataInicio;
-    Date dataFim;
+    private long codigoRequisito;
+    private long idStatus;
+    private Date dataInicio;
+    private Date dataFim;
 
     public RequisitoStatus() {
         codigoRequisito = 0;

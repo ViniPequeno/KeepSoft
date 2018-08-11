@@ -17,9 +17,8 @@ public interface UsuarioDAO {
     @Query("SELECT * FROM usuario WHERE login IN (:logins)")
     List<Usuario> loadAllByIds(int[] logins);
 
-    @Query("SELECT * FROM usuario WHERE nome LIKE :nome AND "
-            + "email LIKE :email LIMIT 1")
-    Usuario findByName(String nome, String email);
+    @Query("SELECT * FROM usuario WHERE email LIKE :email LIMIT 1")
+    Usuario findByEmail(String email);
 
     @Insert
     void insertAll(Usuario... usuarios);

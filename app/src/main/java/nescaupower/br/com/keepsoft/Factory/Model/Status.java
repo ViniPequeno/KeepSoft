@@ -6,9 +6,9 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Status {
     @PrimaryKey
-    long id;
-    String nome;
-    String descricao;
+    private long id;
+    private String nome;
+    private String descricao;
 
     public Status() {
         id=0;

@@ -9,11 +9,11 @@ import java.util.Date;
 @Entity
 public class Projeto {
     @PrimaryKey
-    long codigo;
-    String nome;
-    String descricao;
-    Date dataCriacao;
-    Date dataFinalizacao;
+    private long codigo;
+    private String nome;
+    private String descricao;
+    private Date dataCriacao;
+    private Date dataFinalizacao;
 
     public Projeto() {
         codigo = 0;

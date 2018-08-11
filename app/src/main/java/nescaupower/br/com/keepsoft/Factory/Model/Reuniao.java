@@ -9,11 +9,11 @@ import java.util.Date;
 @Entity
 public class Reuniao {
     @PrimaryKey
-    long codigo;
-    String nome;
-    String relatorio;
-    String assunto;
-    Date data;
+    private long codigo;
+    private String nome;
+    private String relatorio;
+    private String assunto;
+    private Date data;
 
     public Reuniao() {
         codigo = 0;

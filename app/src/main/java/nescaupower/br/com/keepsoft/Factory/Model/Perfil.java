@@ -9,9 +9,9 @@ import java.util.Date;
 @Entity
 public class Perfil {
     @PrimaryKey(autoGenerate = true)
-    long id;
-    Date dataInicio;
-    Date dataFim;
+    private long id;
+    private Date dataInicio;
+    private Date dataFim;
 
     public Perfil() {
         id = 0;

@@ -3,18 +3,23 @@ package nescaupower.br.com.keepsoft.Factory.Model;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.util.Calendar;
 import java.util.Date;
 
 @Entity
 public class Sprint {
     @PrimaryKey
-    long codigo;
-    String nome;
-    String descricao;
-    Date dataInicio;
-    Date dataFim;
+    private long codigo;
+    private String nome;
+    private String descricao;
+    private Date dataInicio;
+    private Date dataFim;
 
     public Sprint() {
+        codigo = 0;
+        nome="";
+        descricao="";
+        dataInicio = Calendar.getInstance().getTime();
     }
 
     public Sprint(long codigo, String nome, String descricao, Date dataInicio, Date dataFim) {

@@ -6,9 +6,9 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class Requisito {
     @PrimaryKey
-    long codigo;
-    String nome;
-    String descricao;
+    private long codigo;
+    private String nome;
+    private String descricao;
 
     public Requisito() {
         codigo=0;

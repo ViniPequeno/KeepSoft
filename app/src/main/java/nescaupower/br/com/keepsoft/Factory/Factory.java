@@ -3,6 +3,7 @@ package nescaupower.br.com.keepsoft.Factory;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 
+import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.UsuarioDAO;
 import nescaupower.br.com.keepsoft.Factory.BD.Database.AppDatabase;
 import nescaupower.br.com.keepsoft.Factory.Model.*;
@@ -13,7 +14,7 @@ public abstract class Factory {
 
 
     public static AppDatabase startDatabase(Context context){
-        String database = context.getString(R.string.app_database);
+        String database = Settings.DATABASE;
         AppDatabase db = Room.databaseBuilder(context, AppDatabase.class, database).allowMainThreadQueries().build() ;
         return db;
     }
@@ -21,6 +22,7 @@ public abstract class Factory {
     public static Usuario startUsuario(){
         return new Usuario();
     }
+    public static Usuario startLogin(){return new Usuario();}
 
     public static Projeto startProjet(){
         return new Projeto();

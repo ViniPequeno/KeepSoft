@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,78 +12,71 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/keepsoft_login" />
+            android:fontFamily="casual"
+            android:text="@string/app_name"
+            android:textAlignment="center"
+            android:textSize="36sp" />
 
-        <TableLayout
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="20dp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <EditText
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/email_ou_login"
+            android:inputType=""
+            android:singleLine="true" />
 
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/login" />
+        <EditText
+            android:id="@+id/senha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/senha"
+            android:inputType="textPassword" />
 
-                <EditText
-                    android:id="@+id/login"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/email_ou_login"
-                    android:inputType="" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="29dp" />
 
-            </TableRow>
+        <Button
+            android:id="@+id/btnEntrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="24dp"
+            android:onClick="entrar"
+            android:text="@string/entrar"
+            android:textSize="18sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/senha" />
+        <Button
+            android:id="@+id/btnCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="24dp"
+            android:onClick="cadastrar"
+            android:text="@string/cadastre_se"
+            android:textSize="18sp" />
 
-                <EditText
-                    android:id="@+id/senha"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/senha"
-                    android:inputType="textPassword" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/btnEntrar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="entrar"
-                    android:text="@string/entrar" />
-
-                <Button
-                    android:id="@+id/btnCadastro"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClick="cadastrar"
-                    android:text="@string/cadastre_se" />
-            </TableRow>
-
-        </TableLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
 
 

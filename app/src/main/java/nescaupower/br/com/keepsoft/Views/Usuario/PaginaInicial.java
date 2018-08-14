@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
+import nescaupower.br.com.keepsoft.Factory.BD.Database.AppDatabase;
+import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
@@ -27,6 +29,11 @@ public class PaginaInicial extends AppCompatActivity {
 
         //Singleton
         Usuario usuario = Usuario.getUsuario_logado();
+        if(usuario == null || usuario.getLogin().equals("")){
+            AppDatabase db = Factory.startDatabase(getApplicationContext());
+            SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            usuario = db.usuarioDAO().findByLogin(sharedPreferences.getString(Settings.LOGIN, ""));
+        }
         //////////
 
         textViewUsuario.setText("Olá "+usuario.getNome());

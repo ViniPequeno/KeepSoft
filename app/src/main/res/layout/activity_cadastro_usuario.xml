@@ -7,17 +7,32 @@
     tools:context="nescaupower.br.com.keepsoft.Views.Usuario.CadastroUsuario">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="332dp"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/cadastre_se"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            tools:text="Cadastre-se" />
 
         <EditText
             android:id="@+id/txtLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Login" />
+            android:hint="Login"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/txtEmail"
@@ -32,8 +47,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Nome"/>
+            android:hint="Nome"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/txtTelefone"
@@ -48,23 +63,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword"
-            android:hint="Senha"/>
+            android:hint="Senha"
+            android:inputType="textPassword" />
 
         <EditText
             android:id="@+id/txtConfirmarSenha"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword"
-            android:hint="Confirmar senha"/>
+            android:hint="Confirmar senha"
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/btnCadastrar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="cadastrar"
-            android:text="@string/cadastro_padr_o" />
+            android:text="@string/confirmar" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

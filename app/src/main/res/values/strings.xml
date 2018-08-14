@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">KeepSoft</string>
-
     <string name="button">Button</string>
     <string name="email">Email</string>
     <string name="title_activity_main">MainActivity</string>
@@ -13,5 +12,5 @@
     <string name="entrar">Sign in</string>
     <string name="cadastre_se">Sign up</string>
     <string name="email_ou_login">Username or email</string>
-    <string name="cadastro_padr_o">Cadastro padrão</string>
+    <string name="confirmar">Confirm</string>
 </resources>

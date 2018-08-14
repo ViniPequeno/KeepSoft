@@ -45,7 +45,8 @@ public class LoginActivity extends AppCompatActivity {
             editor.commit();
 
             //Singleton
-            Usuario.setUsuario_logado(u);
+            Factory.setLogado(u);
+            //Usuario.setUsuario_logado(u);
             /////////////
 
             Intent intent;

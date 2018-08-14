@@ -13,4 +13,5 @@
     <string name="entrar">Sign in</string>
     <string name="cadastre_se">Sign up</string>
     <string name="email_ou_login">Username or email</string>
+    <string name="cadastro_padr_o">Cadastro padrão</string>
 </resources>

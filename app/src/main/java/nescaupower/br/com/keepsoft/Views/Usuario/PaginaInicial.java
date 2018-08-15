@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
-import nescaupower.br.com.keepsoft.Factory.BD.Database.AppDatabase;
+import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
@@ -24,10 +24,15 @@ public class PaginaInicial extends AppCompatActivity {
     TextView textViewUsuario;
     BottomNavigationView menuInferior;
 
+
+    UsuarioController uc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagina_inicial);
+
+        uc = new UsuarioController(getApplicationContext());
 
         textViewUsuario = findViewById(R.id.usuario);
         menuInferior = findViewById(R.id.menu_inferior);
@@ -55,9 +60,8 @@ public class PaginaInicial extends AppCompatActivity {
         //Singleton
         Usuario usuario = Usuario.getUsuario_logado();
         if (usuario == null || usuario.getLogin().equals("")) {
-            AppDatabase db = Factory.startDatabase(getApplicationContext());
             SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-            usuario = db.usuarioDAO().findByLogin(sharedPreferences.getString(Settings.LOGIN, ""));
+            usuario =  uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, ""));
         }
         //////////
 

@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
-import nescaupower.br.com.keepsoft.Factory.BD.Database.AppDatabase;
+import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
@@ -21,10 +21,15 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText login;
     EditText senha;
+
+    UsuarioController uc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        uc = new UsuarioController(getApplicationContext());
 
         login = findViewById(R.id.login);
         senha = findViewById(R.id.senha);
@@ -32,11 +37,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void entrar(View view) {
-        AppDatabase db = Factory.startDatabase(getApplicationContext());
 
-        Usuario u = db.usuarioDAO().login(login.getText().toString(), login.getText().toString(), senha.getText().toString());
+        String loginText = login.getText().toString();
+        String senhaText = senha.getText().toString();
+        Usuario u =  uc.realizarLogin(loginText, senhaText);
+
         if(u != null){
-            Toast.makeText(this, "Certo!", Toast.LENGTH_SHORT).show();
             SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor;
             editor = sharedPreferences.edit();
@@ -56,7 +62,7 @@ public class LoginActivity extends AppCompatActivity {
             LoginActivity.this.finish();
 
         }else{
-            Toast.makeText(this, "Algo errado!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, uc.getMensagem(), Toast.LENGTH_SHORT).show();
         }
     }
 

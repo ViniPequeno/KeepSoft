@@ -1,10 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">KeepSoft</string>
     <string name="button">Button</string>
     <string name="email">Email</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="login">Login</string>
     <string name="app_database">Banquinho</string>
@@ -13,4 +12,7 @@
     <string name="cadastre_se">Sign up</string>
     <string name="email_ou_login">Username or email</string>
     <string name="confirmar">Confirm</string>
+    <string name="projetos">Projects</string>
+    <string name="perfil">Profile</string>
+    <string name="notificacoes">Notifications</string>
 </resources>

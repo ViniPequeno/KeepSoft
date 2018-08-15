@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,16 +15,17 @@ import android.widget.Toast;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
-import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
+import nescaupower.br.com.keepsoft.Views.Fragments.NotificacoesFragment;
+import nescaupower.br.com.keepsoft.Views.Fragments.PerfilFragment;
+import nescaupower.br.com.keepsoft.Views.Fragments.ProjetosFragment;
 import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
 
-public class PaginaInicial extends AppCompatActivity {
+public class PaginaInicial extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     TextView textViewUsuario;
     BottomNavigationView menuInferior;
-
 
     UsuarioController uc;
 
@@ -37,31 +39,17 @@ public class PaginaInicial extends AppCompatActivity {
         textViewUsuario = findViewById(R.id.usuario);
         menuInferior = findViewById(R.id.menu_inferior);
 
-        //Listener do menu inferior
-        menuInferior.setOnNavigationItemSelectedListener(
-                new BottomNavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.navigation_home:
-                                Toast.makeText(getApplicationContext(), Integer.toString(item.getItemId()) + " " + item.getTitle(), Toast.LENGTH_SHORT).show();
-                                break;
-                            case R.id.navigation_dashboard:
-                                Toast.makeText(getApplicationContext(), Integer.toString(item.getItemId()) + " " + item.getTitle(), Toast.LENGTH_SHORT).show();
-                                break;
-                            case R.id.navigation_notifications:
-                                Toast.makeText(getApplicationContext(), Integer.toString(item.getItemId()) + " " + item.getTitle(), Toast.LENGTH_SHORT).show();
-                                break;
-                        }
-                        return false;
-                    }
-                });
+        //Atribuindo listener ao menu inferior
+        menuInferior.setOnNavigationItemSelectedListener(this);
+
+        //Carregar tela padrão: projetos
+        loadFragment(new ProjetosFragment());
 
         //Singleton
         Usuario usuario = Usuario.getUsuario_logado();
         if (usuario == null || usuario.getLogin().equals("")) {
             SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-            usuario =  uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, ""));
+            usuario = uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, ""));
         }
         //////////
 
@@ -84,5 +72,41 @@ public class PaginaInicial extends AppCompatActivity {
         startActivity(intent);
         PaginaInicial.this.finish();
 
+    }
+
+
+    //Listener do menu inferior
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        //Toast.makeText(getApplicationContext(), Integer.toString(item.getItemId()) + " " + item.getTitle(), Toast.LENGTH_SHORT).show();
+        Fragment fragment = null;
+        switch (item.getItemId()) {
+            case R.id.navigation_projetos:
+                textViewUsuario.setText(R.string.projetos);
+                fragment = new ProjetosFragment();
+                break;
+            case R.id.navigation_notificacoes:
+                textViewUsuario.setText(R.string.title_notifications);
+                fragment = new NotificacoesFragment();
+                break;
+            case R.id.navigation_perfil:
+                textViewUsuario.setText(R.string.perfil);
+                fragment = new PerfilFragment();
+                break;
+        }
+        return loadFragment(fragment);
+    }
+
+    //Carrega fragmento da tela
+    private boolean loadFragment(Fragment fragment) {
+        //Trocando fragmento
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+            return true;
+        }
+        return false;
     }
 }

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
+import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
@@ -23,12 +24,14 @@ import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
 public class PerfilFragment extends Fragment {
 
     TextView textViewUsuario;
+    UsuarioController uc;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        uc = new UsuarioController(getActivity().getApplicationContext());
         return inflater.inflate(R.layout.fragment_perfil, null);
     }
 
@@ -37,6 +40,10 @@ public class PerfilFragment extends Fragment {
         super.onActivityCreated(bundle);
 
         textViewUsuario = getView().findViewById(R.id.usuario);
+        if(Usuario.getUsuario_logado() == null || Usuario.getUsuario_logado().getLogin().equals("")){
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            Usuario.setUsuario_logado(uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, "")));
+        }
         textViewUsuario.setText("Olá " + Usuario.getUsuario_logado().getNome());
     }
 

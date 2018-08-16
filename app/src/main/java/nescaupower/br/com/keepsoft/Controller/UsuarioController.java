@@ -24,23 +24,29 @@ public class UsuarioController {
 
     public boolean cadastroUsuario(Usuario usuario){
         if(db.usuarioDAO().findByLogin(usuario.getLogin()) != null){
-            mensagem = "O nome de login já existe!";
+            this.mensagem = "O nome de login já existe!";
             return false;
         }else if(db.usuarioDAO().findByEmail(usuario.getEmail()) !=null){
-            mensagem = "O endereço de email já existe!";
+            this.mensagem = "O endereço de email já existe!";
             return false;
         }else{
             db.usuarioDAO().insertAll(usuario);
-            mensagem = "Cadastrado!";
+            this.mensagem = "Cadastrado!";
             return true;
         }
     }
 
     public Usuario realizarLogin(String login, String senha){
-        return db.usuarioDAO().login(login, senha);
+        Usuario usuario = db.usuarioDAO().login(login, senha);
+        if(usuario !=null){
+            this.mensagem = "Login feito!";
+        }else{
+            this.mensagem = "Login ou senha errados!";
+        }
+        return usuario;
     }
 
     public String getMensagem(){
-        return mensagem;
+        return this.mensagem;
     }
 }

@@ -6,25 +6,6 @@
     android:layout_height="match_parent"
     tools:context="nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicial">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/usuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pagina Inicial Usuario" />
-
-        <Button
-            android:id="@+id/btnSair"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="sair"
-            android:text="Sair" />
-    </LinearLayout>
-
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"

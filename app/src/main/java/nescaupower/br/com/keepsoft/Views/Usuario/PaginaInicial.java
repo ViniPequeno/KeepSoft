@@ -10,7 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
@@ -24,7 +23,6 @@ import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
 
 public class PaginaInicial extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
-    TextView textViewUsuario;
     BottomNavigationView menuInferior;
 
     UsuarioController uc;
@@ -36,7 +34,6 @@ public class PaginaInicial extends AppCompatActivity implements BottomNavigation
 
         uc = new UsuarioController(getApplicationContext());
 
-        textViewUsuario = findViewById(R.id.usuario);
         menuInferior = findViewById(R.id.menu_inferior);
 
         //Atribuindo listener ao menu inferior
@@ -51,9 +48,7 @@ public class PaginaInicial extends AppCompatActivity implements BottomNavigation
             SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
             usuario = uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, ""));
         }
-        //////////
 
-        textViewUsuario.setText("Olá " + usuario.getNome());
         Toast.makeText(getApplicationContext(), "123", Toast.LENGTH_SHORT).show();
     }
 
@@ -82,15 +77,12 @@ public class PaginaInicial extends AppCompatActivity implements BottomNavigation
         Fragment fragment = null;
         switch (item.getItemId()) {
             case R.id.navigation_projetos:
-                textViewUsuario.setText(R.string.projetos);
                 fragment = new ProjetosFragment();
                 break;
             case R.id.navigation_notificacoes:
-                textViewUsuario.setText(R.string.title_notifications);
                 fragment = new NotificacoesFragment();
                 break;
             case R.id.navigation_perfil:
-                textViewUsuario.setText(R.string.perfil);
                 fragment = new PerfilFragment();
                 break;
         }

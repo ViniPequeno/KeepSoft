@@ -2,6 +2,8 @@ package nescaupower.br.com.keepsoft.Controller;
 
 import android.content.Context;
 
+import java.util.List;
+
 import nescaupower.br.com.keepsoft.Factory.BD.Database.AppDatabase;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
@@ -31,6 +33,10 @@ public class ProjetoController {
             this.mensagem = "Cadastrado!";
             return true;
         }
+    }
+
+    public List<Projeto> listarProjetosPorUsuario(long idUsuario) {
+        return db.projetoDAO().findByUserID(idUsuario);
     }
 
     public String getMensagem() {

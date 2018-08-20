@@ -48,8 +48,6 @@ public class PaginaInicial extends AppCompatActivity implements BottomNavigation
             SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
             usuario = uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, ""));
         }
-
-        Toast.makeText(getApplicationContext(), "123", Toast.LENGTH_SHORT).show();
     }
 
     public void sair(View view) {

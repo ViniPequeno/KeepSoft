@@ -1,6 +1,7 @@
 package nescaupower.br.com.keepsoft.Factory.Model;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Calendar;
@@ -14,12 +15,18 @@ public class Projeto {
     private String descricao;
     private Date dataCriacao;
     private Date dataFinalizacao;
+    @ForeignKey(
+            entity = Usuario.class,
+            parentColumns = "id",
+            childColumns = "codigo"
+    )
+    private long idUsuario;
 
     public Projeto() {
         codigo = 0;
-        nome="";
-        descricao="";
-        dataCriacao= Calendar.getInstance().getTime();
+        nome = "";
+        descricao = "";
+        dataCriacao = Calendar.getInstance().getTime();
     }
 
     public Projeto(long codigo, String nome, String descricao, Date dataCriacao, Date dataFinalizacao) {
@@ -68,5 +75,13 @@ public class Projeto {
 
     public void setDataFinalizacao(Date dataFinalizacao) {
         this.dataFinalizacao = dataFinalizacao;
+    }
+
+    public long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(long idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

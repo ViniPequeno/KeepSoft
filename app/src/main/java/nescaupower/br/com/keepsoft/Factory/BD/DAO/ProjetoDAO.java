@@ -5,7 +5,6 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
-
 import java.util.List;
 
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
@@ -20,6 +19,9 @@ public interface ProjetoDAO {
 
     @Query("SELECT * FROM projeto WHERE nome LIKE :nome")
     Projeto findByName(String nome);
+
+    @Query("SELECT * FROM projeto p, usuario u WHERE u.id = p.idUsuario and u.id = :userID")
+    List<Projeto> findByUserID(long userID);
 
     @Insert
     void insertAll(Projeto... projetos);

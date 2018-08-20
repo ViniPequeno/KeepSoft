@@ -6,14 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
+import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.R;
 
 public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
 
     Context c;
-    String[] projetos;
+    List<Projeto> projetos;
 
-    public MyAdapter(Context c, String[] projetos) {
+    public MyAdapter(Context c, List<Projeto> projetos) {
         this.c = c;
         this.projetos = projetos;
     }
@@ -27,11 +30,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
 
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
-        holder.lblName.setText(projetos[position]);
+        holder.lblName.setText(projetos.get(position).getNome());
     }
 
     @Override
     public int getItemCount() {
-        return projetos.length;
+        return projetos.size();
     }
 }

@@ -12,6 +12,7 @@ import java.util.Calendar;
 import nescaupower.br.com.keepsoft.Controller.ProjetoController;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
+import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicial;
 
@@ -36,6 +37,7 @@ public class CadastroProjeto extends Activity {
         p.setNome(txtNome.getText().toString());
         p.setDescricao(txtDescricao.getText().toString());
         p.setDataCriacao(Calendar.getInstance().getTime());
+        p.setIdUsuario(Usuario.getUsuario_logado().getId());
 
         boolean cadastrou = pc.cadastroProjeto(p);
 

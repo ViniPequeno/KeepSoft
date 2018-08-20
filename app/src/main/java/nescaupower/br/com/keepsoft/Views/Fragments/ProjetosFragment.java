@@ -10,7 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
+import java.util.List;
+
+import nescaupower.br.com.keepsoft.Controller.ProjetoController;
+import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
+import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.MyAdapter;
 import nescaupower.br.com.keepsoft.Views.Projeto.CadastroProjeto;
@@ -20,7 +26,9 @@ import nescaupower.br.com.keepsoft.Views.Projeto.CadastroProjeto;
  */
 public class ProjetosFragment extends Fragment {
 
-    String[] projetos = {"KeepSoft", "10 Life Goals", "Gotham", "Chicken Tracker", "Memórias Soltas"};
+    ProjetoController pc;
+
+    List<Projeto> projetos;
     Button btnCadastrar;
 
     @Nullable
@@ -29,6 +37,10 @@ public class ProjetosFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_projetos, container, false);
+
+        pc = new ProjetoController(getActivity().getApplicationContext());
+        projetos = pc.listarProjetosPorUsuario(Usuario.getUsuario_logado().getId());
+        Toast.makeText(getContext(), " " + projetos.size(), Toast.LENGTH_SHORT);
 
         RecyclerView rv = rootView.findViewById(R.id.ProjetosRV);
         rv.setLayoutManager(new LinearLayoutManager(this.getActivity()));
@@ -50,6 +62,7 @@ public class ProjetosFragment extends Fragment {
     private void cadastrar() {
         Intent i = new Intent(getActivity(), CadastroProjeto.class);
         startActivity(i);
+        getActivity().finish();
     }
 
 }

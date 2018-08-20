@@ -2,7 +2,11 @@ package nescaupower.br.com.keepsoft.Views;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+
+import nescaupower.br.com.keepsoft.R;
 
 public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
 
@@ -14,18 +18,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
         this.projetos = projetos;
     }
 
-    /* TODO: Descomentar código*/
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        //View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.model,parent,false);
-        //return new MyHolder(v);
-        return null;
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.model, parent, false);
+        return new MyHolder(v);
     }
 
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
-        holder.txtName.setText(projetos[position]);
+        holder.lblName.setText(projetos[position]);
     }
 
     @Override

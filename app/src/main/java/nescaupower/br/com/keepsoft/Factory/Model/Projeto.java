@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 public class Projeto {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private long codigo;
     private String nome;
     private String descricao;

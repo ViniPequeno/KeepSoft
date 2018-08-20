@@ -4,11 +4,9 @@ import android.arch.persistence.room.Room;
 import android.content.Context;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
-import nescaupower.br.com.keepsoft.Factory.BD.DAO.UsuarioDAO;
 import nescaupower.br.com.keepsoft.Factory.BD.Database.AppDatabase;
-import nescaupower.br.com.keepsoft.Factory.Model.*;
-import nescaupower.br.com.keepsoft.Factory.BD.DAO.*;
-import nescaupower.br.com.keepsoft.R;
+import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
+import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 
 public abstract class Factory {
 
@@ -23,9 +21,12 @@ public abstract class Factory {
         return new Usuario();
     }
     public static Usuario getLogado(){return Usuario.getUsuario_logado();}
-    public static void setLogado(Usuario usuario){ Usuario.setUsuario_logado(usuario); };
 
-    public static Projeto startProjet(){
+    public static void setLogado(Usuario usuario) {
+        Usuario.setUsuario_logado(usuario);
+    }
+
+    public static Projeto startProjeto() {
         return new Projeto();
     }
 

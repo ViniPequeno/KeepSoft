@@ -3,7 +3,7 @@
     <string name="app_name">KeepSoft</string>
     <string name="email">Email</string>
     <string name="app_database">Banquinho</string>
-    <string name="button">Botão</string>
+    <string name="botao">Botão</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_notifications">Notificações</string>
     <string name="login">Login</string>
@@ -15,4 +15,9 @@
     <string name="projetos">Projetos</string>
     <string name="perfil">Perfil</string>
     <string name="notificacoes">Notificações</string>
+    <string name="nome_projeto">Nome do Projeto</string>
+    <string name="add_project">Adicionar Projeto</string>
+    <string name="title_activity_cadastro_projeto">Novo Projeto</string>
+    <string name="nome">Nome</string>
+    <string name="descricao">Descrição</string>
 </resources>

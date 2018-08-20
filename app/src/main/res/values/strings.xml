@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">KeepSoft</string>
-    <string name="button">Button</string>
+    <string name="botao">Button</string>
     <string name="email">Email</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_notifications">Notifications</string>
@@ -15,4 +15,9 @@
     <string name="projetos">Projects</string>
     <string name="perfil">Profile</string>
     <string name="notificacoes">Notifications</string>
+    <string name="nome_projeto">Project Name</string>
+    <string name="add_project">Add Project</string>
+    <string name="title_activity_cadastro_projeto">New Project</string>
+    <string name="nome">Name</string>
+    <string name="descricao">Description</string>
 </resources>

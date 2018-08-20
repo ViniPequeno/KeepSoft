@@ -14,14 +14,18 @@
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Views.Usuario.PaginaInicial"></activity>
+        <activity android:name=".Views.Usuario.PaginaInicial" />
         <activity
             android:name=".Views.Login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Views.Usuario.CadastroUsuario" />
+        <activity
+            android:name=".Views.Projeto.CadastroProjeto"
+            android:label="@string/title_activity_cadastro_projeto"></activity>
     </application>
 
 </manifest>

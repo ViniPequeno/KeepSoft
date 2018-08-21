@@ -16,7 +16,6 @@ import java.util.List;
 
 import nescaupower.br.com.keepsoft.Controller.ProjetoController;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
-import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.MyAdapter;
 import nescaupower.br.com.keepsoft.Views.Projeto.CadastroProjeto;
@@ -31,6 +30,14 @@ public class ProjetosFragment extends Fragment {
     List<Projeto> projetos;
     Button btnCadastrar;
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        pc = new ProjetoController(getActivity().getApplicationContext());
+        //projetos = pc.listarProjetosPorUsuario(Usuario.getUsuario_logado().getId());
+        projetos = pc.listarTodos();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,9 +45,9 @@ public class ProjetosFragment extends Fragment {
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_projetos, container, false);
 
-        pc = new ProjetoController(getActivity().getApplicationContext());
-        projetos = pc.listarProjetosPorUsuario(Usuario.getUsuario_logado().getId());
-        Toast.makeText(getContext(), " " + projetos.size(), Toast.LENGTH_SHORT);
+        if (projetos.size() > 0) {
+            Toast.makeText(getContext(), " " + projetos.get(0).getNome(), Toast.LENGTH_SHORT).show();
+        }
 
         RecyclerView rv = rootView.findViewById(R.id.ProjetosRV);
         rv.setLayoutManager(new LinearLayoutManager(this.getActivity()));
@@ -60,9 +67,9 @@ public class ProjetosFragment extends Fragment {
     }
 
     private void cadastrar() {
+        Toast.makeText(getContext(), " " + projetos.size(), Toast.LENGTH_SHORT).show();
         Intent i = new Intent(getActivity(), CadastroProjeto.class);
         startActivity(i);
-        getActivity().finish();
     }
 
 }

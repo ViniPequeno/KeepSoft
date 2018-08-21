@@ -7,11 +7,13 @@ import android.widget.TextView;
 import nescaupower.br.com.keepsoft.R;
 
 public class MyHolder extends RecyclerView.ViewHolder {
-    TextView lblName;
+    TextView lblNome;
+    TextView lblDescricao;
 
     public MyHolder(View itemView) {
         super(itemView);
 
-        lblName = itemView.findViewById(R.id.lblName);
+        lblNome = itemView.findViewById(R.id.lblNome);
+        lblDescricao = itemView.findViewById(R.id.lblDescricao);
     }
 }

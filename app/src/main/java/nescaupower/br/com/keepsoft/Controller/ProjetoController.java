@@ -26,7 +26,7 @@ public class ProjetoController {
 
     public boolean cadastroProjeto(Projeto projeto) {
         if (db.projetoDAO().findByName(projeto.getNome()) != null) {
-            this.mensagem = "O nome de login já existe!";
+            this.mensagem = "O nome de proeto já existe!";
             return false;
         } else {
             db.projetoDAO().insertAll(projeto);
@@ -37,6 +37,10 @@ public class ProjetoController {
 
     public List<Projeto> listarProjetosPorUsuario(long idUsuario) {
         return db.projetoDAO().findByUserID(idUsuario);
+    }
+
+    public List<Projeto> listarTodos() {
+        return db.projetoDAO().getAll();
     }
 
     public String getMensagem() {

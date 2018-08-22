@@ -26,7 +26,7 @@ public class ProjetoController {
 
     public boolean cadastroProjeto(Projeto projeto) {
         if (db.projetoDAO().findByName(projeto.getNome()) != null) {
-            this.mensagem = "O nome de proeto já existe!";
+            this.mensagem = "O nome de projeto já existe!";
             return false;
         } else {
             db.projetoDAO().insertAll(projeto);

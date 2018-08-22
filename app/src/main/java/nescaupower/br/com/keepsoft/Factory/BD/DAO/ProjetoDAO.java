@@ -20,7 +20,7 @@ public interface ProjetoDAO {
     @Query("SELECT * FROM projeto WHERE nome LIKE :nome")
     Projeto findByName(String nome);
 
-    @Query("SELECT * FROM projeto p, usuario u WHERE u.id = p.idUsuario and u.id = :userID")
+    @Query("SELECT * FROM projeto p WHERE p.idUsuario = :userID")
     List<Projeto> findByUserID(long userID);
 
     @Insert

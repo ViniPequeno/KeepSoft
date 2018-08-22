@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -45,10 +44,6 @@ public class ProjetosFragment extends Fragment {
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_projetos, container, false);
 
-        if (projetos.size() > 0) {
-            Toast.makeText(getContext(), " " + projetos.get(0).getNome(), Toast.LENGTH_SHORT).show();
-        }
-
         RecyclerView rv = rootView.findViewById(R.id.ProjetosRV);
         rv.setLayoutManager(new LinearLayoutManager(this.getActivity()));
 
@@ -67,7 +62,6 @@ public class ProjetosFragment extends Fragment {
     }
 
     private void cadastrar() {
-        Toast.makeText(getContext(), " " + projetos.size(), Toast.LENGTH_SHORT).show();
         Intent i = new Intent(getActivity(), CadastroProjeto.class);
         startActivity(i);
     }

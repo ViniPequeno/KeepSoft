@@ -1,8 +1,8 @@
 package nescaupower.br.com.keepsoft.Views.Projeto;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,7 +18,7 @@ import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity;
 
-public class CadastroProjetoActivity extends Activity {
+public class CadastroProjetoActivity extends AppCompatActivity {
 
     EditText txtNome, txtDescricao, txtDataPrevista;
     ProjetoController pc;

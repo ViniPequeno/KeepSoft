@@ -1,27 +1,25 @@
 package nescaupower.br.com.keepsoft.Views.Projeto;
 
 
-import android.app.Activity;
 import android.app.ActionBar;
-import android.app.FragmentTransaction;
-
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.TextView;
 
 import nescaupower.br.com.keepsoft.R;
 
-public class DetalhesProjetoActivity extends Activity implements ActionBar.TabListener {
+public class DetalhesProjetoActivity extends AppCompatActivity implements ActionBar.TabListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -55,7 +53,7 @@ public class DetalhesProjetoActivity extends Activity implements ActionBar.TabLi
             Log.e("xxxx","Olá mundo");
         }
         final ActionBar actionBar = getActionBar();
-        //0actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // When swiping between different sections, select the corresponding
         // tab. We can also use ActionBar.Tab#select() to do this if we have
@@ -73,10 +71,10 @@ public class DetalhesProjetoActivity extends Activity implements ActionBar.TabLi
             // the adapter. Also specify this Activity object, which implements
             // the TabListener interface, as the callback (listener) for when
             // this tab is selected.
-            //actionBar.addTab(
-                    //actionBar.newTab()
-                      //      .setText(mSectionsPagerAdapter.getPageTitle(i))
-                        //    .setTabListener(this));
+            actionBar.addTab(
+                    actionBar.newTab()
+                            .setText(mSectionsPagerAdapter.getPageTitle(i))
+                            .setTabListener(this));
         }
 
     }

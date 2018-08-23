@@ -21,7 +21,7 @@ import nescaupower.br.com.keepsoft.Views.Fragments.PerfilFragment;
 import nescaupower.br.com.keepsoft.Views.Fragments.ProjetosFragment;
 import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
 
-public class PaginaInicial extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class PaginaInicialActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     BottomNavigationView menuInferior;
 
@@ -60,10 +60,10 @@ public class PaginaInicial extends AppCompatActivity implements BottomNavigation
         editor.commit();
 
         Intent intent;
-        intent = new Intent(PaginaInicial.this, LoginActivity.class);
+        intent = new Intent(PaginaInicialActivity.this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
         startActivity(intent);
-        PaginaInicial.this.finish();
+        PaginaInicialActivity.this.finish();
 
     }
 

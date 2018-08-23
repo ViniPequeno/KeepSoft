@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
-import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicial;
+import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Se usuário já estiver logado, carrega a página inicial, senão, carrega a tela de login
         if (logado) {
-            intent = new Intent(MainActivity.this, PaginaInicial.class);
+            intent = new Intent(MainActivity.this, PaginaInicialActivity.class);
         } else {
             intent = new Intent(MainActivity.this, LoginActivity.class);
         }

@@ -20,4 +20,5 @@
     <string name="title_activity_cadastro_projeto">Novo Projeto</string>
     <string name="nome">Nome</string>
     <string name="descricao">Descrição</string>
+    <string name="due_date">Data prevista para finalização</string>
 </resources>

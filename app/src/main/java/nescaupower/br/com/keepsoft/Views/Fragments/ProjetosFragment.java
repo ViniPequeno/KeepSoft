@@ -17,7 +17,7 @@ import nescaupower.br.com.keepsoft.Controller.ProjetoController;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.MyAdapter;
-import nescaupower.br.com.keepsoft.Views.Projeto.CadastroProjeto;
+import nescaupower.br.com.keepsoft.Views.Projeto.CadastroProjetoActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,7 +62,7 @@ public class ProjetosFragment extends Fragment {
     }
 
     private void cadastrar() {
-        Intent i = new Intent(getActivity(), CadastroProjeto.class);
+        Intent i = new Intent(getActivity(), CadastroProjetoActivity.class);
         startActivity(i);
     }
 

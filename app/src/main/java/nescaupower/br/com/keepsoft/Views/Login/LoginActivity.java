@@ -14,8 +14,8 @@ import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Usuario.CadastroUsuario;
-import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicial;
+import nescaupower.br.com.keepsoft.Views.Usuario.CadastroUsuarioActivity;
+import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
             /////////////
 
             Intent intent;
-            intent = new Intent(LoginActivity.this, PaginaInicial.class);
+            intent = new Intent(LoginActivity.this, PaginaInicialActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK ); // adiciona a flag para a intent
             startActivity(intent);
             LoginActivity.this.finish();
@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void cadastrar(View view) {
         Intent intent;
-        intent = new Intent(LoginActivity.this, CadastroUsuario.class);
+        intent = new Intent(LoginActivity.this, CadastroUsuarioActivity.class);
 
         startActivity(intent);
     }

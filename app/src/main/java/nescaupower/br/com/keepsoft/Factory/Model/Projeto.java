@@ -15,6 +15,8 @@ public class Projeto {
     private String descricao;
     private Date dataCriacao;
     private Date dataFinalizacao;
+    private Date dataPrevFinalizacao;
+
     @ForeignKey(
             entity = Usuario.class,
             parentColumns = "id",
@@ -83,5 +85,13 @@ public class Projeto {
 
     public void setIdUsuario(long idUsuario) {
         this.idUsuario = idUsuario;
+    }
+
+    public Date getDataPrevFinalizacao() {
+        return dataPrevFinalizacao;
+    }
+
+    public void setDataPrevFinalizacao(Date dataPrevFinalizacao) {
+        this.dataPrevFinalizacao = dataPrevFinalizacao;
     }
 }

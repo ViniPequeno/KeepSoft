@@ -18,14 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Views.Usuario.PaginaInicial" />
+        <activity android:name=".Views.Usuario.PaginaInicialActivity" />
         <activity
             android:name=".Views.Login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Views.Usuario.CadastroUsuario" />
+        <activity android:name=".Views.Usuario.CadastroUsuarioActivity" />
         <activity
-            android:name=".Views.Projeto.CadastroProjeto"
-            android:label="@string/title_activity_cadastro_projeto"></activity>
+            android:name=".Views.Projeto.CadastroProjetoActivity"
+            android:label="@string/title_activity_cadastro_projeto" />
+        <activity
+            android:name=".Views.Projeto.DetalhesProjetoActivity"
+            android:label="@string/title_activity_detalhes_projeto"></activity>
     </application>
 
 </manifest>

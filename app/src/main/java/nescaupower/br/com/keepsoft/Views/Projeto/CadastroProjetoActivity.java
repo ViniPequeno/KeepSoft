@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import nescaupower.br.com.keepsoft.Controller.ProjetoController;
@@ -14,11 +16,11 @@ import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicial;
+import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity;
 
-public class CadastroProjeto extends Activity {
+public class CadastroProjetoActivity extends Activity {
 
-    EditText txtNome, txtDescricao;
+    EditText txtNome, txtDescricao, txtDataPrevista;
     ProjetoController pc;
 
     @Override
@@ -30,21 +32,30 @@ public class CadastroProjeto extends Activity {
 
         txtNome = findViewById(R.id.txtNome);
         txtDescricao = findViewById(R.id.txtDescricao);
+        txtDataPrevista = findViewById(R.id.txtDataPrevista);
     }
 
     public void cadastrar(View v) {
         Projeto p = Factory.startProjeto();
+
         p.setNome(txtNome.getText().toString());
         p.setDescricao(txtDescricao.getText().toString());
         p.setDataCriacao(Calendar.getInstance().getTime());
+
+        try {
+            p.setDataFinalizacao(new SimpleDateFormat("dd/MM/yy").parse(txtDataPrevista.getText().toString()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         p.setIdUsuario(Usuario.getUsuario_logado().getId());
 
         boolean cadastrou = pc.cadastroProjeto(p);
 
         if (cadastrou) {
-            Intent i = new Intent(CadastroProjeto.this, PaginaInicial.class);
+            Intent i = new Intent(CadastroProjetoActivity.this, PaginaInicialActivity.class);
             startActivity(i);
-            CadastroProjeto.this.finish();
+            CadastroProjetoActivity.this.finish();
         } else {
             Toast.makeText(this, "Projeto já existe", Toast.LENGTH_SHORT).show();
         }

@@ -13,7 +13,7 @@ import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
 
-public class CadastroUsuario extends AppCompatActivity {
+public class CadastroUsuarioActivity extends AppCompatActivity {
 
     EditText txtLogin, txtNome, txtEmail, txtSenha, txtConfirmarSenha, txtTelefone;
 
@@ -47,11 +47,11 @@ public class CadastroUsuario extends AppCompatActivity {
 
             if(cadastrou){
                 Intent intent;
-                intent = new Intent(CadastroUsuario.this, LoginActivity.class);
+                intent = new Intent(CadastroUsuarioActivity.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
                 Toast.makeText(this, uc.getMensagem(), Toast.LENGTH_SHORT).show();
                 startActivity(intent);
-                CadastroUsuario.this.finish();
+                CadastroUsuarioActivity.this.finish();
             }else{
                 Toast.makeText(this, uc.getMensagem(), Toast.LENGTH_SHORT).show();
             }

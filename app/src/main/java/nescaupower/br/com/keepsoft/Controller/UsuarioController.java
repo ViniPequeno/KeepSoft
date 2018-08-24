@@ -17,6 +17,7 @@ public class UsuarioController {
     public void inserirUsuario(Usuario... usuarios){
         db.usuarioDAO().insertAll(usuarios);
     }
+    public void updateUsuario(Usuario... usuarios) {db.usuarioDAO().updateAll(usuarios);}
 
     public Usuario procurarPeloLogin(String login){
         return db.usuarioDAO().findByLogin(login);

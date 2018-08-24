@@ -10,6 +10,7 @@ import java.util.Date;
 public class Perfil {
     @PrimaryKey(autoGenerate = true)
     private long id;
+    private nescaupower.br.com.keepsoft.Enum.Perfil perfil;
     private Date dataInicio;
     private Date dataFim;
 
@@ -47,6 +48,14 @@ public class Perfil {
 
     public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
+    }
+
+    public nescaupower.br.com.keepsoft.Enum.Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(nescaupower.br.com.keepsoft.Enum.Perfil perfil) {
+        this.perfil = perfil;
     }
 }
 

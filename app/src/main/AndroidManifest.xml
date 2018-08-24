@@ -14,6 +14,7 @@
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -27,7 +28,9 @@
             android:label="@string/title_activity_cadastro_projeto" />
         <activity
             android:name=".Views.Projeto.DetalhesProjetoActivity"
-            android:label="@string/title_activity_detalhes_projeto"></activity>
+            android:label="@string/title_activity_detalhes_projeto" />
+        <activity android:name=".Views.Usuario.AlterarPerfilActivity" />
+        <activity android:name=".Views.Usuario.AlterarPerfilSenhaActivity"></activity>
     </application>
 
 </manifest>

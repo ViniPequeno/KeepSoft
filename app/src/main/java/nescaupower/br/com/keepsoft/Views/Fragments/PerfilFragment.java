@@ -17,6 +17,8 @@ import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
+import nescaupower.br.com.keepsoft.Views.Usuario.AlterarPerfilActivity;
+import nescaupower.br.com.keepsoft.Views.Usuario.AlterarPerfilSenhaActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -62,6 +64,22 @@ public class PerfilFragment extends Fragment {
         startActivity(intent);
         getActivity().finish();
 
+    }
+
+    public void trocarTelaAlterarPerfil(View view){
+        Intent intent;
+        intent = new Intent(getActivity(), AlterarPerfilActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
+        startActivity(intent);
+        getActivity().finish();
+    }
+
+    public void trocarTelaAlterarSenha(View view){
+        Intent intent;
+        intent = new Intent(getActivity(), AlterarPerfilSenhaActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
+        startActivity(intent);
+        getActivity().finish();
     }
 
 }

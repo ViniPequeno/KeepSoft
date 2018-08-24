@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="nescaupower.br.com.keepsoft.Views.Usuario.AlterarPerfilSenhaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Alterar informações pessoais" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/senhaAntiga"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Senha antiga"
+                android:inputType="textPassword|textVisiblePassword" />
+
+            <EditText
+                android:id="@+id/senhaNova"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Senha nova"
+                android:inputType="textPassword|textVisiblePassword" />
+
+            <EditText
+                android:id="@+id/senhaNovaConfirmar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Confirmar nova senha"
+                android:inputType="textPassword|textVisiblePassword" />
+
+            <Button
+                android:id="@+id/btnAlterarPerfilSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="alterarPerfilSenha"
+                android:text="Alterar @string/senha" />
+
+            <Button
+                android:id="@+id/btnAlterarPerfilSenhaCancelar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:onClick="alterarPerfilSenhaCancelar"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

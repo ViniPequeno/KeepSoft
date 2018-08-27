@@ -39,19 +39,24 @@ public class CadastroProjetoActivity extends AppCompatActivity {
         txtNome = findViewById(R.id.txtNome);
         txtDescricao = findViewById(R.id.txtDescricao);
         txtDataPrevista = findViewById(R.id.txtDataPrevista);
-        txtDataPrevista.setOnClickListener(new View.OnClickListener() {
+        txtDataPrevista.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onClick(View v) {
-                new DatePickerDialog(CadastroProjetoActivity.this, seletorDataPrevista, dataAtual
-                        .get(Calendar.YEAR), dataAtual.get(Calendar.MONTH), dataAtual.get(Calendar.DAY_OF_MONTH)).show();
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    new DatePickerDialog(CadastroProjetoActivity.this, seletorDataPrevista, dataAtual
+                            .get(Calendar.YEAR), dataAtual.get(Calendar.MONTH), dataAtual.get(Calendar.DAY_OF_MONTH)).show();
+                }
             }
         });
+        //TODO: ajustar foco após selecionar data
         seletorDataPrevista = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
                 txtDataPrevista.setText(sdf.format(data));
+                txtDataPrevista.clearFocus();
+                getCurrentFocus().clearFocus();
             }
         };
     }

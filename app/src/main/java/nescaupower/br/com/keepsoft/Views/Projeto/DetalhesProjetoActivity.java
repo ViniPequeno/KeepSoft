@@ -1,15 +1,13 @@
 package nescaupower.br.com.keepsoft.Views.Projeto;
 
 
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,10 +47,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         // Set up the action bar.
-        if(getActionBar()==null){
-            Log.e("xxxx","Olá mundo");
-        }
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
         // When swiping between different sections, select the corresponding
@@ -103,18 +98,18 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
     }
 
     @Override
-    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        // When the given tab is selected, switch to the corresponding page in
-        // the ViewPager.
-        mViewPager.setCurrentItem(tab.getPosition());
+    public void onTabSelected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction ft) {
+
     }
 
     @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    public void onTabUnselected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction ft) {
+
     }
 
     @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    public void onTabReselected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction ft) {
+
     }
 
     /**

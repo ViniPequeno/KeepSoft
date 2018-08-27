@@ -23,8 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/cadastre_se"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-            tools:text="Cadastre-se" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
         <EditText
             android:id="@+id/txtLogin"
@@ -63,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Senha"
+            android:hint="@string/senha"
             android:inputType="textPassword" />
 
         <EditText

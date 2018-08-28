@@ -1,6 +1,5 @@
 package nescaupower.br.com.keepsoft.Views.Projeto;
 
-
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
@@ -8,16 +7,18 @@ import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import nescaupower.br.com.keepsoft.R;
+import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment;
+import nescaupower.br.com.keepsoft.Views.Sprint.SprintFragment;
+import nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment;
 
-public class DetalhesProjetoActivity extends AppCompatActivity implements ActionBar.TabListener {
+public class DetalhesProjetoActivity extends AppCompatActivity implements ActionBar.TabListener,
+        EquipeFragment.OnListFragmentInteractionListener,
+        SprintFragment.OnListFragmentInteractionListener,
+        TarefaFragment.OnListFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -43,7 +44,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
         // Set up the action bar.
@@ -99,7 +100,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, android.support.v4.app.FragmentTransaction ft) {
-
+        mViewPager.setCurrentItem(tab.getPosition());
     }
 
     @Override
@@ -112,39 +113,19 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
 
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
+    @Override
+    public void onListFragmentInteraction(nescaupower.br.com.keepsoft.Views.Equipe.dummy.DummyContent.DummyItem item) {
 
-        public PlaceholderFragment() {
-        }
+    }
 
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
+    @Override
+    public void onListFragmentInteraction(nescaupower.br.com.keepsoft.Views.Sprint.dummy.DummyContent.DummyItem item) {
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_detalhes_projeto, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
-        }
+    }
+
+    @Override
+    public void onListFragmentInteraction(nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent.DummyItem item) {
+
     }
 
     /**
@@ -161,7 +142,15 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch (position) {
+                case 0:
+                    return new SprintFragment();
+                case 1:
+                    return new TarefaFragment();
+                case 2:
+                    return new EquipeFragment();
+            }
+            return null;
         }
 
         @Override
@@ -174,11 +163,11 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Sprints";
                 case 1:
-                    return "SECTION 2";
+                    return "Tarefas";
                 case 2:
-                    return "SECTION 3";
+                    return "Equipe";
             }
             return null;
         }

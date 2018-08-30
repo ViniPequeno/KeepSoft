@@ -57,12 +57,13 @@ public class SprintFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sprint_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_sprint_list, container, false);
+        View rv = rootView.findViewById(R.id.SprintsRV);
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+        if (rv instanceof RecyclerView) {
+            Context context = rv.getContext();
+            RecyclerView recyclerView = (RecyclerView) rv;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -70,7 +71,7 @@ public class SprintFragment extends Fragment {
             }
             recyclerView.setAdapter(new MySprintRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
-        return view;
+        return rootView;
     }
 
 

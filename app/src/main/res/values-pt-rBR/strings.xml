@@ -1,24 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
-    <string name="app_name">KeepSoft</string>
-    <string name="email">Email</string>
-    <string name="app_database">Banquinho</string>
-    <string name="botao">Botão</string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_notifications">Notificações</string>
-    <string name="login">Login</string>
-    <string name="senha">Senha</string>
-    <string name="entrar">Entrar</string>
-    <string name="email_ou_login">Email ou Login</string>
-    <string name="cadastre_se">Cadastre-se</string>
-    <string name="confirmar">Confirmar</string>
-    <string name="projetos">Projetos</string>
-    <string name="perfil">Perfil</string>
-    <string name="notificacoes">Notificações</string>
-    <string name="nome_projeto">Nome do Projeto</string>
+    <string name="action_delete">Excluir</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_settings">Configurações</string>
+
     <string name="add_project">Adicionar Projeto</string>
-    <string name="title_activity_cadastro_projeto">Novo Projeto</string>
-    <string name="nome">Nome</string>
-    <string name="descricao">Descrição</string>
+    <string name="add_sprint">Adicionar Sprint</string>
+    <string name="add_task">Adicionar Tarefa</string>
+
+    <string name="app_database">Banquinho</string>
+    <string name="app_name">KeepSoft</string>
+
+    <string name="button">Botão</string>
+
+    <string name="confirm">Confirmar</string>
+
+    <string name="description">Descrição</string>
+
     <string name="due_date">Data prevista para finalização</string>
+
+    <string name="email">Email</string>
+
+    <string name="invite_member">Convidar Membro</string>
+
+    <string name="login">Login</string>
+
+    <string name="member">Membro</string>
+
+    <string name="name">Nome</string>
+
+    <string name="notifications">Notificações</string>
+
+    <string name="password">Senha</string>
+
+    <string name="profile">Perfil</string>
+
+    <string name="project_name">Nome do Projeto</string>
+
+    <string name="projects">Projetos</string>
+
+    <string name="sign_in">Entrar</string>
+    <string name="sign_up">Cadastre-se</string>
+
+    <string name="task">Task</string>
+
+    <string name="title_activity_cadastro_projeto">Novo Projeto</string>
+    <string name="title_notifications">Notificações</string>
+
+    <string name="username_or_email">Email ou Login</string>
 </resources>

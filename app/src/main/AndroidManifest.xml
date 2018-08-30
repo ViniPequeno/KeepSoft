@@ -28,7 +28,7 @@
             android:label="@string/title_activity_cadastro_projeto" />
         <activity
             android:name=".Views.Projeto.DetalhesProjetoActivity"
-            android:label="@string/title_activity_detalhes_projeto" />
+            android:label="Projeto" />
         <activity android:name=".Views.Usuario.AlterarPerfilActivity" />
         <activity android:name=".Views.Usuario.AlterarPerfilSenhaActivity"></activity>
     </application>

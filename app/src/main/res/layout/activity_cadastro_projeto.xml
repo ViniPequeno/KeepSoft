@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/nome_projeto"
+                android:hint="@string/project_name"
                 android:inputType="textPersonName" />
 
             <EditText
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/descricao"
+                android:hint="@string/description"
                 android:inputType="textMultiLine"
                 android:singleLine="false" />
 
@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="cadastrar"
-                android:text="@string/confirmar" />
+                android:text="@string/confirm" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -39,14 +38,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onItemClick(View v, int pos) {
-                Toast.makeText(v.getContext(),"Oi "+pos, Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(c, DetalhesProjetoActivity.class);
 
-                i.putExtra("Nome", projetos.get(pos).getNome());
-                i.putExtra("Descricao", projetos.get(pos).getDescricao());
-                i.putExtra("DataCriacao", projetos.get(pos).getDataCriacao());
-                i.putExtra("DataFinalizacao", projetos.get(pos).getDataFinalizacao());
-                i.putExtra("DataPrevista", projetos.get(pos).getDataPrevFinalizacao());
+                i.putExtra("EXTRA_NOME_PROJETO", projetos.get(pos).getNome());
+                i.putExtra("EXTRA_DESCRICAO_PROJETO", projetos.get(pos).getDescricao());
+                i.putExtra("EXTRA_DATA_CRIACAO_PROJETO", projetos.get(pos).getDataCriacao());
+                i.putExtra("EXTRA_DATA_FINALIAZACAO_PROJETO", projetos.get(pos).getDataFinalizacao());
+                i.putExtra("EXTRA_DATA_PREVISTA_PROJETO", projetos.get(pos).getDataPrevFinalizacao());
 
                 c.startActivity(i);
             }

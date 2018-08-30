@@ -57,7 +57,8 @@ public class TarefaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_tarefa_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_tarefa_list, container, false);
+        View view = rootView.findViewById(R.id.TarefasRV);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -70,7 +71,7 @@ public class TarefaFragment extends Fragment {
             }
             recyclerView.setAdapter(new MyTarefaRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
-        return view;
+        return rootView;
     }
 
 

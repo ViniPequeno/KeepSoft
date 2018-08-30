@@ -57,7 +57,8 @@ public class EquipeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_equipe_list, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_equipe_list, container, false);
+        View view = rootView.findViewById(R.id.EquipeRV);
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -70,7 +71,7 @@ public class EquipeFragment extends Fragment {
             }
             recyclerView.setAdapter(new MyEquipeRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
-        return view;
+        return rootView;
     }
 
 

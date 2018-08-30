@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/email_ou_login"
+            android:hint="@string/username_or_email"
             android:inputType=""
             android:singleLine="true" />
 
@@ -52,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/senha"
+            android:hint="@string/password"
             android:inputType="textPassword" />
 
         <Space
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:elevation="24dp"
             android:onClick="entrar"
-            android:text="@string/entrar"
+            android:text="@string/sign_in"
             android:textSize="18sp" />
 
         <Space
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:elevation="24dp"
             android:onClick="cadastrar"
-            android:text="@string/cadastre_se"
+            android:text="@string/sign_up"
             android:textSize="18sp" />
 
         <Space

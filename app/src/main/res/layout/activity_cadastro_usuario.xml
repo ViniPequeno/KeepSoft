@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/cadastre_se"
+            android:text="@string/sign_up"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
         <EditText
@@ -46,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/nome"
+            android:hint="@string/name"
             android:inputType="textPersonName" />
 
         <EditText
@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/senha"
+            android:hint="@string/password"
             android:inputType="textPassword" />
 
         <EditText
@@ -78,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="cadastrar"
-            android:text="@string/confirmar" />
+            android:text="@string/confirm" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

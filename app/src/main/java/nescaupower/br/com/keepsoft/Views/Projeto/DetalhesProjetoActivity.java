@@ -34,6 +34,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private String nomeProjeto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,8 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
                             .setTabListener(this));
         }
 
+        nomeProjeto = getIntent().getStringExtra("EXTRA_NOME_PROJETO");
+        getSupportActionBar().setTitle(nomeProjeto);
     }
 
 

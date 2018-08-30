@@ -81,7 +81,7 @@ public class CadastroProjetoActivity extends AppCompatActivity {
         p.setDataCriacao(Calendar.getInstance().getTime());
 
         try {
-            p.setDataFinalizacao(new SimpleDateFormat("dd/MM/yy").parse(txtDataPrevista.getText().toString()));
+            p.setDataPrevFinalizacao(new SimpleDateFormat("dd/MM/yyyy").parse(txtDataPrevista.getText().toString()));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -91,6 +91,7 @@ public class CadastroProjetoActivity extends AppCompatActivity {
         boolean cadastrou = pc.cadastroProjeto(p);
 
         if (cadastrou) {
+            Toast.makeText(this, p.getDataPrevFinalizacao().toString(), Toast.LENGTH_SHORT).show();
             Intent i = new Intent(CadastroProjetoActivity.this, PaginaInicialActivity.class);
             startActivity(i);
             CadastroProjetoActivity.this.finish();

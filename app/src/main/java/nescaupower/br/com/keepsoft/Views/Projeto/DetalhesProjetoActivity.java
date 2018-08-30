@@ -2,6 +2,9 @@ package nescaupower.br.com.keepsoft.Views.Projeto;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -10,15 +13,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import nescaupower.br.com.keepsoft.Config.Settings;
+import nescaupower.br.com.keepsoft.Controller.ProjetoController;
+import nescaupower.br.com.keepsoft.Factory.Factory;
+import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment;
+import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
 import nescaupower.br.com.keepsoft.Views.Sprint.SprintFragment;
 import nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment;
+import nescaupower.br.com.keepsoft.Views.Usuario.CadastroUsuarioActivity;
 
 public class DetalhesProjetoActivity extends AppCompatActivity implements ActionBar.TabListener,
         EquipeFragment.OnListFragmentInteractionListener,
         SprintFragment.OnListFragmentInteractionListener,
         TarefaFragment.OnListFragmentInteractionListener {
+
+    private Projeto projeto;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -40,6 +51,24 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_projeto);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor;
+        editor = sharedPreferences.edit();
+
+        projeto = new ProjetoController(getApplicationContext()).procurarPeloCodigo(getIntent().getLongExtra("EXTRA_CODIGO_PROJETO", 0));
+
+
+        editor.putBoolean(Settings.PROJETO, true);
+        editor.putLong(Settings.ID_PROJETO, projeto.getCodigo());
+        editor.commit();
+
+        //Singleton
+        Factory.setProjetoLogado(projeto);
+        //Usuario.setUsuario_logado(u);
+        /////////////
+
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager());
@@ -74,7 +103,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
                             .setTabListener(this));
         }
 
-        nomeProjeto = getIntent().getStringExtra("EXTRA_NOME_PROJETO");
+        nomeProjeto = projeto.getNome();
         getSupportActionBar().setTitle(nomeProjeto);
     }
 
@@ -83,6 +112,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_detalhes_projeto, menu);
+        //menu.getItem(0).setOnMenuItemClickListener();
         return true;
     }
 
@@ -93,10 +123,23 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        Intent intent = null;
+
+
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            intent = new Intent(DetalhesProjetoActivity.this, CadastroUsuarioActivity.class);
         }
+        if(id == R.id.action_editar){
+            intent = new Intent(DetalhesProjetoActivity.this, EditarPorjetoActivity.class);
+        }
+        if(id == R.id.action_excluir){
+            intent = new Intent(DetalhesProjetoActivity.this, CadastroUsuarioActivity.class);
+        }
+
+
+        startActivity(intent);
 
         return super.onOptionsItemSelected(item);
     }

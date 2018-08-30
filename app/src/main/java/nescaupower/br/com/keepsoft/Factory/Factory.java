@@ -25,6 +25,7 @@ public abstract class Factory {
     public static void setLogado(Usuario usuario) {
         Usuario.setUsuario_logado(usuario);
     }
+    public static void setProjetoLogado(Projeto projeto) {Projeto.setGetProjeto(projeto);}
 
     public static Projeto startProjeto() {
         return new Projeto();

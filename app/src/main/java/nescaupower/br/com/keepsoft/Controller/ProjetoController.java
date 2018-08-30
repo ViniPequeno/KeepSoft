@@ -24,6 +24,8 @@ public class ProjetoController {
         return db.projetoDAO().findByName(nome);
     }
 
+    public Projeto procurarPeloCodigo(Long codigo) {return db.projetoDAO().findByCodigo(codigo);}
+
     public boolean cadastroProjeto(Projeto projeto) {
         if (db.projetoDAO().findByName(projeto.getNome()) != null) {
             this.mensagem = "O nome de projeto já existe!";

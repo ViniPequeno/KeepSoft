@@ -41,12 +41,12 @@ public class PerfilFragment extends Fragment {
     public void onActivityCreated(Bundle bundle) {
         super.onActivityCreated(bundle);
 
-        textViewUsuario = getView().findViewById(R.id.usuario);
-        if(Usuario.getUsuario_logado() == null || Usuario.getUsuario_logado().getLogin().equals("")){
-            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-            Usuario.setUsuario_logado(uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, "")));
-        }
-        textViewUsuario.setText("Olá " + Usuario.getUsuario_logado().getNome());
+        //textViewUsuario = getView().findViewById(R.id.usuario);
+        //if(Usuario.getUsuario_logado() == null || Usuario.getUsuario_logado().getLogin().equals("")){
+          //  SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+           // Usuario.setUsuario_logado(uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, "")));
+        //}
+       // textViewUsuario.setText(Usuario.getUsuario_logado().getNome());
     }
 
     public void sair(View view) {

@@ -17,6 +17,19 @@ public class Projeto {
     private Date dataFinalizacao;
     private Date dataPrevFinalizacao;
 
+    private static Projeto getProjeto;
+
+    public static Projeto getGetProjeto() {
+        if (getProjeto == null) {
+            getProjeto = new Projeto();
+        }
+        return getProjeto;
+    }
+
+    public static void setGetProjeto(Projeto projeto) {
+        getProjeto = projeto;
+    }
+
     @ForeignKey(
             entity = Usuario.class,
             parentColumns = "id",

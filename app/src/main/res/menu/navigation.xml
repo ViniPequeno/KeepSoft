@@ -11,13 +11,13 @@
     <item
         android:id="@+id/navigation_notificacoes"
         android:enabled="true"
-        android:icon="@drawable/ic_edit_black_24dp"
+        android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/title_notifications"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/navigation_perfil"
         android:enabled="true"
-        android:icon="@drawable/ic_delete_black_24dp"
+        android:icon="@drawable/ic_person_black_24dp"
         android:title="@string/profile"
         app:showAsAction="ifRoom" />
 </menu>

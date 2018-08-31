@@ -1,7 +1,6 @@
 package nescaupower.br.com.keepsoft.Views.Usuario;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,8 +8,6 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
@@ -19,7 +16,6 @@ import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Fragments.NotificacoesFragment;
 import nescaupower.br.com.keepsoft.Views.Fragments.PerfilFragment;
 import nescaupower.br.com.keepsoft.Views.Fragments.ProjetosFragment;
-import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
 
 public class PaginaInicialActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -48,23 +44,6 @@ public class PaginaInicialActivity extends AppCompatActivity implements BottomNa
             SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
             usuario = uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, ""));
         }
-    }
-
-    public void sair(View view) {
-        Toast.makeText(this, "Saiu!", Toast.LENGTH_SHORT).show();
-        SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor;
-        editor = sharedPreferences.edit();
-        editor.putBoolean(Settings.LOGADO, false);
-        editor.putString(Settings.LOGIN, "");
-        editor.commit();
-
-        Intent intent;
-        intent = new Intent(PaginaInicialActivity.this, LoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
-        startActivity(intent);
-        PaginaInicialActivity.this.finish();
-
     }
 
 

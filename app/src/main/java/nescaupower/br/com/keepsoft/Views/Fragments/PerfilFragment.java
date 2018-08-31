@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,7 +26,8 @@ import nescaupower.br.com.keepsoft.Views.Usuario.AlterarPerfilSenhaActivity;
  */
 public class PerfilFragment extends Fragment {
 
-    TextView textViewUsuario;
+    TextView lblLogin, lblEmail, lblNome, lblTelefone;
+    Button btnAlterarPerfil, btnAlterarSenha, btnSair;
     UsuarioController uc;
 
     @Nullable
@@ -41,15 +43,46 @@ public class PerfilFragment extends Fragment {
     public void onActivityCreated(Bundle bundle) {
         super.onActivityCreated(bundle);
 
-        //textViewUsuario = getView().findViewById(R.id.usuario);
-        //if(Usuario.getUsuario_logado() == null || Usuario.getUsuario_logado().getLogin().equals("")){
-          //  SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-           // Usuario.setUsuario_logado(uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, "")));
-        //}
-       // textViewUsuario.setText(Usuario.getUsuario_logado().getNome());
+        if (Usuario.getUsuario_logado() == null || Usuario.getUsuario_logado().getLogin().equals("")) {
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            Usuario.setUsuario_logado(uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, "")));
+        }
+
+        lblLogin = getView().findViewById(R.id.lblLogin);
+        lblEmail = getView().findViewById(R.id.lblEmail);
+        lblNome = getView().findViewById(R.id.lblNome);
+        lblTelefone = getView().findViewById(R.id.lblTelefone);
+
+        lblLogin.setText(Usuario.getUsuario_logado().getLogin());
+        lblEmail.setText(Usuario.getUsuario_logado().getEmail());
+        lblNome.setText(Usuario.getUsuario_logado().getNome());
+        lblTelefone.setText(Usuario.getUsuario_logado().getTelefone());
+
+        btnAlterarPerfil = getView().findViewById(R.id.btnAlterarPerfil);
+        btnAlterarSenha = getView().findViewById(R.id.btnAlterarSenha);
+        btnSair = getView().findViewById(R.id.btnSair);
+
+        btnAlterarPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                trocarTelaAlterarPerfil(view);
+            }
+        });
+        btnAlterarSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                trocarTelaAlterarSenha(view);
+            }
+        });
+        btnSair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sair(view);
+            }
+        });
     }
 
-    public void sair(View view) {
+    private void sair(View view) {
         Toast.makeText(getContext(), "Saiu!", Toast.LENGTH_SHORT).show();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor;
@@ -66,20 +99,18 @@ public class PerfilFragment extends Fragment {
 
     }
 
-    public void trocarTelaAlterarPerfil(View view){
+    private void trocarTelaAlterarPerfil(View view) {
         Intent intent;
         intent = new Intent(getActivity(), AlterarPerfilActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
         startActivity(intent);
-        getActivity().finish();
     }
 
-    public void trocarTelaAlterarSenha(View view){
+    private void trocarTelaAlterarSenha(View view) {
         Intent intent;
         intent = new Intent(getActivity(), AlterarPerfilSenhaActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
         startActivity(intent);
-        getActivity().finish();
     }
 
 }

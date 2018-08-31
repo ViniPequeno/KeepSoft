@@ -8,5 +8,5 @@ public abstract  class Settings {
     public static final String ID_PROJETO = "id_projeto";
 
 
-    public static final String DATABASE = "Banquinho";
+    public static final String DATABASE = "Banquinho2";
 }

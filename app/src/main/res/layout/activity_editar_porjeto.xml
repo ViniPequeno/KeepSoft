@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="nescaupower.br.com.keepsoft.Views.Projeto.EditarPorjetoActivity">
+    tools:context="nescaupower.br.com.keepsoft.Views.Projeto.EditarProjetoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,5 +41,19 @@
             android:ems="10"
             android:hint="Data"
             android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/btnAlterarProjeto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alterar projeto"
+            android:onClick="alterarProjeto"/>
+
+        <Button
+            android:id="@+id/btnCancelarAlterarProjeto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:onClick="cancelarAlterarProjeto"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

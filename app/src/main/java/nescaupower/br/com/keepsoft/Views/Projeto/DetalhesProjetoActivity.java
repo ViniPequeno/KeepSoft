@@ -12,14 +12,16 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.ProjetoController;
+import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
+import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment;
-import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
 import nescaupower.br.com.keepsoft.Views.Sprint.SprintFragment;
 import nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment;
 import nescaupower.br.com.keepsoft.Views.Usuario.CadastroUsuarioActivity;
@@ -30,6 +32,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
         TarefaFragment.OnListFragmentInteractionListener {
 
     private Projeto projeto;
+    private Usuario usuario;
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -57,7 +60,9 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
         editor = sharedPreferences.edit();
 
         projeto = new ProjetoController(getApplicationContext()).procurarPeloCodigo(getIntent().getLongExtra("EXTRA_CODIGO_PROJETO", 0));
-
+        if(projeto == null){
+            projeto = Projeto.getGetProjeto();
+        }
 
         editor.putBoolean(Settings.PROJETO, true);
         editor.putLong(Settings.ID_PROJETO, projeto.getCodigo());
@@ -126,20 +131,38 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements Action
         Intent intent = null;
 
 
+        UsuarioController uc;
+        uc = new UsuarioController(getApplicationContext());
 
+        //Singleton
+        Usuario usuario = Usuario.getUsuario_logado();
+        if (usuario == null || usuario.getLogin().equals("")) {
+            SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            usuario = uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, ""));
+        }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             intent = new Intent(DetalhesProjetoActivity.this, CadastroUsuarioActivity.class);
+            startActivity(intent);
         }
         if(id == R.id.action_editar){
-            intent = new Intent(DetalhesProjetoActivity.this, EditarPorjetoActivity.class);
+            if(projeto.getIdUsuario() == usuario.getId()){
+                intent = new Intent(DetalhesProjetoActivity.this, EditarProjetoActivity.class);
+                startActivity(intent);
+            }else{
+                Toast.makeText(this, "Você não tem permissão", Toast.LENGTH_SHORT).show();
+            }
         }
         if(id == R.id.action_excluir){
-            intent = new Intent(DetalhesProjetoActivity.this, CadastroUsuarioActivity.class);
+            if(projeto.getIdUsuario() == usuario.getId()){
+                intent = new Intent(DetalhesProjetoActivity.this, CadastroUsuarioActivity.class);
+                startActivity(intent);
+            }else{
+                Toast.makeText(this, "Você não tem permissão", Toast.LENGTH_SHORT).show();
+            }
         }
 
 
-        startActivity(intent);
 
         return super.onOptionsItemSelected(item);
     }

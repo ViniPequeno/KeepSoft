@@ -48,4 +48,5 @@
     <string name="title_notifications">Notificações</string>
 
     <string name="username_or_email">Email ou Login</string>
+    <string name="title_activity_alterar_perfil_senha">teste</string>
 </resources>

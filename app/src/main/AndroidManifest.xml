@@ -14,7 +14,6 @@
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -22,7 +21,9 @@
         <activity
             android:name=".Views.Login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Views.Usuario.CadastroUsuarioActivity" />
+        <activity
+            android:name=".Views.Usuario.CadastroUsuarioActivity"
+            android:label="@string/sign_up" />
         <activity
             android:name=".Views.Projeto.CadastroProjetoActivity"
             android:label="@string/title_activity_cadastro_projeto" />

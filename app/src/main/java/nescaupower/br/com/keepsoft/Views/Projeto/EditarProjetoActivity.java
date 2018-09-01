@@ -4,8 +4,8 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,9 +18,6 @@ import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.ProjetoController;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
-import nescaupower.br.com.keepsoft.Views.Usuario.CadastroUsuarioActivity;
-import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity;
 
 public class EditarProjetoActivity extends AppCompatActivity {
 
@@ -34,7 +31,7 @@ public class EditarProjetoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editar_porjeto);
+        setContentView(R.layout.activity_editar_projeto);
 
         pc = new ProjetoController(getApplicationContext());
 

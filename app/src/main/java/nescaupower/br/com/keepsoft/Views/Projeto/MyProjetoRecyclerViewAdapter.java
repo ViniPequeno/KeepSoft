@@ -1,4 +1,4 @@
-package nescaupower.br.com.keepsoft.Views;
+package nescaupower.br.com.keepsoft.Views.Projeto;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,14 +11,14 @@ import java.util.List;
 
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity;
+import nescaupower.br.com.keepsoft.Views.ItemClickListener;
 
-public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
+public class MyProjetoRecyclerViewAdapter extends RecyclerView.Adapter<MyHolder> {
 
     private Context c;
     private List<Projeto> projetos;
 
-    public MyAdapter(Context c, List<Projeto> projetos) {
+    public MyProjetoRecyclerViewAdapter(Context c, List<Projeto> projetos) {
         this.c = c;
         this.projetos = projetos;
     }

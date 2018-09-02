@@ -1,11 +1,11 @@
-package nescaupower.br.com.keepsoft.Views.Fragments;
+package nescaupower.br.com.keepsoft.Views.Projeto;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +16,6 @@ import java.util.List;
 import nescaupower.br.com.keepsoft.Controller.ProjetoController;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.MyAdapter;
-import nescaupower.br.com.keepsoft.Views.Projeto.CadastroProjetoActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,7 +31,7 @@ public class ProjetosFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pc = new ProjetoController(getActivity().getApplicationContext());
-        //projetos = pc.listarProjetosPorUsuario(Usuario.getUsuario_logado().getId());
+        //projetos = pc.listarProjetosPorUsuario(Usuario.getUsuarioLogado().getId());
         projetos = pc.listarTodos();
     }
 
@@ -45,9 +43,10 @@ public class ProjetosFragment extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_projetos, container, false);
 
         RecyclerView rv = rootView.findViewById(R.id.ProjetosRV);
-        rv.setLayoutManager(new LinearLayoutManager(this.getActivity()));
+        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        rv.setLayoutManager(layoutManager);
 
-        MyAdapter adapter = new MyAdapter(this.getActivity(), projetos);
+        MyProjetoRecyclerViewAdapter adapter = new MyProjetoRecyclerViewAdapter(this.getActivity(), projetos);
         rv.setAdapter(adapter);
 
         btnCadastrar = rootView.findViewById(R.id.btnCadastrar);

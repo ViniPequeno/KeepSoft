@@ -1,10 +1,11 @@
-package nescaupower.br.com.keepsoft.Views;
+package nescaupower.br.com.keepsoft.Views.Projeto;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import nescaupower.br.com.keepsoft.R;
+import nescaupower.br.com.keepsoft.Views.ItemClickListener;
 
 public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     TextView lblNome;

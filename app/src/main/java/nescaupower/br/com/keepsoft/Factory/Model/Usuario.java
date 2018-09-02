@@ -16,16 +16,17 @@ public class Usuario {
     private String senha;
     private String telefone;
 
-    private static Usuario usuario_logado;
+    private static Usuario usuarioLogado;
 
-    public static Usuario getUsuario_logado(){
-        if(usuario_logado == null){
-            usuario_logado = new Usuario();
+    public static Usuario getUsuarioLogado() {
+        if (usuarioLogado == null) {
+            usuarioLogado = new Usuario();
         }
-        return usuario_logado;
+        return usuarioLogado;
     }
-    public static void setUsuario_logado(Usuario u){
-        usuario_logado = u;
+
+    public static void setUsuarioLogado(Usuario u) {
+        usuarioLogado = u;
     }
 
 

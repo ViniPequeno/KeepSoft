@@ -1,4 +1,4 @@
-package nescaupower.br.com.keepsoft.Views.Fragments;
+package nescaupower.br.com.keepsoft.Views.Usuario;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,8 +18,6 @@ import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
-import nescaupower.br.com.keepsoft.Views.Usuario.AlterarPerfilActivity;
-import nescaupower.br.com.keepsoft.Views.Usuario.AlterarPerfilSenhaActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,9 +46,9 @@ public class PerfilFragment extends Fragment {
     public void onActivityCreated(Bundle bundle) {
         super.onActivityCreated(bundle);
 
-        if (Usuario.getUsuario_logado() == null || Usuario.getUsuario_logado().getLogin().equals("")) {
+        if (Usuario.getUsuarioLogado() == null || Usuario.getUsuarioLogado().getLogin().equals("")) {
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-            Usuario.setUsuario_logado(uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, "")));
+            Usuario.setUsuarioLogado(uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, "")));
         }
 
         lblLogin = getView().findViewById(R.id.lblLogin);
@@ -58,10 +56,10 @@ public class PerfilFragment extends Fragment {
         lblNome = getView().findViewById(R.id.lblNome);
         lblTelefone = getView().findViewById(R.id.lblTelefone);
 
-        lblLogin.setText(Usuario.getUsuario_logado().getLogin());
-        lblEmail.setText(Usuario.getUsuario_logado().getEmail());
-        lblNome.setText(Usuario.getUsuario_logado().getNome());
-        lblTelefone.setText(Usuario.getUsuario_logado().getTelefone());
+        lblLogin.setText(Usuario.getUsuarioLogado().getLogin());
+        lblEmail.setText(Usuario.getUsuarioLogado().getEmail());
+        lblNome.setText(Usuario.getUsuarioLogado().getNome());
+        lblTelefone.setText(Usuario.getUsuarioLogado().getTelefone());
 
         btnAlterarPerfil = getView().findViewById(R.id.btnAlterarPerfil);
         btnAlterarSenha = getView().findViewById(R.id.btnAlterarSenha);

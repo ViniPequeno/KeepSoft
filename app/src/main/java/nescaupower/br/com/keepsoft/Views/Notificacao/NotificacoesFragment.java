@@ -1,4 +1,4 @@
-package nescaupower.br.com.keepsoft.Views.Fragments;
+package nescaupower.br.com.keepsoft.Views.Notificacao;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

@@ -20,10 +20,13 @@ public abstract class Factory {
     public static Usuario startUsuario(){
         return new Usuario();
     }
-    public static Usuario getLogado(){return Usuario.getUsuario_logado();}
+
+    public static Usuario getLogado() {
+        return Usuario.getUsuarioLogado();
+    }
 
     public static void setLogado(Usuario usuario) {
-        Usuario.setUsuario_logado(usuario);
+        Usuario.setUsuarioLogado(usuario);
     }
     public static void setProjetoLogado(Projeto projeto) {Projeto.setGetProjeto(projeto);}
 

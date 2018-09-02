@@ -8,11 +8,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.ProjetoController;
@@ -22,9 +25,9 @@ import nescaupower.br.com.keepsoft.R;
 public class EditarProjetoActivity extends AppCompatActivity {
 
     //Calendar dataAtual = Calendar.getInstance();
-    private EditText editarNomeProjeto;
-    private EditText editarDescricaoProjeto;
-    private EditText editarDataPrevistaEntrega;
+    private EditText txtNome;
+    private EditText txtDescricao;
+    private EditText txtDataPrevista;
     Button btnAlterarProjeto, btnCancelarAlterarProjeto;
     private ProjetoController pc;
     private DatePickerDialog.OnDateSetListener seletorDataPrevista;
@@ -44,22 +47,21 @@ public class EditarProjetoActivity extends AppCompatActivity {
             projeto = pc.procurarPeloCodigo(sharedPreferences.getLong(Settings.ID_PROJETO, 0));
         }
 
-        editarNomeProjeto = findViewById(R.id.editarNomeProjeto);
-        editarDescricaoProjeto = findViewById(R.id.editarDescricaoProjeto);
-        editarDataPrevistaEntrega = findViewById(R.id.editarDataPrevistaEntrega);
+        txtNome = findViewById(R.id.editarNomeProjeto);
+        txtDescricao = findViewById(R.id.editarDescricaoProjeto);
+        txtDataPrevista = findViewById(R.id.editarDataPrevistaEntrega);
 
-        String data = projeto.getDataPrevFinalizacao().toString();
-        data = new SimpleDateFormat("dd/MM/yyyy").format(projeto.getDataPrevFinalizacao());
+        String data = new SimpleDateFormat("dd/MM/yyyy").format(projeto.getDataPrevFinalizacao());
 
         final int ano = Integer.parseInt(data.substring(6));
         final int mes = Integer.parseInt(data.substring(3, 5));
         final int dia = Integer.parseInt(data.substring(0, 2));
 
-        editarNomeProjeto.setText(projeto.getNome());
-        editarDescricaoProjeto.setText(projeto.getDescricao());
-        editarDataPrevistaEntrega.setText(data);
+        txtNome.setText(projeto.getNome());
+        txtDescricao.setText(projeto.getDescricao());
+        txtDataPrevista.setText(data);
 
-        editarDataPrevistaEntrega.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        txtDataPrevista.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
@@ -67,25 +69,35 @@ public class EditarProjetoActivity extends AppCompatActivity {
                 }
             }
         });
+        seletorDataPrevista = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
+                txtDataPrevista.setText(sdf.format(data));
+                txtDataPrevista.clearFocus();
+                getCurrentFocus().clearFocus();
+            }
+        };
     }
 
     public void alterarProjeto(View view) {
-        if (editarNomeProjeto.getText().toString() == "" || editarNomeProjeto.getText().toString() == null) {
+        if (txtNome.getText().toString() == "" || txtNome.getText().toString() == null) {
             Toast.makeText(this, "O Projeto deve ter um nome", Toast.LENGTH_SHORT).show();
             return;
-        } else if (editarDescricaoProjeto.getText().toString() == "" || editarDescricaoProjeto.getText().toString() == null) {
+        } else if (txtDescricao.getText().toString() == "" || txtDescricao.getText().toString() == null) {
             Toast.makeText(this, "O Projeto deve ter um descrição", Toast.LENGTH_SHORT).show();
             return;
-        } else if (editarDataPrevistaEntrega.getText().toString() == "" || editarDataPrevistaEntrega.getText().toString() == null) {
+        } else if (txtDataPrevista.getText().toString() == "" || txtDataPrevista.getText().toString() == null) {
             Toast.makeText(this, "O Projeto deve ter uma data de previsão final", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        projeto.setNome(editarNomeProjeto.getText().toString());
-        projeto.setDescricao(editarDescricaoProjeto.getText().toString());
+        projeto.setNome(txtNome.getText().toString());
+        projeto.setDescricao(txtDescricao.getText().toString());
         try {
             projeto.setDataPrevFinalizacao(new SimpleDateFormat("dd/MM/yyyy").
-                    parse(editarDataPrevistaEntrega.getText().toString()));
+                    parse(txtDataPrevista.getText().toString()));
         } catch (ParseException e) {
             e.printStackTrace();
         }

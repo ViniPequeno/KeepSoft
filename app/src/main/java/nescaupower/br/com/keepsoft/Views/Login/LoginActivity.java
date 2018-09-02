@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
 
             //Singleton
             Factory.setLogado(u);
-            //Usuario.setUsuario_logado(u);
+            //Usuario.setUsuarioLogado(u);
             /////////////
 
             Intent intent;

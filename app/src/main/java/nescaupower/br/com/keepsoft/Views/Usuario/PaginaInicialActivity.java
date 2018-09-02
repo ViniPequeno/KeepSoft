@@ -13,9 +13,8 @@ import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Fragments.NotificacoesFragment;
-import nescaupower.br.com.keepsoft.Views.Fragments.PerfilFragment;
-import nescaupower.br.com.keepsoft.Views.Fragments.ProjetosFragment;
+import nescaupower.br.com.keepsoft.Views.Notificacao.NotificacoesFragment;
+import nescaupower.br.com.keepsoft.Views.Projeto.ProjetosFragment;
 
 public class PaginaInicialActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -39,7 +38,7 @@ public class PaginaInicialActivity extends AppCompatActivity implements BottomNa
         loadFragment(new ProjetosFragment());
 
         //Singleton
-        Usuario usuario = Usuario.getUsuario_logado();
+        Usuario usuario = Usuario.getUsuarioLogado();
         if (usuario == null || usuario.getLogin().equals("")) {
             SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
             usuario = uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, ""));

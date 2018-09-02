@@ -30,7 +30,7 @@ public class AlterarPerfilSenhaActivity extends AppCompatActivity {
         uc = new UsuarioController(getApplicationContext());
 
         //Singleton
-        Usuario usuario = Usuario.getUsuario_logado();
+        Usuario usuario = Usuario.getUsuarioLogado();
         if (usuario == null || usuario.getLogin().equals("")) {
             SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
             usuario = uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, ""));
@@ -52,13 +52,13 @@ public class AlterarPerfilSenhaActivity extends AppCompatActivity {
                 if(senhaNova.getText().toString().equals(senhaNovaConfirmar.getText().toString())){
                     Toast.makeText(this, "Senha nova não é igual ao confirmar!", Toast.LENGTH_SHORT).show();
                 }else{
-                    Usuario usuario = Usuario.getUsuario_logado();
+                    Usuario usuario = Usuario.getUsuarioLogado();
 
                     if(usuario.getSenha().equals(senhaAntiga.getText().toString())){
                         usuario.setSenha(senhaNova.getText().toString());
 
                         uc.updateUsuario(usuario);
-                        Usuario.setUsuario_logado(usuario);
+                        Usuario.setUsuarioLogado(usuario);
 
                         Intent intent;
                         intent = new Intent(AlterarPerfilSenhaActivity.this, PaginaInicialActivity.class);

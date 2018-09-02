@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="nescaupower.br.com.keepsoft.Views.Fragments.PerfilFragment">
+    tools:context="nescaupower.br.com.keepsoft.Views.Usuario.PerfilFragment">
 
     <ImageView
         android:id="@+id/imageView2"

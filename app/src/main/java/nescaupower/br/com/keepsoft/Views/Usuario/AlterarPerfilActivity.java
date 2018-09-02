@@ -32,7 +32,7 @@ public class AlterarPerfilActivity extends AppCompatActivity {
         uc = new UsuarioController(getApplicationContext());
 
         //Singleton
-        Usuario usuario = Usuario.getUsuario_logado();
+        Usuario usuario = Usuario.getUsuarioLogado();
         if (usuario == null || usuario.getLogin().equals("")) {
             SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
             usuario = uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, ""));
@@ -56,13 +56,13 @@ public class AlterarPerfilActivity extends AppCompatActivity {
         }else if(alterarNome.getText().toString().equals("")){
             Toast.makeText(this, "O nome não pode ficar vazio!", Toast.LENGTH_SHORT).show();
         }else{
-            Usuario usuario = Usuario.getUsuario_logado();
+            Usuario usuario = Usuario.getUsuarioLogado();
             usuario.setEmail(alterarEmail.getText().toString());
             usuario.setNome(alterarNome.getText().toString());
             usuario.setTelefone(alterarTelefone.getText().toString());
 
             uc.updateUsuario(usuario);
-            Usuario.setUsuario_logado(usuario);
+            Usuario.setUsuarioLogado(usuario);
 
             Intent intent;
             intent = new Intent(AlterarPerfilActivity.this, PaginaInicialActivity.class);

@@ -1,8 +1,10 @@
 package nescaupower.br.com.keepsoft.Views.Projeto;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.DatePicker;
@@ -24,17 +26,21 @@ import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity;
 
 public class CadastroProjetoActivity extends AppCompatActivity {
 
+    private ConstraintLayout root;
     private Calendar dataAtual = Calendar.getInstance();
     private EditText txtNome;
     private EditText txtDescricao;
     private EditText txtDataPrevista;
     private ProjetoController pc;
-    private DatePickerDialog.OnDateSetListener seletorDataPrevista;
+    private DatePickerDialog dialogDataPrevista;
+    private DatePickerDialog.OnDateSetListener listenerDataSelecionadaDataPrevista;
+    private DatePickerDialog.OnCancelListener listenerSelecaoCanceladaDataPrevista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_projeto);
+        root = findViewById(R.id.teste);
 
         pc = new ProjetoController(getApplicationContext());
 
@@ -45,22 +51,30 @@ public class CadastroProjetoActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    new DatePickerDialog(CadastroProjetoActivity.this, seletorDataPrevista, dataAtual
-                            .get(Calendar.YEAR), dataAtual.get(Calendar.MONTH), dataAtual.get(Calendar.DAY_OF_MONTH)).show();
+                    dialogDataPrevista.show();
                 }
             }
         });
+
         //TODO: ajustar foco após selecionar data
-        seletorDataPrevista = new DatePickerDialog.OnDateSetListener() {
+        listenerDataSelecionadaDataPrevista = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
                 txtDataPrevista.setText(sdf.format(data));
-                txtDataPrevista.clearFocus();
-                getCurrentFocus().clearFocus();
+                root.clearFocus();
             }
         };
+        listenerSelecaoCanceladaDataPrevista = new DatePickerDialog.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                root.clearFocus();
+            }
+        };
+        dialogDataPrevista = new DatePickerDialog(CadastroProjetoActivity.this, listenerDataSelecionadaDataPrevista, dataAtual
+                .get(Calendar.YEAR), dataAtual.get(Calendar.MONTH), dataAtual.get(Calendar.DAY_OF_MONTH));
+        dialogDataPrevista.setOnCancelListener(listenerSelecaoCanceladaDataPrevista);
     }
 
     public void cadastrar(View v) {
@@ -88,7 +102,7 @@ public class CadastroProjetoActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        p.setIdUsuario(Usuario.getUsuario_logado().getId());
+        p.setIdUsuario(Usuario.getUsuarioLogado().getId());
 
         boolean cadastrou = pc.cadastroProjeto(p);
 

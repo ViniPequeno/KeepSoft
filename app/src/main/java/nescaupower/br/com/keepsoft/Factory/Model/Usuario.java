@@ -1,14 +1,8 @@
 package nescaupower.br.com.keepsoft.Factory.Model;
 
-import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
-
-import java.util.Calendar;
-import java.util.Date;
-
-import io.reactivex.annotations.NonNull;
 
 @Entity(indices = {
         @Index(value = "email", unique = true)

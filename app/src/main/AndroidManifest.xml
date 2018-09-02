@@ -30,9 +30,15 @@
         <activity
             android:name=".Views.Projeto.DetalhesProjetoActivity"
             android:label="Projeto" />
-        <activity android:name=".Views.Usuario.AlterarPerfilActivity" />
-        <activity android:name=".Views.Usuario.AlterarPerfilSenhaActivity" />
-        <activity android:name=".Views.Projeto.EditarProjetoActivity"></activity>
+        <activity
+            android:name=".Views.Usuario.AlterarPerfilActivity"
+            android:label="@string/title_activity_alterar_perfil" />
+        <activity
+            android:name=".Views.Usuario.AlterarPerfilSenhaActivity"
+            android:label="@string/title_activity_alterar_perfil_senha" />
+        <activity
+            android:name=".Views.Projeto.EditarProjetoActivity"
+            android:label="@string/title_activity_editar_projeto" />
     </application>
 
 </manifest>

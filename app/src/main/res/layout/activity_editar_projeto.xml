@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,26 +9,26 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Alterar Projeto" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/editarNomeProjeto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Nome"
+                android:hint="@string/name"
                 android:inputType="textPersonName" />
         </android.support.design.widget.TextInputLayout>
 
@@ -41,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Descrição"
+                android:hint="@string/description"
                 android:inputType="textPersonName" />
         </android.support.design.widget.TextInputLayout>
 
@@ -55,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Data"
+                android:hint="@string/due_date"
                 android:inputType="textPersonName" />
         </android.support.design.widget.TextInputLayout>
 
@@ -63,14 +64,14 @@
             android:id="@+id/btnAlterarProjeto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Alterar projeto"
-            android:onClick="alterarProjeto"/>
+            android:onClick="alterarProjeto"
+            android:text="@string/change" />
 
         <Button
             android:id="@+id/btnCancelarAlterarProjeto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancelar"
-            android:onClick="cancelarAlterarProjeto"/>
+            android:onClick="cancelarAlterarProjeto"
+            android:text="@string/cancel" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

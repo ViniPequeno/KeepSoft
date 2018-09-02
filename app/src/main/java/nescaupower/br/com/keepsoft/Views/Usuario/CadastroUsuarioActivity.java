@@ -1,8 +1,8 @@
 package nescaupower.br.com.keepsoft.Views.Usuario;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -15,9 +15,14 @@ import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
 
-    EditText txtLogin, txtNome, txtEmail, txtSenha, txtConfirmarSenha, txtTelefone;
+    private EditText txtLogin;
+    private EditText txtNome;
+    private EditText txtEmail;
+    private EditText txtSenha;
+    private EditText txtConfirmarSenha;
+    private EditText txtTelefone;
 
-    UsuarioController uc;
+    private UsuarioController uc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

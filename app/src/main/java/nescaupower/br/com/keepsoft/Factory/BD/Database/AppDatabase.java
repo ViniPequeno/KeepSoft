@@ -4,9 +4,20 @@ import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 
-
-import nescaupower.br.com.keepsoft.Factory.BD.DAO.*;
-import nescaupower.br.com.keepsoft.Factory.Model.*;
+import nescaupower.br.com.keepsoft.Factory.BD.DAO.ProjetoDAO;
+import nescaupower.br.com.keepsoft.Factory.BD.DAO.RequisitoDAO;
+import nescaupower.br.com.keepsoft.Factory.BD.DAO.RequisitoStatusDAO;
+import nescaupower.br.com.keepsoft.Factory.BD.DAO.ReuniaoDAO;
+import nescaupower.br.com.keepsoft.Factory.BD.DAO.SprintDAO;
+import nescaupower.br.com.keepsoft.Factory.BD.DAO.StatusDAO;
+import nescaupower.br.com.keepsoft.Factory.BD.DAO.UsuarioDAO;
+import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
+import nescaupower.br.com.keepsoft.Factory.Model.Requisito;
+import nescaupower.br.com.keepsoft.Factory.Model.RequisitoStatus;
+import nescaupower.br.com.keepsoft.Factory.Model.Reuniao;
+import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
+import nescaupower.br.com.keepsoft.Factory.Model.Status;
+import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.Utils.Converters;
 
 

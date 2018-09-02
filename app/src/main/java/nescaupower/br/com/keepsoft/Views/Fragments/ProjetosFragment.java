@@ -24,10 +24,10 @@ import nescaupower.br.com.keepsoft.Views.Projeto.CadastroProjetoActivity;
  */
 public class ProjetosFragment extends Fragment {
 
-    ProjetoController pc;
+    private ProjetoController pc;
 
-    List<Projeto> projetos;
-    Button btnCadastrar;
+    private List<Projeto> projetos;
+    private Button btnCadastrar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

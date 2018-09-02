@@ -22,11 +22,13 @@ import nescaupower.br.com.keepsoft.R;
 public class EditarProjetoActivity extends AppCompatActivity {
 
     //Calendar dataAtual = Calendar.getInstance();
-    EditText editarNomeProjeto, editarDescricaoProjeto, editarDataPrevistaEntrega;
+    private EditText editarNomeProjeto;
+    private EditText editarDescricaoProjeto;
+    private EditText editarDataPrevistaEntrega;
     Button btnAlterarProjeto, btnCancelarAlterarProjeto;
-    ProjetoController pc;
-    DatePickerDialog.OnDateSetListener seletorDataPrevista;
-    Projeto projeto;
+    private ProjetoController pc;
+    private DatePickerDialog.OnDateSetListener seletorDataPrevista;
+    private Projeto projeto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +99,6 @@ public class EditarProjetoActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
         startActivity(intent);
         EditarProjetoActivity.this.finish();
-        return;
     }
 
     public void cancelarAlterarProjeto(View view){

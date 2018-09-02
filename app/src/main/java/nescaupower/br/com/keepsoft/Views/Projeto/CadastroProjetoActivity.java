@@ -24,10 +24,12 @@ import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity;
 
 public class CadastroProjetoActivity extends AppCompatActivity {
 
-    Calendar dataAtual = Calendar.getInstance();
-    EditText txtNome, txtDescricao, txtDataPrevista;
-    ProjetoController pc;
-    DatePickerDialog.OnDateSetListener seletorDataPrevista;
+    private Calendar dataAtual = Calendar.getInstance();
+    private EditText txtNome;
+    private EditText txtDescricao;
+    private EditText txtDataPrevista;
+    private ProjetoController pc;
+    private DatePickerDialog.OnDateSetListener seletorDataPrevista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -26,9 +26,14 @@ import nescaupower.br.com.keepsoft.Views.Usuario.AlterarPerfilSenhaActivity;
  */
 public class PerfilFragment extends Fragment {
 
-    TextView lblLogin, lblEmail, lblNome, lblTelefone;
-    Button btnAlterarPerfil, btnAlterarSenha, btnSair;
-    UsuarioController uc;
+    private TextView lblLogin;
+    private TextView lblEmail;
+    private TextView lblNome;
+    private TextView lblTelefone;
+    private Button btnAlterarPerfil;
+    private Button btnAlterarSenha;
+    private Button btnSair;
+    private UsuarioController uc;
 
     @Nullable
     @Override

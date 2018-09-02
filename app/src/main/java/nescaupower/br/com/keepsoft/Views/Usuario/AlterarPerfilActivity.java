@@ -3,8 +3,8 @@ package nescaupower.br.com.keepsoft.Views.Usuario;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,10 +17,13 @@ import nescaupower.br.com.keepsoft.R;
 
 public class AlterarPerfilActivity extends AppCompatActivity {
 
-    EditText alterarNome, alterarEmail, alterarTelefone;
-    Button btnAlterar, btnCancelar;
+    private EditText alterarNome;
+    private EditText alterarEmail;
+    private EditText alterarTelefone;
+    private Button btnAlterar;
+    private Button btnCancelar;
 
-    UsuarioController uc;
+    private UsuarioController uc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

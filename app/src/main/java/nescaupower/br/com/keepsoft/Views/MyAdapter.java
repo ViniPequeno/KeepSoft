@@ -2,7 +2,6 @@ package nescaupower.br.com.keepsoft.Views;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,16 +9,14 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import nescaupower.br.com.keepsoft.Config.Settings;
-import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity;
 
 public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
 
-    Context c;
-    List<Projeto> projetos;
+    private Context c;
+    private List<Projeto> projetos;
 
     public MyAdapter(Context c, List<Projeto> projetos) {
         this.c = c;
@@ -49,8 +46,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyHolder> {
                 i.putExtra("EXTRA_DATA_CRIACAO_PROJETO", projetos.get(pos).getDataCriacao());
                 i.putExtra("EXTRA_DATA_FINALIAZACAO_PROJETO", projetos.get(pos).getDataFinalizacao());
                 i.putExtra("EXTRA_DATA_PREVISTA_PROJETO", projetos.get(pos).getDataPrevFinalizacao());*/
-
-
 
                 c.startActivity(i);
             }

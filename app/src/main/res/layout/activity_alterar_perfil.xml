@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,74 +9,68 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Alterar informações pessoais" />
-
-        <LinearLayout
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputLayout
+            <EditText
+                android:id="@+id/alterarNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:hint="@string/name"
+                android:inputType="textPersonName" />
+        </android.support.design.widget.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/alterarNome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:hint="Nome"/>
-            </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
-            <android.support.design.widget.TextInputLayout
+            <EditText
+                android:id="@+id/alterarEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress|textEmailSubject" />
+        </android.support.design.widget.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/alterarEmail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="textEmailAddress|textEmailSubject"
-                    android:hint="Email" />
-            </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
-            <android.support.design.widget.TextInputLayout
+            <EditText
+                android:id="@+id/alterarTelefone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:hint="@string/phone"
+                android:inputType="textPersonName" />
+        </android.support.design.widget.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/alterarTelefone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:hint="Telefone" />
-            </android.support.design.widget.TextInputLayout>
+        <Button
+            android:id="@+id/btnAlterarPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="alterarPerfil"
+            android:text="@string/change" />
 
-            <Button
-                android:id="@+id/btnAlterarPerfil"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Alterar"
-                android:onClick="alterarPerfil"/>
-
-            <Button
-                android:id="@+id/btnAlterarPerfilCancelar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cancelar"
-                android:onClick="alterarPerfilCancelar"/>
-        </LinearLayout>
+        <Button
+            android:id="@+id/btnAlterarPerfilCancelar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="alterarPerfilCancelar"
+            android:text="@string/cancel" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

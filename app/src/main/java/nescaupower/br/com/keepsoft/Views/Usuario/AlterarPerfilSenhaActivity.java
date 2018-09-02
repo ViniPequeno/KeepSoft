@@ -3,8 +3,8 @@ package nescaupower.br.com.keepsoft.Views.Usuario;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -16,9 +16,11 @@ import nescaupower.br.com.keepsoft.R;
 
 public class AlterarPerfilSenhaActivity extends AppCompatActivity {
 
-    EditText senhaAntiga, senhaNova, senhaNovaConfirmar;
+    private EditText senhaAntiga;
+    private EditText senhaNova;
+    private EditText senhaNovaConfirmar;
 
-    UsuarioController uc;
+    private UsuarioController uc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

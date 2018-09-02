@@ -3,8 +3,8 @@ package nescaupower.br.com.keepsoft.Views.Login;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,10 +19,10 @@ import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText login;
-    EditText senha;
+    private EditText login;
+    private EditText senha;
 
-    UsuarioController uc;
+    private UsuarioController uc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

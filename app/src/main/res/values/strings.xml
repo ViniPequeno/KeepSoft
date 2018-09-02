@@ -48,5 +48,15 @@
     <string name="title_notifications">Notifications</string>
 
     <string name="username_or_email">Username or email</string>
-    <string name="title_activity_alterar_perfil_senha">teste</string>
+    <string name="title_activity_alterar_perfil_senha">Change Password</string>
+    <string name="change_password">Change Password</string>
+    <string name="old_password">Old password</string>
+    <string name="new_password">New password</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="phone">Phone</string>
+    <string name="title_activity_alterar_perfil">Change Personal Information</string>
+    <string name="change">Change</string>
+    <string name="title_activity_editar_projeto">Edit Projecy</string>
 </resources>

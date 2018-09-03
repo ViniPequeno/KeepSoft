@@ -56,7 +56,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/name"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:text="Nome" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -70,7 +71,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/phone"
-                android:inputType="phone" />
+                android:inputType="phone"
+                android:text="Telefone" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -97,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/confirm_password"
+                android:hint="Confirmar Senha"
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
@@ -106,7 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="cadastrar"
-            android:text="@string/confirm" />
+            android:text="Confirmar" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

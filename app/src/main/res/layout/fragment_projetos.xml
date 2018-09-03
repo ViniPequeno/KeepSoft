@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:padding="10dp"
-        android:text="@string/projects"
+        android:text="Projetos"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
     <Button
@@ -22,7 +22,7 @@
         android:layout_weight="0"
         android:drawableStart="@drawable/ic_add_black_24dp"
         android:drawableTint="@android:color/white"
-        android:text="@string/add_project" />
+        android:text="Adicionar projeto" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/ProjetosRV"

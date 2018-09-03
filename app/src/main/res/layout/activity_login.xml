@@ -42,12 +42,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
+
             <EditText
                 android:id="@+id/login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/username_or_email"
+                android:hint="Usuário ou e-mail"
                 android:inputType=""
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
@@ -57,12 +58,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp">
+
             <EditText
                 android:id="@+id/senha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="@string/password"
+                android:hint="Senha"
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
@@ -76,7 +78,7 @@
             android:layout_height="wrap_content"
             android:elevation="24dp"
             android:onClick="entrar"
-            android:text="@string/sign_in"
+            android:text="Entrar"
             android:textSize="18sp" />
 
         <Space
@@ -89,7 +91,7 @@
             android:layout_height="wrap_content"
             android:elevation="24dp"
             android:onClick="cadastrar"
-            android:text="@string/sign_up"
+            android:text="Registrar-se"
             android:textSize="18sp" />
 
         <Space

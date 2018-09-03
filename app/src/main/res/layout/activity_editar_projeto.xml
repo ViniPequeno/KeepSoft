@@ -29,8 +29,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/name"
-                android:inputType="textPersonName"
-                android:text="Nome" />
+                android:inputType="textPersonName" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -44,8 +43,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/description"
-                android:inputType="textPersonName"
-                android:text="Descrição" />
+                android:inputType="textPersonName" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -59,8 +57,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/due_date"
-                android:inputType="textPersonName"
-                android:text="Data de Entrega" />
+                android:inputType="textPersonName" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
@@ -68,13 +65,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="alterarProjeto"
-            android:text="Salvar" />
+            android:text="@string/change" />
 
         <Button
             android:id="@+id/btnCancelarAlterarProjeto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="cancelarAlterarProjeto"
-            android:text="Cancelar" />
+            android:text="@string/cancel" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

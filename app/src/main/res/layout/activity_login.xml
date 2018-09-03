@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Usuário ou e-mail"
+                android:hint="@string/username_or_email"
                 android:inputType=""
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Senha"
+                android:hint="@string/password"
                 android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:elevation="24dp"
             android:onClick="entrar"
-            android:text="Entrar"
+            android:text="@string/sign_in"
             android:textSize="18sp" />
 
         <Space
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:elevation="24dp"
             android:onClick="cadastrar"
-            android:text="Registrar-se"
+            android:text="@string/sign_up"
             android:textSize="18sp" />
 
         <Space

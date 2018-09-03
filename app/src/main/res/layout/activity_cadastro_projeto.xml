@@ -37,7 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Nome"
+                    android:hint="@string/name"
                     android:inputType="textPersonName" />
             </android.support.design.widget.TextInputLayout>
 
@@ -51,7 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Descrição"
+                    android:hint="@string/description"
                     android:inputType="textMultiLine"
                     android:singleLine="false" />
             </android.support.design.widget.TextInputLayout>
@@ -66,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Data de entrega"
+                    android:hint="@string/due_date"
                     android:inputType="date" />
             </android.support.design.widget.TextInputLayout>
 
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:onClick="cadastrar"
-                android:text="Adicionar projeto" />
+                android:text="@string/add_project" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

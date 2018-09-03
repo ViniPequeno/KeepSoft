@@ -56,8 +56,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/name"
-                android:inputType="textPersonName"
-                android:text="Nome" />
+                android:inputType="textPersonName" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -71,8 +70,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/phone"
-                android:inputType="phone"
-                android:text="Telefone" />
+                android:inputType="phone" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout

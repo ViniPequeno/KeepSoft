@@ -59,4 +59,5 @@
     <string name="title_activity_alterar_perfil">Alterar Informações Pessoais</string>
     <string name="change">Alterar</string>
     <string name="title_activity_editar_projeto">Editar Projeto</string>
+    <string name="type_your_password">Digite sua senha</string>
 </resources>

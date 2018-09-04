@@ -1,5 +1,6 @@
 package nescaupower.br.com.keepsoft.Views.Projeto;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,8 +9,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
@@ -63,7 +67,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         //Singleton
         Factory.setProjetoLogado(projeto);
 
-        viewPager = findViewById(R.id.container);
+        viewPager = findViewById(R.id.fragmentContainer);
         tabLayout = findViewById(R.id.tabLayout);
         adpater = new TabAdapter(getSupportFragmentManager());
         toolbar = findViewById(R.id.toolbar);
@@ -129,9 +133,6 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
                 Toast.makeText(this, "Você não tem permissão", Toast.LENGTH_SHORT).show();
             }
         }
-
-
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -148,5 +149,11 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
     @Override
     public void onListFragmentInteraction(nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent.DummyItem item) {
 
+    }
+
+    private void showDialogDigitarSenha() {
+        AlertDialog.Builder buider = new AlertDialog.Builder(this);
+        buider.setTitle(R.string.type_your_password);
+        View dialogLayout = LayoutInflater.from(this).inflate(R.layout.dialog_senha, (ViewGroup) findViewById(R.id.content), false);
     }
 }

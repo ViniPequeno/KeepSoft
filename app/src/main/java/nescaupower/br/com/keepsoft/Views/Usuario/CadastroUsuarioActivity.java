@@ -48,7 +48,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             u.setNome(txtNome.getText().toString());
             u.setTelefone(txtTelefone.getText().toString());
 
-            boolean cadastrou = uc.cadastroUsuario(u);
+            boolean cadastrou = uc.cadastrar(u);
 
             if(cadastrou){
                 Intent intent;

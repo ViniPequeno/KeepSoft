@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.List;
 
 import nescaupower.br.com.keepsoft.Controller.ProjetoController;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
+import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 
 /**
@@ -26,13 +28,13 @@ public class ProjetosFragment extends Fragment {
 
     private List<Projeto> projetos;
     private Button btnCadastrar;
+    private RecyclerView rv;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pc = new ProjetoController(getActivity().getApplicationContext());
-        //projetos = pc.listarProjetosPorUsuario(Usuario.getUsuarioLogado().getId());
-        projetos = pc.listarTodos();
+        projetos = pc.listarPorUsuario(Usuario.getUsuarioLogado().getId());
     }
 
     @Nullable
@@ -40,9 +42,9 @@ public class ProjetosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View rootView = inflater.inflate(R.layout.fragment_projetos, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_projeto_list, container, false);
 
-        RecyclerView rv = rootView.findViewById(R.id.ProjetosRV);
+        rv = rootView.findViewById(R.id.ProjetosRV);
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         rv.setLayoutManager(layoutManager);
 
@@ -58,6 +60,15 @@ public class ProjetosFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MyProjetoRecyclerViewAdapter adapter = (MyProjetoRecyclerViewAdapter) rv.getAdapter();
+        adapter.setProjetos(projetos = pc.listarPorUsuario(Usuario.getUsuarioLogado().getId()));
+        Toast.makeText(getActivity(), " Voltei " + projetos.size(), Toast.LENGTH_SHORT).show();
+        adapter.notifyDataSetChanged();
     }
 
     private void cadastrar() {

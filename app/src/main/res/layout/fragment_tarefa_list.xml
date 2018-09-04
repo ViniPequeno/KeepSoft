@@ -27,5 +27,5 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         tools:context="nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment"
-        tools:listitem="@layout/fragment_tarefa" />
+        tools:listitem="@layout/fragment_tarefa_model" />
 </LinearLayout>

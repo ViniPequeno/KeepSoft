@@ -22,7 +22,7 @@ public interface ProjetoDAO {
     Projeto findByName(String nome);
 
     @Query("SELECT * FROM projeto WHERE codigo = :codigo")
-    Projeto findByCodigo(Long codigo);
+    Projeto findById(Long codigo);
 
     @Query("SELECT * FROM projeto p WHERE p.idUsuario = :userID")
     List<Projeto> findByUserID(long userID);

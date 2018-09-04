@@ -104,7 +104,7 @@ public class CadastroProjetoActivity extends AppCompatActivity {
 
         p.setIdUsuario(Usuario.getUsuarioLogado().getId());
 
-        boolean cadastrou = pc.cadastroProjeto(p);
+        boolean cadastrou = pc.cadastrar(p);
 
         if (cadastrou) {
             Toast.makeText(this, p.getDataPrevFinalizacao().toString(), Toast.LENGTH_SHORT).show();

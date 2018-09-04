@@ -26,7 +26,7 @@ public class MyProjetoRecyclerViewAdapter extends RecyclerView.Adapter<MyHolder>
     @Override
     public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.model, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_projeto_model, parent, false);
         return new MyHolder(v);
     }
 
@@ -41,6 +41,7 @@ public class MyProjetoRecyclerViewAdapter extends RecyclerView.Adapter<MyHolder>
                 Intent i = new Intent(c, DetalhesProjetoActivity.class);
 
                 i.putExtra("EXTRA_CODIGO_PROJETO", projetos.get(pos).getCodigo());
+                i.putExtra("EXTRA_INDEX_PROJETO", pos);
 
                 /*(i.putExtra("EXTRA_DESCRICAO_PROJETO", projetos.get(pos).getDescricao());
                 i.putExtra("EXTRA_DATA_CRIACAO_PROJETO", projetos.get(pos).getDataCriacao());
@@ -50,6 +51,10 @@ public class MyProjetoRecyclerViewAdapter extends RecyclerView.Adapter<MyHolder>
                 c.startActivity(i);
             }
         });
+    }
+
+    public void setProjetos(List<Projeto> projetos) {
+        this.projetos = projetos;
     }
 
     @Override

@@ -48,7 +48,7 @@ public class PerfilFragment extends Fragment {
 
         if (Usuario.getUsuarioLogado() == null || Usuario.getUsuarioLogado().getLogin().equals("")) {
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-            Usuario.setUsuarioLogado(uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, "")));
+            Usuario.setUsuarioLogado(uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, "")));
         }
 
         lblLogin = getView().findViewById(R.id.lblLogin);

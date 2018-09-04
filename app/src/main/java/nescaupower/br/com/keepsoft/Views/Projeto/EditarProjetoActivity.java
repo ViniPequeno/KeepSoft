@@ -24,11 +24,11 @@ import nescaupower.br.com.keepsoft.R;
 
 public class EditarProjetoActivity extends AppCompatActivity {
 
+    Button btnAlterarProjeto, btnCancelarAlterarProjeto;
     //Calendar dataAtual = Calendar.getInstance();
     private EditText txtNome;
     private EditText txtDescricao;
     private EditText txtDataPrevista;
-    Button btnAlterarProjeto, btnCancelarAlterarProjeto;
     private ProjetoController pc;
     private DatePickerDialog.OnDateSetListener seletorDataPrevista;
     private Projeto projeto;
@@ -44,7 +44,7 @@ public class EditarProjetoActivity extends AppCompatActivity {
         projeto = Projeto.getGetProjeto();
         if (projeto == null) {
             SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-            projeto = pc.procurarPeloCodigo(sharedPreferences.getLong(Settings.ID_PROJETO, 0));
+            projeto = pc.procurarPorCodigo(sharedPreferences.getLong(Settings.ID_PROJETO, 0));
         }
 
         txtNome = findViewById(R.id.editarNomeProjeto);
@@ -102,7 +102,7 @@ public class EditarProjetoActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        pc.updateProjeto(projeto);
+        pc.atualizar(projeto);
         Projeto.setGetProjeto(projeto);
 
         Toast.makeText(this, "Alterado!", Toast.LENGTH_SHORT).show();

@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="nescaupower.br.com.keepsoft.Views.Projeto.ProjetosFragment">
 
     <TextView
@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:padding="10dp"
-        android:text="Projetos"
+        android:text="@string/projects"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
 
     <Button
@@ -22,12 +22,14 @@
         android:layout_weight="0"
         android:drawableStart="@drawable/ic_add_black_24dp"
         android:drawableTint="@android:color/white"
-        android:text="Adicionar projeto" />
+        android:text="Adicionar projeto"
+        tools:text="@string/add_project" />
 
-    <android.support.v7.widget.RecyclerView
+    <android.support.v7.widget.RecyclerView xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/ProjetosRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        tools:listitem="@layout/fragment_projeto_model" />
 
 </LinearLayout>

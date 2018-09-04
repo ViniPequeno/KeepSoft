@@ -35,7 +35,7 @@ public class AlterarPerfilActivity extends AppCompatActivity {
         Usuario usuario = Usuario.getUsuarioLogado();
         if (usuario == null || usuario.getLogin().equals("")) {
             SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-            usuario = uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, ""));
+            usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
         }
 
         alterarEmail = findViewById(R.id.alterarEmail);
@@ -61,7 +61,7 @@ public class AlterarPerfilActivity extends AppCompatActivity {
             usuario.setNome(alterarNome.getText().toString());
             usuario.setTelefone(alterarTelefone.getText().toString());
 
-            uc.updateUsuario(usuario);
+            uc.atualizar(usuario);
             Usuario.setUsuarioLogado(usuario);
 
             Intent intent;

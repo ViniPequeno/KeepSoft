@@ -35,5 +35,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:context="nescaupower.br.com.keepsoft.Views.Sprint.SprintFragment"
-        tools:listitem="@layout/fragment_sprint" />
+        tools:listitem="@layout/fragment_sprint_model" />
 </LinearLayout>

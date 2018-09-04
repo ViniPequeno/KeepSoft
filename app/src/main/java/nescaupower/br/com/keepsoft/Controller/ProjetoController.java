@@ -16,19 +16,23 @@ public class ProjetoController {
         db = Factory.startDatabase(context);
     }
 
-    public void inserirProjeto(Projeto... projetos) {
+    public void inserir(Projeto... projetos) {
         db.projetoDAO().insertAll(projetos);
     }
 
-    public Projeto procurarPeloNome(String nome) {
+    public Projeto procurarPorNome(String nome) {
         return db.projetoDAO().findByName(nome);
     }
 
-    public Projeto procurarPeloCodigo(Long codigo) {return db.projetoDAO().findByCodigo(codigo);}
+    public Projeto procurarPorCodigo(Long codigo) {
+        return db.projetoDAO().findById(codigo);
+    }
 
-    public void updateProjeto(Projeto projeto) { db.projetoDAO().updateAll(projeto);}
+    public void atualizar(Projeto projeto) {
+        db.projetoDAO().updateAll(projeto);
+    }
 
-    public boolean cadastroProjeto(Projeto projeto) {
+    public boolean cadastrar(Projeto projeto) {
         if (db.projetoDAO().findByName(projeto.getNome()) != null) {
             this.mensagem = "O nome de projeto já existe!";
             return false;
@@ -39,7 +43,18 @@ public class ProjetoController {
         }
     }
 
-    public List<Projeto> listarProjetosPorUsuario(long idUsuario) {
+    public boolean deletar(Projeto projeto) {
+        if (db.projetoDAO().findById(projeto.getCodigo()) != null) {
+            db.projetoDAO().delete(projeto);
+            this.mensagem = "O projeto foi deletado!";
+            return true;
+        } else {
+            this.mensagem = "O projeto não existe";
+            return false;
+        }
+    }
+
+    public List<Projeto> listarPorUsuario(long idUsuario) {
         return db.projetoDAO().findByUserID(idUsuario);
     }
 

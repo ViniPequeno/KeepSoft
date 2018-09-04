@@ -10,6 +10,7 @@ import nescaupower.br.com.keepsoft.Views.ItemClickListener;
 public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     TextView lblNome;
     TextView lblDescricao;
+    TextView lblDataProximoSprint;
     private ItemClickListener itemClickListener;
 
     public MyHolder(View itemView) {
@@ -17,6 +18,7 @@ public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickLis
 
         lblNome = itemView.findViewById(R.id.lblNome);
         lblDescricao = itemView.findViewById(R.id.lblDescricao);
+        lblDataProximoSprint = itemView.findViewById(R.id.lblDataProximoSprint);
 
         itemView.setOnClickListener(this);
     }

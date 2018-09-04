@@ -60,4 +60,5 @@
     <string name="change">Change</string>
     <string name="title_activity_editar_projeto">Edit Projecy</string>
     <string name="type_your_password">Type your password</string>
+    <string name="next_sprint">"Next Sprint: "</string>
 </resources>

@@ -2,6 +2,7 @@ package nescaupower.br.com.keepsoft.Views.Projeto;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,11 +10,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
@@ -43,6 +44,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
     private Projeto projeto;
     private Usuario usuario;
 
+    private int indexProjeto;
     private String nomeProjeto;
 
     @Override
@@ -55,8 +57,11 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         SharedPreferences.Editor editor;
         editor = sharedPreferences.edit();
 
-        projeto = new ProjetoController(getApplicationContext()).procurarPeloCodigo(getIntent().getLongExtra("EXTRA_CODIGO_PROJETO", 0));
-        if(projeto == null){
+        //Posição do projeto seleciado na lista de projetos
+        indexProjeto = getIntent().getIntExtra("EXTRA_INDEX_PROJETO", -1);
+
+        projeto = new ProjetoController(getApplicationContext()).procurarPorCodigo(getIntent().getLongExtra("EXTRA_CODIGO_PROJETO", 0));
+        if (projeto == null) {
             projeto = Projeto.getGetProjeto();
         }
 
@@ -99,10 +104,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         Intent intent = null;
-
-
         UsuarioController uc;
         uc = new UsuarioController(getApplicationContext());
 
@@ -110,28 +112,23 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         Usuario usuario = Usuario.getUsuarioLogado();
         if (usuario == null || usuario.getLogin().equals("")) {
             SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-            usuario = uc.procurarPeloLogin(sharedPreferences.getString(Settings.LOGIN, ""));
+            usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
         }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             intent = new Intent(DetalhesProjetoActivity.this, CadastroUsuarioActivity.class);
             startActivity(intent);
         }
-        if(id == R.id.action_editar){
-            if(projeto.getIdUsuario() == usuario.getId()){
+        if (id == R.id.action_editar) {
+            if (projeto.getIdUsuario() == usuario.getId()) {
                 intent = new Intent(DetalhesProjetoActivity.this, EditarProjetoActivity.class);
                 startActivity(intent);
-            }else{
+            } else {
                 Toast.makeText(this, "Você não tem permissão", Toast.LENGTH_SHORT).show();
             }
         }
-        if(id == R.id.action_excluir){
-            if(projeto.getIdUsuario() == usuario.getId()){
-                intent = new Intent(DetalhesProjetoActivity.this, CadastroUsuarioActivity.class);
-                startActivity(intent);
-            }else{
-                Toast.makeText(this, "Você não tem permissão", Toast.LENGTH_SHORT).show();
-            }
+        if (id == R.id.action_excluir) {
+            showDialogDigitarSenha();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -152,8 +149,37 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
     }
 
     private void showDialogDigitarSenha() {
-        AlertDialog.Builder buider = new AlertDialog.Builder(this);
-        buider.setTitle(R.string.type_your_password);
-        View dialogLayout = LayoutInflater.from(this).inflate(R.layout.dialog_senha, (ViewGroup) findViewById(R.id.content), false);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.type_your_password);
+        final View dialogView = this.getLayoutInflater().inflate(R.layout.dialog_senha, (ViewGroup) findViewById(R.id.content), false);
+        builder.setView(dialogView);
+
+        builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                ProjetoController pc = new ProjetoController(DetalhesProjetoActivity.this);
+                EditText txtSenha = dialogView.findViewById(R.id.txtSenha);
+                if (txtSenha.getText().toString().equals(Usuario.getUsuarioLogado().getSenha())) {
+                    boolean deletou = pc.deletar(projeto);
+                    if (deletou) {
+                        DetalhesProjetoActivity.this.finish();
+                    } else {
+                        Toast.makeText(DetalhesProjetoActivity.this, pc.getMensagem(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(DetalhesProjetoActivity.this, "Senha errada", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(DetalhesProjetoActivity.this, "não", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

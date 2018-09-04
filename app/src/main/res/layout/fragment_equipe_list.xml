@@ -27,5 +27,5 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         tools:context="nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment"
-        tools:listitem="@layout/fragment_equipe" />
+        tools:listitem="@layout/fragment_equipe_model" />
 </LinearLayout>

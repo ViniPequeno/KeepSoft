@@ -30,7 +30,7 @@ public class MyEquipeRecyclerViewAdapter extends RecyclerView.Adapter<MyEquipeRe
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_equipe, parent, false);
+                .inflate(R.layout.fragment_equipe_model, parent, false);
         return new ViewHolder(view);
     }
 

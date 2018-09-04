@@ -14,16 +14,19 @@ public class UsuarioController {
         db = Factory.startDatabase(context);
     }
 
-    public void inserirUsuario(Usuario... usuarios){
+    public void inserir(Usuario... usuarios) {
         db.usuarioDAO().insertAll(usuarios);
     }
-    public void updateUsuario(Usuario... usuarios) {db.usuarioDAO().updateAll(usuarios);}
 
-    public Usuario procurarPeloLogin(String login){
+    public void atualizar(Usuario... usuarios) {
+        db.usuarioDAO().updateAll(usuarios);
+    }
+
+    public Usuario procurarPorLogin(String login) {
         return db.usuarioDAO().findByLogin(login);
     }
 
-    public boolean cadastroUsuario(Usuario usuario){
+    public boolean cadastrar(Usuario usuario) {
         if(db.usuarioDAO().findByLogin(usuario.getLogin()) != null){
             this.mensagem = "O nome de login já existe!";
             return false;

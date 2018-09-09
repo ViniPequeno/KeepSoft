@@ -58,7 +58,9 @@
     <string name="phone">Phone</string>
     <string name="title_activity_alterar_perfil">Change Personal Information</string>
     <string name="change">Change</string>
-    <string name="title_activity_editar_projeto">Edit Projecy</string>
+    <string name="title_activity_editar_projeto">Edit Project</string>
     <string name="type_your_password">Type your password</string>
     <string name="next_sprint">"Next Sprint: "</string>
+    <string name="log_out">Log Out</string>
+    <string name="edit_profile">Edit Profile</string>
 </resources>

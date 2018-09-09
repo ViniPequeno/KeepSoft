@@ -22,7 +22,7 @@
         android:layout_weight="0"
         android:drawableStart="@drawable/ic_add_black_24dp"
         android:drawableTint="@android:color/white"
-        android:text="Adicionar projeto"
+        android:text="@string/add_project"
         tools:text="@string/add_project" />
 
     <android.support.v7.widget.RecyclerView xmlns:tools="http://schemas.android.com/tools"

@@ -62,7 +62,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
 
         projeto = new ProjetoController(getApplicationContext()).procurarPorCodigo(getIntent().getLongExtra("EXTRA_CODIGO_PROJETO", 0));
         if (projeto == null) {
-            projeto = Projeto.getGetProjeto();
+            projeto = Projeto.getUltimoProjetoUsado();
         }
 
         editor.putBoolean(Settings.PROJETO, true);
@@ -139,7 +139,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onListFragmentInteraction(nescaupower.br.com.keepsoft.Views.Sprint.dummy.DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(nescaupower.br.com.keepsoft.Factory.Model.Sprint item) {
 
     }
 

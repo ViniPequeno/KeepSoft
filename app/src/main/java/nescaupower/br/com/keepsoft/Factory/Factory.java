@@ -6,6 +6,7 @@ import android.content.Context;
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Factory.BD.Database.AppDatabase;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
+import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 
 public abstract class Factory {
@@ -28,10 +29,14 @@ public abstract class Factory {
     public static void setLogado(Usuario usuario) {
         Usuario.setUsuarioLogado(usuario);
     }
-    public static void setProjetoLogado(Projeto projeto) {Projeto.setGetProjeto(projeto);}
+    public static void setProjetoLogado(Projeto projeto) {Projeto.setUltimoProjetoUsado(projeto);}
 
     public static Projeto startProjeto() {
         return new Projeto();
+    }
+
+    public static Sprint startSprint() {
+        return new Sprint();
     }
 
 }

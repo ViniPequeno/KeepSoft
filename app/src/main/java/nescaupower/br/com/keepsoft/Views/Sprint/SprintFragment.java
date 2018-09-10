@@ -1,6 +1,7 @@
 package nescaupower.br.com.keepsoft.Views.Sprint;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,7 +10,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import java.util.List;
+
+import nescaupower.br.com.keepsoft.Controller.SprintController;
+import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
+import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Sprint.dummy.DummyContent;
 import nescaupower.br.com.keepsoft.Views.Sprint.dummy.DummyContent.DummyItem;
@@ -22,11 +29,15 @@ import nescaupower.br.com.keepsoft.Views.Sprint.dummy.DummyContent.DummyItem;
  */
 public class SprintFragment extends Fragment {
 
+    private SprintController sc;
+
+    private List<Sprint> sprints;
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+    private Button btnCadastrar;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -48,6 +59,8 @@ public class SprintFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sc = new SprintController(getActivity().getApplicationContext());
+        sprints = sc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
@@ -69,8 +82,17 @@ public class SprintFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MySprintRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MySprintRecyclerViewAdapter(mListener,sprints));
         }
+
+        btnCadastrar = rootView.findViewById(R.id.btnCadastrar);
+        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cadastrar();
+            }
+        });
+
         return rootView;
     }
 
@@ -92,6 +114,11 @@ public class SprintFragment extends Fragment {
         mListener = null;
     }
 
+    private void cadastrar() {
+        Intent i = new Intent(getActivity(), CadastroSprintActivity.class);
+        startActivity(i);
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -104,6 +131,7 @@ public class SprintFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Sprint item);
     }
+
 }

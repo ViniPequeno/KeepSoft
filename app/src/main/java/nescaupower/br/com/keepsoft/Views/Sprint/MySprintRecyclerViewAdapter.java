@@ -10,20 +10,20 @@ import java.util.List;
 
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Sprint.SprintFragment.OnListFragmentInteractionListener;
-import nescaupower.br.com.keepsoft.Views.Sprint.dummy.DummyContent.DummyItem;
+import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link Sprint} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MySprintRecyclerViewAdapter extends RecyclerView.Adapter<MySprintRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Sprint> sprints;
     private final OnListFragmentInteractionListener mListener;
 
-    public MySprintRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
+    public MySprintRecyclerViewAdapter(OnListFragmentInteractionListener listener,List<Sprint> items) {
+        sprints = items;
         mListener = listener;
     }
 
@@ -36,9 +36,9 @@ public class MySprintRecyclerViewAdapter extends RecyclerView.Adapter<MySprintRe
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mItem = sprints.get(position);
+        holder.mIdView.setText(Long.toString(sprints.get(position).getCodigo()));
+        holder.mContentView.setText(sprints.get(position).getTitulo());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,20 +54,20 @@ public class MySprintRecyclerViewAdapter extends RecyclerView.Adapter<MySprintRe
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return sprints.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public Sprint mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = view.findViewById(R.id.item_number);
-            mContentView = view.findViewById(R.id.content);
+            mIdView = view.findViewById(R.id.lblId);
+            mContentView = view.findViewById(R.id.lblTitulo);
         }
 
         @Override

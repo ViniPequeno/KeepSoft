@@ -1,16 +1,20 @@
 package nescaupower.br.com.keepsoft.Enum;
 
 public enum Perfil {
-    SCRUM(1), PRODUCTOWNER(2), TEAM(3);
+    SCRUM_MASTER("Scrum Master"), PRODUCTOWNER("Product Owner"), TEAM("Scrum Team");
 
-    private int perfil;
+    private String perfil;
 
-    Perfil(int i) {
-        this.perfil = i;
+    Perfil(final String text) {
+        this.perfil = text;
     }
 
-
-    public int getPerfil(){
+    @Override
+    public String toString(){
         return this.perfil;
+    }
+
+    public Perfil[] toArray(){
+        return Perfil.values();
     }
 }

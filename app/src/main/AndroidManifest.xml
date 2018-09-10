@@ -40,6 +40,9 @@
         <activity
             android:name=".Views.Projeto.EditarProjetoActivity"
             android:label="@string/title_activity_editar_projeto" />
+        <activity
+            android:name=".Views.Sprint.CadastroSprintActivity"
+            android:label="@string/title_activity_cadastro_sprint" />
     </application>
 
 </manifest>

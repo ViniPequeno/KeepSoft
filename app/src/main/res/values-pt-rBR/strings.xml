@@ -63,4 +63,8 @@
     <string name="next_sprint">"Próximo Sprint: "</string>
     <string name="log_out">Sair</string>
     <string name="edit_profile">Editar Perfil</string>
+    <string name="sprint_end_date">Data de Finalização do Sprint</string>
+    <string name="sprint_start_date">Data  de Início do Sprint</string>
+    <string name="title">Título</string>
+    <string name="title_activity_cadastro_sprint">Novo Sprint</string>
 </resources>

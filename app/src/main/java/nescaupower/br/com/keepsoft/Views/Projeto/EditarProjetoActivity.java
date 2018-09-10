@@ -41,7 +41,7 @@ public class EditarProjetoActivity extends AppCompatActivity {
         pc = new ProjetoController(getApplicationContext());
 
         //Singleton
-        projeto = Projeto.getGetProjeto();
+        projeto = Projeto.getUltimoProjetoUsado();
         if (projeto == null) {
             SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
             projeto = pc.procurarPorCodigo(sharedPreferences.getLong(Settings.ID_PROJETO, 0));
@@ -103,7 +103,7 @@ public class EditarProjetoActivity extends AppCompatActivity {
         }
 
         pc.atualizar(projeto);
-        Projeto.setGetProjeto(projeto);
+        Projeto.setUltimoProjetoUsado(projeto);
 
         Toast.makeText(this, "Alterado!", Toast.LENGTH_SHORT).show();
         Intent intent;

@@ -1,6 +1,7 @@
 package nescaupower.br.com.keepsoft.Factory.Model;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Calendar;
@@ -10,21 +11,28 @@ import java.util.Date;
 public class Sprint {
     @PrimaryKey
     private long codigo;
-    private String nome;
+    private String titulo;
     private String descricao;
     private Date dataInicio;
     private Date dataFim;
+    @ForeignKey(
+            entity = Projeto.class,
+            parentColumns = "codigo",
+            childColumns = "codigo"
+    )
+
+    private long codProjeto;
 
     public Sprint() {
         codigo = 0;
-        nome="";
+        titulo ="";
         descricao="";
         dataInicio = Calendar.getInstance().getTime();
     }
 
-    public Sprint(long codigo, String nome, String descricao, Date dataInicio, Date dataFim) {
+    public Sprint(long codigo, String titulo, String descricao, Date dataInicio, Date dataFim) {
         this.codigo = codigo;
-        this.nome = nome;
+        this.titulo = titulo;
         this.descricao = descricao;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
@@ -38,12 +46,12 @@ public class Sprint {
         this.codigo = codigo;
     }
 
-    public String getNome() {
-        return nome;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getDescricao() {
@@ -69,4 +77,8 @@ public class Sprint {
     public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
     }
+
+    public long getCodProjeto() {return codProjeto;}
+
+    public void setCodProjeto(long codProjeto) {this.codProjeto = codProjeto;}
 }

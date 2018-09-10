@@ -17,17 +17,17 @@ public class Projeto {
     private Date dataFinalizacao;
     private Date dataPrevFinalizacao;
 
-    private static Projeto getProjeto;
+    private static Projeto ultimoProjetoUsado;
 
-    public static Projeto getGetProjeto() {
-        if (getProjeto == null) {
-            getProjeto = new Projeto();
+    public static Projeto getUltimoProjetoUsado() {
+        if (ultimoProjetoUsado == null) {
+            ultimoProjetoUsado = new Projeto();
         }
-        return getProjeto;
+        return ultimoProjetoUsado;
     }
 
-    public static void setGetProjeto(Projeto projeto) {
-        getProjeto = projeto;
+    public static void setUltimoProjetoUsado(Projeto projeto) {
+        ultimoProjetoUsado = projeto;
     }
 
     @ForeignKey(

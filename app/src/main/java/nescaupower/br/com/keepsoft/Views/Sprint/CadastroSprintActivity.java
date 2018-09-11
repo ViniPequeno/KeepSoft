@@ -22,13 +22,13 @@ import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity;
+import nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity;
 
 public class CadastroSprintActivity extends AppCompatActivity {
 
     private ConstraintLayout root;
     private Calendar dataAtual = Calendar.getInstance();
-    private EditText txtNome;
+    private EditText txtTitulo;
     private EditText txtDescricao;
     private EditText txtDataInicio;
     private EditText txtDataFim;
@@ -45,7 +45,7 @@ public class CadastroSprintActivity extends AppCompatActivity {
 
         pc = new SprintController(getApplicationContext());
 
-        txtNome = findViewById(R.id.txtNome);
+        txtTitulo = findViewById(R.id.txtTitulo);
         txtDescricao = findViewById(R.id.txtDescricao);
         txtDataInicio = findViewById(R.id.txtDataInicio);
         txtDataFim = findViewById(R.id.txtDataFim);
@@ -112,20 +112,23 @@ public class CadastroSprintActivity extends AppCompatActivity {
 
     public void cadastrar(View v) {
 
-        if (txtNome.getText().toString() == "" || txtNome.getText().toString() == null) {
-            Toast.makeText(this, "O Sprint deve ter um nome", Toast.LENGTH_SHORT).show();
+        if (txtTitulo.getText().toString() == "" || txtTitulo.getText().toString() == null) {
+            Toast.makeText(this, "O Sprint deve ter um título", Toast.LENGTH_SHORT).show();
             return;
         } else if (txtDescricao.getText().toString() == "" || txtDescricao.getText().toString() == null) {
-            Toast.makeText(this, "O Sprint deve ter um descrição", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "O Sprint deve ter uma descrição", Toast.LENGTH_SHORT).show();
             return;
         } else if (txtDataInicio.getText().toString() == "" || txtDataInicio.getText().toString() == null) {
-            Toast.makeText(this, "O Sprint deve ter uma data de previsão final", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "O Sprint deve ter uma data de início", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (txtDataFim.getText().toString() == "" || txtDataFim.getText().toString() == null) {
+            Toast.makeText(this, "O Sprint deve ter uma data de finalização", Toast.LENGTH_SHORT).show();
             return;
         }
 
         Sprint s = Factory.startSprint();
 
-        s.setTitulo(txtNome.getText().toString());
+        s.setTitulo(txtTitulo.getText().toString());
         s.setDescricao(txtDescricao.getText().toString());
         s.setDataInicio(Calendar.getInstance().getTime());
 
@@ -146,7 +149,7 @@ public class CadastroSprintActivity extends AppCompatActivity {
         boolean cadastrou = pc.cadastrar(s);
 
         if (cadastrou) {
-            Intent i = new Intent(CadastroSprintActivity.this, PaginaInicialActivity.class);
+            Intent i = new Intent(CadastroSprintActivity.this, DetalhesProjetoActivity.class);
             startActivity(i);
             CadastroSprintActivity.this.finish();
         } else {

@@ -28,8 +28,8 @@ import nescaupower.br.com.keepsoft.R;
 public class SprintFragment extends Fragment {
 
     private SprintController sc;
-
     private List<Sprint> sprints;
+
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters

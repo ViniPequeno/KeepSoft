@@ -1,5 +1,6 @@
 package nescaupower.br.com.keepsoft.Views.Equipe;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,20 +11,20 @@ import java.util.List;
 
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment.OnListFragmentInteractionListener;
-import nescaupower.br.com.keepsoft.Views.Equipe.dummy.DummyContent.DummyItem;
+import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link Perfil} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyEquipeRecyclerViewAdapter extends RecyclerView.Adapter<MyEquipeRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Perfil> perfis;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyEquipeRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
+    public MyEquipeRecyclerViewAdapter(OnListFragmentInteractionListener listener, List<Perfil> items, Context context) {
+        perfis = items;
         mListener = listener;
     }
 
@@ -36,9 +37,9 @@ public class MyEquipeRecyclerViewAdapter extends RecyclerView.Adapter<MyEquipeRe
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mItem = perfis.get(position);
+        holder.lblNome.setText(perfis.get(position).getPerfil().toString());
+        holder.lblFuncao.setText(perfis.get(position).getPerfil().toString());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,25 +55,25 @@ public class MyEquipeRecyclerViewAdapter extends RecyclerView.Adapter<MyEquipeRe
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return perfis.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
+        public final TextView lblNome;
+        public final TextView lblFuncao;
+        public Perfil mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = view.findViewById(R.id.item_number);
-            mContentView = view.findViewById(R.id.content);
+            lblNome = view.findViewById(R.id.lblNome);
+            lblFuncao = view.findViewById(R.id.lblFuncao);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + lblFuncao.getText() + "'";
         }
     }
 }

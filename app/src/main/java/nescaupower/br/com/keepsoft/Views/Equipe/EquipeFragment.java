@@ -10,9 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
+import nescaupower.br.com.keepsoft.Controller.PerfilController;
+import nescaupower.br.com.keepsoft.Controller.SprintController;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Equipe.dummy.DummyContent;
-import nescaupower.br.com.keepsoft.Views.Equipe.dummy.DummyContent.DummyItem;
+import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 
 /**
  * A fragment representing a list of Items.
@@ -22,6 +25,8 @@ import nescaupower.br.com.keepsoft.Views.Equipe.dummy.DummyContent.DummyItem;
  */
 public class EquipeFragment extends Fragment {
 
+    private PerfilController pc;
+    private List<Perfil> perfis;
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
@@ -69,7 +74,7 @@ public class EquipeFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyEquipeRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyEquipeRecyclerViewAdapter(mListener, perfis, getActivity()));
         }
         return rootView;
     }
@@ -104,6 +109,6 @@ public class EquipeFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Perfil item);
     }
 }

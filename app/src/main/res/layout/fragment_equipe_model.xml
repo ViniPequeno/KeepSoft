@@ -15,14 +15,15 @@
         app:civ_border_width="2dp" />
 
     <TextView
-        android:id="@+id/item_number"
+        android:id="@+id/lblNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
+        android:text="@string/name"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
-        android:id="@+id/content"
+        android:id="@+id/lblFuncao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"

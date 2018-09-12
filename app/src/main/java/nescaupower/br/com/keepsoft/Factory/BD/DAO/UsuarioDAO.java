@@ -18,6 +18,9 @@ public interface UsuarioDAO {
     @Query("SELECT * FROM usuario WHERE login IN (:logins)")
     List<Usuario> loadAllByIds(int[] logins);
 
+    @Query("SELECT * FROM usuario WHERE id = :id")
+    Usuario findByID(long id);
+
     @Query("SELECT * FROM usuario WHERE login = :login")
     Usuario findByLogin(String login);
 

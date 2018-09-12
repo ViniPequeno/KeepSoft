@@ -26,6 +26,10 @@ public class UsuarioController {
         return db.usuarioDAO().findByLogin(login);
     }
 
+    public Usuario procurarPorID(long id) {
+        return db.usuarioDAO().findByID(id);
+    }
+
     public boolean cadastrar(Usuario usuario) {
         if(db.usuarioDAO().findByLogin(usuario.getLogin()) != null){
             this.mensagem = "O nome de login já existe!";

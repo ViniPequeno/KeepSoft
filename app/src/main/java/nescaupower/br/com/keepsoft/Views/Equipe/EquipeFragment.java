@@ -14,6 +14,7 @@ import java.util.List;
 
 import nescaupower.br.com.keepsoft.Controller.PerfilController;
 import nescaupower.br.com.keepsoft.Controller.SprintController;
+import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 
@@ -53,7 +54,8 @@ public class EquipeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        pc= new PerfilController(getActivity());
+        perfis = pc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }

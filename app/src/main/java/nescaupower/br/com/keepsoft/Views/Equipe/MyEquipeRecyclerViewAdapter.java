@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import nescaupower.br.com.keepsoft.Controller.UsuarioController;
+import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment.OnListFragmentInteractionListener;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
@@ -20,12 +22,14 @@ import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
  */
 public class MyEquipeRecyclerViewAdapter extends RecyclerView.Adapter<MyEquipeRecyclerViewAdapter.ViewHolder> {
 
+    private Context context;
     private final List<Perfil> perfis;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyEquipeRecyclerViewAdapter(OnListFragmentInteractionListener listener, List<Perfil> items, Context context) {
-        perfis = items;
-        mListener = listener;
+    public MyEquipeRecyclerViewAdapter(OnListFragmentInteractionListener listener, List<Perfil> perfis, Context context) {
+        this.perfis = perfis;
+        this.mListener = listener;
+        this.context = context;
     }
 
     @Override
@@ -37,8 +41,13 @@ public class MyEquipeRecyclerViewAdapter extends RecyclerView.Adapter<MyEquipeRe
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+
         holder.mItem = perfis.get(position);
-        holder.lblNome.setText(perfis.get(position).getPerfil().toString());
+
+        UsuarioController uc = new UsuarioController(context);
+        Usuario usuario = uc.procurarPorID(holder.mItem.getIdUsuario());
+
+        holder.lblNome.setText(usuario.getLogin());
         holder.lblFuncao.setText(perfis.get(position).getPerfil().toString());
 
         holder.mView.setOnClickListener(new View.OnClickListener() {

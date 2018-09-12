@@ -22,6 +22,7 @@ import nescaupower.br.com.keepsoft.Controller.ProjetoController;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
+import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment;
@@ -139,7 +140,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onListFragmentInteraction(nescaupower.br.com.keepsoft.Factory.Model.Sprint item) {
+    public void onListFragmentInteraction(Sprint sprint) {
 
     }
 

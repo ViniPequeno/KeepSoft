@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 public class Sprint {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private long codigo;
     private String titulo;
     private String descricao;
@@ -20,7 +20,6 @@ public class Sprint {
             parentColumns = "codigo",
             childColumns = "codigo"
     )
-
     private long codProjeto;
 
     public Sprint() {

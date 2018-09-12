@@ -4,6 +4,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import java.util.List;
 
@@ -14,12 +15,21 @@ public interface PerfilDAO {
     @Query("SELECT * FROM perfil")
     List<Perfil> getAll();
 
+    @Query("SELECT * FROM perfil WHERE id in (:ids)")
+    List<Perfil> loadAllByIds(long[] ids);
+
     @Query("SELECT * FROM perfil WHERE id = :id")
-    List<Perfil> loadAllByIds(long id);
+    Perfil findById(long id);
+
+    @Query("SELECT * FROM perfil p WHERE p.codProjeto= :codProjeto")
+    List<Perfil> findByProjectID(long codProjeto);
 
     @Insert
-    void insertAll(Perfil... projetos);
+    void insertAll(Perfil... perfil);
+
+    @Update
+    void updateAll(Perfil... perfis);
 
     @Delete
-    void delete(Perfil projeto);
+    void delete(Perfil perfil);
 }

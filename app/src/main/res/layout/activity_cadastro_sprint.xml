@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:onClick="cadastrar"
-                android:text="@string/add_project" />
+                android:text="@string/add_sprint" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

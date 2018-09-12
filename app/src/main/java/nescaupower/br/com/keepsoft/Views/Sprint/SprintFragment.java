@@ -18,8 +18,6 @@ import nescaupower.br.com.keepsoft.Controller.SprintController;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Sprint.dummy.DummyContent;
-import nescaupower.br.com.keepsoft.Views.Sprint.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.
@@ -82,7 +80,7 @@ public class SprintFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MySprintRecyclerViewAdapter(mListener,sprints));
+            recyclerView.setAdapter(new MySprintRecyclerViewAdapter(mListener, sprints, getActivity()));
         }
 
         btnCadastrar = rootView.findViewById(R.id.btnCadastrar);
@@ -131,7 +129,7 @@ public class SprintFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(Sprint item);
+        void onListFragmentInteraction(Sprint sprint);
     }
 
 }

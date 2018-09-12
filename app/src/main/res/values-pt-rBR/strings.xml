@@ -13,15 +13,26 @@
 
     <string name="button">Botão</string>
 
+    <string name="cancel">Cancelar</string>
+
+    <string name="change">Alterar</string>
+    <string name="change_password">Alterar Senha</string>
+
     <string name="confirm">Confirmar</string>
+    <string name="confirm_new_password">Confime a nova senha</string>
+    <string name="confirm_password">Confirmar Senha</string>
 
     <string name="description">Descrição</string>
 
     <string name="due_date">Data prevista para finalização</string>
 
+    <string name="edit_profile">Editar Perfil</string>
+
     <string name="email">Email</string>
 
     <string name="invite_member">Convidar Membro</string>
+
+    <string name="log_out">Sair</string>
 
     <string name="login">Login</string>
 
@@ -29,9 +40,17 @@
 
     <string name="name">Nome</string>
 
+    <string name="new_password">Senha nova</string>
+
+    <string name="next_sprint">"Próximo Sprint: "</string>
+
     <string name="notifications">Notificações</string>
 
+    <string name="old_password">Senha antiga</string>
+
     <string name="password">Senha</string>
+
+    <string name="phone">Telefone</string>
 
     <string name="profile">Perfil</string>
 
@@ -42,29 +61,22 @@
     <string name="sign_in">Entrar</string>
     <string name="sign_up">Cadastre-se</string>
 
+    <string name="sprint_end_date">Data de Finalização do Sprint</string>
+    <string name="sprint_since_date">Desde: %1$s</string>
+    <string name="sprint_start_date">Data  de Início do Sprint</string>
+    <string name="sprint_until_date">Até: %1$s</string>
+
     <string name="task">Task</string>
 
+    <string name="title">Título</string>
+    <string name="title_activity_alterar_perfil">Alterar Informações Pessoais</string>
+    <string name="title_activity_alterar_perfil_senha">Alterar Senha</string>
     <string name="title_activity_cadastro_projeto">Novo Projeto</string>
+    <string name="title_activity_cadastro_sprint">Novo Sprint</string>
+    <string name="title_activity_editar_projeto">Editar Projeto</string>
     <string name="title_notifications">Notificações</string>
 
-    <string name="username_or_email">Email ou Login</string>
-    <string name="title_activity_alterar_perfil_senha">Alterar Senha</string>
-    <string name="change_password">Alterar Senha</string>
-    <string name="old_password">Senha antiga</string>
-    <string name="new_password">Senha nova</string>
-    <string name="cancel">Cancelar</string>
-    <string name="confirm_new_password">Confime a nova senha</string>
-    <string name="confirm_password">Confirmar Senha</string>
-    <string name="phone">Telefone</string>
-    <string name="title_activity_alterar_perfil">Alterar Informações Pessoais</string>
-    <string name="change">Alterar</string>
-    <string name="title_activity_editar_projeto">Editar Projeto</string>
     <string name="type_your_password">Digite sua senha</string>
-    <string name="next_sprint">"Próximo Sprint: "</string>
-    <string name="log_out">Sair</string>
-    <string name="edit_profile">Editar Perfil</string>
-    <string name="sprint_end_date">Data de Finalização do Sprint</string>
-    <string name="sprint_start_date">Data  de Início do Sprint</string>
-    <string name="title">Título</string>
-    <string name="title_activity_cadastro_sprint">Novo Sprint</string>
+
+    <string name="username_or_email">Email ou Login</string>
 </resources>

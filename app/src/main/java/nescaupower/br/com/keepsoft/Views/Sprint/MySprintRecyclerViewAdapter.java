@@ -1,16 +1,19 @@
 package nescaupower.br.com.keepsoft.Views.Sprint;
 
+import android.content.Context;
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
+import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Sprint.SprintFragment.OnListFragmentInteractionListener;
-import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Sprint} and makes a call to the
@@ -18,13 +21,14 @@ import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
  * TODO: Replace the implementation with code for your data type.
  */
 public class MySprintRecyclerViewAdapter extends RecyclerView.Adapter<MySprintRecyclerViewAdapter.ViewHolder> {
-
+    private Context context;
     private final List<Sprint> sprints;
     private final OnListFragmentInteractionListener mListener;
 
-    public MySprintRecyclerViewAdapter(OnListFragmentInteractionListener listener,List<Sprint> items) {
+    public MySprintRecyclerViewAdapter(OnListFragmentInteractionListener listener, List<Sprint> items, Context context) {
         sprints = items;
         mListener = listener;
+        this.context = context;
     }
 
     @Override
@@ -36,9 +40,19 @@ public class MySprintRecyclerViewAdapter extends RecyclerView.Adapter<MySprintRe
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
+        Resources res = context.getResources();
+
         holder.mItem = sprints.get(position);
-        holder.mIdView.setText(Long.toString(sprints.get(position).getCodigo()));
-        holder.mContentView.setText(sprints.get(position).getTitulo());
+        holder.lblIndex.setText(Integer.toString(position + 1));
+        holder.lblTitulo.setText(sprints.get(position).getTitulo());
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        String stringDataInicio = res.getString(R.string.sprint_since_date, sdf.format(sprints.get(position).getDataInicio()));
+        holder.lblDataInicio.setText(stringDataInicio);
+
+        String stringDataFim = res.getString(R.string.sprint_until_date, sdf.format(sprints.get(position).getDataFim()));
+        holder.lblDataFim.setText(stringDataFim);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,20 +73,24 @@ public class MySprintRecyclerViewAdapter extends RecyclerView.Adapter<MySprintRe
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
+        public final TextView lblIndex;
+        public final TextView lblTitulo;
+        public final TextView lblDataInicio;
+        public final TextView lblDataFim;
         public Sprint mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = view.findViewById(R.id.lblId);
-            mContentView = view.findViewById(R.id.lblTitulo);
+            lblIndex = view.findViewById(R.id.lblId);
+            lblTitulo = view.findViewById(R.id.lblTitulo);
+            lblDataInicio = view.findViewById(R.id.lblDataInicio);
+            lblDataFim = view.findViewById(R.id.lblDataFim);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + lblTitulo.getText() + "'";
         }
     }
 }

@@ -18,7 +18,8 @@ public class Sprint {
     @ForeignKey(
             entity = Projeto.class,
             parentColumns = "codigo",
-            childColumns = "codigo"
+            childColumns = "codigo",
+            onDelete = ForeignKey.CASCADE
     )
     private long codProjeto;
 

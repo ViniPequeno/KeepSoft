@@ -14,7 +14,8 @@ import nescaupower.br.com.keepsoft.Utils.Converters;
         @ForeignKey(
                 entity = Projeto.class,
                 parentColumns = "codigo",
-                childColumns = "codProjeto"
+                childColumns = "codProjeto",
+                onDelete = ForeignKey.CASCADE
         ),
         @ForeignKey(
                 entity = Usuario.class,

@@ -17,8 +17,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import nescaupower.br.com.keepsoft.Controller.PerfilController;
 import nescaupower.br.com.keepsoft.Controller.ProjetoController;
 import nescaupower.br.com.keepsoft.Factory.Factory;
+import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
@@ -31,7 +33,8 @@ public class CadastroProjetoActivity extends AppCompatActivity {
     private EditText txtNome;
     private EditText txtDescricao;
     private EditText txtDataPrevista;
-    private ProjetoController pc;
+    private ProjetoController projetoController;
+    private PerfilController perfilController;
     private DatePickerDialog dialogDataPrevista;
     private DatePickerDialog.OnDateSetListener listenerDataSelecionadaDataPrevista;
     private DatePickerDialog.OnCancelListener listenerSelecaoCanceladaDataPrevista;
@@ -42,7 +45,9 @@ public class CadastroProjetoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_projeto);
         root = findViewById(R.id.teste);
 
-        pc = new ProjetoController(getApplicationContext());
+        projetoController = new ProjetoController(getApplicationContext());
+
+        perfilController = new PerfilController(getApplicationContext());
 
         txtNome = findViewById(R.id.txtNome);
         txtDescricao = findViewById(R.id.txtDescricao);
@@ -90,29 +95,50 @@ public class CadastroProjetoActivity extends AppCompatActivity {
             return;
         }
 
-        Projeto p = Factory.startProjeto();
+        Projeto novoProjeto = Factory.startProjeto();
 
-        p.setNome(txtNome.getText().toString());
-        p.setDescricao(txtDescricao.getText().toString());
-        p.setDataCriacao(Calendar.getInstance().getTime());
+        novoProjeto.setNome(txtNome.getText().toString());
+        novoProjeto.setDescricao(txtDescricao.getText().toString());
+        novoProjeto.setDataCriacao(Calendar.getInstance().getTime());
 
         try {
-            p.setDataPrevFinalizacao(new SimpleDateFormat("dd/MM/yyyy").parse(txtDataPrevista.getText().toString()));
+            novoProjeto.setDataPrevFinalizacao(new SimpleDateFormat("dd/MM/yyyy").parse(txtDataPrevista.getText().toString()));
         } catch (ParseException e) {
             e.printStackTrace();
+            return;
         }
 
-        p.setIdUsuario(Usuario.getUsuarioLogado().getId());
+        novoProjeto.setIdUsuario(Usuario.getUsuarioLogado().getId());
 
-        boolean cadastrou = pc.cadastrar(p);
+        long cadastrouProjeto = projetoController.cadastrar(novoProjeto);
 
-        if (cadastrou) {
-            Toast.makeText(this, p.getDataPrevFinalizacao().toString(), Toast.LENGTH_SHORT).show();
+        if (cadastrouProjeto != 0) {
             Intent i = new Intent(CadastroProjetoActivity.this, PaginaInicialActivity.class);
             startActivity(i);
             CadastroProjetoActivity.this.finish();
         } else {
             Toast.makeText(this, "Projeto já existe", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Perfil novoPerfil = Factory.startPerfil();
+
+        novoPerfil.setCodProjeto(novoProjeto.getCodigo());
+        novoPerfil.setDataInicio(novoProjeto.getDataCriacao());
+        novoPerfil.setIdUsuario(Usuario.getUsuarioLogado().getId());
+        novoPerfil.setCodProjeto(cadastrouProjeto);
+        novoPerfil.setPerfil(nescaupower.br.com.keepsoft.Enum.Perfil.SCRUM_MASTER);
+
+        boolean cadastrouPerfil = perfilController.cadastrar(novoPerfil);
+
+        if (cadastrouPerfil) {
+            Toast.makeText(getApplicationContext(), "Cadastrou: " + novoPerfil.getPerfil().toString(), Toast.LENGTH_SHORT);
+            Intent i = new Intent(CadastroProjetoActivity.this, PaginaInicialActivity.class);
+            startActivity(i);
+            CadastroProjetoActivity.this.finish();
+        } else {
+            Toast.makeText(this, "Não foi possível criar Perfil", Toast.LENGTH_SHORT).show();
+            return;
         }
     }
 

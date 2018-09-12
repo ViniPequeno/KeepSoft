@@ -18,9 +18,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
+import nescaupower.br.com.keepsoft.Controller.PerfilController;
 import nescaupower.br.com.keepsoft.Controller.ProjetoController;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Factory;
+import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
@@ -44,6 +46,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
 
     private Projeto projeto;
     private Usuario usuario;
+    private Perfil perfil;
 
     private int indexProjeto;
     private String nomeProjeto;
@@ -88,6 +91,9 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
 
         nomeProjeto = projeto.getNome();
         getSupportActionBar().setTitle(nomeProjeto);
+
+        perfil = new PerfilController(getApplicationContext()).procurarPorProjetoUsuario(projeto.getCodigo(), Usuario.getUsuarioLogado().getId());
+        Toast.makeText(this, perfil.getPerfil().toString(), Toast.LENGTH_SHORT).show();
     }
 
 

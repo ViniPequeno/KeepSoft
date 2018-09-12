@@ -24,8 +24,11 @@ public interface PerfilDAO {
     @Query("SELECT * FROM perfil p WHERE p.codProjeto= :codProjeto")
     List<Perfil> findByProjectID(long codProjeto);
 
+    @Query("SELECT * FROM perfil p WHERE p.codProjeto= :codProjeto and p.idUsuario= :idUsuario")
+    Perfil findByUserIdAndProjectID(long codProjeto, long idUsuario);
+
     @Insert
-    void insertAll(Perfil... perfil);
+    void insertAll(Perfil... perfis);
 
     @Update
     void updateAll(Perfil... perfis);

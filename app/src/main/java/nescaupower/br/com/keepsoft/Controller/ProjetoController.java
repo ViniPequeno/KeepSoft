@@ -16,8 +16,8 @@ public class ProjetoController {
         db = Factory.startDatabase(context);
     }
 
-    public void inserir(Projeto... projetos) {
-        db.projetoDAO().insertAll(projetos);
+    public void inserir(Projeto projeto) {
+        db.projetoDAO().insert(projeto);
     }
 
     public Projeto procurarPorNome(String nome) {
@@ -32,14 +32,14 @@ public class ProjetoController {
         db.projetoDAO().updateAll(projeto);
     }
 
-    public boolean cadastrar(Projeto projeto) {
+    public long cadastrar(Projeto projeto) {
         if (db.projetoDAO().findByName(projeto.getNome()) != null) {
             this.mensagem = "O nome de projeto já existe!";
-            return false;
+            return 0;
         } else {
-            db.projetoDAO().insertAll(projeto);
+            long codigo = db.projetoDAO().insert(projeto);
             this.mensagem = "Cadastrado!";
-            return true;
+            return codigo;
         }
     }
 

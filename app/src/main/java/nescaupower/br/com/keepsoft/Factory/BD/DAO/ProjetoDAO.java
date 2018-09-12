@@ -28,7 +28,7 @@ public interface ProjetoDAO {
     List<Projeto> findByUserID(long userID);
 
     @Insert
-    void insertAll(Projeto... projetos);
+    long insert(Projeto projeto);
 
     @Update
     void updateAll(Projeto... projetos);

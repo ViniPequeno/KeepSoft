@@ -24,6 +24,10 @@ public class PerfilController {
         return db.perfilDAO().findById(codigo);
     }
 
+    public Perfil procurarPorProjetoUsuario(long codProjeto, long idUsuario) {
+        return db.perfilDAO().findByUserIdAndProjectID(codProjeto, idUsuario);
+    }
+
     public void atualizar(Perfil perfil) {
         db.perfilDAO().updateAll(perfil);
     }
@@ -48,7 +52,6 @@ public class PerfilController {
     public List<Perfil> listarPorProjeto(long codProjeto) {
         return db.perfilDAO().findByProjectID(codProjeto);
     }
-
     public List<Perfil> listarTodos() {
         return db.perfilDAO().getAll();
     }

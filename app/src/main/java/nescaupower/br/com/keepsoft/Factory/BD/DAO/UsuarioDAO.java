@@ -24,6 +24,9 @@ public interface UsuarioDAO {
     @Query("SELECT * FROM usuario WHERE login = :login")
     Usuario findByLogin(String login);
 
+    @Query("SELECT * FROM usuario WHERE login LIKE :login OR name LIKE :name")
+    List<Usuario> findByLoginAndName(String login, String name);
+
     @Query("SELECT * FROM usuario WHERE email = :email")
     Usuario findByEmail(String email);
 

@@ -2,6 +2,8 @@ package nescaupower.br.com.keepsoft.Controller;
 
 import android.content.Context;
 
+import java.util.List;
+
 import nescaupower.br.com.keepsoft.Factory.BD.Database.AppDatabase;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
@@ -53,6 +55,8 @@ public class UsuarioController {
         }
         return usuario;
     }
+
+    public List<Usuario> listarPorNomeLogin(String login, String nome){ return db.usuarioDAO().findByLoginAndName(login,nome); }
 
     public String getMensagem(){
         return this.mensagem;

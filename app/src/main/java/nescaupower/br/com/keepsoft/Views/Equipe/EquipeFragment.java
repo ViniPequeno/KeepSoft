@@ -1,6 +1,7 @@
 package nescaupower.br.com.keepsoft.Views.Equipe;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -9,14 +10,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.util.List;
 
 import nescaupower.br.com.keepsoft.Controller.PerfilController;
-import nescaupower.br.com.keepsoft.Controller.SprintController;
+import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 
 /**
  * A fragment representing a list of Items.
@@ -33,6 +34,8 @@ public class EquipeFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+
+    private Button btnCadastrar;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -78,6 +81,15 @@ public class EquipeFragment extends Fragment {
             }
             recyclerView.setAdapter(new MyEquipeRecyclerViewAdapter(mListener, perfis, getActivity()));
         }
+
+        btnCadastrar = rootView.findViewById(R.id.btnCadastrar);
+        btnCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                iniciarPesquisa();
+            }
+        });
+
         return rootView;
     }
 
@@ -97,6 +109,11 @@ public class EquipeFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    private void iniciarPesquisa() {
+        Intent i = new Intent(this.getActivity(), ConvidarMembroActivity.class);
+        startActivity(i);
     }
 
     /**

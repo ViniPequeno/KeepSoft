@@ -14,6 +14,7 @@
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,8 +30,8 @@
             android:label="@string/title_activity_cadastro_projeto" />
         <activity
             android:name=".Views.Projeto.DetalhesProjetoActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="Projeto" />
+            android:label="Projeto"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Views.Usuario.AlterarPerfilActivity"
             android:label="@string/title_activity_alterar_perfil" />
@@ -43,6 +44,7 @@
         <activity
             android:name=".Views.Sprint.CadastroSprintActivity"
             android:label="@string/title_activity_cadastro_sprint" />
+        <activity android:name=".Views.Equipe.ConvidarMembroActivity"></activity>
     </application>
 
 </manifest>

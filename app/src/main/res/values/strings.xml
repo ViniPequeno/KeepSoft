@@ -58,6 +58,12 @@
 
     <string name="projects">Projects</string>
 
+    <string-array name="scrum_roles_array">
+        <item>Scrum Master</item>
+        <item>Scrum Team</item>
+        <item>Product Owner</item>
+    </string-array>
+
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
 

@@ -69,7 +69,7 @@ public class TarefaFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyTarefaRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyTarefaRVAdapter(DummyContent.ITEMS, mListener));
         }
         return rootView;
     }

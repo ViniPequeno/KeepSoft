@@ -10,23 +10,23 @@ import android.widget.TextView;
 import java.util.List;
 
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
+import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment.OnListFragmentInteractionListener;
-import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Perfil} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyEquipeRecyclerViewAdapter extends RecyclerView.Adapter<MyEquipeRecyclerViewAdapter.ViewHolder> {
+public class MyEquipeRVAdapter extends RecyclerView.Adapter<MyEquipeRVAdapter.ViewHolder> {
 
     private Context context;
     private final List<Perfil> perfis;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyEquipeRecyclerViewAdapter(OnListFragmentInteractionListener listener, List<Perfil> perfis, Context context) {
+    public MyEquipeRVAdapter(OnListFragmentInteractionListener listener, List<Perfil> perfis, Context context) {
         this.perfis = perfis;
         this.mListener = listener;
         this.context = context;

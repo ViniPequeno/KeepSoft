@@ -48,7 +48,7 @@ public class ProjetosFragment extends Fragment {
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         rv.setLayoutManager(layoutManager);
 
-        MyProjetoRecyclerViewAdapter adapter = new MyProjetoRecyclerViewAdapter(this.getActivity(), projetos);
+        MyProjetoRVAdapter adapter = new MyProjetoRVAdapter(this.getActivity(), projetos);
         rv.setAdapter(adapter);
 
         btnCadastrar = rootView.findViewById(R.id.btnCadastrar);
@@ -65,7 +65,7 @@ public class ProjetosFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        MyProjetoRecyclerViewAdapter adapter = (MyProjetoRecyclerViewAdapter) rv.getAdapter();
+        MyProjetoRVAdapter adapter = (MyProjetoRVAdapter) rv.getAdapter();
         adapter.setProjetos(projetos = pc.listarPorUsuario(Usuario.getUsuarioLogado().getId()));
         Toast.makeText(getActivity(), " Voltei " + projetos.size(), Toast.LENGTH_SHORT).show();
         adapter.notifyDataSetChanged();

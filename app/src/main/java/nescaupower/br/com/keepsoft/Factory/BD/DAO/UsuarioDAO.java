@@ -5,6 +5,7 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
+import android.database.Cursor;
 
 import java.util.List;
 
@@ -41,4 +42,7 @@ public interface UsuarioDAO {
 
     @Delete
     void delete(Usuario usuario);
+
+    @Query("SELECT id as _id, nome, login, email, telefone FROM usuario WHERE nome LIKE :nome")
+    Cursor listUsuariosCursor(String nome);
 }

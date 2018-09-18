@@ -20,12 +20,12 @@ import nescaupower.br.com.keepsoft.Views.Sprint.SprintFragment.OnListFragmentInt
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MySprintRecyclerViewAdapter extends RecyclerView.Adapter<MySprintRecyclerViewAdapter.ViewHolder> {
+public class MySprintRVAdapter extends RecyclerView.Adapter<MySprintRVAdapter.ViewHolder> {
     private Context context;
     private final List<Sprint> sprints;
     private final OnListFragmentInteractionListener mListener;
 
-    public MySprintRecyclerViewAdapter(OnListFragmentInteractionListener listener, List<Sprint> items, Context context) {
+    public MySprintRVAdapter(OnListFragmentInteractionListener listener, List<Sprint> items, Context context) {
         sprints = items;
         mListener = listener;
         this.context = context;

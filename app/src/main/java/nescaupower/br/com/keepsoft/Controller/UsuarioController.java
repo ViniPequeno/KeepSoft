@@ -1,6 +1,7 @@
 package nescaupower.br.com.keepsoft.Controller;
 
 import android.content.Context;
+import android.database.Cursor;
 
 import java.util.List;
 
@@ -57,6 +58,11 @@ public class UsuarioController {
     }
 
     public List<Usuario> listarPorNomeLogin(String login, String nome){ return db.usuarioDAO().findByLoginAndName(login,nome); }
+
+    //TODO: consertar nomenclatura
+    public Cursor listarUsuariosCursor(String nome) {
+        return db.usuarioDAO().listUsuariosCursor(nome);
+    }
 
     public String getMensagem(){
         return this.mensagem;

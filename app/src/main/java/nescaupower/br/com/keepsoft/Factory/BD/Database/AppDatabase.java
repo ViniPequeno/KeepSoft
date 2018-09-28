@@ -3,6 +3,7 @@ package nescaupower.br.com.keepsoft.Factory.BD.Database;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
+import nescaupower.br.com.keepsoft.Factory.BD.DAO.ConviteDAO;
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.PerfilDAO;
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.ProjetoDAO;
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.RequisitoDAO;
@@ -36,6 +37,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract ReuniaoDAO reuniaoDAO();
     public abstract SprintDAO sprintDAO();
     public abstract StatusDAO statusDAO();
+
+    public abstract ConviteDAO conviteDAO();
 
 
 }

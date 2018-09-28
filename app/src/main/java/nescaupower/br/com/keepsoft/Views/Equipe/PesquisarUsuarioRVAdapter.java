@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -43,6 +45,14 @@ public class PesquisarUsuarioRVAdapter extends RecyclerView.Adapter<PesquisarUsu
         Log.e("e", holder.mItem.getNome());
         holder.lblLogin.setText(holder.mItem.getLogin());
         holder.lblNome.setText(holder.mItem.getNome());
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Usuario usuarioRemovido = usuarios.get(position);
+                usuarios.remove(usuarioRemovido);
+                notifyItemRemoved(position);
+            }
+        });
     }
 
     @Override
@@ -72,6 +82,7 @@ public class PesquisarUsuarioRVAdapter extends RecyclerView.Adapter<PesquisarUsu
         public final View mView;
         public final TextView lblLogin;
         public final TextView lblNome;
+        public final ImageButton btnDelete;
         public Usuario mItem;
 
         public ViewHolder(View view) {
@@ -79,6 +90,7 @@ public class PesquisarUsuarioRVAdapter extends RecyclerView.Adapter<PesquisarUsu
             mView = view;
             lblLogin = view.findViewById(R.id.lblLogin);
             lblNome = view.findViewById(R.id.lblNome);
+            btnDelete = view.findViewById(R.id.btnDelete);
         }
 
         @Override

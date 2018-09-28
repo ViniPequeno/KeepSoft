@@ -12,6 +12,7 @@ import nescaupower.br.com.keepsoft.Factory.BD.DAO.ReuniaoDAO;
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.SprintDAO;
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.StatusDAO;
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.UsuarioDAO;
+import nescaupower.br.com.keepsoft.Factory.Model.Convite;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Requisito;
@@ -23,13 +24,12 @@ import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.Utils.Converters;
 
 
-@Database(entities = {Usuario.class, Projeto.class, RequisitoStatus.class, Reuniao.class, Sprint.class, Status.class, Requisito.class, Perfil.class},
+@Database(entities = {Usuario.class, Projeto.class, RequisitoStatus.class, Reuniao.class, Sprint.class, Status.class, Requisito.class, Perfil.class, Convite.class},
         version = 1)
 @android.arch.persistence.room.TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UsuarioDAO usuarioDAO();
-
     public abstract PerfilDAO perfilDAO();
     public abstract ProjetoDAO projetoDAO();
     public abstract RequisitoStatusDAO requisitoStatusDAO();
@@ -37,7 +37,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract ReuniaoDAO reuniaoDAO();
     public abstract SprintDAO sprintDAO();
     public abstract StatusDAO statusDAO();
-
     public abstract ConviteDAO conviteDAO();
 
 

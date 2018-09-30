@@ -79,4 +79,5 @@
     <string name="type_your_password">Digite sua senha</string>
 
     <string name="username_or_email">Email ou Login</string>
+    <string name="confirm_log_out">Você realmente deseja sair?</string>
 </resources>

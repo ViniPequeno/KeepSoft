@@ -16,8 +16,8 @@ public class ConviteController {
         db = Factory.startDatabase(context);
     }
 
-    public void inserir(Convite... perfis) {
-        db.conviteDAO().insertAll(perfis);
+    public void inserir(Convite... convites) {
+        db.conviteDAO().insertAll(convites);
     }
 
     public void atualizar(Convite convite) {

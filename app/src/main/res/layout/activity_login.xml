@@ -78,8 +78,7 @@
             android:layout_height="wrap_content"
             android:elevation="24dp"
             android:onClick="entrar"
-            android:text="@string/sign_in"
-            android:textSize="18sp" />
+            android:text="@string/sign_in" />
 
         <Space
             android:layout_width="match_parent"
@@ -91,8 +90,7 @@
             android:layout_height="wrap_content"
             android:elevation="24dp"
             android:onClick="cadastrar"
-            android:text="@string/sign_up"
-            android:textSize="18sp" />
+            android:text="@string/sign_up" />
 
         <Space
             android:layout_width="match_parent"

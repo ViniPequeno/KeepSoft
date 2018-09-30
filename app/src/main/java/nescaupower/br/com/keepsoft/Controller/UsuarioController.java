@@ -60,8 +60,8 @@ public class UsuarioController {
     public List<Usuario> listarPorNomeLogin(String login, String nome){ return db.usuarioDAO().findByLoginAndName(login,nome); }
 
     //TODO: consertar nomenclatura
-    public Cursor listarUsuariosCursor(String nome) {
-        return db.usuarioDAO().listUsuariosCursor(nome);
+    public Cursor listarUsuariosCursor(String login, long id) {
+        return db.usuarioDAO().listUsuariosCursor(login, id);
     }
 
     public String getMensagem(){

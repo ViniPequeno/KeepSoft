@@ -42,7 +42,7 @@ public class PerfilFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         uc = new UsuarioController(getActivity().getApplicationContext());
-        return inflater.inflate(R.layout.fragment_perfil, null);
+        return inflater.inflate(R.layout.fragment_perfil, container);
     }
 
     @Override

@@ -14,7 +14,7 @@ import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 
-public class AlterarPerfilSenhaActivity extends AppCompatActivity {
+public class AlterarSenhaActivity extends AppCompatActivity {
 
     private EditText senhaAntiga;
     private EditText senhaNova;
@@ -61,10 +61,10 @@ public class AlterarPerfilSenhaActivity extends AppCompatActivity {
                         Usuario.setUsuarioLogado(usuario);
 
                         Intent intent;
-                        intent = new Intent(AlterarPerfilSenhaActivity.this, PaginaInicialActivity.class);
+                        intent = new Intent(AlterarSenhaActivity.this, PaginaInicialActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
                         startActivity(intent);
-                        AlterarPerfilSenhaActivity.this.finish();
+                        AlterarSenhaActivity.this.finish();
                     }else{
                         Toast.makeText(this, "Senha antiga não está certo!", Toast.LENGTH_SHORT).show();
                     }
@@ -75,9 +75,9 @@ public class AlterarPerfilSenhaActivity extends AppCompatActivity {
 
     public void alterarPerfilSenhaCancelar(View view) {
         Intent intent;
-        intent = new Intent(AlterarPerfilSenhaActivity.this, PaginaInicialActivity.class);
+        intent = new Intent(AlterarSenhaActivity.this, PaginaInicialActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
         startActivity(intent);
-        AlterarPerfilSenhaActivity.this.finish();
+        AlterarSenhaActivity.this.finish();
     }
 }

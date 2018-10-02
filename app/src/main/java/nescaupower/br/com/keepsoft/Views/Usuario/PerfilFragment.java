@@ -42,7 +42,7 @@ public class PerfilFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         uc = new UsuarioController(getActivity().getApplicationContext());
-        return inflater.inflate(R.layout.fragment_perfil, container);
+        return inflater.inflate(R.layout.fragment_perfil, container, false);
     }
 
     @Override
@@ -131,7 +131,7 @@ public class PerfilFragment extends Fragment {
 
     private void trocarTelaAlterarSenha(View view) {
         Intent intent;
-        intent = new Intent(getActivity(), AlterarPerfilSenhaActivity.class);
+        intent = new Intent(getActivity(), AlterarSenhaActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
         startActivity(intent);
     }

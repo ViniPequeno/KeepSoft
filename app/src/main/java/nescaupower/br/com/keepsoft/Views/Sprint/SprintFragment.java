@@ -80,7 +80,7 @@ public class SprintFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MySprintRVAdapter(mListener, sprints, getActivity()));
+            recyclerView.setAdapter(new SprintRVAdapter(mListener, sprints, getActivity()));
         }
 
         btnCadastrar = rootView.findViewById(R.id.btnCadastrar);

@@ -79,7 +79,7 @@ public class EquipeFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyEquipeRVAdapter(mListener, perfis, getActivity()));
+            recyclerView.setAdapter(new EquipeRVAdapter(mListener, perfis, getActivity()));
         }
 
         btnCadastrar = rootView.findViewById(R.id.btnCadastrar);

@@ -1,16 +1,17 @@
 package nescaupower.br.com.keepsoft.Views.Projeto;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -41,6 +42,8 @@ public class ProjetosFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Resources res = getContext().getResources();
+
         // Inflate the layout for this fragment
         final View rootView = inflater.inflate(R.layout.fragment_projeto_list, container, false);
 
@@ -48,7 +51,7 @@ public class ProjetosFragment extends Fragment {
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         rv.setLayoutManager(layoutManager);
 
-        MyProjetoRVAdapter adapter = new MyProjetoRVAdapter(this.getActivity(), projetos);
+        ProjetoRVAdapter adapter = new ProjetoRVAdapter(this.getActivity(), projetos);
         rv.setAdapter(adapter);
 
         btnCadastrar = rootView.findViewById(R.id.btnCadastrar);
@@ -59,15 +62,17 @@ public class ProjetosFragment extends Fragment {
             }
         });
 
+        //Título
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(res.getString(R.string.projects));
+
         return rootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        MyProjetoRVAdapter adapter = (MyProjetoRVAdapter) rv.getAdapter();
+        ProjetoRVAdapter adapter = (ProjetoRVAdapter) rv.getAdapter();
         adapter.setProjetos(projetos = pc.listarPorUsuario(Usuario.getUsuarioLogado().getId()));
-        Toast.makeText(getActivity(), " Voltei " + projetos.size(), Toast.LENGTH_SHORT).show();
         adapter.notifyDataSetChanged();
     }
 

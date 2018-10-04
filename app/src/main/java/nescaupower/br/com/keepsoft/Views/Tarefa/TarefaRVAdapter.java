@@ -17,12 +17,12 @@ import nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent.DummyItem;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyTarefaRVAdapter extends RecyclerView.Adapter<MyTarefaRVAdapter.ViewHolder> {
+public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHolder> {
 
     private final List<DummyItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyTarefaRVAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public TarefaRVAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }

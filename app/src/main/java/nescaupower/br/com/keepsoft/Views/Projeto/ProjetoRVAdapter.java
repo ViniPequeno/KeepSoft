@@ -13,12 +13,12 @@ import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.ItemClickListener;
 
-public class MyProjetoRVAdapter extends RecyclerView.Adapter<MyHolder> {
+public class ProjetoRVAdapter extends RecyclerView.Adapter<MyHolder> {
 
     private Context c;
     private List<Projeto> projetos;
 
-    public MyProjetoRVAdapter(Context c, List<Projeto> projetos) {
+    public ProjetoRVAdapter(Context c, List<Projeto> projetos) {
         this.c = c;
         this.projetos = projetos;
     }

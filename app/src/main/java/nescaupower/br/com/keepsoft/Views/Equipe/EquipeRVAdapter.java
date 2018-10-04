@@ -20,13 +20,13 @@ import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment.OnListFragmentInt
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MyEquipeRVAdapter extends RecyclerView.Adapter<MyEquipeRVAdapter.ViewHolder> {
+public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHolder> {
 
     private Context context;
     private final List<Perfil> perfis;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyEquipeRVAdapter(OnListFragmentInteractionListener listener, List<Perfil> perfis, Context context) {
+    public EquipeRVAdapter(OnListFragmentInteractionListener listener, List<Perfil> perfis, Context context) {
         this.perfis = perfis;
         this.mListener = listener;
         this.context = context;

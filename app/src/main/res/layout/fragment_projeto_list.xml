@@ -1,24 +1,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:padding="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="nescaupower.br.com.keepsoft.Views.Projeto.ProjetosFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:padding="10dp"
-        android:text="@string/projects"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
-
     <Button
         android:id="@+id/btnCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
         android:layout_weight="0"
         android:drawableStart="@drawable/ic_add_black_24dp"
         android:drawableTint="@android:color/white"

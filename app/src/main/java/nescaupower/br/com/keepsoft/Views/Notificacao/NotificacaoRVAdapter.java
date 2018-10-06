@@ -9,19 +9,25 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import nescaupower.br.com.keepsoft.Controller.ProjetoController;
+import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Convite;
-import nescaupower.br.com.keepsoft.Factory.Model.Notificacao;
+import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
+import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.ItemClickListener;
 
 public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdapter.ViewHolder> {
 
     private Context c;
-    private List<Notificacao> notificacoes;
+    ProjetoController pc;
+    UsuarioController uc;
+    private List<Object> notificacoes;
 
-    public NotificacaoRVAdapter(Context c, List<Notificacao> notificacoes) {
+    public NotificacaoRVAdapter(Context c, List<Object> notificacoes) {
         this.c = c;
         this.notificacoes = notificacoes;
+        pc = new ProjetoController(c);
+        uc = new UsuarioController(c);
     }
 
     @Override
@@ -33,8 +39,15 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        //holder.lblNome.setText(notificacoes.get(position).getNome());
-        //holder.lblData.setText(notificacoes.get(position).getDescricao());
+        holder.mItem = notificacoes.get(position);
+        //Se o item da lista for um convite
+        if (notificacoes.get(position) instanceof Convite) {
+            Convite c = (Convite) notificacoes.get(position);
+            Usuario remetente = uc.procurarPorID(c.getRemetenteId());
+            Projeto p = pc.procurarPorCodigo(c.getCodProjeto());
+            holder.lblDescricao.setText(remetente.getLogin() + "o convida para o projeto " + p.getNome());
+            holder.lblData.setText(c.getData().toString());
+        }
     }
 
     @Override
@@ -49,16 +62,17 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView lblNome;
+        public final TextView lblTitulo;
+        public final TextView lblDescricao;
         public final TextView lblData;
-        public Convite mItem;
-        private ItemClickListener itemClickListener;
+        public Object mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            lblNome = view.findViewById(R.id.lblNome);
-            lblData = view.findViewById(R.id.lblFuncao);
+            lblTitulo = view.findViewById(R.id.lblTitulo);
+            lblDescricao = view.findViewById(R.id.lblDescricao);
+            lblData = view.findViewById(R.id.lblData);
         }
 
         @Override

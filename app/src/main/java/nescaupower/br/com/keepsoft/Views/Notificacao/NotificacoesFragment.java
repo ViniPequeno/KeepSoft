@@ -14,7 +14,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import nescaupower.br.com.keepsoft.Factory.Model.Notificacao;
+import nescaupower.br.com.keepsoft.Controller.ConviteController;
+import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 
 /**
@@ -23,15 +24,15 @@ import nescaupower.br.com.keepsoft.R;
 public class NotificacoesFragment extends Fragment {
 
     private RecyclerView rv;
-    private List<Notificacao> notificacoes;
+    private ConviteController cc;
+    private List<Object> notificacoes;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        cc = new ConviteController(getActivity());
         notificacoes = new ArrayList<>();
-        notificacoes.add(new Notificacao());
-        notificacoes.add(new Notificacao());
-        notificacoes.add(new Notificacao());
+        notificacoes.addAll(cc.listarPorDestinatario(Usuario.getUsuarioLogado().getId()));
     }
 
     @Nullable

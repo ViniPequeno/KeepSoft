@@ -24,7 +24,7 @@ public class ConviteController {
         db.conviteDAO().updateAll(convite);
     }
 
-    public boolean cadastrar(Convite convite) {
+    public boolean cadastrar(Convite... convite) {
         db.conviteDAO().insertAll(convite);
         this.mensagem = "Cadastrado!";
         return true;
@@ -43,6 +43,10 @@ public class ConviteController {
 
     public List<Convite> listarPorProjeto(long codProjeto) {
         return db.conviteDAO().findByProjectID(codProjeto);
+    }
+
+    public List<Convite> listarPorDestinatario(long idDestinatario) {
+        return db.conviteDAO().findByReceiverID(idDestinatario);
     }
 
     public List<Convite> listarTodos() {

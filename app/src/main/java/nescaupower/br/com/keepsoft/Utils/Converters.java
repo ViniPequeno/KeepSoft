@@ -22,8 +22,8 @@ public class Converters {
     public static Perfil stringToPerfil(String perfil) {
         if (perfil.equals(Perfil.TEAM.toString())) {
             return Perfil.TEAM;
-        } else if (perfil.equals(Perfil.PRODUCTOWNER.toString())) {
-            return Perfil.PRODUCTOWNER;
+        } else if (perfil.equals(Perfil.PRODUCT_OWNER.toString())) {
+            return Perfil.PRODUCT_OWNER;
         } else if (perfil.equals(Perfil.SCRUM_MASTER.toString())) {
             return Perfil.SCRUM_MASTER;
         } else {

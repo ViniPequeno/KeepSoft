@@ -1,7 +1,7 @@
 package nescaupower.br.com.keepsoft.Enum;
 
 public enum Perfil {
-    SCRUM_MASTER("Scrum Master"), PRODUCTOWNER("Product Owner"), TEAM("Scrum Team");
+    SCRUM_MASTER("Scrum Master"), PRODUCT_OWNER("Product Owner"), TEAM("Scrum Team");
 
     private String perfil;
 

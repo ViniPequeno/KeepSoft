@@ -8,14 +8,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
+import nescaupower.br.com.keepsoft.Enum.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 
@@ -24,11 +27,12 @@ public class PesquisarUsuarioRVAdapter extends RecyclerView.Adapter<PesquisarUsu
     private UsuarioController uc;
     private Context context;
     private List<Usuario> usuarios;
-
+    private List<Integer> funcoesUsuarios;
 
     public PesquisarUsuarioRVAdapter(List<Usuario> usuarios, Context context) {
         this.usuarios = usuarios;
         this.context = context;
+        funcoesUsuarios = new ArrayList<>();
         uc = new UsuarioController(context);
     }
 
@@ -40,19 +44,44 @@ public class PesquisarUsuarioRVAdapter extends RecyclerView.Adapter<PesquisarUsu
     }
 
     @Override
-    public void onBindViewHolder(final PesquisarUsuarioRVAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final PesquisarUsuarioRVAdapter.ViewHolder holder, final int position) {
         holder.mItem = usuarios.get(position);
         Log.e("e", holder.mItem.getNome());
         holder.lblLogin.setText(holder.mItem.getLogin());
         holder.lblNome.setText(holder.mItem.getNome());
-        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+        holder.btnDelete.setOnClickListener((View view) -> {
+            Usuario usuarioRemovido = usuarios.get(position);
+            usuarios.remove(usuarioRemovido);
+            notifyItemRemoved(position);
+        });
+        funcoesUsuarios.add(holder.spinFuncao.getSelectedItemPosition());
+        holder.spinFuncao.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Usuario usuarioRemovido = usuarios.get(position);
-                usuarios.remove(usuarioRemovido);
-                notifyItemRemoved(position);
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                funcoesUsuarios.set(position, i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
+    }
+
+    public Perfil getFuncaoUsuario(int position) {
+        int indexFuncao = funcoesUsuarios.get(position);
+        switch (indexFuncao) {
+            case 0:
+                return Perfil.SCRUM_MASTER;
+            case 1:
+                return Perfil.TEAM;
+            default:
+                return Perfil.PRODUCT_OWNER;
+        }
+    }
+
+    public int len() {
+        return funcoesUsuarios.size();
     }
 
     @Override
@@ -78,11 +107,17 @@ public class PesquisarUsuarioRVAdapter extends RecyclerView.Adapter<PesquisarUsu
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.N)
+    private boolean containsID(long id) {
+        return usuarios.stream().anyMatch(o -> o.getId() == id);
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView lblLogin;
         public final TextView lblNome;
         public final ImageButton btnDelete;
+        public final Spinner spinFuncao;
         public Usuario mItem;
 
         public ViewHolder(View view) {
@@ -91,16 +126,12 @@ public class PesquisarUsuarioRVAdapter extends RecyclerView.Adapter<PesquisarUsu
             lblLogin = view.findViewById(R.id.lblLogin);
             lblNome = view.findViewById(R.id.lblNome);
             btnDelete = view.findViewById(R.id.btnDelete);
+            spinFuncao = view.findViewById(R.id.spinFuncao);
         }
 
         @Override
         public String toString() {
             return super.toString() + " '" + lblNome.getText() + "'";
         }
-    }
-
-    @TargetApi(Build.VERSION_CODES.N)
-    private boolean containsID(long id) {
-        return usuarios.stream().filter(o -> o.getId() == id).findFirst().isPresent();
     }
 }

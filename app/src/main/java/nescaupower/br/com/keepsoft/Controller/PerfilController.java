@@ -32,7 +32,7 @@ public class PerfilController {
         db.perfilDAO().updateAll(perfil);
     }
 
-    public boolean cadastrar(Perfil perfil) {
+    public boolean cadastrar(Perfil... perfil) {
         db.perfilDAO().insertAll(perfil);
         this.mensagem = "Cadastrado!";
         return true;

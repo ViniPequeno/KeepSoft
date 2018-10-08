@@ -61,7 +61,7 @@ public class UsuarioController {
 
     //TODO: consertar nomenclatura
     public Cursor listarUsuariosCursor(String login, long id) {
-        return db.usuarioDAO().listUsuariosCursor(login, id);
+        return db.usuarioDAO().listUsersCursor(login, id);
     }
 
     public String getMensagem(){

@@ -4,6 +4,8 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
+import nescaupower.br.com.keepsoft.Factory.Factory;
+
 @Entity(indices = {
         @Index(value = "email", unique = true)
 })
@@ -20,7 +22,7 @@ public class Usuario {
 
     public static Usuario getUsuarioLogado() {
         if (usuarioLogado == null) {
-            usuarioLogado = new Usuario();
+            usuarioLogado = Factory.startUsuario();
         }
         return usuarioLogado;
     }

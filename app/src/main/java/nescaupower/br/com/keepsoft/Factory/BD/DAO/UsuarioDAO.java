@@ -43,6 +43,6 @@ public interface UsuarioDAO {
     @Delete
     void delete(Usuario usuario);
 
-    @Query("SELECT id as _id, nome, login, email, telefone FROM usuario WHERE nome LIKE :login AND id <> :id")
-    Cursor listUsuariosCursor(String login, long id);
+    @Query("SELECT id as _id, nome, login, email, telefone FROM usuario WHERE (login LIKE :login OR nome LIKE :login) AND id <> :id")
+    Cursor listUsersCursor(String login, long id);
 }

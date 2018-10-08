@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:padding="10dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -12,21 +12,52 @@
         android:layout_height="50dp"
         android:src="@mipmap/ic_launcher"
         app:civ_border_color="@android:color/white"
-        app:civ_border_width="2dp" />
+        app:civ_border_width="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/lblNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
+        android:layout_marginStart="18dp"
         android:text="@string/name"
-        android:textAppearance="?attr/textAppearanceListItem" />
+        android:textAppearance="?attr/textAppearanceListItem"
+        app:layout_constraintStart_toEndOf="@+id/profileImage"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/lblFuncao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
         android:text="Membro"
-        android:textAppearance="?attr/textAppearanceListItem" />
-</LinearLayout>
+        android:textAppearance="?attr/textAppearanceListItemSecondary"
+        app:layout_constraintStart_toStartOf="@+id/lblNome"
+        app:layout_constraintTop_toBottomOf="@+id/lblNome" />
+
+    <TextView
+        android:id="@+id/lblObs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Obs"
+        android:textAppearance="?attr/textAppearanceListItemSecondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+        app:layout_constraintStart_toEndOf="@+id/lblFuncao"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnDelete"
+        android:layout_width="27dp"
+        android:layout_height="34dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_clear_black_24dp" />
+</android.support.constraint.ConstraintLayout>

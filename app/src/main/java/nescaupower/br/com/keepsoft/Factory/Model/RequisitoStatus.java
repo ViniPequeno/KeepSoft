@@ -2,21 +2,25 @@ package nescaupower.br.com.keepsoft.Factory.Model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 
 import java.util.Calendar;
 import java.util.Date;
 
-@Entity(primaryKeys = {"codigoRequisito", "idStatus"},
+@Entity(indices = {@Index(
+            value = {"codigoRequisito","idStatus"},
+            unique = true)},
+        primaryKeys = {"codigoRequisito", "idStatus"},
         foreignKeys = {
         @ForeignKey(
-                entity = Requisito.class,
-                parentColumns = "codigo",
-                childColumns = "codigoRequisito"
+            entity = Requisito.class,
+            parentColumns = "codigo",
+            childColumns = "codigoRequisito"
         ),
         @ForeignKey(
-                entity = Status.class,
-                parentColumns = "id",
-                childColumns = "idStatus"
+            entity = Status.class,
+            parentColumns = "id",
+            childColumns = "idStatus"
         )
 })
 public class RequisitoStatus {

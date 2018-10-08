@@ -2,6 +2,7 @@ package nescaupower.br.com.keepsoft.Factory.Model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.TypeConverters;
 
 import java.util.Date;
@@ -12,19 +13,22 @@ import nescaupower.br.com.keepsoft.Utils.Converters;
 /**
  * Created by Aluno on 28/09/2018.
  */
-@Entity(primaryKeys = {"remetenteId", "destinatarioId", "codProjeto"},
+@Entity(indices = {@Index(
+            value = {"remetenteId","destinatarioId","codProjeto"},
+            unique = true)},
+        primaryKeys = {"remetenteId", "destinatarioId", "codProjeto"},
         foreignKeys = {@ForeignKey(
+            entity = Usuario.class,
+            parentColumns = "id",
+            childColumns = "remetenteId"),
+            @ForeignKey(
                 entity = Usuario.class,
                 parentColumns = "id",
-                childColumns = "remetenteId"),
-                @ForeignKey(
-                        entity = Usuario.class,
-                        parentColumns = "id",
-                        childColumns = "destinatarioId"),
-                @ForeignKey(
-                        entity = Projeto.class,
-                        parentColumns = "codigo",
-                        childColumns = "codProjeto")})
+                childColumns = "destinatarioId"),
+            @ForeignKey(
+                entity = Projeto.class,
+                parentColumns = "codigo",
+                childColumns = "codProjeto")})
 public class Convite {
     @TypeConverters({Converters.class})
     Perfil funcao;

@@ -80,4 +80,5 @@
 
     <string name="username_or_email">Email ou Login</string>
     <string name="confirm_log_out">Você realmente deseja sair?</string>
+    <string name="no_notification">Nenhuma Notificação</string>
 </resources>

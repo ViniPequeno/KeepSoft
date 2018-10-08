@@ -61,9 +61,6 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
         usuariosRV.setAdapter(rvAdapter);
 
         btnEnivarConvite.setOnClickListener(v -> {
-            AlertDialog.Builder adb = new AlertDialog.Builder(ConvidarMembroActivity.this);
-            adb.setTitle("Lista");
-            StringBuilder sb = new StringBuilder();
             int index = 0;
             Convite convites[] = new Convite[usuarios.size()];
             Perfil perfis[] = new Perfil[usuarios.size()];
@@ -83,11 +80,8 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
                 perfis[index].setDataInicio(null);
                 perfis[index].setDataFim(null);
                 perfis[index].setPerfil(rvAdapter.getFuncaoUsuario(index));
-                sb.append(usuario.getNome() + ": " + perfis[index].getPerfil().toString() + " " + usuario.getSenha() + " \n");
                 index++;
             }
-            adb.setMessage(sb.toString());
-            adb.create().show();
             cc.cadastrar(convites);
             pc.cadastrar(perfis);
             ConvidarMembroActivity.this.finish();

@@ -40,19 +40,29 @@ public class NotificacoesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         Resources res = getContext().getResources();
-
-        // Inflate the layout for this fragment
-        final View rootView = inflater.inflate(R.layout.fragment_notificacoes, container, false);
-
-        rv = rootView.findViewById(R.id.NotificacoesRV);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        rv.setLayoutManager(layoutManager);
-
-        NotificacaoRVAdapter adapter = new NotificacaoRVAdapter(this.getActivity(), notificacoes);
-        rv.setAdapter(adapter);
-
         //Título
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(res.getString(R.string.title_notifications));
+
+        final View rootView;
+
+        //Id do layout do fragmento
+        int idLayout = R.layout.fragment_notificacoes;
+        //Se não houver notificações troca id para layout com messagem de lista vazia
+        if(notificacoes.isEmpty()){
+            idLayout = R.layout.no_notification;
+            rootView = inflater.inflate(idLayout, container, false);
+        }else {
+            // Inflate the layout for this fragment
+            rootView = inflater.inflate(idLayout, container, false);
+
+            rv = rootView.findViewById(R.id.NotificacoesRV);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+            rv.setLayoutManager(layoutManager);
+
+            NotificacaoRVAdapter adapter = new NotificacaoRVAdapter(this.getActivity(), notificacoes);
+            rv.setAdapter(adapter);
+        }
+
         return rootView;
     }
 

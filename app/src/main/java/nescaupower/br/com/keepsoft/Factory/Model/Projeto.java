@@ -7,6 +7,8 @@ import android.arch.persistence.room.PrimaryKey;
 import java.util.Calendar;
 import java.util.Date;
 
+import nescaupower.br.com.keepsoft.Factory.Factory;
+
 @Entity
 public class Projeto {
     @PrimaryKey(autoGenerate = true)
@@ -21,7 +23,7 @@ public class Projeto {
 
     public static Projeto getUltimoProjetoUsado() {
         if (ultimoProjetoUsado == null) {
-            ultimoProjetoUsado = new Projeto();
+            ultimoProjetoUsado = Factory.startProjeto();
         }
         return ultimoProjetoUsado;
     }

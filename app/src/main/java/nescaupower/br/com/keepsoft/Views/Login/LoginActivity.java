@@ -40,20 +40,18 @@ public class LoginActivity extends AppCompatActivity {
 
         String loginText = login.getText().toString();
         String senhaText = senha.getText().toString();
-        Usuario u =  uc.realizarLogin(loginText, senhaText);
+        Usuario usuario = uc.realizarLogin(loginText, senhaText);
 
-        if(u != null){
+        if (usuario != null) {
             SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor;
             editor = sharedPreferences.edit();
             editor.putBoolean(Settings.LOGADO, true);
-            editor.putString(Settings.LOGIN, u.getLogin());
+            editor.putString(Settings.LOGIN, usuario.getLogin());
             editor.commit();
 
             //Singleton
-            Factory.setUsuarioLogado(u);
-            //Usuario.setUsuarioLogado(u);
-            /////////////
+            Factory.setUsuarioLogado(usuario);
 
             Intent intent;
             intent = new Intent(LoginActivity.this, PaginaInicialActivity.class);

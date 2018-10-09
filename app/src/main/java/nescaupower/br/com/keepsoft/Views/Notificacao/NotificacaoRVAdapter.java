@@ -18,13 +18,13 @@ import nescaupower.br.com.keepsoft.R;
 
 public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdapter.ViewHolder> {
 
-    private Context c;
+    private Context context;
     ProjetoController pc;
     UsuarioController uc;
     private List<Object> notificacoes;
 
     public NotificacaoRVAdapter(Context c, List<Object> notificacoes) {
-        this.c = c;
+        this.context = c;
         this.notificacoes = notificacoes;
         pc = new ProjetoController(c);
         uc = new UsuarioController(c);
@@ -42,11 +42,19 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
         holder.mItem = notificacoes.get(position);
         //Se o item da lista for um convite
         if (notificacoes.get(position) instanceof Convite) {
-            Convite c = (Convite) notificacoes.get(position);
-            Usuario remetente = uc.procurarPorID(c.getRemetenteId());
-            Projeto p = pc.procurarPorCodigo(c.getCodProjeto());
-            holder.lblDescricao.setText(remetente.getLogin() + "o convida para o projeto " + p.getNome());
-            holder.lblData.setText(c.getData().toString());
+            Convite convite = (Convite) notificacoes.get(position);
+            Usuario remetente = uc.procurarPorID(convite.getRemetenteId());
+            Projeto projeto = pc.procurarPorCodigo(convite.getCodProjeto());
+
+            /*String dinâmica que forma a descrição do convite
+              Parâmetros:
+              1: Nome do usuário que envia o convite
+              2: Nome do projeto para o qual o usuário foi convidado
+              3: Função que o usuário assumirá inicialmente no projeto
+            */
+            String descricao = this.context.getString(R.string.invitation_description, remetente.getLogin(), projeto.getNome(), convite.getFuncao().toString());
+            holder.lblDescricao.setText(descricao);
+            holder.lblData.setText(convite.getData().toString());
         }
     }
 

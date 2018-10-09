@@ -5,7 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -49,6 +51,16 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
 
         holder.lblNome.setText(usuario.getLogin());
         holder.lblFuncao.setText(perfis.get(position).getPerfil().toString());
+        if (!holder.mItem.getPerfil().equals(nescaupower.br.com.keepsoft.Enum.Perfil.SCRUM_MASTER)) {
+            holder.btnDelete.setVisibility(View.INVISIBLE);
+        } else {
+            holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(context, "Delete", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,6 +83,8 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
         public final View mView;
         public final TextView lblNome;
         public final TextView lblFuncao;
+        public final TextView lblObs;
+        public final ImageButton btnDelete;
         public Perfil mItem;
 
         public ViewHolder(View view) {
@@ -78,6 +92,8 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
             mView = view;
             lblNome = view.findViewById(R.id.lblNome);
             lblFuncao = view.findViewById(R.id.lblFuncao);
+            lblObs = view.findViewById(R.id.lblObs);
+            btnDelete = view.findViewById(R.id.btnDelete);
         }
 
         @Override

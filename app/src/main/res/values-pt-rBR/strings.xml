@@ -19,6 +19,7 @@
     <string name="change_password">Alterar Senha</string>
 
     <string name="confirm">Confirmar</string>
+    <string name="confirm_log_out">Você realmente deseja sair?</string>
     <string name="confirm_new_password">Confime a nova senha</string>
     <string name="confirm_password">Confirmar Senha</string>
 
@@ -29,6 +30,8 @@
     <string name="edit_profile">Editar Perfil</string>
 
     <string name="email">Email</string>
+
+    <string name="invitation_description">%1$s te convida para se juntar ao projeto %2$s como %3$s</string>
 
     <string name="invite_member">Convidar Membro</string>
 
@@ -44,6 +47,8 @@
 
     <string name="next_sprint">"Próximo Sprint: "</string>
 
+    <string name="no_notification">Nenhuma Notificação</string>
+
     <string name="notifications">Notificações</string>
 
     <string name="old_password">Senha antiga</string>
@@ -57,6 +62,8 @@
     <string name="project_name">Nome do Projeto</string>
 
     <string name="projects">Projetos</string>
+
+    <string name="role">Função</string>
 
     <string name="sign_in">Entrar</string>
     <string name="sign_up">Cadastre-se</string>
@@ -79,6 +86,5 @@
     <string name="type_your_password">Digite sua senha</string>
 
     <string name="username_or_email">Email ou Login</string>
-    <string name="confirm_log_out">Você realmente deseja sair?</string>
-    <string name="no_notification">Nenhuma Notificação</string>
+    <string name="observations">Observações</string>
 </resources>

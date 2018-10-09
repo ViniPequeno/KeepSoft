@@ -19,6 +19,7 @@
     <string name="change_password">Change Password</string>
 
     <string name="confirm">Confirm</string>
+    <string name="confirm_log_out">Are you sure you want to log out?</string>
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="confirm_password">Confirm Password</string>
 
@@ -29,6 +30,8 @@
     <string name="edit_profile">Edit Profile</string>
 
     <string name="email">Email</string>
+
+    <string name="invitation_description">%1$s invites you to join the project %2$s as a %3$s</string>
 
     <string name="invite_member">Invite Member</string>
 
@@ -44,6 +47,8 @@
 
     <string name="next_sprint">"Next Sprint: "</string>
 
+    <string name="no_notification">No Notification</string>
+
     <string name="notifications">Notifications</string>
 
     <string name="old_password">Old password</string>
@@ -57,6 +62,8 @@
     <string name="project_name">Project Name</string>
 
     <string name="projects">Projects</string>
+
+    <string name="role">Role</string>
 
     <string-array name="scrum_roles_array">
         <item>Scrum Master</item>
@@ -85,6 +92,5 @@
     <string name="type_your_password">Type your password</string>
 
     <string name="username_or_email">Username or email</string>
-    <string name="confirm_log_out">Are you sure you want to log out?</string>
-    <string name="no_notification">No Notification</string>
+    <string name="observations">Observations</string>
 </resources>

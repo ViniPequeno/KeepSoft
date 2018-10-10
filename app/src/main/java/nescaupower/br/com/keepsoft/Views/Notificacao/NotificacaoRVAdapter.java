@@ -1,6 +1,7 @@
 package nescaupower.br.com.keepsoft.Views.Notificacao;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,9 +40,11 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        Resources res = context.getResources();
         holder.mItem = notificacoes.get(position);
         //Se o item da lista for um convite
         if (notificacoes.get(position) instanceof Convite) {
+            holder.lblTitulo.setText(R.string.invitation);
             Convite convite = (Convite) notificacoes.get(position);
             Usuario remetente = uc.procurarPorID(convite.getRemetenteId());
             Projeto projeto = pc.procurarPorCodigo(convite.getCodProjeto());
@@ -54,7 +57,19 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
             */
             String descricao = this.context.getString(R.string.invitation_description, remetente.getLogin(), projeto.getNome(), convite.getFuncao().toString());
             holder.lblDescricao.setText(descricao);
-            holder.lblData.setText(convite.getData().toString());
+
+            long tempoSegundos = convite.getData().getTime() * 1000;
+            if (tempoSegundos < 60) {
+                holder.lblData.setText(R.string.segundos);
+            } else if (tempoSegundos < 3600) {
+                holder.lblData.setText(R.string.segundos);
+            } else if (tempoSegundos < (3600 * 24)) {
+                holder.lblData.setText(R.string.segundos);
+            } else if (tempoSegundos < (3600 * 24 * 30)) {
+                holder.lblData.setText(R.string.segundos);
+            } else {
+                holder.lblData.setText(R.string.segundos);
+            }
         }
     }
 

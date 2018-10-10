@@ -58,7 +58,7 @@
         android:layout_width="27dp"
         android:layout_height="34dp"
         android:layout_marginEnd="8dp"
-        android:background="@null"
+        android:background="?android:selectableItemBackground"
         android:contentDescription="@string/action_delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

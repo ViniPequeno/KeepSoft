@@ -96,4 +96,29 @@
     <string name="observations">Observations</string>
     <string name="wrong_login_password">Wrong login or passwords</string>
     <string name="error">Error</string>
+    <string name="invitation">Invitation</string>
+    <plurals name="seconds">
+        <item quantity="few">Some seconds ago</item>
+        <item quantity="many">%1$d seconds ago</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="few">Some minutes ago</item>
+        <item quantity="many">%1$d minutes ago</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">One hour ago</item>
+        <item quantity="many">%1$d hours ago</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">Yesterday</item>
+        <item quantity="many">%1$d days ago</item>
+    </plurals>
+    <plurals name="weeks">
+        <item quantity="one">A week ago</item>
+        <item quantity="many">%1$d weeks ago</item>
+    </plurals>
+    <plurals name="months">
+        <item quantity="one">A month ago</item>
+        <item quantity="many">%1$d months ago</item>
+    </plurals>
 </resources>

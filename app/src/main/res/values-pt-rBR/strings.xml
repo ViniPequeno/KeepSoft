@@ -6,6 +6,7 @@
 
     <string name="add_project">Adicionar Projeto</string>
     <string name="add_sprint">Adicionar Sprint</string>
+    <string name="edit_sprint">Editar Sprint</string>
     <string name="add_task">Adicionar Tarefa</string>
 
     <string name="app_database">Banquinho</string>

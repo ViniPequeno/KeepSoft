@@ -11,6 +11,7 @@ public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickLis
     TextView lblNome;
     TextView lblDescricao;
     TextView lblDataProximoSprint;
+    TextView lblPorcentagem;
     private ItemClickListener itemClickListener;
 
     public MyHolder(View itemView) {
@@ -19,6 +20,7 @@ public class MyHolder extends RecyclerView.ViewHolder implements View.OnClickLis
         lblNome = itemView.findViewById(R.id.lblNome);
         lblDescricao = itemView.findViewById(R.id.lblDescricao);
         lblDataProximoSprint = itemView.findViewById(R.id.lblDataProximoSprint);
+        lblPorcentagem = itemView.findViewById(R.id.lblPorcentagem);
 
         itemView.setOnClickListener(this);
     }

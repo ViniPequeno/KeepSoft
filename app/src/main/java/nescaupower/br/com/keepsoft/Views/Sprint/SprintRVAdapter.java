@@ -1,12 +1,15 @@
 package nescaupower.br.com.keepsoft.Views.Sprint;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -43,6 +46,7 @@ public class SprintRVAdapter extends RecyclerView.Adapter<SprintRVAdapter.ViewHo
         Resources res = context.getResources();
 
         holder.mItem = sprints.get(position);
+
         holder.lblIndex.setText(Integer.toString(position + 1));
         holder.lblTitulo.setText(sprints.get(position).getTitulo());
 
@@ -58,9 +62,11 @@ public class SprintRVAdapter extends RecyclerView.Adapter<SprintRVAdapter.ViewHo
             @Override
             public void onClick(View v) {
                 if (null != mListener) {
-                    // Notify the active callbacks interface (the activity, if the
-                    // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    Intent i = new Intent(context, DetalhesSprintActivity.class);
+
+                    i.putExtra("EXTRA_CODIGO_SPRINT", holder.mItem.getCodigo());
+
+                    context.startActivity(i);
                 }
             }
         });

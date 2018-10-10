@@ -6,7 +6,9 @@ import java.util.List;
 
 import nescaupower.br.com.keepsoft.Factory.BD.Database.AppDatabase;
 import nescaupower.br.com.keepsoft.Factory.Factory;
+import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
+import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 
 public class SprintController {
     private AppDatabase db;
@@ -23,6 +25,8 @@ public class SprintController {
     public Sprint procurarPorNome(String nome) {
         return db.sprintDAO().findByName(nome);
     }
+
+    public Perfil findPerfilSprintUsuario(Sprint sprint, Usuario usuario){ return db.sprintDAO().findPerfilOfSprintUsuario(usuario.getId(), sprint.getCodProjeto());}
 
     public Sprint procurarPorCodigo(Long codigo) {
         return db.sprintDAO().findById(codigo);

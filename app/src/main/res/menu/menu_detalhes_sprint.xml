@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="nescaupower.br.com.keepsoft.Views.Sprint.DetalhesSprintActivity">
+    <item
+        android:id="@+id/action_editar_sprint"
+        android:icon="@drawable/ic_edit_black_24dp"
+        android:orderInCategory="100"
+        android:title="@string/action_edit"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_excluir_sprint"
+        android:icon="@drawable/ic_delete_black_24dp"
+        android:orderInCategory="100"
+        android:title="@string/action_delete"
+        app:showAsAction="never" />
+</menu>

@@ -8,6 +8,7 @@ import android.arch.persistence.room.Update;
 
 import java.util.List;
 
+import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 
 @Dao
@@ -26,6 +27,9 @@ public interface SprintDAO {
 
     @Query("SELECT * FROM sprint s WHERE s.codProjeto= :codProjeto")
     List<Sprint> findByProjectID(long codProjeto);
+
+    @Query("SELECT * from Perfil p INNER JOIN Projeto pro ON p.codProjeto = pro.codigo INNER JOIN USUARIO u ON p.idUsuario = u.id where u.id = :id and pro.codigo = :codProjeto")
+    Perfil findPerfilOfSprintUsuario(long id, long codProjeto);
 
     @Insert
     void insertAll(Sprint... sprints);

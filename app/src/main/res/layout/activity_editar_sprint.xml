@@ -11,7 +11,6 @@
     android:focusableInTouchMode="true">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/sprint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -33,7 +32,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/txtTitulo"
+                    android:id="@+id/txtTituloEditar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -47,7 +46,7 @@
                 android:layout_marginTop="10dp">
 
                 <EditText
-                    android:id="@+id/txtDescricao"
+                    android:id="@+id/txtDescricaoEditar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -62,7 +61,7 @@
                 android:layout_marginTop="10dp">
 
                 <EditText
-                    android:id="@+id/txtDataInicio"
+                    android:id="@+id/txtDataInicioEditar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -76,7 +75,7 @@
                 android:layout_marginTop="10dp">
 
                 <EditText
-                    android:id="@+id/txtDataFim"
+                    android:id="@+id/txtDataFimEditar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -85,12 +84,12 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/btnCadastrar"
+                android:id="@+id/btnEditarSprint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:onClick="cadastrar"
-                android:text="@string/add_sprint" />
+                android:onClick="editarSprint"
+                android:text="@string/edit_sprint" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

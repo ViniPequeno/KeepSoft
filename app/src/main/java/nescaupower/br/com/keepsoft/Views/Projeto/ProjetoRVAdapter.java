@@ -34,6 +34,7 @@ public class ProjetoRVAdapter extends RecyclerView.Adapter<MyHolder> {
     public void onBindViewHolder(MyHolder holder, int position) {
         holder.lblNome.setText(projetos.get(position).getNome());
         holder.lblDescricao.setText(projetos.get(position).getDescricao());
+        holder.lblPorcentagem.setText("45%");
 
         holder.setItemClickListener(new ItemClickListener() {
             @Override

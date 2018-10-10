@@ -16,7 +16,7 @@
             android:layout_margin="10dp"
             android:ems="10"
             android:hint="@string/password"
-            android:inputType="textPersonName" />
+            android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
 </LinearLayout>

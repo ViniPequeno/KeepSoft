@@ -93,7 +93,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         getSupportActionBar().setTitle(nomeProjeto);
 
         perfil = new PerfilController(getApplicationContext()).procurarPorProjetoUsuario(projeto.getCodigo(), Usuario.getUsuarioLogado().getId());
-        Toast.makeText(this, perfil.getPerfil().toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, perfil.getPerfil().toString(), Toast.LENGTH_SHORT).show();
     }
 
 

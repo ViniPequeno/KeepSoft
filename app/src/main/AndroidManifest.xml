@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -46,7 +47,9 @@
         <activity
             android:name=".Views.Sprint.CadastroSprintActivity"
             android:label="@string/title_activity_cadastro_sprint" />
-        <activity android:name=".Views.Equipe.ConvidarMembroActivity"></activity>
+        <activity android:name=".Views.Equipe.ConvidarMembroActivity" />
+        <activity android:name=".Views.Sprint.EditarSprint" />
+        <activity android:name=".Views.Sprint.DetalhesSprintActivity"></activity>
     </application>
 
 </manifest>

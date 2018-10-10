@@ -1,38 +1,48 @@
 package nescaupower.br.com.keepsoft.Views.Sprint;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
+import android.content.SharedPreferences;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.SprintController;
+import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
+import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity;
 
-public class CadastroSprintActivity extends AppCompatActivity {
+public class EditarSprint extends AppCompatActivity {
+
+    private Usuario usuario;
+    private Sprint sprint;
+    private UsuarioController uc;
+    private SprintController sc;
 
     private ConstraintLayout root;
     private Calendar dataAtual = Calendar.getInstance();
-    private EditText txtTitulo;
-    private EditText txtDescricao;
-    private EditText txtDataInicio;
-    private EditText txtDataFim;
-    private SprintController pc;
+    private EditText txtTituloEditar;
+    private EditText txtDescricaoEditar;
+    private EditText txtDataInicioEditar;
+    private EditText txtDataFimEditar;
     private DatePickerDialog dialogDataInicio, dialogDataFim;
     private DatePickerDialog.OnDateSetListener listenerDataSelecionadaDataInicio, listenerDataSelecionadaDataFim;
     private DatePickerDialog.OnCancelListener listenerSelecaoCanceladaDataInicio, listenerSelecaoCanceladaDataFim;
@@ -40,17 +50,38 @@ public class CadastroSprintActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_sprint);
+        setContentView(R.layout.activity_editar_sprint);
         root = findViewById(R.id.sprint);
 
-        pc = new SprintController(getApplicationContext());
 
-        txtTitulo = findViewById(R.id.txtTitulo);
-        txtDescricao = findViewById(R.id.txtDescricao);
-        txtDataInicio = findViewById(R.id.txtDataInicio);
-        txtDataFim = findViewById(R.id.txtDataFim);
+        uc = new UsuarioController(getApplicationContext());
+        sc = new SprintController(getApplicationContext());
 
-        txtDataInicio.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        //Singleton
+        usuario = Usuario.getUsuarioLogado();
+        if (usuario == null || usuario.getLogin().equals("")) {
+            SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
+        }
+
+        sprint = new SprintController(getApplicationContext()).procurarPorCodigo(getIntent().getLongExtra("EXTRA_CODIGO_SPRINT", 0));
+        if (sprint == null) {
+            this.finish();
+        }
+
+        txtTituloEditar = findViewById(R.id.txtTituloEditar);
+        txtDescricaoEditar = findViewById(R.id.txtDescricaoEditar);
+        txtDataInicioEditar = findViewById(R.id.txtDataInicioEditar);
+        txtDataFimEditar = findViewById(R.id.txtDataFimEditar);
+
+
+        txtTituloEditar.setText(sprint.getTitulo());
+        txtDescricaoEditar.setText(sprint.getDescricao());
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        txtDataInicioEditar.setText(dateFormat.format(sprint.getDataInicio()));
+        txtDataInicioEditar.setText(dateFormat.format(sprint.getDataFim()));
+
+        txtDataInicioEditar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
@@ -65,7 +96,7 @@ public class CadastroSprintActivity extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
-                txtDataInicio.setText(sdf.format(data));
+                txtDataInicioEditar.setText(sdf.format(data));
                 root.clearFocus();
             }
         };
@@ -76,11 +107,11 @@ public class CadastroSprintActivity extends AppCompatActivity {
             }
         };
 
-        dialogDataInicio = new DatePickerDialog(CadastroSprintActivity.this, listenerDataSelecionadaDataInicio, dataAtual
+        dialogDataInicio = new DatePickerDialog(EditarSprint.this, listenerDataSelecionadaDataInicio, dataAtual
                 .get(Calendar.YEAR), dataAtual.get(Calendar.MONTH), dataAtual.get(Calendar.DAY_OF_MONTH));
         dialogDataInicio.setOnCancelListener(listenerSelecaoCanceladaDataInicio);
 
-        txtDataFim.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        txtDataFimEditar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
@@ -94,7 +125,7 @@ public class CadastroSprintActivity extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
                 Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
-                txtDataFim.setText(sdf.format(data));
+                txtDataFimEditar.setText(sdf.format(data));
                 root.clearFocus();
             }
         };
@@ -105,56 +136,50 @@ public class CadastroSprintActivity extends AppCompatActivity {
             }
         };
 
-        dialogDataFim = new DatePickerDialog(CadastroSprintActivity.this, listenerDataSelecionadaDataFim, dataAtual
+        dialogDataFim = new DatePickerDialog(EditarSprint.this, listenerDataSelecionadaDataFim, dataAtual
                 .get(Calendar.YEAR), dataAtual.get(Calendar.MONTH), dataAtual.get(Calendar.DAY_OF_MONTH));
         dialogDataFim.setOnCancelListener(listenerSelecaoCanceladaDataFim);
     }
 
-    public void cadastrar(View v) {
+    public void editarSprint(View v) {
 
-        if (txtTitulo.getText().toString() == "" || txtTitulo.getText().toString() == null) {
+        if (txtTituloEditar.getText().toString() == "" || txtTituloEditar.getText().toString() == null) {
             Toast.makeText(this, "O Sprint deve ter um título", Toast.LENGTH_SHORT).show();
             return;
-        } else if (txtDescricao.getText().toString() == "" || txtDescricao.getText().toString() == null) {
+        } else if (txtDescricaoEditar.getText().toString() == "" || txtDescricaoEditar.getText().toString() == null) {
             Toast.makeText(this, "O Sprint deve ter uma descrição", Toast.LENGTH_SHORT).show();
             return;
-        } else if (txtDataInicio.getText().toString() == "" || txtDataInicio.getText().toString() == null) {
+        } else if (txtDataInicioEditar.getText().toString() == "" || txtDataInicioEditar.getText().toString() == null) {
             Toast.makeText(this, "O Sprint deve ter uma data de início", Toast.LENGTH_SHORT).show();
             return;
-        } else if (txtDataFim.getText().toString() == "" || txtDataFim.getText().toString() == null) {
+        } else if (txtDataFimEditar.getText().toString() == "" || txtDataFimEditar.getText().toString() == null) {
             Toast.makeText(this, "O Sprint deve ter uma data de finalização", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Sprint s = Factory.startSprint();
 
-        s.setTitulo(txtTitulo.getText().toString());
-        s.setDescricao(txtDescricao.getText().toString());
-        s.setDataInicio(Calendar.getInstance().getTime());
+        sprint.setTitulo(txtTituloEditar.getText().toString());
+        sprint.setDescricao(txtDescricaoEditar.getText().toString());
+        sprint.setDataInicio(Calendar.getInstance().getTime());
 
         try {
-            s.setDataInicio(new SimpleDateFormat("dd/MM/yyyy").parse(txtDataInicio.getText().toString()));
-        } catch ( ParseException e ) {
+            sprint.setDataInicio(new SimpleDateFormat("dd/MM/yyyy").parse(txtDataInicioEditar.getText().toString()));
+        } catch (ParseException e) {
             e.printStackTrace();
         }
 
         try {
-            s.setDataFim(new SimpleDateFormat("dd/MM/yyyy").parse(txtDataFim.getText().toString()));
-        } catch ( ParseException e ) {
+            sprint.setDataFim(new SimpleDateFormat("dd/MM/yyyy").parse(txtDataFimEditar.getText().toString()));
+        } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        s.setCodProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
+        sc.atualizar(sprint);
 
-        boolean cadastrou = pc.cadastrar(s);
+        Intent i = new Intent(EditarSprint.this, DetalhesSprintActivity.class);
+        i.putExtra("EXTRA_CODIGO_SPRINT", getIntent().getLongExtra("EXTRA_CODIGO_SPRINT", 0));
+        startActivity(i);
+        EditarSprint.this.finish();
 
-        if (cadastrou) {
-            Intent i = new Intent(CadastroSprintActivity.this, DetalhesProjetoActivity.class);
-            startActivity(i);
-            CadastroSprintActivity.this.finish();
-        } else {
-            Toast.makeText(this, "Sprint já existe", Toast.LENGTH_SHORT).show();
-        }
     }
-
 }

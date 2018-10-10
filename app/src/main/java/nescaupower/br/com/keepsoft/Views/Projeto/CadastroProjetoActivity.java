@@ -1,8 +1,10 @@
 package nescaupower.br.com.keepsoft.Views.Projeto;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -17,8 +19,10 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.PerfilController;
 import nescaupower.br.com.keepsoft.Controller.ProjetoController;
+import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
@@ -33,6 +37,7 @@ public class CadastroProjetoActivity extends AppCompatActivity {
     private EditText txtNome;
     private EditText txtDescricao;
     private EditText txtDataPrevista;
+    private UsuarioController uc;
     private ProjetoController projetoController;
     private PerfilController perfilController;
     private DatePickerDialog dialogDataPrevista;
@@ -46,6 +51,7 @@ public class CadastroProjetoActivity extends AppCompatActivity {
         root = findViewById(R.id.teste);
 
         projetoController = new ProjetoController(getApplicationContext());
+        uc = new UsuarioController(getApplicationContext());
 
         perfilController = new PerfilController(getApplicationContext());
 
@@ -125,10 +131,16 @@ public class CadastroProjetoActivity extends AppCompatActivity {
 
         novoPerfil.setCodProjeto(novoProjeto.getCodigo());
         novoPerfil.setDataInicio(novoProjeto.getDataCriacao());
-        novoPerfil.setIdUsuario(Usuario.getUsuarioLogado().getId());
+        //Singleton
+        Usuario usuario;
+        usuario = Usuario.getUsuarioLogado();
+        if (usuario == null || usuario.getLogin().equals("")) {
+            SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
+        }
+        novoPerfil.setIdUsuario(usuario.getId());
         novoPerfil.setCodProjeto(cadastrouProjeto);
         novoPerfil.setPerfil(nescaupower.br.com.keepsoft.Enum.Perfil.SCRUM_MASTER);
-
         boolean cadastrouPerfil = perfilController.cadastrar(novoPerfil);
 
         if (cadastrouPerfil) {

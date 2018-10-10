@@ -87,4 +87,6 @@
 
     <string name="username_or_email">Email ou Login</string>
     <string name="observations">Observações</string>
+    <string name="wrong_login_password">Login ou senha incorretos</string>
+    <string name="error">Erro</string>
 </resources>

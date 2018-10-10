@@ -1,5 +1,6 @@
 package nescaupower.br.com.keepsoft.Views.Login;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,7 +8,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
@@ -60,14 +60,18 @@ public class LoginActivity extends AppCompatActivity {
             LoginActivity.this.finish();
 
         }else{
-            Toast.makeText(this, uc.getMensagem(), Toast.LENGTH_SHORT).show();
+            //Mostrar alerta de erro
+            AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+            builder.setTitle(R.string.error);
+            builder.setMessage(R.string.wrong_login_password);
+            builder.setPositiveButton(R.string.confirm, null);
+            builder.show();
         }
     }
 
     public void cadastrar(View view) {
         Intent intent;
         intent = new Intent(LoginActivity.this, CadastroUsuarioActivity.class);
-
         startActivity(intent);
     }
 }

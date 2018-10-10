@@ -1,5 +1,6 @@
 package nescaupower.br.com.keepsoft.Views.Equipe;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -27,11 +27,13 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
     private Context context;
     private final List<Perfil> perfis;
     private final OnListFragmentInteractionListener mListener;
+    private UsuarioController uc;
 
     public EquipeRVAdapter(OnListFragmentInteractionListener listener, List<Perfil> perfis, Context context) {
         this.perfis = perfis;
         this.mListener = listener;
         this.context = context;
+        this.uc = new UsuarioController(context);
     }
 
     @Override
@@ -45,9 +47,7 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
         holder.mItem = perfis.get(position);
-
-        UsuarioController uc = new UsuarioController(context);
-        Usuario usuario = uc.procurarPorID(holder.mItem.getIdUsuario());
+        final Usuario usuario = uc.procurarPorID(holder.mItem.getIdUsuario());
 
         holder.lblNome.setText(usuario.getLogin());
         holder.lblFuncao.setText(perfis.get(position).getPerfil().toString());
@@ -57,7 +57,15 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
             holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, "Delete", Toast.LENGTH_SHORT).show();
+                    //Se tentou remover um usuário diferente dele mesmo
+                    if (holder.mItem.getIdUsuario() != Usuario.getUsuarioLogado().getId()) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                        builder.setTitle("Aviso!");
+                        builder.setMessage("Deseja realmente remover " + usuario.getLogin() + " deste projeto?");
+                        builder.setPositiveButton(R.string.confirm, null);
+                        builder.setNegativeButton(R.string.cancel, null);
+                        builder.show();
+                    }
                 }
             });
         }

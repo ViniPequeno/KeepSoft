@@ -93,4 +93,6 @@
 
     <string name="username_or_email">Username or email</string>
     <string name="observations">Observations</string>
+    <string name="wrong_login_password">Wrong login or passwords</string>
+    <string name="error">Error</string>
 </resources>

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +31,7 @@ import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment.OnListFragmentInt
 public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHolder> {
 
     private Context context;
-    private final List<Perfil> perfis;
+    private List<Perfil> perfis;
     private final OnListFragmentInteractionListener mListener;
     private UsuarioController uc;
     private PerfilController pc;
@@ -117,6 +116,11 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
                 }
             }
         });
+    }
+
+
+    public void setPerfis(List<Perfil> perfis) {
+        this.perfis = perfis;
     }
 
     @Override

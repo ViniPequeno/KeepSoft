@@ -29,12 +29,14 @@ public class EquipeFragment extends Fragment {
 
     private PerfilController pc;
     private List<Perfil> perfis;
+
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
+    private RecyclerView rv;
     private Button btnCadastrar;
 
     /**
@@ -68,12 +70,12 @@ public class EquipeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_equipe_list, container, false);
-        View view = rootView.findViewById(R.id.EquipeRV);
+        rv = rootView.findViewById(R.id.EquipeRV);
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+        if (rv != null) {
+            Context context = rv.getContext();
+            RecyclerView recyclerView = (RecyclerView) rv;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -93,6 +95,13 @@ public class EquipeFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        EquipeRVAdapter adapter = (EquipeRVAdapter) rv.getAdapter();
+        adapter.setPerfis(perfis = pc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo()));
+        adapter.notifyDataSetChanged();
+    }
 
     @Override
     public void onAttach(Context context) {

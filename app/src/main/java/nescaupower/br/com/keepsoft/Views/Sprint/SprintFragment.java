@@ -35,6 +35,8 @@ public class SprintFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+
+    private RecyclerView rv;
     private Button btnCadastrar;
 
     /**
@@ -69,10 +71,10 @@ public class SprintFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_sprint_list, container, false);
-        View rv = rootView.findViewById(R.id.SprintsRV);
+        rv = rootView.findViewById(R.id.SprintsRV);
 
         // Set the adapter
-        if (rv instanceof RecyclerView) {
+        if (rv != null) {
             Context context = rv.getContext();
             RecyclerView recyclerView = (RecyclerView) rv;
             if (mColumnCount <= 1) {

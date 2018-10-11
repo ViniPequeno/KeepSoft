@@ -64,7 +64,8 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         //Posição do projeto seleciado na lista de projetos
         indexProjeto = getIntent().getIntExtra("EXTRA_INDEX_PROJETO", -1);
 
-        projeto = new ProjetoController(getApplicationContext()).procurarPorCodigo(getIntent().getLongExtra("EXTRA_CODIGO_PROJETO", 0));
+        ProjetoController pc = new ProjetoController(getApplicationContext());
+        projeto = pc.procurarPorCodigo(getIntent().getLongExtra("EXTRA_CODIGO_PROJETO", 0));
         if (projeto == null) {
             projeto = Projeto.getUltimoProjetoUsado();
         }

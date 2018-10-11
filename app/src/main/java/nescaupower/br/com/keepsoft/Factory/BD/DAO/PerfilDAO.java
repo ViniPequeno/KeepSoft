@@ -24,7 +24,7 @@ public interface PerfilDAO {
     @Query("SELECT * FROM perfil p WHERE p.codProjeto= :codProjeto")
     List<Perfil> findByProjectID(long codProjeto);
 
-    @Query("SELECT * FROM perfil p WHERE p.codProjeto= :codProjeto and p.idUsuario= :idUsuario")
+    @Query("SELECT * FROM perfil p WHERE p.codProjeto= :codProjeto AND p.idUsuario= :idUsuario")
     Perfil findByUserIdAndProjectID(long codProjeto, long idUsuario);
 
     @Insert

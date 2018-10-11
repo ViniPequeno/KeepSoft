@@ -3,7 +3,9 @@ package nescaupower.br.com.keepsoft.Views.Equipe;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +14,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.ConviteController;
 import nescaupower.br.com.keepsoft.Controller.PerfilController;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
+import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment.OnListFragmentInteractionListener;
@@ -31,12 +35,26 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
     private final List<Perfil> perfis;
     private final OnListFragmentInteractionListener mListener;
     private UsuarioController uc;
+    private PerfilController pc;
+    private Perfil perfilUsuarioLogado;
+    private Projeto projeto;
+    private Usuario usuarioLogado;
 
     public EquipeRVAdapter(OnListFragmentInteractionListener listener, List<Perfil> perfis, Context context) {
         this.perfis = perfis;
         this.mListener = listener;
         this.context = context;
         this.uc = new UsuarioController(context);
+        this.pc = new PerfilController(context);
+        this.projeto = Projeto.getUltimoProjetoUsado();
+
+        //Singleton
+        this.usuarioLogado = Usuario.getUsuarioLogado();
+        if (usuarioLogado == null || usuarioLogado.getLogin().equals("")) {
+            SharedPreferences sharedPreferences = context.getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            usuarioLogado = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
+        }
+        this.perfilUsuarioLogado= pc.procurarPorProjetoUsuario(projeto.getCodigo(), usuarioLogado.getId());
     }
 
     @Override
@@ -54,7 +72,8 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
 
         holder.lblNome.setText(usuario.getLogin());
         holder.lblFuncao.setText(perfis.get(position).getPerfil().toString());
-        if (!holder.mItem.getPerfil().equals(nescaupower.br.com.keepsoft.Enum.Perfil.SCRUM_MASTER) && holder.mItem.getIdUsuario() != Usuario.getUsuarioLogado().getId()) {
+
+        if (!perfilUsuarioLogado.getPerfil().equals(nescaupower.br.com.keepsoft.Enum.Perfil.SCRUM_MASTER)) {
             holder.btnDelete.setVisibility(View.INVISIBLE);
         } else {
             holder.btnDelete.setOnClickListener(new View.OnClickListener() {

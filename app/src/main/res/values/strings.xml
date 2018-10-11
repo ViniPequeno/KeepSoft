@@ -6,7 +6,6 @@
 
     <string name="add_project">Add Project</string>
     <string name="add_sprint">Add Sprint</string>
-    <string name="edit_sprint">Edit Sprint</string>
     <string name="add_task">Add Task</string>
 
     <string name="app_database">Banquinho</string>
@@ -24,14 +23,30 @@
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="confirm_password">Confirm Password</string>
 
+    <plurals name="days">
+        <item quantity="one">Yesterday</item>
+        <item quantity="many">%1$d days ago</item>
+        <item quantity="other">%1$d days ago</item>
+    </plurals>
+
     <string name="description">Description</string>
 
     <string name="due_date">Due date for completion</string>
 
     <string name="edit_profile">Edit Profile</string>
+    <string name="edit_sprint">Edit Sprint</string>
 
     <string name="email">Email</string>
 
+    <string name="error">Error</string>
+
+    <plurals name="hours">
+        <item quantity="one">One hour ago</item>
+        <item quantity="many">%1$d hours ago</item>
+        <item quantity="other">%1$d hours ago</item>
+    </plurals>
+
+    <string name="invitation">Invitation</string>
     <string name="invitation_description">%1$s invites you to join the project %2$s as a %3$s</string>
 
     <string name="invite_member">Invite Member</string>
@@ -42,6 +57,19 @@
 
     <string name="member">Member</string>
 
+    <plurals name="minutes">
+        <item quantity="one">A minute ago</item>
+        <item quantity="few">Some minutes ago</item>
+        <item quantity="many">%1$d minutes ago</item>
+        <item quantity="other">%1$d minutes ago</item>
+    </plurals>
+
+    <plurals name="months">
+        <item quantity="one">A month ago</item>
+        <item quantity="many">%1$d months ago</item>
+        <item quantity="other">%1$d months ago</item>
+    </plurals>
+
     <string name="name">Name</string>
 
     <string name="new_password">New password</string>
@@ -51,6 +79,8 @@
     <string name="no_notification">No Notification</string>
 
     <string name="notifications">Notifications</string>
+
+    <string name="observations">Observations</string>
 
     <string name="old_password">Old password</string>
 
@@ -71,6 +101,8 @@
         <item>Scrum Team</item>
         <item>Product Owner</item>
     </string-array>
+
+    <string name="seconds">%1$d seconds ago</string>
 
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
@@ -93,32 +125,12 @@
     <string name="type_your_password">Type your password</string>
 
     <string name="username_or_email">Username or email</string>
-    <string name="observations">Observations</string>
-    <string name="wrong_login_password">Wrong login or passwords</string>
-    <string name="error">Error</string>
-    <string name="invitation">Invitation</string>
-    <plurals name="seconds">
-        <item quantity="few">Some seconds ago</item>
-        <item quantity="many">%1$d seconds ago</item>
-    </plurals>
-    <plurals name="minutes">
-        <item quantity="few">Some minutes ago</item>
-        <item quantity="many">%1$d minutes ago</item>
-    </plurals>
-    <plurals name="hours">
-        <item quantity="one">One hour ago</item>
-        <item quantity="many">%1$d hours ago</item>
-    </plurals>
-    <plurals name="days">
-        <item quantity="one">Yesterday</item>
-        <item quantity="many">%1$d days ago</item>
-    </plurals>
+
     <plurals name="weeks">
         <item quantity="one">A week ago</item>
         <item quantity="many">%1$d weeks ago</item>
+        <item quantity="other">%1$d weeks ago</item>
     </plurals>
-    <plurals name="months">
-        <item quantity="one">A month ago</item>
-        <item quantity="many">%1$d months ago</item>
-    </plurals>
+
+    <string name="wrong_login_password">Wrong login or passwords</string>
 </resources>

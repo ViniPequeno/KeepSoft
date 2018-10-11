@@ -2,6 +2,7 @@ package nescaupower.br.com.keepsoft.Views.Equipe;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import nescaupower.br.com.keepsoft.Controller.ConviteController;
+import nescaupower.br.com.keepsoft.Controller.PerfilController;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
@@ -51,7 +54,7 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
 
         holder.lblNome.setText(usuario.getLogin());
         holder.lblFuncao.setText(perfis.get(position).getPerfil().toString());
-        if (!holder.mItem.getPerfil().equals(nescaupower.br.com.keepsoft.Enum.Perfil.SCRUM_MASTER)) {
+        if (!holder.mItem.getPerfil().equals(nescaupower.br.com.keepsoft.Enum.Perfil.SCRUM_MASTER) && holder.mItem.getIdUsuario() != Usuario.getUsuarioLogado().getId()) {
             holder.btnDelete.setVisibility(View.INVISIBLE);
         } else {
             holder.btnDelete.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +65,22 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
                         AlertDialog.Builder builder = new AlertDialog.Builder(context);
                         builder.setTitle("Aviso!");
                         builder.setMessage("Deseja realmente remover " + usuario.getLogin() + " deste projeto?");
-                        builder.setPositiveButton(R.string.confirm, null);
+                        builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                //Apagar convite da tela
+                                perfis.remove(holder.getAdapterPosition());
+                                notifyItemRemoved(holder.getAdapterPosition());
+
+                                //Apagar o convite do banco
+                                ConviteController cc = new ConviteController(context);
+                                cc.deletar(cc.procurarPorID(holder.mItem.getIdUsuario(), holder.mItem.getCodProjeto()));
+
+                                //Apagar perfil do banco
+                                PerfilController pc = new PerfilController(context);
+                                pc.deletar(holder.mItem);
+                            }
+                        });
                         builder.setNegativeButton(R.string.cancel, null);
                         builder.show();
                     }

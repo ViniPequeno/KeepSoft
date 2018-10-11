@@ -31,7 +31,7 @@ public class ConviteController {
     }
 
     public boolean deletar(Convite convite) {
-        if (db.conviteDAO().findById(convite.getRemetenteId(), convite.getDestinatarioId(), convite.getCodProjeto()) != null) {
+        if (db.conviteDAO().findByID(convite.getDestinatarioId(), convite.getCodProjeto()) != null) {
             db.conviteDAO().delete(convite);
             this.mensagem = "O convite foi deletado!";
             return true;
@@ -39,6 +39,10 @@ public class ConviteController {
             this.mensagem = "O convite não existe";
             return false;
         }
+    }
+
+    public Convite procurarPorID(long idDestinatario, long codProjeto) {
+        return db.conviteDAO().findByID(idDestinatario, codProjeto);
     }
 
     public List<Convite> listarPorProjeto(long codProjeto) {

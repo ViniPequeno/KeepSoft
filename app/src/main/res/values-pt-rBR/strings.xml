@@ -26,6 +26,7 @@
     <plurals name="days">
         <item quantity="one" tools:ignore="ImpliedQuantity">Ontem</item>
         <item quantity="many">Há %1$d dias</item>
+        <item quantity="other">Há %1$d dias</item>
     </plurals>
 
     <string name="description">Descrição</string>
@@ -40,8 +41,9 @@
     <string name="error">Erro</string>
 
     <plurals name="hours">
-        <item quantity="one" tools:ignore="ImpliedQuantity">Há 1 hora</item>
+        <item quantity="one">Há %1$d hora</item>
         <item quantity="many">Há %1$d horas</item>
+        <item quantity="other">Há %1$d horas</item>
     </plurals>
 
     <string name="invitation">Convite</string>
@@ -56,14 +58,16 @@
     <string name="member">Membro</string>
 
     <plurals name="minutes">
-        <item quantity="one" tools:ignore="ImpliedQuantity">Há 1 minuto</item>
+        <item quantity="one">Há %1$d minuto</item>
         <item quantity="few">Há alguns minutos</item>
         <item quantity="many">Há %1$d minutos</item>
+        <item quantity="other">Há %1$d minutos</item>
     </plurals>
 
     <plurals name="months">
-        <item quantity="one" tools:ignore="ImpliedQuantity">Há 1 mês</item>
+        <item quantity="one">Há %1$d mês</item>
         <item quantity="many">Há %1$d meses</item>
+        <item quantity="other">Há %1$d meses</item>
     </plurals>
 
     <string name="name">Nome</string>
@@ -92,7 +96,7 @@
 
     <string name="role">Função</string>
 
-    <string name="segundos">Há %1$d segundos</string>
+    <string name="seconds">Há %1$d segundos</string>
 
     <string name="sign_in">Entrar</string>
     <string name="sign_up">Cadastre-se</string>
@@ -117,8 +121,9 @@
     <string name="username_or_email">Email ou Login</string>
 
     <plurals name="weeks">
-        <item quantity="one" tools:ignore="ImpliedQuantity">Há 1 semana</item>
+        <item quantity="one">Há %1$d semana</item>
         <item quantity="many">Há %1$d semanas</item>
+        <item quantity="other">Há %1$d semanas</item>
     </plurals>
 
     <string name="wrong_login_password">Login ou senha incorretos</string>

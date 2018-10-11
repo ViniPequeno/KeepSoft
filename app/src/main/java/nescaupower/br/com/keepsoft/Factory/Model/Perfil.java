@@ -61,7 +61,6 @@ public class Perfil {
     }
 
     public Date getDataInicio() {
-
         return dataInicio;
     }
 

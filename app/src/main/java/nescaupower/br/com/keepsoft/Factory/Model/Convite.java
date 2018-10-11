@@ -14,13 +14,10 @@ import nescaupower.br.com.keepsoft.Utils.Converters;
  * Created by Aluno on 28/09/2018.
  */
 @Entity(indices = {@Index(
-            value = {"remetenteId","destinatarioId","codProjeto"},
+        value = {"destinatarioId", "codProjeto"},
             unique = true)},
-        primaryKeys = {"remetenteId", "destinatarioId", "codProjeto"},
-        foreignKeys = {@ForeignKey(
-            entity = Usuario.class,
-            parentColumns = "id",
-            childColumns = "remetenteId"),
+        primaryKeys = {"destinatarioId", "codProjeto"},
+        foreignKeys = {
             @ForeignKey(
                 entity = Usuario.class,
                 parentColumns = "id",

@@ -15,8 +15,8 @@ public interface ConviteDAO {
     @Query("SELECT * FROM convite")
     List<Convite> getAll();
 
-    @Query("SELECT * FROM convite c WHERE c.codProjeto= :codProjeto AND c.remetenteId= :remetenteId AND c.destinatarioId= :destinatarioId")
-    List<Convite> findById(long remetenteId, long destinatarioId, long codProjeto);
+    @Query("SELECT * FROM convite c WHERE c.codProjeto= :codProjeto AND c.destinatarioId= :destinatarioId")
+    Convite findByID(long destinatarioId, long codProjeto);
 
     @Query("SELECT * FROM convite c WHERE c.codProjeto= :codProjeto")
     List<Convite> findByProjectID(long codProjeto);

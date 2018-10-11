@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:background="@null"
+            android:background="?android:selectableItemBackground"
             android:contentDescription="@string/action_delete"
             android:tint="@android:color/darker_gray"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -144,7 +144,6 @@ public class CadastroProjetoActivity extends AppCompatActivity {
         boolean cadastrouPerfil = perfilController.cadastrar(novoPerfil);
 
         if (cadastrouPerfil) {
-            Toast.makeText(getApplicationContext(), "Cadastrou: " + novoPerfil.getPerfil().toString(), Toast.LENGTH_SHORT);
             Intent i = new Intent(CadastroProjetoActivity.this, PaginaInicialActivity.class);
             startActivity(i);
             CadastroProjetoActivity.this.finish();

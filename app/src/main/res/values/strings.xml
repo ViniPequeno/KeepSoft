@@ -133,4 +133,6 @@
     </plurals>
 
     <string name="wrong_login_password">Wrong login or passwords</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
 </resources>

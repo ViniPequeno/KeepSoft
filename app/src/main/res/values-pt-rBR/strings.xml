@@ -127,4 +127,6 @@
     </plurals>
 
     <string name="wrong_login_password">Login ou senha incorretos</string>
+    <string name="accept">Aceitar</string>
+    <string name="decline">Recusar</string>
 </resources>

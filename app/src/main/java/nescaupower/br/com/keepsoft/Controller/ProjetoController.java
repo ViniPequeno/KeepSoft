@@ -58,6 +58,10 @@ public class ProjetoController {
         return db.projetoDAO().findByUserID(idUsuario);
     }
 
+    public List<Projeto> listarPorUsuarioParticipando(long idUsuario) {
+        return db.projetoDAO().findByParticipatingUserID(idUsuario);
+    }
+
     public List<Projeto> listarTodos() {
         return db.projetoDAO().getAll();
     }

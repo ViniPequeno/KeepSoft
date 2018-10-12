@@ -24,8 +24,11 @@ public interface ProjetoDAO {
     @Query("SELECT * FROM projeto WHERE codigo = :codigo")
     Projeto findById(Long codigo);
 
-    @Query("SELECT * FROM projeto p WHERE p.idUsuario = :userID")
+    @Query("SELECT * FROM projeto p, perfil pe WHERE p.codigo = pe.codProjeto AND  pe.idUsuario = :userID")
     List<Projeto> findByUserID(long userID);
+
+    @Query("SELECT * FROM projeto p, perfil pe WHERE p.codigo = pe.codProjeto AND  pe.idUsuario = :userID AND pe.dataInicio IS NOT NULL")
+    List<Projeto> findByParticipatingUserID(long userID);
 
     @Insert
     long insert(Projeto projeto);

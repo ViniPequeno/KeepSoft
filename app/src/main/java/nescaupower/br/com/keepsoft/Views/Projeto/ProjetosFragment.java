@@ -35,7 +35,7 @@ public class ProjetosFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pc = new ProjetoController(getActivity().getApplicationContext());
-        projetos = pc.listarPorUsuario(Usuario.getUsuarioLogado().getId());
+        projetos = pc.listarPorUsuarioParticipando(Usuario.getUsuarioLogado().getId());
     }
 
     @Nullable

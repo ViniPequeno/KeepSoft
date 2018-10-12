@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import nescaupower.br.com.keepsoft.Controller.PerfilController;
 import nescaupower.br.com.keepsoft.Controller.ProjetoController;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Convite;
+import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
@@ -63,50 +65,70 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
             holder.lblDescricao.setText(descricao);
 
             //Formatando data na notificação
+            //(dataHoraAtual - dataHoraConvite) para segundos
             long tempoSegundos = (new Date().getTime() - convite.getData().getTime()) / 1000;
             String tempoFormatado;
-            if (tempoSegundos < 60) {
+            if (tempoSegundos < 60) {                       //Se tempo < 1 minuto
                 tempoFormatado = res.getString(R.string.seconds, tempoSegundos);
                 holder.lblData.setText(tempoFormatado);
-            } else if (tempoSegundos < 3600) {
+            } else if (tempoSegundos < 3600) {              //Se tempo < 1 hora
                 int tempoMinutos = (int) tempoSegundos / 60;
                 tempoFormatado = res.getQuantityString(R.plurals.minutes, tempoMinutos, tempoMinutos);
                 holder.lblData.setText(tempoFormatado);
-            } else if (tempoSegundos < (3600 * 24)) {
+            } else if (tempoSegundos < (3600 * 24)) {       //Se tempo < 1 dia
                 int tempoHoras = (int) tempoSegundos / 3600;
                 tempoFormatado = res.getQuantityString(R.plurals.hours, tempoHoras, tempoHoras);
                 holder.lblData.setText(tempoFormatado);
-            } else if (tempoSegundos < (3600 * 24 * 7)) {
+            } else if (tempoSegundos < (3600 * 24 * 7)) {   //Se tempo < 1 semana
                 int tempoDias = (int) tempoSegundos / 3600 / 24;
                 tempoFormatado = res.getQuantityString(R.plurals.days, tempoDias, tempoDias);
                 holder.lblData.setText(tempoFormatado);
-            } else if (tempoSegundos < (3600 * 24 * 30)) {
+            } else if (tempoSegundos < (3600 * 24 * 30)) {  //Se tempo < 1 mês
                 int tempoSemanas = (int) tempoSegundos / 3600 / 24 / 7;
                 tempoFormatado = res.getQuantityString(R.plurals.weeks, tempoSemanas, tempoSemanas);
                 holder.lblData.setText(tempoFormatado);
-            } else {
+            } else {                                        //Se tempo >= 1 mês
                 int tempoMeses = (int) tempoSegundos / 3600 / 24 / 30;
                 tempoFormatado = res.getQuantityString(R.plurals.months, tempoMeses, tempoMeses);
                 holder.lblData.setText(tempoFormatado);
             }
 
-            holder.btnDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //Apagar notificação da tela
-                    notificacoes.remove(position);
-                    notifyItemRemoved(position);
+            holder.btnDelete.setOnClickListener(view -> apagarConvite(position, convite));
 
-                    //Apagar o convite do banco
-                    ConviteController cc = new ConviteController(context);
-                    cc.deletar(cc.procurarPorID(convite.getDestinatarioId(), convite.getCodProjeto()));
+            holder.btnRecusar.setOnClickListener(view -> apagarConvite(position, convite));
 
-                    //Apagar perfil do banco
-                    PerfilController pc = new PerfilController(context);
-                    pc.deletar(pc.procurarPorProjetoUsuario(convite.getCodProjeto(), convite.getDestinatarioId()));
-                }
-            });
+            holder.btnAceitar.setOnClickListener(view -> aceitarConvite(position, convite));
         }
+    }
+
+    private void aceitarConvite(int position, Convite convite) {
+        //Apagar notificação da tela
+        notificacoes.remove(position);
+        notifyItemRemoved(position);
+
+        //Apagar o convite do banco
+        ConviteController cc = new ConviteController(context);
+        cc.deletar(cc.procurarPorID(convite.getDestinatarioId(), convite.getCodProjeto()));
+
+        //Atualizar perfil correspondente ao projeto
+        PerfilController pc = new PerfilController(context);
+        Perfil perfil = pc.procurarPorProjetoUsuario(convite.getCodProjeto(), convite.getDestinatarioId());
+        perfil.setDataInicio(new Date());
+        pc.atualizar(perfil);
+    }
+
+    private void apagarConvite(int position, Convite convite) {
+        //Apagar notificação da tela
+        notificacoes.remove(position);
+        notifyItemRemoved(position);
+
+        //Apagar o convite do banco
+        ConviteController cc = new ConviteController(context);
+        cc.deletar(cc.procurarPorID(convite.getDestinatarioId(), convite.getCodProjeto()));
+
+        //Apagar perfil do banco
+        PerfilController pc = new PerfilController(context);
+        pc.deletar(pc.procurarPorProjetoUsuario(convite.getCodProjeto(), convite.getDestinatarioId()));
     }
 
     @Override
@@ -125,6 +147,8 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
         public final TextView lblDescricao;
         public final TextView lblData;
         public final ImageButton btnDelete;
+        public final Button btnRecusar;
+        public final Button btnAceitar;
         public Object mItem;
 
         public ViewHolder(View view) {
@@ -134,6 +158,8 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
             lblDescricao = view.findViewById(R.id.lblDescricao);
             lblData = view.findViewById(R.id.lblData);
             btnDelete = view.findViewById(R.id.btnDelete);
+            btnRecusar = view.findViewById(R.id.btnRecusar);
+            btnAceitar = view.findViewById(R.id.btnAceitar);
         }
 
         @Override

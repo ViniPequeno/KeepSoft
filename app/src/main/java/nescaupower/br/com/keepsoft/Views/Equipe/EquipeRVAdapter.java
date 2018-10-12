@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -60,6 +61,7 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_equipe_model, parent, false);
+        Toast.makeText(context, "" + perfilUsuarioLogado.getDataInicio(), Toast.LENGTH_SHORT).show();
         return new ViewHolder(view);
     }
 

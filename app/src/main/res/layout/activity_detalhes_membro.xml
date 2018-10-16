@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="nescaupower.br.com.keepsoft.Views.Equipe.DetalhesMembroActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/header_cover_image"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#223300"
+            android:scaleType="centerCrop" />
+
+        <ImageButton
+            android:id="@+id/profileImageButton"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_below="@+id/header_cover_image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-60dp"
+            android:background="@drawable/profile_circular_border_imageview"
+            android:elevation="5dp"
+            android:padding="20dp"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+        <RelativeLayout
+            android:id="@+id/profile_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header_cover_image"
+            android:background="@color/colorAccent"
+            android:elevation="4dp"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:id="@+id/lblLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="76dp"
+                android:text="@string/login"
+                android:textColor="#fff"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lblNome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lblLogin"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:text="@string/name"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_layout"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/lblFuncao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:clickable="true"
+                android:drawableStart="@drawable/ic_person_black_24dp"
+                android:drawablePadding="20dp"
+                android:drawableTint="@android:color/white"
+                android:elevation="4dp"
+                android:focusable="true"
+                android:padding="10dp"
+                android:text="@string/role"
+                android:textIsSelectable="true" />
+
+            <TextView
+                android:id="@+id/lblEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:clickable="true"
+                android:drawableStart="@drawable/ic_email_black_24dp"
+                android:drawablePadding="20dp"
+                android:drawableTint="@android:color/white"
+                android:elevation="4dp"
+                android:focusable="true"
+                android:padding="10dp"
+                android:text="@string/email"
+                android:textIsSelectable="true" />
+
+            <TextView
+                android:id="@+id/lblTelefone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:clickable="true"
+                android:drawableStart="@drawable/ic_phone_black_24dp"
+                android:drawablePadding="20dp"
+                android:drawableTint="@android:color/white"
+                android:elevation="4dp"
+                android:focusable="true"
+                android:padding="10dp"
+                android:text="@string/phone"
+                android:textIsSelectable="true" />
+
+            <Button
+                android:id="@+id/btnAlterarFuncao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:drawableStart="@drawable/ic_edit_black_24dp"
+                android:drawablePadding="20dp"
+                android:drawableTint="@android:color/darker_gray"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:text="@string/edit_profile"
+                android:textAlignment="textStart"
+                android:textAllCaps="false" />
+
+            <Button
+                android:id="@+id/btnDelete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:drawableStart="@drawable/ic_clear_black_24dp"
+                android:drawablePadding="20dp"
+                android:drawableTint="@android:color/darker_gray"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:text="@string/action_delete"
+                android:textAlignment="textStart"
+                android:textAllCaps="false" />
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

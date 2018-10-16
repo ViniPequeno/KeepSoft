@@ -2,7 +2,6 @@ package nescaupower.br.com.keepsoft.Views.Projeto;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -27,8 +25,8 @@ import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
+import nescaupower.br.com.keepsoft.Views.Equipe.DetalhesMembroActivity;
 import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment;
-import nescaupower.br.com.keepsoft.Views.Equipe.dummy.DummyContent;
 import nescaupower.br.com.keepsoft.Views.Sprint.SprintFragment;
 import nescaupower.br.com.keepsoft.Views.TabAdapter;
 import nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment;
@@ -94,7 +92,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         getSupportActionBar().setTitle(nomeProjeto);
 
         perfil = new PerfilController(getApplicationContext()).procurarPorProjetoUsuario(projeto.getCodigo(), Usuario.getUsuarioLogado().getId());
-        //Toast.makeText(this, perfil.getPerfil().toString(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, perfil.getPerfil().toString(), Toast.LENGTH_SHORT).show();
     }
 
 
@@ -143,7 +141,10 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
 
     @Override
     public void onListFragmentInteraction(Perfil perfil) {
-
+        Intent i = new Intent(DetalhesProjetoActivity.this, DetalhesMembroActivity.class);
+        i.putExtra("perfilIdUsuario", perfil.getIdUsuario());
+        i.putExtra("perfilId", perfil.getId());
+        startActivity(i);
     }
 
     @Override
@@ -159,33 +160,25 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
     private void showDialogDigitarSenha() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.type_your_password);
-        final View dialogView = this.getLayoutInflater().inflate(R.layout.dialog_senha, (ViewGroup) findViewById(R.id.content), false);
+        final View dialogView = this.getLayoutInflater().inflate(R.layout.dialog_senha, findViewById(R.id.content), false);
         builder.setView(dialogView);
 
-        builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                ProjetoController pc = new ProjetoController(DetalhesProjetoActivity.this);
-                EditText txtSenha = dialogView.findViewById(R.id.txtSenha);
-                if (txtSenha.getText().toString().equals(Usuario.getUsuarioLogado().getSenha())) {
-                    boolean deletou = pc.deletar(projeto);
-                    if (deletou) {
-                        DetalhesProjetoActivity.this.finish();
-                    } else {
-                        Toast.makeText(DetalhesProjetoActivity.this, pc.getMensagem(), Toast.LENGTH_SHORT).show();
-                    }
+        builder.setPositiveButton(R.string.confirm, (dialogInterface, i) -> {
+            ProjetoController pc = new ProjetoController(DetalhesProjetoActivity.this);
+            EditText txtSenha = dialogView.findViewById(R.id.txtSenha);
+            if (txtSenha.getText().toString().equals(Usuario.getUsuarioLogado().getSenha())) {
+                boolean deletou = pc.deletar(projeto);
+                if (deletou) {
+                    DetalhesProjetoActivity.this.finish();
                 } else {
-                    Toast.makeText(DetalhesProjetoActivity.this, "Senha errada", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetalhesProjetoActivity.this, pc.getMensagem(), Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                Toast.makeText(DetalhesProjetoActivity.this, "Senha errada", Toast.LENGTH_SHORT).show();
             }
         });
 
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(DetalhesProjetoActivity.this, "não", Toast.LENGTH_SHORT).show();
-            }
-        });
+        builder.setNegativeButton(R.string.cancel, (dialogInterface, i) -> Toast.makeText(DetalhesProjetoActivity.this, "não", Toast.LENGTH_SHORT).show());
 
         AlertDialog dialog = builder.create();
         dialog.show();

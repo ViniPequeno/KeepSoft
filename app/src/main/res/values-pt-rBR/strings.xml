@@ -129,4 +129,5 @@
     <string name="wrong_login_password">Login ou senha incorretos</string>
     <string name="accept">Aceitar</string>
     <string name="decline">Recusar</string>
+    <string name="title_activity_detalhes_membro">Detalhes do Memebro</string>
 </resources>

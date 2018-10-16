@@ -34,6 +34,7 @@
         <activity
             android:name=".Views.Projeto.DetalhesProjetoActivity"
             android:label="Projeto"
+            android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Views.Usuario.AlterarPerfilActivity"
@@ -49,7 +50,15 @@
             android:label="@string/title_activity_cadastro_sprint" />
         <activity android:name=".Views.Equipe.ConvidarMembroActivity" />
         <activity android:name=".Views.Sprint.EditarSprint" />
-        <activity android:name=".Views.Sprint.DetalhesSprintActivity"></activity>
+        <activity android:name=".Views.Sprint.DetalhesSprintActivity" />
+        <activity
+            android:name=".Views.Equipe.DetalhesMembroActivity"
+            android:label="@string/title_activity_detalhes_membro"
+            android:parentActivityName=".Views.Projeto.DetalhesProjetoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity" />
+        </activity>
     </application>
 
 </manifest>

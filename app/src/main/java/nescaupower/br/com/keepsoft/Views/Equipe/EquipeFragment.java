@@ -75,7 +75,7 @@ public class EquipeFragment extends Fragment {
         // Set the adapter
         if (rv != null) {
             Context context = rv.getContext();
-            RecyclerView recyclerView = (RecyclerView) rv;
+            RecyclerView recyclerView = rv;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -85,12 +85,7 @@ public class EquipeFragment extends Fragment {
         }
 
         btnCadastrar = rootView.findViewById(R.id.btnCadastrar);
-        btnCadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                iniciarPesquisa();
-            }
-        });
+        btnCadastrar.setOnClickListener(view -> iniciarPesquisa());
 
         return rootView;
     }

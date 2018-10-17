@@ -39,6 +39,7 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_convidar_membro);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         usuarios = new ArrayList<>();
         cc = new ConviteController(ConvidarMembroActivity.this);

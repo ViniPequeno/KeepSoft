@@ -77,52 +77,29 @@ public class PerfilFragment extends Fragment {
 
         AlertDialog.Builder dialogSairBuilder = new AlertDialog.Builder(getContext());
         dialogSairBuilder.setMessage(R.string.confirm_log_out);
-        dialogSairBuilder.setPositiveButton(R.string.log_out, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getContext(), "Saiu!", Toast.LENGTH_SHORT).show();
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor;
-                editor = sharedPreferences.edit();
-                editor.putBoolean(Settings.LOGADO, false);
-                editor.putString(Settings.LOGIN, "");
-                editor.commit();
+        dialogSairBuilder.setPositiveButton(R.string.log_out, (dialogInterface, i) -> {
+            Toast.makeText(getContext(), "Saiu!", Toast.LENGTH_SHORT).show();
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor;
+            editor = sharedPreferences.edit();
+            editor.putBoolean(Settings.LOGADO, false);
+            editor.putString(Settings.LOGIN, "");
+            editor.commit();
 
-                Intent intent;
-                intent = new Intent(getActivity(), LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
-                startActivity(intent);
-                getActivity().finish();
-            }
+            Intent intent;
+            intent = new Intent(getActivity(), LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
+            startActivity(intent);
+            getActivity().finish();
         });
-        dialogSairBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogSair.dismiss();
-            }
-        });
+        dialogSairBuilder.setNegativeButton(R.string.cancel, (dialogInterface, i) -> dialogSair.dismiss());
         dialogSairBuilder.setCancelable(true);
 
         dialogSair = dialogSairBuilder.create();
 
-        btnAlterarPerfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                trocarTelaAlterarPerfil(view);
-            }
-        });
-        btnAlterarSenha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                trocarTelaAlterarSenha(view);
-            }
-        });
-        btnSair.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sair(view);
-            }
-        });
+        btnAlterarPerfil.setOnClickListener(view -> trocarTelaAlterarPerfil(view));
+        btnAlterarSenha.setOnClickListener(view -> trocarTelaAlterarSenha(view));
+        btnSair.setOnClickListener(view -> sair(view));
     }
 
     private void sair(View view) {
@@ -132,14 +109,12 @@ public class PerfilFragment extends Fragment {
     private void trocarTelaAlterarPerfil(View view) {
         Intent intent;
         intent = new Intent(getActivity(), AlterarPerfilActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
         startActivity(intent);
     }
 
     private void trocarTelaAlterarSenha(View view) {
         Intent intent;
         intent = new Intent(getActivity(), AlterarSenhaActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
         startActivity(intent);
     }
 

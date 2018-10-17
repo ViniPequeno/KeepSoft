@@ -41,6 +41,8 @@ public class CadastroSprintActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_sprint);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         root = findViewById(R.id.sprint);
 
         pc = new SprintController(getApplicationContext());
@@ -50,60 +52,38 @@ public class CadastroSprintActivity extends AppCompatActivity {
         txtDataInicio = findViewById(R.id.txtDataInicio);
         txtDataFim = findViewById(R.id.txtDataFim);
 
-        txtDataInicio.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    dialogDataInicio.show();
-                }
+        txtDataInicio.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                dialogDataInicio.show();
             }
         });
 
         //TODO: ajustar foco após selecionar data
-        listenerDataSelecionadaDataInicio = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
-                txtDataInicio.setText(sdf.format(data));
-                root.clearFocus();
-            }
+        listenerDataSelecionadaDataInicio = (view, year, month, dayOfMonth) -> {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
+            txtDataInicio.setText(sdf.format(data));
+            root.clearFocus();
         };
-        listenerSelecaoCanceladaDataInicio = new DatePickerDialog.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialogInterface) {
-                root.clearFocus();
-            }
-        };
+        listenerSelecaoCanceladaDataInicio = dialogInterface -> root.clearFocus();
 
         dialogDataInicio = new DatePickerDialog(CadastroSprintActivity.this, listenerDataSelecionadaDataInicio, dataAtual
                 .get(Calendar.YEAR), dataAtual.get(Calendar.MONTH), dataAtual.get(Calendar.DAY_OF_MONTH));
         dialogDataInicio.setOnCancelListener(listenerSelecaoCanceladaDataInicio);
 
-        txtDataFim.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    dialogDataFim.show();
-                }
+        txtDataFim.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                dialogDataFim.show();
             }
         });
         //TODO: ajustar foco após selecionar data
-        listenerDataSelecionadaDataFim = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
-                txtDataFim.setText(sdf.format(data));
-                root.clearFocus();
-            }
+        listenerDataSelecionadaDataFim = (view, year, month, dayOfMonth) -> {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
+            txtDataFim.setText(sdf.format(data));
+            root.clearFocus();
         };
-        listenerSelecaoCanceladaDataFim = new DatePickerDialog.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialogInterface) {
-                root.clearFocus();
-            }
-        };
+        listenerSelecaoCanceladaDataFim = dialogInterface -> root.clearFocus();
 
         dialogDataFim = new DatePickerDialog(CadastroSprintActivity.this, listenerDataSelecionadaDataFim, dataAtual
                 .get(Calendar.YEAR), dataAtual.get(Calendar.MONTH), dataAtual.get(Calendar.DAY_OF_MONTH));
@@ -112,16 +92,16 @@ public class CadastroSprintActivity extends AppCompatActivity {
 
     public void cadastrar(View v) {
 
-        if (txtTitulo.getText().toString() == "" || txtTitulo.getText().toString() == null) {
+        if (txtTitulo.getText().toString() == "") {
             Toast.makeText(this, "O Sprint deve ter um título", Toast.LENGTH_SHORT).show();
             return;
-        } else if (txtDescricao.getText().toString() == "" || txtDescricao.getText().toString() == null) {
+        } else if (txtDescricao.getText().toString() == "") {
             Toast.makeText(this, "O Sprint deve ter uma descrição", Toast.LENGTH_SHORT).show();
             return;
-        } else if (txtDataInicio.getText().toString() == "" || txtDataInicio.getText().toString() == null) {
+        } else if (txtDataInicio.getText().toString() == "") {
             Toast.makeText(this, "O Sprint deve ter uma data de início", Toast.LENGTH_SHORT).show();
             return;
-        } else if (txtDataFim.getText().toString() == "" || txtDataFim.getText().toString() == null) {
+        } else if (txtDataFim.getText().toString() == "") {
             Toast.makeText(this, "O Sprint deve ter uma data de finalização", Toast.LENGTH_SHORT).show();
             return;
         }

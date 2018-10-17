@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="0dp"
@@ -25,14 +24,13 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:context="nescaupower.br.com.keepsoft.Views.Projeto.CadastroProjetoActivity">
+            app:layout_constraintVertical_bias="0.0">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/txtTitulo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -46,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/txtDescricao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -61,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/txtDataInicio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -75,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp">
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/txtDataFim"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -21,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Views.Usuario.PaginaInicialActivity" />
+        <activity android:name=".Views.Usuario.PaginaInicialActivity"
+            android:launchMode="singleTask" />
         <activity
             android:name=".Views.Login.LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -30,7 +31,12 @@
             android:label="@string/sign_up" />
         <activity
             android:name=".Views.Projeto.CadastroProjetoActivity"
-            android:label="@string/title_activity_cadastro_projeto" />
+            android:label="@string/title_activity_cadastro_projeto"
+            android:parentActivityName=".Views.Usuario.PaginaInicialActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity" />
+        </activity>
         <activity
             android:name=".Views.Projeto.DetalhesProjetoActivity"
             android:label="Projeto"
@@ -38,17 +44,42 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Views.Usuario.AlterarPerfilActivity"
-            android:label="@string/title_activity_alterar_perfil" />
+            android:label="@string/title_activity_alterar_perfil"
+            android:parentActivityName=".Views.Usuario.PaginaInicialActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity" />
+        </activity>
         <activity
             android:name=".Views.Usuario.AlterarSenhaActivity"
-            android:label="@string/title_activity_alterar_perfil_senha" />
+            android:label="@string/title_activity_alterar_perfil_senha"
+            android:parentActivityName=".Views.Usuario.PaginaInicialActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity" />
+        </activity>
         <activity
             android:name=".Views.Projeto.EditarProjetoActivity"
-            android:label="@string/title_activity_editar_projeto" />
+            android:label="@string/title_activity_editar_projeto"
+            android:parentActivityName=".Views.Projeto.DetalhesProjetoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity" />
+        </activity>
         <activity
             android:name=".Views.Sprint.CadastroSprintActivity"
-            android:label="@string/title_activity_cadastro_sprint" />
-        <activity android:name=".Views.Equipe.ConvidarMembroActivity" />
+            android:label="@string/title_activity_cadastro_sprint"
+            android:parentActivityName=".Views.Projeto.DetalhesProjetoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity" />
+        </activity>
+        <activity android:name=".Views.Equipe.ConvidarMembroActivity"
+            android:parentActivityName=".Views.Projeto.DetalhesProjetoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity" />
+        </activity>
         <activity android:name=".Views.Sprint.EditarSprint" />
         <activity android:name=".Views.Sprint.DetalhesSprintActivity" />
         <activity

@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -30,6 +31,7 @@ public class EditarProjetoActivity extends AppCompatActivity {
     private EditText txtDescricao;
     private EditText txtDataPrevista;
     private ProjetoController pc;
+    private DatePickerDialog dialogDataPrevista;
     private DatePickerDialog.OnDateSetListener seletorDataPrevista;
     private Projeto projeto;
 
@@ -61,34 +63,30 @@ public class EditarProjetoActivity extends AppCompatActivity {
         txtDescricao.setText(projeto.getDescricao());
         txtDataPrevista.setText(data);
 
-        txtDataPrevista.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    new DatePickerDialog(EditarProjetoActivity.this, seletorDataPrevista, ano, mes, dia).show();
-                }
+        txtDataPrevista.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                dialogDataPrevista.show();
             }
         });
-        seletorDataPrevista = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
-                txtDataPrevista.setText(sdf.format(data));
-                txtDataPrevista.clearFocus();
-                getCurrentFocus().clearFocus();
-            }
+        seletorDataPrevista = (view, year, month, dayOfMonth) -> {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date data1 = new GregorianCalendar(year, month, dayOfMonth).getTime();
+            txtDataPrevista.setText(sdf.format(data1));
+            txtDataPrevista.clearFocus();
+            getCurrentFocus().clearFocus();
         };
+        dialogDataPrevista = new DatePickerDialog(EditarProjetoActivity.this, seletorDataPrevista, ano, mes, dia);
+        dialogDataPrevista.getDatePicker().setMinDate(Calendar.getInstance().getTimeInMillis());
     }
 
     public void alterarProjeto(View view) {
-        if (txtNome.getText().toString() == "" || txtNome.getText().toString() == null) {
+        if (txtNome.getText().toString().equals("")) {
             Toast.makeText(this, "O Projeto deve ter um nome", Toast.LENGTH_SHORT).show();
             return;
-        } else if (txtDescricao.getText().toString() == "" || txtDescricao.getText().toString() == null) {
+        } else if (txtDescricao.getText().toString().equals("")) {
             Toast.makeText(this, "O Projeto deve ter um descrição", Toast.LENGTH_SHORT).show();
             return;
-        } else if (txtDataPrevista.getText().toString() == "" || txtDataPrevista.getText().toString() == null) {
+        } else if (txtDataPrevista.getText().toString().equals("")) {
             Toast.makeText(this, "O Projeto deve ter uma data de previsão final", Toast.LENGTH_SHORT).show();
             return;
         }

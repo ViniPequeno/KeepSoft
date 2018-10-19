@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <Button
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnCadastrar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:drawableStart="@drawable/ic_add_black_24dp"
-        android:drawableTint="@android:color/white"
-        android:gravity="center"
-        android:text="@string/invite_member" />
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        app:srcCompat="@drawable/ic_person_add_black_24dp"
+        android:tint="@android:color/white" />
 
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -24,8 +21,6 @@
         android:name="nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         tools:context="nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment"
         tools:listitem="@layout/fragment_equipe_model" />
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

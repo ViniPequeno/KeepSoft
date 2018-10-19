@@ -17,9 +17,9 @@ import nescaupower.br.com.keepsoft.R;
 
 public class AlterarPerfilActivity extends AppCompatActivity {
 
-    private EditText alterarNome;
-    private EditText alterarEmail;
-    private EditText alterarTelefone;
+    private EditText lblNome;
+    private EditText lblEmail;
+    private EditText lblTelefone;
     private Button btnAlterar;
     private Button btnCancelar;
 
@@ -28,6 +28,7 @@ public class AlterarPerfilActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alterar_perfil);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         uc = new UsuarioController();
 
@@ -38,28 +39,28 @@ public class AlterarPerfilActivity extends AppCompatActivity {
             usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
         }
 
-        alterarEmail = findViewById(R.id.alterarEmail);
-        alterarNome = findViewById(R.id.alterarNome);
-        alterarTelefone = findViewById(R.id.alterarTelefone);
+        lblEmail = findViewById(R.id.alterarEmail);
+        lblNome = findViewById(R.id.alterarNome);
+        lblTelefone = findViewById(R.id.alterarTelefone);
 
         btnAlterar = findViewById(R.id.btnAlterarPerfil);
         btnCancelar = findViewById(R.id.btnAlterarPerfilCancelar);
 
-        alterarEmail.setText(usuario.getEmail());
-        alterarNome.setText(usuario.getNome());
-        alterarTelefone.setText(usuario.getTelefone());
+        lblEmail.setText(usuario.getEmail());
+        lblNome.setText(usuario.getNome());
+        lblTelefone.setText(usuario.getTelefone());
     }
 
     public void alterarPerfil(View view) {
-        if(alterarEmail.getText().toString().equals("")){
+        if(lblEmail.getText().toString().equals("")){
             Toast.makeText(this, "O E-mail não pode ficar vazio!", Toast.LENGTH_SHORT).show();
-        }else if(alterarNome.getText().toString().equals("")){
+        }else if(lblNome.getText().toString().equals("")){
             Toast.makeText(this, "O nome não pode ficar vazio!", Toast.LENGTH_SHORT).show();
         }else{
             Usuario usuario = Usuario.getUsuarioLogado();
-            usuario.setEmail(alterarEmail.getText().toString());
-            usuario.setNome(alterarNome.getText().toString());
-            usuario.setTelefone(alterarTelefone.getText().toString());
+            usuario.setEmail(lblEmail.getText().toString());
+            usuario.setNome(lblNome.getText().toString());
+            usuario.setTelefone(lblTelefone.getText().toString());
 
             uc.atualizar(usuario);
             Usuario.setUsuarioLogado(usuario);

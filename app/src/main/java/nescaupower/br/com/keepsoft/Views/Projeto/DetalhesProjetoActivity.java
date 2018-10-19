@@ -121,10 +121,6 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
             usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
         }
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            intent = new Intent(DetalhesProjetoActivity.this, CadastroUsuarioActivity.class);
-            startActivity(intent);
-        }
         if (id == R.id.action_editar) {
             if (projeto.getUsuarioAdm().getId() == usuario.getId()) {
                 intent = new Intent(DetalhesProjetoActivity.this, EditarProjetoActivity.class);

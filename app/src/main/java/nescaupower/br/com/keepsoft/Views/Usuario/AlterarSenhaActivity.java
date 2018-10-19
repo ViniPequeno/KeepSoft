@@ -27,6 +27,7 @@ public class AlterarSenhaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alterar_perfil_senha);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         uc = new UsuarioController();
 

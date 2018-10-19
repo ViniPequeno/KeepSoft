@@ -130,4 +130,5 @@
     <string name="accept">Aceitar</string>
     <string name="decline">Recusar</string>
     <string name="title_activity_detalhes_membro">Detalhes do Memebro</string>
+    <string name="cancel_invitation">Cancelar Convite</string>
 </resources>

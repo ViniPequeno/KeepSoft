@@ -62,7 +62,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         //Posição do projeto seleciado na lista de projetos
         indexProjeto = getIntent().getIntExtra("EXTRA_INDEX_PROJETO", -1);
 
-        ProjetoController pc = new ProjetoController(getApplicationContext());
+        ProjetoController pc = new ProjetoController();
         projeto = pc.procurarPorCodigo(getIntent().getLongExtra("EXTRA_CODIGO_PROJETO", 0));
         if (projeto == null) {
             projeto = Projeto.getUltimoProjetoUsado();
@@ -91,7 +91,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         nomeProjeto = projeto.getNome();
         getSupportActionBar().setTitle(nomeProjeto);
 
-        perfil = new PerfilController(getApplicationContext()).procurarPorProjetoUsuario(projeto.getCodigo(), Usuario.getUsuarioLogado().getId());
+        perfil = new PerfilController().procurarPorProjetoUsuario(projeto.getCodigo(), Usuario.getUsuarioLogado().getId());
         Toast.makeText(this, perfil.getPerfil().toString(), Toast.LENGTH_SHORT).show();
     }
 
@@ -112,7 +112,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         int id = item.getItemId();
         Intent intent = null;
         UsuarioController uc;
-        uc = new UsuarioController(getApplicationContext());
+        uc = new UsuarioController();
 
         //Singleton
         Usuario usuario = Usuario.getUsuarioLogado();
@@ -126,7 +126,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
             startActivity(intent);
         }
         if (id == R.id.action_editar) {
-            if (projeto.getIdUsuario() == usuario.getId()) {
+            if (projeto.getUsuarioAdm().getId() == usuario.getId()) {
                 intent = new Intent(DetalhesProjetoActivity.this, EditarProjetoActivity.class);
                 startActivity(intent);
             } else {
@@ -142,7 +142,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
     @Override
     public void onListFragmentInteraction(Perfil perfil) {
         Intent i = new Intent(DetalhesProjetoActivity.this, DetalhesMembroActivity.class);
-        i.putExtra("perfilIdUsuario", perfil.getIdUsuario());
+        i.putExtra("perfilIdUsuario", perfil.getUsuario().getId());
         i.putExtra("perfilId", perfil.getId());
         startActivity(i);
     }
@@ -164,14 +164,21 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         builder.setView(dialogView);
 
         builder.setPositiveButton(R.string.confirm, (dialogInterface, i) -> {
-            ProjetoController pc = new ProjetoController(DetalhesProjetoActivity.this);
+            ProjetoController pc = new ProjetoController();
             EditText txtSenha = dialogView.findViewById(R.id.txtSenha);
-            if (txtSenha.getText().toString().equals(Usuario.getUsuarioLogado().getSenha())) {
+            UsuarioController uc = new UsuarioController();
+            //Singleton
+            Usuario usuario = Usuario.getUsuarioLogado();
+            if (usuario == null || usuario.getLogin().equals("")) {
+                SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
+            }
+            if (uc.realizarLogin(usuario.getLogin(), txtSenha.getText().toString()) != null) {
                 boolean deletou = pc.deletar(projeto);
+
+                Toast.makeText(DetalhesProjetoActivity.this, pc.getMensagem(), Toast.LENGTH_SHORT).show();
                 if (deletou) {
                     DetalhesProjetoActivity.this.finish();
-                } else {
-                    Toast.makeText(DetalhesProjetoActivity.this, pc.getMensagem(), Toast.LENGTH_SHORT).show();
                 }
             } else {
                 Toast.makeText(DetalhesProjetoActivity.this, "Senha errada", Toast.LENGTH_SHORT).show();

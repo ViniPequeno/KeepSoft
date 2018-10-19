@@ -7,43 +7,25 @@ import android.arch.persistence.room.PrimaryKey;
 import java.util.Calendar;
 import java.util.Date;
 
-@Entity
 public class Sprint {
-    @PrimaryKey(autoGenerate = true)
-    private long codigo;
+    private Long id;
     private String titulo;
     private String descricao;
+    private String dataInicioFormat;
+    private String dataFimFormat;
     private Date dataInicio;
     private Date dataFim;
-    @ForeignKey(
-            entity = Projeto.class,
-            parentColumns = "codigo",
-            childColumns = "codigo",
-            onDelete = ForeignKey.CASCADE
-    )
-    private long codProjeto;
+    private Projeto projeto;
 
     public Sprint() {
-        codigo = 0;
-        titulo ="";
-        descricao="";
-        dataInicio = Calendar.getInstance().getTime();
     }
 
-    public Sprint(long codigo, String titulo, String descricao, Date dataInicio, Date dataFim) {
-        this.codigo = codigo;
-        this.titulo = titulo;
-        this.descricao = descricao;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
+    public Long getId() {
+        return id;
     }
 
-    public long getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(long codigo) {
-        this.codigo = codigo;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -78,7 +60,28 @@ public class Sprint {
         this.dataFim = dataFim;
     }
 
-    public long getCodProjeto() {return codProjeto;}
 
-    public void setCodProjeto(long codProjeto) {this.codProjeto = codProjeto;}
+    public Projeto getProjeto() {
+        return projeto;
+    }
+
+    public void setProjeto(Projeto projeto) {
+        this.projeto = projeto;
+    }
+
+    public String getDataInicioFormat() {
+        return dataInicioFormat;
+    }
+
+    public void setDataInicioFormat(String dataInicioFormat) {
+        this.dataInicioFormat = dataInicioFormat;
+    }
+
+    public String getDataFimFormat() {
+        return dataFimFormat;
+    }
+
+    public void setDataFimFormat(String dataFimFormat) {
+        this.dataFimFormat = dataFimFormat;
+    }
 }

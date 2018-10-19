@@ -1,14 +1,17 @@
 package nescaupower.br.com.keepsoft.Views.Equipe;
 
 import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.SearchView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -41,17 +44,19 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
         setContentView(R.layout.activity_convidar_membro);
 
         usuarios = new ArrayList<>();
-        cc = new ConviteController(ConvidarMembroActivity.this);
-        pc = new PerfilController(ConvidarMembroActivity.this);
+        cc = new ConviteController();
+        pc = new PerfilController();
 
         txtPesquisarUsuario = findViewById(R.id.txtPesquisarUsuario);
         btnEnivarConvite = findViewById(R.id.btnEnviarConvite);
 
-        UsuarioController uc = new UsuarioController(ConvidarMembroActivity.this);
-        Cursor cursor = uc.listarUsuariosCursor("", 0);
+        UsuarioController uc = new UsuarioController();
+        List<Usuario> list = uc.listarUsuariosCursor(" ", new Long(0));
 
         rvAdapter = new PesquisarUsuarioRVAdapter(usuarios, ConvidarMembroActivity.this);
-        searchViewAdapter = new PesquisarUsuarioCursorAdapter(ConvidarMembroActivity.this, cursor, txtPesquisarUsuario, rvAdapter);
+
+
+        searchViewAdapter = new PesquisarUsuarioCursorAdapter(ConvidarMembroActivity.this, getCursor(list), txtPesquisarUsuario, rvAdapter);
 
         txtPesquisarUsuario.setOnQueryTextListener(this);
         txtPesquisarUsuario.setSuggestionsAdapter(searchViewAdapter);
@@ -66,17 +71,19 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
             Perfil perfis[] = new Perfil[usuarios.size()];
             for (Usuario usuario : usuarios) {
                 convites[index] = Factory.startConvite();
-                convites[index].setCodProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
-                convites[index].setRemetenteId(Usuario.getUsuarioLogado().getId());
+                convites[index].setCodProjeto(Projeto.getUltimoProjetoUsado());
+                convites[index].setRemetenteId(Usuario.getUsuarioLogado());
                 convites[index].setFuncao(rvAdapter.getFuncaoUsuario(index));
-                convites[index].setDestinatarioId(usuario.getId());
+                convites[index].setDestinatarioId(usuario);
 
                 Date hoje = Calendar.getInstance().getTime();
                 convites[index].setData(hoje);
 
                 perfis[index] = Factory.startPerfil();
-                perfis[index].setCodProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
-                perfis[index].setIdUsuario(usuario.getId());
+                perfis[index].setProjeto(Projeto.getUltimoProjetoUsado());
+                perfis[index].setUsuario(usuario);
+                perfis[index].setDataInicioFormat("");
+                perfis[index].setDataFimFormat("");
                 perfis[index].setDataInicio(null);
                 perfis[index].setDataFim(null);
                 perfis[index].setPerfil(rvAdapter.getFuncaoUsuario(index));
@@ -95,16 +102,39 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        String login = "%" + newText + "%";
+        String login = newText;
+        if(login == ""){
+            login = " ";
+        }
         //((PesquisarUsuarioRVAdapter) usuariosRV.getAdapter()).filtrar(text);
         //Toast.makeText(ConvidarMembroActivity.this, usuarios.size() + " " + text, Toast.LENGTH_SHORT).show();
-        UsuarioController uc = new UsuarioController(ConvidarMembroActivity.this);
-        Cursor c = uc.listarUsuariosCursor(login, Usuario.getUsuarioLogado().getId());
-        atualizarResultados(c);
+        UsuarioController uc = new UsuarioController();
+        List<Usuario> list = uc.listarUsuariosCursor(login, Usuario.getUsuarioLogado().getId());
+        atualizarResultados(list);
         return false;
     }
 
-    private void atualizarResultados(Cursor cursor) {
-        searchViewAdapter.swapCursor(cursor);
+    private void atualizarResultados(List<Usuario> list) {
+
+
+        searchViewAdapter.swapCursor(getCursor(list));
+    }
+
+    private MatrixCursor getCursor(List<Usuario> list){
+        MatrixCursor matrixCursor = new MatrixCursor(
+                new String[] {"_id", "login", "email", "nome", "telefone"}
+        );
+        if(list != null) {
+            for (Usuario usuario : list) {
+                matrixCursor.newRow()
+                        .add(usuario.getId())
+                        .add(usuario.getLogin())
+                        .add(usuario.getEmail())
+                        .add(usuario.getNome())
+                        .add(usuario.getTelefone());
+            }
+        }
+
+        return matrixCursor;
     }
 }

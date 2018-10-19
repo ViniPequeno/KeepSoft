@@ -64,7 +64,7 @@ public class SprintRVAdapter extends RecyclerView.Adapter<SprintRVAdapter.ViewHo
                 if (null != mListener) {
                     Intent i = new Intent(context, DetalhesSprintActivity.class);
 
-                    i.putExtra("EXTRA_CODIGO_SPRINT", holder.mItem.getCodigo());
+                    i.putExtra("EXTRA_CODIGO_SPRINT", holder.mItem.getId());
 
                     context.startActivity(i);
                 }

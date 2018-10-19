@@ -6,12 +6,8 @@ import android.arch.persistence.room.PrimaryKey;
 
 import nescaupower.br.com.keepsoft.Factory.Factory;
 
-@Entity(indices = {
-        @Index(value = "email", unique = true)
-})
 public class Usuario {
-    @PrimaryKey(autoGenerate = true)
-    private long id;
+    private Long id;
     private String login;
     private String email;
     private String nome;
@@ -33,26 +29,19 @@ public class Usuario {
 
 
     public Usuario() {
-        login = "";
-        email = "";
-        nome = "";
-        senha = "";
-        telefone = "";
+        this.id = new Long(0);
+        this.login = "";
+        this.email = "";
+        this.nome = "";
+        this.senha="";
+        this.telefone="";
     }
 
-    public Usuario(String login, String email, String nome, String senha, String telefone) {
-        this.login = login;
-        this.email = email;
-        this.nome = nome;
-        this.senha = senha;
-        this.telefone = telefone;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -95,6 +84,4 @@ public class Usuario {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-
 }

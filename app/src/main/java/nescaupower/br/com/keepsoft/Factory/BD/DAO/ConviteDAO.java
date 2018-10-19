@@ -5,31 +5,132 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
+import android.util.Log;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
 import nescaupower.br.com.keepsoft.Factory.Model.Convite;
 
-@Dao
-public interface ConviteDAO {
-    @Query("SELECT * FROM convite")
-    List<Convite> getAll();
+public class ConviteDAO {
 
-    @Query("SELECT * FROM convite c WHERE c.codProjeto= :codProjeto AND c.destinatarioId= :destinatarioId")
-    Convite findByID(long destinatarioId, long codProjeto);
+    public List<Convite> getAll(){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/convite", "Get", null).get();
+            Type type = new TypeToken<List<Convite>>(){}.getType();
+            List<Convite> list = (List<Convite>) new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
 
-    @Query("SELECT * FROM convite c WHERE c.codProjeto= :codProjeto")
-    List<Convite> findByProjectID(long codProjeto);
+    }
 
-    @Query("SELECT * FROM convite c WHERE c.destinatarioId= :destinatarioId")
-    List<Convite> findByReceiverID(long destinatarioId);
+    public Convite findByID(Long id){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/convite/"+id, "Get", null).get();
+            Convite convite =  new Gson().fromJson(tJson, Convite.class);
+            return convite;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    @Insert
-    void insertAll(Convite... convites);
 
-    @Update
-    void updateAll(Convite... convites);
+    public void insertAll(Convite... convitees){
+        for(Convite convite : convitees){
+            String tJson = new Gson().toJson(convite);
+            try {
+                new HttpService().execute("/convite", "Post", tJson).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-    @Delete
-    void delete(Convite convite);
+    public void updateAll(Convite... convitees){
+        for(Convite convite : convitees){
+            String tJson = new Gson().toJson(convite);
+            try {
+                new HttpService().execute("/convite/"+convite.getId(), "Put", tJson).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void delete(Convite convite){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/convite/"+convite.getId(), "Delete", null).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public Convite findByID(Long destinatarioId, Long codProjeto    ){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/convite/findByProjetoUsuariosDestinario/"+codProjeto+"/"+destinatarioId, "Get", null).get();
+            Convite convite =  new Gson().fromJson(tJson, Convite.class);
+            return convite;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Convite> findByProjectID(Long codProjeto){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/convite/findByProjeto/"+codProjeto, "Get", null).get();
+            Type type = new TypeToken<List<Convite>>(){}.getType();
+            List<Convite> list = (List<Convite>) new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Convite> findByReceiverID(long destinatarioId){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/convite/findByReceiverID/"+destinatarioId, "Get", null).get();
+            Type type = new TypeToken<List<Convite>>(){}.getType();
+            List<Convite> list = (List<Convite>) new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

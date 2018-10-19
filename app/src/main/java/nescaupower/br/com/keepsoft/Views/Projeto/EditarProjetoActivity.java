@@ -38,7 +38,7 @@ public class EditarProjetoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_projeto);
 
-        pc = new ProjetoController(getApplicationContext());
+        pc = new ProjetoController();
 
         //Singleton
         projeto = Projeto.getUltimoProjetoUsado();

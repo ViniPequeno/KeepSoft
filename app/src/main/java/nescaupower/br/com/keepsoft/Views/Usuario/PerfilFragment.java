@@ -45,7 +45,7 @@ public class PerfilFragment extends Fragment {
         Resources res = getResources();
 
         // Inflate the layout for this fragment
-        uc = new UsuarioController(getActivity().getApplicationContext());
+        uc = new UsuarioController();
 
         //Título
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(res.getString(R.string.profile));

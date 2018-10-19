@@ -6,33 +6,119 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import java.util.List;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 
+import java.lang.reflect.Type;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 
-@Dao
-public interface PerfilDAO {
-    @Query("SELECT * FROM perfil")
-    List<Perfil> getAll();
+public class PerfilDAO {
 
-    @Query("SELECT * FROM perfil WHERE id in (:ids)")
-    List<Perfil> loadAllByIds(long[] ids);
+    public List<Perfil> getAll(){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/perfil", "Get", null).get();
+            Type type = new TypeToken<List<Perfil>>(){}.getType();
+            List<Perfil> list = (List<Perfil>) new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
 
-    @Query("SELECT * FROM perfil WHERE id = :id")
-    Perfil findById(long id);
+    }
 
-    @Query("SELECT * FROM perfil p WHERE p.codProjeto= :codProjeto")
-    List<Perfil> findByProjectID(long codProjeto);
+    public Perfil findById(Long id){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/perfil/"+id, "Get", null).get();
+            Perfil perfil =  new Gson().fromJson(tJson, Perfil.class);
+            return perfil;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    @Query("SELECT * FROM perfil p WHERE p.codProjeto= :codProjeto AND p.idUsuario= :idUsuario")
-    Perfil findByUserIdAndProjectID(long codProjeto, long idUsuario);
 
-    @Insert
-    void insertAll(Perfil... perfis);
+    public void insertAll(Perfil... perfiles){
+        for(Perfil perfil : perfiles){
+            String tJson = new Gson().toJson(perfil);
+            try {
+                new HttpService().execute("/perfil", "Post", tJson).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-    @Update
-    void updateAll(Perfil... perfis);
+    public void updateAll(Perfil... perfiles){
+        for(Perfil perfil : perfiles){
+            String tJson = new Gson().toJson(perfil);
+            try {
+                new HttpService().execute("/perfil/"+perfil.getId(), "Put", tJson).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-    @Delete
-    void delete(Perfil perfil);
+    public void delete(Perfil perfil){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/perfil/"+perfil.getId(), "Delete", null).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
+    public List<Perfil> findByProjectID(Long codProjeto){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/perfil/findByProjeto/"+codProjeto, "Get", null).get();
+            Type type = new TypeToken<List<Perfil>>(){}.getType();
+            List<Perfil> list = (List<Perfil>) new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
+
+    public Perfil findByUserIdAndProjectID(Long codProjeto, Long idUsuario){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/perfil/findByUserIdAndProjectID/"+codProjeto+"/"+idUsuario, "Get", null).get();
+            Perfil perfil =  new Gson().fromJson(tJson, Perfil.class);
+            return perfil;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }

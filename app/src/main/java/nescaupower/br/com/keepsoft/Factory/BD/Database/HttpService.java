@@ -11,8 +11,8 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class HttpService extends AsyncTask<String, Void, String> {
-    private final String IP = "192.168.0.24";
-    private final String PORTA = "8084";
+    private final String IP = "10.0.0.39";
+    private final String PORTA = "8000";
     private final String URL = "http://"+IP+":"+PORTA+"/api";
     private StringBuilder resposta;
 
@@ -23,21 +23,17 @@ public class HttpService extends AsyncTask<String, Void, String> {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Content-type", "application/json");
-            connection.setRequestProperty("Accept", "application/json");
-            connection.setDoOutput(true);
+            connection.setRequestProperty("rAccept", "application/json");
             connection.setConnectTimeout(5000);
             connection.connect();
             Scanner scanner = new Scanner(url.openStream());
-            while (scanner.hasNext()) {
-                resposta.append(scanner.next());
+            while (scanner.hasNextLine()) {
+                resposta.append(scanner.nextLine());
             }
-            Log.e("entrei", "5");
             return resposta.toString();
         }catch (MalformedURLException e) {
-            Log.e("entrei", "3");
             e.printStackTrace();
         } catch (IOException e) {
-            Log.e("entrei", "4");
             e.printStackTrace();
         }
         return null;
@@ -48,20 +44,23 @@ public class HttpService extends AsyncTask<String, Void, String> {
         resposta  = new StringBuilder();
         try{
             URL url = new URL(URL+parte);
+            Log.e("seila", t);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-type", "application/json");
-            connection.setRequestProperty("Accept", "application/json");
             connection.setDoOutput(true);
-            connection.setConnectTimeout(5000);
+
             PrintStream ps = new PrintStream(connection.getOutputStream());
             ps.println(t);
+
             connection.connect();
-            Scanner scanner = new Scanner(url.openStream());
-            while (scanner.hasNext()) {
-                resposta.append(scanner.next());
+
+            Scanner scanner = new Scanner(connection.getInputStream());
+            while (scanner.hasNextLine()) {
+                resposta.append(scanner.nextLine());
             }
-            return new Scanner(connection.getInputStream()).next();
+
+            return  resposta.toString();
         }catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -69,6 +68,8 @@ public class HttpService extends AsyncTask<String, Void, String> {
         }
         return null;
     }
+
+
 
     public String putT(String parte, String t){
         resposta  = new StringBuilder();
@@ -83,11 +84,12 @@ public class HttpService extends AsyncTask<String, Void, String> {
             PrintStream ps = new PrintStream(connection.getOutputStream());
             ps.println(t);
             connection.connect();
-            Scanner scanner = new Scanner(url.openStream());
-            while (scanner.hasNext()) {
-                resposta.append(scanner.next());
+            Scanner scanner = new Scanner(connection.getInputStream());
+            while (scanner.hasNextLine()) {
+                resposta.append(scanner.nextLine());
             }
-            return new Scanner(connection.getInputStream()).next();
+
+            return  resposta.toString();
         }catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -102,12 +104,8 @@ public class HttpService extends AsyncTask<String, Void, String> {
             URL url = new URL(URL+parte);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("DELETE");
-            connection.setRequestProperty("Content-type", "application/json");
-            connection.setRequestProperty("Accept", "application/json");
-            connection.setDoOutput(true);
-            connection.setConnectTimeout(5000);
             connection.connect();
-            Scanner scanner = new Scanner(url.openStream());
+            Scanner scanner = new Scanner(connection.getInputStream());
             while (scanner.hasNext()) {
                 resposta.append(scanner.next());
             }
@@ -127,7 +125,6 @@ public class HttpService extends AsyncTask<String, Void, String> {
         String tJson = strings[2];
         switch(metodo){
             case "Get":{
-                Log.e("entrei", "1");
                 return getT(parte);
             }
             case "Post":{

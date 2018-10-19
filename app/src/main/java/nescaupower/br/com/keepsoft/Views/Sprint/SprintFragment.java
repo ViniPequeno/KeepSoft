@@ -59,7 +59,7 @@ public class SprintFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sc = new SprintController(getActivity().getApplicationContext());
+        sc = new SprintController();
         sprints = sc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
 
         if (getArguments() != null) {

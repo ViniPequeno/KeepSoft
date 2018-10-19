@@ -3,30 +3,20 @@ package nescaupower.br.com.keepsoft.Factory.Model;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity
 public class Status {
-    @PrimaryKey
-    private long id;
+    private Long id;
     private String nome;
     private String descricao;
 
-    public Status() {
-        id=0;
-        nome="";
-        descricao="";
-    }
-
-    public Status(long id, String nome, String descricao) {
+    public Status(Long id) {
         this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

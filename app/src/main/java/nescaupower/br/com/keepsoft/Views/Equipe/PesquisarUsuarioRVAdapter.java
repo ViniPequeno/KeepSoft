@@ -33,7 +33,7 @@ public class PesquisarUsuarioRVAdapter extends RecyclerView.Adapter<PesquisarUsu
         this.usuarios = usuarios;
         this.context = context;
         funcoesUsuarios = new ArrayList<>();
-        uc = new UsuarioController(context);
+        uc = new UsuarioController();
     }
 
     @Override
@@ -95,7 +95,7 @@ public class PesquisarUsuarioRVAdapter extends RecyclerView.Adapter<PesquisarUsu
         if (texto.length() == 0) {
             //usuarios.addAll(arraylist);
         } else {
-            usuarios = uc.listarPorNomeLogin(texto, texto);
+            usuarios = uc.listarUsuariosCursor(texto, new Long(0));
         }
         notifyDataSetChanged();
     }

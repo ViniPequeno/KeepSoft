@@ -1,46 +1,60 @@
 package nescaupower.br.com.keepsoft.Controller;
 
 import android.content.Context;
+import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
-import nescaupower.br.com.keepsoft.Factory.BD.Database.AppDatabase;
+import nescaupower.br.com.keepsoft.Factory.BD.DAO.PerfilDAO;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 
 public class PerfilController {
-    private AppDatabase db;
     private String mensagem;
+    private PerfilDAO perfilDAO;
 
-    public PerfilController(Context context) {
-        db = Factory.startDatabase(context);
+    public PerfilController() {
+        perfilDAO = new PerfilDAO();
     }
 
     public void inserir(Perfil... perfis) {
-        db.perfilDAO().insertAll(perfis);
+        perfilDAO.insertAll(perfis);
     }
 
     public Perfil procurarPorId(Long codigo) {
-        return db.perfilDAO().findById(codigo);
+        return perfilDAO.findById(codigo);
     }
 
-    public Perfil procurarPorProjetoUsuario(long codProjeto, long idUsuario) {
-        return db.perfilDAO().findByUserIdAndProjectID(codProjeto, idUsuario);
+    public Perfil procurarPorProjetoUsuario(Long codProjeto, Long idUsuario) {
+        return perfilDAO.findByUserIdAndProjectID(codProjeto, idUsuario);
     }
 
     public void atualizar(Perfil perfil) {
-        db.perfilDAO().updateAll(perfil);
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        perfil.setDataInicioFormat(formato.format(perfil.getDataInicio()));
+        perfilDAO.updateAll(perfil);
     }
 
     public boolean cadastrar(Perfil... perfil) {
-        db.perfilDAO().insertAll(perfil);
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        for(Perfil perfil1 : perfil) {
+            if(perfil1.getDataInicio() != null) {
+                perfil1.setDataInicioFormat(formato.format(perfil1.getDataInicio()));
+            }else{
+                perfil1.setDataInicio(null);
+                perfil1.setDataInicioFormat("");
+            }
+
+        }
+        perfilDAO.insertAll(perfil);
         this.mensagem = "Cadastrado!";
         return true;
     }
 
     public boolean deletar(Perfil perfil) {
-        if (db.perfilDAO().findById(perfil.getId()) != null) {
-            db.perfilDAO().delete(perfil);
+        if (perfilDAO.findById(perfil.getId()) != null) {
+            perfilDAO.delete(perfil);
             this.mensagem = "O perfil foi deletado!";
             return true;
         } else {
@@ -50,10 +64,10 @@ public class PerfilController {
     }
 
     public List<Perfil> listarPorProjeto(long codProjeto) {
-        return db.perfilDAO().findByProjectID(codProjeto);
+        return perfilDAO.findByProjectID(codProjeto);
     }
     public List<Perfil> listarTodos() {
-        return db.perfilDAO().getAll();
+        return perfilDAO.getAll();
     }
 
     public String getMensagem() {

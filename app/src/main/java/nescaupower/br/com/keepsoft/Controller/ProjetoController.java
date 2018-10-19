@@ -1,51 +1,56 @@
 package nescaupower.br.com.keepsoft.Controller;
 
 import android.content.Context;
+import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
-import nescaupower.br.com.keepsoft.Factory.BD.Database.AppDatabase;
+import nescaupower.br.com.keepsoft.Factory.BD.DAO.ProjetoDAO;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 
 public class ProjetoController {
-    private AppDatabase db;
     private String mensagem;
+    private ProjetoDAO projetoDAO;
 
-    public ProjetoController(Context context) {
-        db = Factory.startDatabase(context);
+    public ProjetoController() {
+        projetoDAO = new ProjetoDAO();
     }
 
     public void inserir(Projeto projeto) {
-        db.projetoDAO().insert(projeto);
+        projetoDAO.insertAll(projeto);
     }
 
-    public Projeto procurarPorNome(String nome) {
-        return db.projetoDAO().findByName(nome);
-    }
 
     public Projeto procurarPorCodigo(Long codigo) {
-        return db.projetoDAO().findById(codigo);
+        return projetoDAO.findById(codigo);
     }
 
     public void atualizar(Projeto projeto) {
-        db.projetoDAO().updateAll(projeto);
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        projeto.setDataCriacaoFormat(formato.format(projeto.getDataCriacao()));
+        projeto.setDataPrevFinalizacaoFormat(formato.format(projeto.getDataPrevFinalizacao()));
+        projetoDAO.updateAll(projeto);
     }
 
-    public long cadastrar(Projeto projeto) {
-        if (db.projetoDAO().findByName(projeto.getNome()) != null) {
+    public Projeto cadastrar(Projeto projeto) {
+        if (projetoDAO.findByName(projeto.getNome()) != null) {
             this.mensagem = "O nome de projeto já existe!";
-            return 0;
+            return null;
         } else {
-            long codigo = db.projetoDAO().insert(projeto);
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            projeto.setDataCriacaoFormat(formato.format(projeto.getDataCriacao()));
+            projeto.setDataPrevFinalizacaoFormat(formato.format(projeto.getDataPrevFinalizacao()));
+            Projeto projetoRetorno =  projetoDAO.insertAll(projeto);
             this.mensagem = "Cadastrado!";
-            return codigo;
+            return projetoRetorno;
         }
     }
 
     public boolean deletar(Projeto projeto) {
-        if (db.projetoDAO().findById(projeto.getCodigo()) != null) {
-            db.projetoDAO().delete(projeto);
+        if (projetoDAO.findById(projeto.getCodigo()) != null) {
+            projetoDAO.delete(projeto);
             this.mensagem = "O projeto foi deletado!";
             return true;
         } else {
@@ -55,15 +60,15 @@ public class ProjetoController {
     }
 
     public List<Projeto> listarPorUsuario(long idUsuario) {
-        return db.projetoDAO().findByUserID(idUsuario);
+        return projetoDAO.findByUserID(idUsuario);
     }
 
     public List<Projeto> listarPorUsuarioParticipando(long idUsuario) {
-        return db.projetoDAO().findByParticipatingUserID(idUsuario);
+        return projetoDAO.findByParticipatingUserID(idUsuario);
     }
 
     public List<Projeto> listarTodos() {
-        return db.projetoDAO().getAll();
+        return projetoDAO.getAll();
     }
 
     public String getMensagem() {

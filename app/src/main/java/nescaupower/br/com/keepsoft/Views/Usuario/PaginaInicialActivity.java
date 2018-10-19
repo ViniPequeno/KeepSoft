@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
@@ -27,7 +28,7 @@ public class PaginaInicialActivity extends AppCompatActivity implements BottomNa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pagina_inicial);
 
-        uc = new UsuarioController(getApplicationContext());
+        uc = new UsuarioController();
 
         menuInferior = findViewById(R.id.menu_inferior);
 

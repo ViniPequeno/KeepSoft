@@ -5,50 +5,58 @@ import android.database.Cursor;
 
 import java.util.List;
 
-import nescaupower.br.com.keepsoft.Factory.BD.Database.AppDatabase;
+import nescaupower.br.com.keepsoft.Factory.BD.DAO.UsuarioDAO;
 import nescaupower.br.com.keepsoft.Factory.Factory;
+import nescaupower.br.com.keepsoft.Factory.Model.AlterarSenha;
+import nescaupower.br.com.keepsoft.Factory.Model.Login;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 
 public class UsuarioController {
-    private AppDatabase db;
+    private UsuarioDAO usuarioDAO;
     private String mensagem;
 
-    public UsuarioController(Context context){
-        db = Factory.startDatabase(context);
+    public UsuarioController(){
+        usuarioDAO = new UsuarioDAO();
     }
 
     public void inserir(Usuario... usuarios) {
-        db.usuarioDAO().insertAll(usuarios);
+        usuarioDAO.insertAll(usuarios);
     }
 
     public void atualizar(Usuario... usuarios) {
-        db.usuarioDAO().updateAll(usuarios);
+        usuarioDAO.updateAll(usuarios);
     }
 
     public Usuario procurarPorLogin(String login) {
-        return db.usuarioDAO().findByLogin(login);
+        return usuarioDAO.findByLogin(login);
     }
 
-    public Usuario procurarPorID(long id) {
-        return db.usuarioDAO().findByID(id);
+    public Usuario procurarPorID(Long id) {
+        return usuarioDAO.findByID(id);
     }
 
     public boolean cadastrar(Usuario usuario) {
-        if(db.usuarioDAO().findByLogin(usuario.getLogin()) != null){
+        if(usuarioDAO.findByLogin(usuario.getLogin()) != null){
             this.mensagem = "O nome de login já existe!";
             return false;
-        }else if(db.usuarioDAO().findByEmail(usuario.getEmail()) !=null){
+        }else if(usuarioDAO.findByEmail(usuario.getEmail()) !=null){
             this.mensagem = "O endereço de email já existe!";
             return false;
         }else{
-            db.usuarioDAO().insertAll(usuario);
+            usuarioDAO.insertAll(usuario);
             this.mensagem = "Cadastrado!";
             return true;
         }
     }
 
+    public void alterarSenha(AlterarSenha alterarSenha){
+        usuarioDAO.alterarSenha(alterarSenha);
+    }
     public Usuario realizarLogin(String login, String senha){
-        Usuario usuario = db.usuarioDAO().login(login, senha);
+        Login loginClass = new Login();
+        loginClass.setLogin(login);
+        loginClass.setSenha(senha);
+        Usuario usuario = usuarioDAO.login(loginClass);
         if(usuario !=null){
             this.mensagem = "Login feito!";
         }else{
@@ -57,12 +65,13 @@ public class UsuarioController {
         return usuario;
     }
 
-    public List<Usuario> listarPorNomeLogin(String login, String nome){ return db.usuarioDAO().findByLoginAndName(login,nome); }
 
     //TODO: consertar nomenclatura
-    public Cursor listarUsuariosCursor(String login, long id) {
-        return db.usuarioDAO().listUsersCursor(login, id);
-    }
+    //public Cursor listarUsuariosCursor(String login, long id) {
+      //  return db.usuarioDAO().listUsersCursor(login, id);
+    //}
+
+    public List<Usuario> listarUsuariosCursor(String login, Long id){ return usuarioDAO.findByLoginOrName(login, id);}
 
     public String getMensagem(){
         return this.mensagem;

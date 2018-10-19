@@ -35,8 +35,8 @@ public class DetalhesMembroActivity extends AppCompatActivity {
         intent.removeExtra("perfilIdUsuario");
         intent.removeExtra("perfilId");
 
-        uc = new UsuarioController(this);
-        pc = new PerfilController(this);
+        uc = new UsuarioController();
+        pc = new PerfilController();
 
         usuario = uc.procurarPorID(idUsuario);
         perfil = pc.procurarPorId(idPerfil);
@@ -61,7 +61,7 @@ public class DetalhesMembroActivity extends AppCompatActivity {
 
         btnDelete.setOnClickListener(view -> {
             //Se tentou remover um usuário diferente dele mesmo
-            if (perfil.getIdUsuario() != Usuario.getUsuarioLogado().getId()) {
+            if (perfil.getUsuario().getId() != Usuario.getUsuarioLogado().getId()) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
                 builder.setTitle("Aviso!");
                 builder.setMessage("Deseja realmente remover " + usuario.getLogin() + " deste projeto?");
@@ -72,12 +72,12 @@ public class DetalhesMembroActivity extends AppCompatActivity {
 
                     //Apagar o convite do banco
                     if (perfil.getDataInicio() == null) {
-                        ConviteController cc = new ConviteController(this);
-                        cc.deletar(cc.procurarPorID(perfil.getIdUsuario(), perfil.getCodProjeto()));
+                        ConviteController cc = new ConviteController();
+                        cc.deletar(cc.procurarPorID(perfil.getUsuario().getId(), perfil.getProjeto().getCodigo()));
                     }
 
                     //Apagar perfil do banco
-                    PerfilController pc = new PerfilController(this);
+                    PerfilController pc = new PerfilController();
                     pc.deletar(perfil);
                     finish();
                 });

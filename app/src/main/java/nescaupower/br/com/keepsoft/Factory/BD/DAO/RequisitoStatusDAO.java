@@ -5,28 +5,83 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
 import nescaupower.br.com.keepsoft.Factory.Model.RequisitoStatus;
+import nescaupower.br.com.keepsoft.Factory.Model.Status;
 
-@Dao
-public interface RequisitoStatusDAO {
-    @Query("SELECT * FROM requisitoStatus")
-    List<RequisitoStatus> getAll();
+public class RequisitoStatusDAO {
+    public List<RequisitoStatus> getAll(){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/requisitosStatus", "Get", null).get();
+            Type type = new TypeToken<List<RequisitoStatus>>(){}.getType();
+            List<RequisitoStatus> list = (List<RequisitoStatus>) new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
 
-    @Query("SELECT * FROM requisitoStatus WHERE codigoRequisito IN (:codigoRequisitos) AND " +
-            "idStatus IN (:idStatus)")
-    List<RequisitoStatus> loadAllByIds(int[] codigoRequisitos, int[] idStatus);
+    }
 
-    @Query("SELECT * FROM requisitoStatus WHERE codigoRequisito IN (:codigoRequisitos)")
-    List<RequisitoStatus> loadAllByCodigoRequisito(int[] codigoRequisitos);
+    public RequisitoStatus findByID(long id){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/requisitosStatus/"+id, "Get", null).get();
+            RequisitoStatus requisitosStatus =  new Gson().fromJson(tJson, RequisitoStatus.class);
+            return requisitosStatus;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    @Query("SELECT * FROM requisitoStatus WHERE idStatus IN (:idStatus)")
-    List<RequisitoStatus> loadAllByIdStatus(int[] idStatus);
 
-    @Insert
-    void insertAll(RequisitoStatus... requisitoStatuss);
+    void insertAll(RequisitoStatus... requisitosStatuses){
+        for(RequisitoStatus requisitosStatus : requisitosStatuses){
+            String tJson = new Gson().toJson(requisitosStatus);
+            try {
+                new HttpService().execute("api/requisitosStatus", "Post", tJson).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-    @Delete
-    void delete(RequisitoStatus requisitoStatus);
+    void updateAll(RequisitoStatus... requisitosStatuses){
+        for(RequisitoStatus requisitosStatus : requisitosStatuses){
+            String tJson = new Gson().toJson(requisitosStatus);
+            try {
+                new HttpService().execute("api/requisitosStatus/"+requisitosStatus.getId(), "Put", tJson).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    void delete(RequisitoStatus requisitosStatus){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/requisitosRequisitoStatus/"+requisitosStatus.getId(), "Get", null).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +27,21 @@ public class NotificacoesFragment extends Fragment {
     private RecyclerView rv;
     private ConviteController cc;
     private List<Object> notificacoes;
+    NotificacaoRVAdapter adapter;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        notificacoes = new ArrayList<>();
+        notificacoes.addAll(cc.listarPorDestinatario(Usuario.getUsuarioLogado().getId()));
+
+        Toast.makeText(getActivity(), ""+notificacoes.size(), Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cc = new ConviteController(getActivity());
+        cc = new ConviteController();
         notificacoes = new ArrayList<>();
         notificacoes.addAll(cc.listarPorDestinatario(Usuario.getUsuarioLogado().getId()));
     }
@@ -59,7 +70,7 @@ public class NotificacoesFragment extends Fragment {
             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
             rv.setLayoutManager(layoutManager);
 
-            NotificacaoRVAdapter adapter = new NotificacaoRVAdapter(this.getActivity(), notificacoes);
+            adapter = new NotificacaoRVAdapter(this.getActivity(), notificacoes);
             rv.setAdapter(adapter);
         }
 

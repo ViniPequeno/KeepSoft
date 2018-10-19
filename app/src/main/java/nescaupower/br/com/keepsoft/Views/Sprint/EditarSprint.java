@@ -51,11 +51,11 @@ public class EditarSprint extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_sprint);
-        root = findViewById(R.id.sprint);
+        root = findViewById(R.id.sprintEditar);
 
 
-        uc = new UsuarioController(getApplicationContext());
-        sc = new SprintController(getApplicationContext());
+        uc = new UsuarioController();
+        sc = new SprintController();
 
         //Singleton
         usuario = Usuario.getUsuarioLogado();
@@ -64,7 +64,7 @@ public class EditarSprint extends AppCompatActivity {
             usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
         }
 
-        sprint = new SprintController(getApplicationContext()).procurarPorCodigo(getIntent().getLongExtra("EXTRA_CODIGO_SPRINT", 0));
+        sprint = new SprintController().procurarPorCodigo(getIntent().getLongExtra("EXTRA_CODIGO_SPRINT", 0));
         if (sprint == null) {
             this.finish();
         }
@@ -79,7 +79,7 @@ public class EditarSprint extends AppCompatActivity {
         txtDescricaoEditar.setText(sprint.getDescricao());
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         txtDataInicioEditar.setText(dateFormat.format(sprint.getDataInicio()));
-        txtDataInicioEditar.setText(dateFormat.format(sprint.getDataFim()));
+        txtDataFimEditar.setText(dateFormat.format(sprint.getDataFim()));
 
         txtDataInicioEditar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override

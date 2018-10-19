@@ -48,12 +48,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void apiAccess() {
         String tJson = null;
-        Log.e("1233", "233");
         try {
             tJson = new HttpService().execute("/usuarios", "Get", null).get();
             Type type = new TypeToken<List<Usuario>>(){}.getType();
             List<Usuario> list = (List<Usuario>) new Gson().fromJson(tJson, type);
-            Log.e("Jose", "123");
             if(list !=null) {
                 for (Usuario usuario : list) {
                     Log.e("Usuario", usuario.getEmail());

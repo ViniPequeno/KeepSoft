@@ -6,37 +6,19 @@ import android.arch.persistence.room.PrimaryKey;
 import java.util.Calendar;
 import java.util.Date;
 
-@Entity
 public class Reuniao {
-    @PrimaryKey
-    private long codigo;
+    private Long id;
     private String nome;
     private String relatorio;
     private String assunto;
     private Date data;
 
-    public Reuniao() {
-        codigo = 0;
-        nome="";
-        relatorio="";
-        assunto="";
-        data= Calendar.getInstance().getTime();
+    public Long getId() {
+        return id;
     }
 
-    public Reuniao(long codigo, String nome, String relatorio, String assunto, Date data) {
-        this.codigo = codigo;
-        this.nome = nome;
-        this.relatorio = relatorio;
-        this.assunto = assunto;
-        this.data = data;
-    }
-
-    public long getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(long codigo) {
-        this.codigo = codigo;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {

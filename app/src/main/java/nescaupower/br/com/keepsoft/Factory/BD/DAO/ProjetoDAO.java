@@ -5,37 +5,139 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
+import android.util.Log;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+
+import java.lang.reflect.Type;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 
-@Dao
-public interface ProjetoDAO {
-    @Query("SELECT * FROM projeto")
-    List<Projeto> getAll();
+public class ProjetoDAO {
 
-    @Query("SELECT * FROM projeto WHERE codigo IN (:codigos)")
-    List<Projeto> loadAllByIds(int[] codigos);
+    public List<Projeto> getAll() {
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/projeto", "Get", null).get();
+            Type type = new TypeToken<List<Projeto>>() {
+            }.getType();
+            List<Projeto> list = (List<Projeto>) new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
 
-    @Query("SELECT * FROM projeto WHERE nome LIKE :nome")
-    Projeto findByName(String nome);
+    }
 
-    @Query("SELECT * FROM projeto WHERE codigo = :codigo")
-    Projeto findById(Long codigo);
+    public Projeto findById(Long id) {
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/projeto/" + id, "Get", null).get();
+            Projeto projeto = new Gson().fromJson(tJson, Projeto.class);
+            return projeto;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    @Query("SELECT * FROM projeto p, perfil pe WHERE p.codigo = pe.codProjeto AND  pe.idUsuario = :userID")
-    List<Projeto> findByUserID(long userID);
+    public Projeto findByName(String nome) {
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/projeto/findByName/" + nome, "Get", null).get();
+            Projeto projeto = new Gson().fromJson(tJson, Projeto.class);
+            return projeto;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    @Query("SELECT * FROM projeto p, perfil pe WHERE p.codigo = pe.codProjeto AND  pe.idUsuario = :userID AND pe.dataInicio IS NOT NULL")
-    List<Projeto> findByParticipatingUserID(long userID);
 
-    @Insert
-    long insert(Projeto projeto);
+    public Projeto
+    insertAll(Projeto projeto) {
+        String tJson = new Gson().toJson(projeto);
+        Log.e("cadastro2", tJson);
+        try {
+            tJson = new HttpService().execute("/projeto", "Post", tJson).get();
+            Projeto projetoRetorno = new Gson().fromJson(tJson, Projeto.class);
+            return projetoRetorno;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    @Update
-    void updateAll(Projeto... projetos);
+    public void updateAll(Projeto... projetoes) {
+        for (Projeto projeto : projetoes) {
+            String tJson = new Gson().toJson(projeto);
+            try {
+                new HttpService().execute("/projeto/" + projeto.getCodigo(), "Put", tJson).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-    @Delete
-    void delete(Projeto projeto);
+    public void delete(Projeto projeto) {
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/projeto/" + projeto.getCodigo(), "Delete", null).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public List<Projeto> findByUserID(Long userID) {
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/projeto/findByUserID/" + userID, "Get", null).get();
+            Type type = new TypeToken<List<Projeto>>() {
+            }.getType();
+            List<Projeto> list = (List<Projeto>) new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public List<Projeto> findByParticipatingUserID(Long userID) {
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/projeto/findByParticipantingUserID/" + userID, "Get", null).get();
+            Type type = new TypeToken<List<Projeto>>() {
+            }.getType();
+            List<Projeto> list = (List<Projeto>) new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }

@@ -59,7 +59,7 @@ public class EquipeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pc= new PerfilController(getActivity());
+        pc= new PerfilController();
         perfis = pc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);

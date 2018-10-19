@@ -43,7 +43,7 @@ public class CadastroSprintActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_sprint);
         root = findViewById(R.id.sprint);
 
-        pc = new SprintController(getApplicationContext());
+        pc = new SprintController();
 
         txtTitulo = findViewById(R.id.txtTitulo);
         txtDescricao = findViewById(R.id.txtDescricao);
@@ -144,7 +144,7 @@ public class CadastroSprintActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        s.setCodProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
+        s.setProjeto(Projeto.getUltimoProjetoUsado());
 
         boolean cadastrou = pc.cadastrar(s);
 

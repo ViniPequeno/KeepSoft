@@ -9,12 +9,13 @@ import java.util.Date;
 
 import nescaupower.br.com.keepsoft.Factory.Factory;
 
-@Entity
 public class Projeto {
-    @PrimaryKey(autoGenerate = true)
-    private long codigo;
+    private Long codigo;
     private String nome;
     private String descricao;
+    private String dataCriacaoFormat;
+    private String dataFinalizacaoFormat;
+    private String dataPrevFinalizacaoFormat;
     private Date dataCriacao;
     private Date dataFinalizacao;
     private Date dataPrevFinalizacao;
@@ -32,33 +33,17 @@ public class Projeto {
         ultimoProjetoUsado = projeto;
     }
 
-    @ForeignKey(
-            entity = Usuario.class,
-            parentColumns = "id",
-            childColumns = "codigo"
-    )
-    private long idUsuario;
+
+    private Usuario usuarioAdm;
 
     public Projeto() {
-        codigo = 0;
-        nome = "";
-        descricao = "";
-        dataCriacao = Calendar.getInstance().getTime();
     }
 
-    public Projeto(long codigo, String nome, String descricao, Date dataCriacao, Date dataFinalizacao) {
-        this.codigo = codigo;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.dataCriacao = dataCriacao;
-        this.dataFinalizacao = dataFinalizacao;
-    }
-
-    public long getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(long codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 
@@ -94,19 +79,43 @@ public class Projeto {
         this.dataFinalizacao = dataFinalizacao;
     }
 
-    public long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
     public Date getDataPrevFinalizacao() {
         return dataPrevFinalizacao;
     }
 
     public void setDataPrevFinalizacao(Date dataPrevFinalizacao) {
         this.dataPrevFinalizacao = dataPrevFinalizacao;
+    }
+
+    public Usuario getUsuarioAdm() {
+        return usuarioAdm;
+    }
+
+    public void setUsuarioAdm(Usuario usuarioAdm) {
+        this.usuarioAdm = usuarioAdm;
+    }
+
+    public String getDataCriacaoFormat() {
+        return dataCriacaoFormat;
+    }
+
+    public void setDataCriacaoFormat(String dataCriacaoFormat) {
+        this.dataCriacaoFormat = dataCriacaoFormat;
+    }
+
+    public String getDataFinalizacaoFormat() {
+        return dataFinalizacaoFormat;
+    }
+
+    public void setDataFinalizacaoFormat(String dataFinalizacaoFormat) {
+        this.dataFinalizacaoFormat = dataFinalizacaoFormat;
+    }
+
+    public String getDataPrevFinalizacaoFormat() {
+        return dataPrevFinalizacaoFormat;
+    }
+
+    public void setDataPrevFinalizacaoFormat(String dataPrevFinalizacaoFormat) {
+        this.dataPrevFinalizacaoFormat = dataPrevFinalizacaoFormat;
     }
 }

@@ -6,37 +6,130 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import java.util.List;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
 
+import java.lang.reflect.Type;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+
+import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 
-@Dao
-public interface SprintDAO {
-    @Query("SELECT * FROM sprint")
-    List<Sprint> getAll();
+public class SprintDAO {
 
-    @Query("SELECT * FROM sprint WHERE codigo IN (:codigos)")
-    List<Sprint> loadAllByIds(int[] codigos);
+    public List<Sprint> getAll(){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/sprint", "Get", null).get();
+            Type type = new TypeToken<List<Sprint>>(){}.getType();
+            List<Sprint> list = (List<Sprint>) new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
 
-    @Query("SELECT * FROM sprint WHERE codigo LIKE :codigo")
-    Sprint findById(long codigo);
+    }
 
-    @Query("SELECT * FROM sprint WHERE titulo LIKE :titulo")
-    Sprint findByName(String titulo);
+    public Sprint findById(long id){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/sprint/"+id, "Get", null).get();
+            Sprint sprint =  new Gson().fromJson(tJson, Sprint.class);
+            return sprint;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    @Query("SELECT * FROM sprint s WHERE s.codProjeto= :codProjeto")
-    List<Sprint> findByProjectID(long codProjeto);
 
-    @Query("SELECT * from Perfil p INNER JOIN Projeto pro ON p.codProjeto = pro.codigo INNER JOIN USUARIO u ON p.idUsuario = u.id where u.id = :id and pro.codigo = :codProjeto")
-    Perfil findPerfilOfSprintUsuario(long id, long codProjeto);
+    public void insertAll(Sprint... sprintes){
+        for(Sprint sprint : sprintes){
+            String tJson = new Gson().toJson(sprint);
+            try {
+                new HttpService().execute("/sprint", "Post", tJson).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-    @Insert
-    void insertAll(Sprint... sprints);
+    public void updateAll(Sprint... sprintes){
+        for(Sprint sprint : sprintes){
+            String tJson = new Gson().toJson(sprint);
+            try {
+                new HttpService().execute("/sprint/"+sprint.getId(), "Put", tJson).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
-    @Update
-    void updateAll(Sprint... sprints);
+    public void delete(Sprint sprint){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/sprint/"+sprint.getId(), "Delete", null).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
 
-    @Delete
-    void delete(Sprint sprint);
+    public Sprint findByName(String titulo){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/sprint/findByTitulo/"+titulo, "Get", null).get();
+            Sprint sprint =  new Gson().fromJson(tJson, Sprint.class);
+            return sprint;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Sprint> findByProjectID(long codProjeto){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/sprint/findByProjectID/"+codProjeto, "Get", null).get();
+            Type type = new TypeToken<List<Sprint>>(){}.getType();
+            List<Sprint> list = (List<Sprint>) new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    public Perfil findPerfilOfSprintUsuario(long id, long codProjeto){
+
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/perfil/findByUserIdAndProjectID/"+codProjeto+"/"+id, "Get", null).get();
+            Perfil perfil =  new Gson().fromJson(tJson, Perfil.class);
+            return perfil;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

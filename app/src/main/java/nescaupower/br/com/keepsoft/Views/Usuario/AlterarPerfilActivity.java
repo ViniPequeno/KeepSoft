@@ -29,7 +29,7 @@ public class AlterarPerfilActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alterar_perfil);
 
-        uc = new UsuarioController(getApplicationContext());
+        uc = new UsuarioController();
 
         //Singleton
         Usuario usuario = Usuario.getUsuarioLogado();

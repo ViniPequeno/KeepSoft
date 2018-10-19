@@ -11,53 +11,37 @@ import java.util.Date;
 
 import nescaupower.br.com.keepsoft.Utils.Converters;
 
-@Entity(indices = {
-        @Index(
-            value = {"codProjeto","idUsuario","perfil"},
-            unique = true)},
-        foreignKeys = {
-        @ForeignKey(
-                entity = Projeto.class,
-                parentColumns = "codigo",
-                childColumns = "codProjeto",
-                onDelete = ForeignKey.CASCADE
-        ),
-        @ForeignKey(
-                entity = Usuario.class,
-                parentColumns = "id",
-                childColumns = "idUsuario"
-        )
-})
-public class Perfil {
-    @PrimaryKey(autoGenerate = true)
-    private long id;
 
-    @TypeConverters({Converters.class})
+public class Perfil {
+    private Long id;
+
     private nescaupower.br.com.keepsoft.Enum.Perfil perfil;
 
+    private String dataInicioFormat;
+    private String dataFimFormat;
     private Date dataInicio;
     private Date dataFim;
 
-    private long codProjeto;
-    private long idUsuario;
+    private Projeto projeto;
+    private Usuario usuario;
 
     public Perfil() {
-        id = 0;
-        dataInicio = Calendar.getInstance().getTime();
     }
 
-    public Perfil(long id, Date dataInicio, Date dataFim) {
-        this.id = id;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public nescaupower.br.com.keepsoft.Enum.Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(nescaupower.br.com.keepsoft.Enum.Perfil perfil) {
+        this.perfil = perfil;
     }
 
     public Date getDataInicio() {
@@ -76,29 +60,36 @@ public class Perfil {
         this.dataFim = dataFim;
     }
 
-    public nescaupower.br.com.keepsoft.Enum.Perfil getPerfil() {
-        return perfil;
+    public Projeto getProjeto() {
+        return projeto;
     }
 
-    public void setPerfil(nescaupower.br.com.keepsoft.Enum.Perfil perfil) {
-        this.perfil = perfil;
+    public void setProjeto(Projeto projeto) {
+        this.projeto = projeto;
     }
 
-    public long getCodProjeto() {
-        return codProjeto;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setCodProjeto(long codProjeto) {
-        this.codProjeto = codProjeto;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public long getIdUsuario() {
-        return idUsuario;
+    public String getDataInicioFormat() {
+        return dataInicioFormat;
     }
 
-    public void setIdUsuario(long idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setDataInicioFormat(String dataInicioFormat) {
+        this.dataInicioFormat = dataInicioFormat;
     }
 
+    public String getDataFimFormat() {
+        return dataFimFormat;
+    }
+
+    public void setDataFimFormat(String dataFimFormat) {
+        this.dataFimFormat = dataFimFormat;
+    }
 }
 

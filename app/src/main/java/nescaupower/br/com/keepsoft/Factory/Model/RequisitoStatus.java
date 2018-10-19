@@ -7,54 +7,37 @@ import android.arch.persistence.room.Index;
 import java.util.Calendar;
 import java.util.Date;
 
-@Entity(indices = {@Index(
-            value = {"codigoRequisito","idStatus"},
-            unique = true)},
-        primaryKeys = {"codigoRequisito", "idStatus"},
-        foreignKeys = {
-        @ForeignKey(
-            entity = Requisito.class,
-            parentColumns = "codigo",
-            childColumns = "codigoRequisito"
-        ),
-        @ForeignKey(
-            entity = Status.class,
-            parentColumns = "id",
-            childColumns = "idStatus"
-        )
-})
 public class RequisitoStatus {
-    private long codigoRequisito;
-    private long idStatus;
+    private Long id;
+    private Requisito codigoRequisito;
+    private Status idStatus;
     private Date dataInicio;
     private Date dataFim;
 
     public RequisitoStatus() {
-        codigoRequisito = 0;
-        idStatus = 0;
-        dataInicio = Calendar.getInstance().getTime();
     }
 
-    public RequisitoStatus(long codigoRequisito, long idStatus, Date dataInicio, Date dataFim) {
-        this.codigoRequisito = codigoRequisito;
-        this.idStatus = idStatus;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
+    public Long getId() {
+        return id;
     }
 
-    public long getCodigoRequisito() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Requisito getCodigoRequisito() {
         return codigoRequisito;
     }
 
-    public void setCodigoRequisito(long codigoRequisito) {
+    public void setCodigoRequisito(Requisito codigoRequisito) {
         this.codigoRequisito = codigoRequisito;
     }
 
-    public long getIdStatus() {
+    public Status getIdStatus() {
         return idStatus;
     }
 
-    public void setIdStatus(long idStatus) {
+    public void setIdStatus(Status idStatus) {
         this.idStatus = idStatus;
     }
 

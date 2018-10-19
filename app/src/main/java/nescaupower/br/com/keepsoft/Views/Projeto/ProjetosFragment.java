@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,7 @@ public class ProjetosFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pc = new ProjetoController(getActivity().getApplicationContext());
+        pc = new ProjetoController();
         projetos = pc.listarPorUsuarioParticipando(Usuario.getUsuarioLogado().getId());
     }
 
@@ -72,7 +73,7 @@ public class ProjetosFragment extends Fragment {
     public void onResume() {
         super.onResume();
         ProjetoRVAdapter adapter = (ProjetoRVAdapter) rv.getAdapter();
-        adapter.setProjetos(projetos = pc.listarPorUsuario(Usuario.getUsuarioLogado().getId()));
+        adapter.setProjetos(projetos = pc.listarPorUsuarioParticipando(Usuario.getUsuarioLogado().getId()));
         adapter.notifyDataSetChanged();
     }
 

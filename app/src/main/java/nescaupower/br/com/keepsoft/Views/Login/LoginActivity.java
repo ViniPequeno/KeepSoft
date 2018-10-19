@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        uc = new UsuarioController(getApplicationContext());
+        uc = new UsuarioController();
 
         login = findViewById(R.id.login);
         senha = findViewById(R.id.senha);

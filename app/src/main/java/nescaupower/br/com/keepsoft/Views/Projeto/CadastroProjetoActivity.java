@@ -50,10 +50,10 @@ public class CadastroProjetoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro_projeto);
         root = findViewById(R.id.teste);
 
-        projetoController = new ProjetoController(getApplicationContext());
-        uc = new UsuarioController(getApplicationContext());
+        projetoController = new ProjetoController();
+        uc = new UsuarioController();
 
-        perfilController = new PerfilController(getApplicationContext());
+        perfilController = new PerfilController();
 
         txtNome = findViewById(R.id.txtNome);
         txtDescricao = findViewById(R.id.txtDescricao);
@@ -114,43 +114,41 @@ public class CadastroProjetoActivity extends AppCompatActivity {
             return;
         }
 
-        novoProjeto.setIdUsuario(Usuario.getUsuarioLogado().getId());
+        //Singleton
+        Usuario usuario = Usuario.getUsuarioLogado();
+        if (usuario == null || usuario.getLogin().equals("")) {
+            SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
+        }
+        novoProjeto.setUsuarioAdm(usuario);
 
-        long cadastrouProjeto = projetoController.cadastrar(novoProjeto);
+        Projeto cadastrouProjeto = projetoController.cadastrar(novoProjeto);
 
-        if (cadastrouProjeto != 0) {
-            Intent i = new Intent(CadastroProjetoActivity.this, PaginaInicialActivity.class);
-            startActivity(i);
-            CadastroProjetoActivity.this.finish();
+        if (cadastrouProjeto != null) {
+
+            Perfil novoPerfil = Factory.startPerfil();
+
+            novoPerfil.setProjeto(cadastrouProjeto);
+            novoPerfil.setDataInicio(novoProjeto.getDataCriacao());
+            novoPerfil.setUsuario(usuario);
+            novoPerfil.setPerfil(nescaupower.br.com.keepsoft.Enum.Perfil.SCRUM_MASTER);
+            boolean cadastrouPerfil = perfilController.cadastrar(novoPerfil);
+
+            if (cadastrouPerfil) {
+                Intent i = new Intent(CadastroProjetoActivity.this, PaginaInicialActivity.class);
+                startActivity(i);
+                CadastroProjetoActivity.this.finish();
+            } else {
+                Toast.makeText(this, "Não foi possível criar Perfil", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
         } else {
             Toast.makeText(this, "Projeto já existe", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        Perfil novoPerfil = Factory.startPerfil();
 
-        novoPerfil.setCodProjeto(novoProjeto.getCodigo());
-        novoPerfil.setDataInicio(novoProjeto.getDataCriacao());
-        //Singleton
-        Usuario usuario;
-        usuario = Usuario.getUsuarioLogado();
-        if (usuario == null || usuario.getLogin().equals("")) {
-            SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-            usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
-        }
-        novoPerfil.setIdUsuario(usuario.getId());
-        novoPerfil.setCodProjeto(cadastrouProjeto);
-        novoPerfil.setPerfil(nescaupower.br.com.keepsoft.Enum.Perfil.SCRUM_MASTER);
-        boolean cadastrouPerfil = perfilController.cadastrar(novoPerfil);
-
-        if (cadastrouPerfil) {
-            Intent i = new Intent(CadastroProjetoActivity.this, PaginaInicialActivity.class);
-            startActivity(i);
-            CadastroProjetoActivity.this.finish();
-        } else {
-            Toast.makeText(this, "Não foi possível criar Perfil", Toast.LENGTH_SHORT).show();
-            return;
-        }
     }
 
 }

@@ -52,7 +52,7 @@ public class PesquisarUsuarioCursorAdapter extends CursorAdapter {
                 searchView.setIconified(true);
                 Toast.makeText(context, "ID usuário: " + id,
                         Toast.LENGTH_LONG).show();
-                Usuario u = new UsuarioController(context).procurarPorID(id);
+                Usuario u = new UsuarioController().procurarPorID(id);
                 rvAdapter.add(u);
             }
         });

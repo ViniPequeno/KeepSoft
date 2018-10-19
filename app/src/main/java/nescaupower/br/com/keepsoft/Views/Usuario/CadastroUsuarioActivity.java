@@ -28,7 +28,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_usuario);
 
-        uc = new UsuarioController(getApplicationContext());
+        uc = new UsuarioController();
 
         txtLogin = findViewById(R.id.txtLogin);
         txtNome = findViewById(R.id.txtNome);

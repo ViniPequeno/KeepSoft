@@ -42,8 +42,8 @@ public class DetalhesSprintActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalhes_sprint);
 
 
-        uc = new UsuarioController(getApplicationContext());
-        sc = new SprintController(getApplicationContext());
+        uc = new UsuarioController();
+        sc = new SprintController();
 
         //Singleton
         usuario = Usuario.getUsuarioLogado();
@@ -52,7 +52,7 @@ public class DetalhesSprintActivity extends AppCompatActivity {
             usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
         }
 
-        sprint = new SprintController(getApplicationContext()).procurarPorCodigo(getIntent().getLongExtra("EXTRA_CODIGO_SPRINT", 0));
+        sprint = new SprintController().procurarPorCodigo(getIntent().getLongExtra("EXTRA_CODIGO_SPRINT", 0));
         if (sprint == null) {
             this.finish();
         }
@@ -123,7 +123,8 @@ public class DetalhesSprintActivity extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
                     usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
                 }
-                if (txtSenha.getText().toString().equals(usuario.getSenha())) {
+
+                if (uc.realizarLogin(usuario.getLogin(), txtSenha.getText().toString()) != null) {
                     boolean deletou = sc.deletar(sprint);
                     if (deletou) {
                         DetalhesSprintActivity.this.finish();

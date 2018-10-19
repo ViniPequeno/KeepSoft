@@ -13,62 +13,64 @@ import nescaupower.br.com.keepsoft.Utils.Converters;
 /**
  * Created by Aluno on 28/09/2018.
  */
-@Entity(indices = {@Index(
-        value = {"destinatarioId", "codProjeto"},
-            unique = true)},
-        primaryKeys = {"destinatarioId", "codProjeto"},
-        foreignKeys = {
-            @ForeignKey(
-                entity = Usuario.class,
-                parentColumns = "id",
-                childColumns = "destinatarioId"),
-            @ForeignKey(
-                entity = Projeto.class,
-                parentColumns = "codigo",
-                childColumns = "codProjeto")})
+
 public class Convite {
-    @TypeConverters({Converters.class})
-    Perfil funcao;
-    private long remetenteId;
-    private long destinatarioId;
-    private long codProjeto;
+    private Long id;
+    private Perfil funcao;
+    private Usuario remetenteId;
+    private Usuario destinatarioId;
+    private Projeto codProjeto;
+    private String dataFormat;
     private Date data;
 
     public Convite() {
-        remetenteId = 0;
-        destinatarioId = 0;
-        codProjeto = 0;
     }
 
-    public Convite(long remetenteId, long destinatarioId, long codProjeto, Date data, Perfil funcao) {
-        this.remetenteId = remetenteId;
-        this.destinatarioId = destinatarioId;
-        this.codProjeto = codProjeto;
-        this.data = data;
+    public String getDataFormat() {
+        return dataFormat;
+    }
+
+    public void setDataFormat(String dataFormat) {
+        this.dataFormat = dataFormat;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Perfil getFuncao() {
+        return funcao;
+    }
+
+    public void setFuncao(Perfil funcao) {
         this.funcao = funcao;
     }
 
-    public long getRemetenteId() {
-        return remetenteId;
+    public Long getRemetenteId() {
+        return remetenteId.getId();
     }
 
-    public void setRemetenteId(long remetenteId) {
+    public void setRemetenteId(Usuario remetenteId) {
         this.remetenteId = remetenteId;
     }
 
-    public long getDestinatarioId() {
-        return destinatarioId;
+    public Long getDestinatarioId() {
+        return destinatarioId.getId();
     }
 
-    public void setDestinatarioId(long destinatarioId) {
+    public void setDestinatarioId(Usuario destinatarioId) {
         this.destinatarioId = destinatarioId;
     }
 
-    public long getCodProjeto() {
-        return codProjeto;
+    public Long getCodProjeto() {
+        return codProjeto.getCodigo();
     }
 
-    public void setCodProjeto(long codProjeto) {
+    public void setCodProjeto(Projeto codProjeto) {
         this.codProjeto = codProjeto;
     }
 
@@ -78,13 +80,5 @@ public class Convite {
 
     public void setData(Date data) {
         this.data = data;
-    }
-
-    public Perfil getFuncao() {
-        return funcao;
-    }
-
-    public void setFuncao(Perfil funcao) {
-        this.funcao = funcao;
     }
 }

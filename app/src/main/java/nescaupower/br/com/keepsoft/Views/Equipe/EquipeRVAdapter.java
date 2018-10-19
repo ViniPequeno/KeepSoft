@@ -39,8 +39,8 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
         this.perfis = perfis;
         this.mListener = listener;
         this.context = context;
-        this.uc = new UsuarioController(context);
-        this.pc = new PerfilController(context);
+        this.uc = new UsuarioController();
+        this.pc = new PerfilController();
         this.projeto = Projeto.getUltimoProjetoUsado();
 
         //Singleton
@@ -63,7 +63,7 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
         holder.mItem = perfis.get(position);
-        final Usuario usuario = uc.procurarPorID(holder.mItem.getIdUsuario());
+        final Usuario usuario = uc.procurarPorID(holder.mItem.getUsuario().getId());
 
         holder.lblNome.setText(usuario.getLogin());
         holder.lblFuncao.setText(perfis.get(position).getPerfil().toString());

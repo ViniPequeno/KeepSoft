@@ -8,36 +8,21 @@ import nescaupower.br.com.keepsoft.Enum.Dificuldade;
 import nescaupower.br.com.keepsoft.Enum.Prioridade;
 import nescaupower.br.com.keepsoft.Utils.Converters;
 
-@Entity
 public class Requisito {
-    @PrimaryKey
-    private long codigo;
+    private Long codigo;
     private String nome;
     private String descricao;
-    @TypeConverters({Converters.class})
     private Prioridade prioridade;
-    @TypeConverters({Converters.class})
     private Dificuldade dificuldade;
 
     public Requisito() {
-        codigo=0;
-        nome="";
-        descricao="";
     }
 
-    public Requisito(long codigo, String nome, String descricao, Prioridade prioridade, Dificuldade dificuldade) {
-        this.codigo = codigo;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.prioridade = prioridade;
-        this.dificuldade = dificuldade;
-    }
-
-    public long getCodigo() {
+    public Long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(long codigo) {
+    public void setCodigo(Long codigo) {
         this.codigo = codigo;
     }
 
@@ -57,11 +42,19 @@ public class Requisito {
         this.descricao = descricao;
     }
 
-    public Prioridade getPrioridade() {return prioridade;}
+    public Prioridade getPrioridade() {
+        return prioridade;
+    }
 
-    public void setPrioridade(Prioridade prioridade) {this.prioridade = prioridade;}
+    public void setPrioridade(Prioridade prioridade) {
+        this.prioridade = prioridade;
+    }
 
-    public Dificuldade getDificuldade() {return dificuldade;}
+    public Dificuldade getDificuldade() {
+        return dificuldade;
+    }
 
-    public void setDificuldade(Dificuldade dificuldade) {this.dificuldade = dificuldade;}
+    public void setDificuldade(Dificuldade dificuldade) {
+        this.dificuldade = dificuldade;
+    }
 }

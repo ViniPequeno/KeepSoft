@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 import java.util.List;
@@ -33,8 +34,8 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
     public NotificacaoRVAdapter(Context c, List<Object> notificacoes) {
         this.context = c;
         this.notificacoes = notificacoes;
-        pc = new ProjetoController(c);
-        uc = new UsuarioController(c);
+        pc = new ProjetoController();
+        uc = new UsuarioController();
     }
 
     @Override
@@ -47,11 +48,11 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Resources res = context.getResources();
-        holder.mItem = notificacoes.get(position);
+        holder.mItem = notificacoes.get(holder.getAdapterPosition());
         //Se o item da lista for um convite
-        if (notificacoes.get(position) instanceof Convite) {
+        if (notificacoes.get(holder.getAdapterPosition()) instanceof Convite) {
             holder.lblTitulo.setText(R.string.invitation);
-            Convite convite = (Convite) notificacoes.get(position);
+            Convite convite = (Convite) notificacoes.get(holder.getAdapterPosition());
             Usuario remetente = uc.procurarPorID(convite.getRemetenteId());
             Projeto projeto = pc.procurarPorCodigo(convite.getCodProjeto());
 
@@ -93,11 +94,11 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
                 holder.lblData.setText(tempoFormatado);
             }
 
-            holder.btnDelete.setOnClickListener(view -> apagarConvite(position, convite));
+            holder.btnDelete.setOnClickListener(view -> apagarConvite(holder.getAdapterPosition(), convite));
 
-            holder.btnRecusar.setOnClickListener(view -> apagarConvite(position, convite));
+            holder.btnRecusar.setOnClickListener(view -> apagarConvite(holder.getAdapterPosition(), convite));
 
-            holder.btnAceitar.setOnClickListener(view -> aceitarConvite(position, convite));
+            holder.btnAceitar.setOnClickListener(view -> aceitarConvite(holder.getAdapterPosition(), convite));
         }
     }
 
@@ -107,14 +108,15 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
         notifyItemRemoved(position);
 
         //Apagar o convite do banco
-        ConviteController cc = new ConviteController(context);
+        ConviteController cc = new ConviteController();
         cc.deletar(cc.procurarPorID(convite.getDestinatarioId(), convite.getCodProjeto()));
 
         //Atualizar perfil correspondente ao projeto
-        PerfilController pc = new PerfilController(context);
+        PerfilController pc = new PerfilController();
         Perfil perfil = pc.procurarPorProjetoUsuario(convite.getCodProjeto(), convite.getDestinatarioId());
         perfil.setDataInicio(new Date());
         pc.atualizar(perfil);
+        Toast.makeText(context, "3", Toast.LENGTH_SHORT).show();
     }
 
     private void apagarConvite(int position, Convite convite) {
@@ -123,11 +125,11 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
         notifyItemRemoved(position);
 
         //Apagar o convite do banco
-        ConviteController cc = new ConviteController(context);
+        ConviteController cc = new ConviteController();
         cc.deletar(cc.procurarPorID(convite.getDestinatarioId(), convite.getCodProjeto()));
 
         //Apagar perfil do banco
-        PerfilController pc = new PerfilController(context);
+        PerfilController pc = new PerfilController();
         pc.deletar(pc.procurarPorProjetoUsuario(convite.getCodProjeto(), convite.getDestinatarioId()));
     }
 

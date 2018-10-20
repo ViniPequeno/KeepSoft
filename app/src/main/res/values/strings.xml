@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources>
+    <string name="accept">Accept</string>
+
     <string name="action_delete">Delete</string>
     <string name="action_edit">Edit</string>
     <string name="action_settings">Settings</string>
@@ -14,6 +16,7 @@
     <string name="button">Button</string>
 
     <string name="cancel">Cancel</string>
+    <string name="cancel_invitation">Cancel Invitation</string>
 
     <string name="change">Change</string>
     <string name="change_password">Change Password</string>
@@ -28,6 +31,8 @@
         <item quantity="many">%1$d days ago</item>
         <item quantity="other">%1$d days ago</item>
     </plurals>
+
+    <string name="decline">Decline</string>
 
     <string name="description">Description</string>
 
@@ -97,8 +102,8 @@
     <string name="role">Role</string>
 
     <string-array name="scrum_roles_array">
-        <item>Scrum Master</item>
         <item>Scrum Team</item>
+        <item>Scrum Master</item>
         <item>Product Owner</item>
     </string-array>
 
@@ -119,6 +124,7 @@
     <string name="title_activity_alterar_perfil_senha">Change Password</string>
     <string name="title_activity_cadastro_projeto">New Project</string>
     <string name="title_activity_cadastro_sprint">New Sprint</string>
+    <string name="title_activity_detalhes_membro">Member Details</string>
     <string name="title_activity_editar_projeto">Edit Project</string>
     <string name="title_notifications">Notifications</string>
 
@@ -133,8 +139,8 @@
     </plurals>
 
     <string name="wrong_login_password">Wrong login or passwords</string>
-    <string name="accept">Accept</string>
-    <string name="decline">Decline</string>
-    <string name="title_activity_detalhes_membro">Member Details</string>
-    <string name="cancel_invitation">Cancel Invitation</string>
+    <string name="sprints" translatable="false">Sprints</string>
+    <string name="tasks">Tasks</string>
+    <string name="team">Team</string>
+    <string name="leave">Leave</string>
 </resources>

@@ -50,15 +50,15 @@ public class PesquisarUsuarioRVAdapter extends RecyclerView.Adapter<PesquisarUsu
         holder.lblLogin.setText(holder.mItem.getLogin());
         holder.lblNome.setText(holder.mItem.getNome());
         holder.btnDelete.setOnClickListener((View view) -> {
-            Usuario usuarioRemovido = usuarios.get(position);
+            Usuario usuarioRemovido = usuarios.get(holder.getAdapterPosition());
             usuarios.remove(usuarioRemovido);
-            notifyItemRemoved(position);
+            notifyItemRemoved(holder.getAdapterPosition());
         });
         funcoesUsuarios.add(holder.spinFuncao.getSelectedItemPosition());
         holder.spinFuncao.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                funcoesUsuarios.set(position, i);
+                funcoesUsuarios.set(holder.getAdapterPosition(), i);
             }
 
             @Override
@@ -72,9 +72,9 @@ public class PesquisarUsuarioRVAdapter extends RecyclerView.Adapter<PesquisarUsu
         int indexFuncao = funcoesUsuarios.get(position);
         switch (indexFuncao) {
             case 0:
-                return Perfil.SCRUM_MASTER;
-            case 1:
                 return Perfil.TEAM;
+            case 1:
+                return Perfil.SCRUM_MASTER;
             default:
                 return Perfil.PRODUCT_OWNER;
         }
@@ -95,7 +95,7 @@ public class PesquisarUsuarioRVAdapter extends RecyclerView.Adapter<PesquisarUsu
         if (texto.length() == 0) {
             //usuarios.addAll(arraylist);
         } else {
-            usuarios = uc.listarUsuariosCursor(texto, new Long(0));
+            usuarios = uc.listarUsuariosCursor(texto, 0L);
         }
         notifyDataSetChanged();
     }

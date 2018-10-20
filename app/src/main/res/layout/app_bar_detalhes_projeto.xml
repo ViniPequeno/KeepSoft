@@ -9,4 +9,4 @@
     android:theme="@style/MyToolbarTheme"
     app:layout_collapseMode="pin"
     app:layout_scrollFlags="scroll|enterAlways"
-    app:title="@string/app_name"></android.support.v7.widget.Toolbar>
+    app:title="@string/app_name" />

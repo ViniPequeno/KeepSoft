@@ -30,23 +30,20 @@ import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment;
 import nescaupower.br.com.keepsoft.Views.Sprint.SprintFragment;
 import nescaupower.br.com.keepsoft.Views.TabAdapter;
 import nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment;
-import nescaupower.br.com.keepsoft.Views.Usuario.CadastroUsuarioActivity;
 
 public class DetalhesProjetoActivity extends AppCompatActivity implements
         SprintFragment.OnListFragmentInteractionListener,
         TarefaFragment.OnListFragmentInteractionListener,
         EquipeFragment.OnListFragmentInteractionListener {
 
-    private TabAdapter adpater;
+    private TabAdapter tabAdapter;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private Toolbar toolbar;
 
     private Projeto projeto;
-    private Usuario usuario;
     private Perfil perfil;
 
-    private int indexProjeto;
     private String nomeProjeto;
 
     @Override
@@ -59,9 +56,6 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         SharedPreferences.Editor editor;
         editor = sharedPreferences.edit();
 
-        //Posição do projeto seleciado na lista de projetos
-        indexProjeto = getIntent().getIntExtra("EXTRA_INDEX_PROJETO", -1);
-
         ProjetoController pc = new ProjetoController();
         projeto = pc.procurarPorCodigo(getIntent().getLongExtra("EXTRA_CODIGO_PROJETO", 0));
         if (projeto == null) {
@@ -70,26 +64,40 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
 
         editor.putBoolean(Settings.PROJETO, true);
         editor.putLong(Settings.ID_PROJETO, projeto.getCodigo());
-        editor.commit();
+        editor.apply();
 
         //Singleton
         Factory.setProjetoLogado(projeto);
 
-        viewPager = findViewById(R.id.fragmentContainer);
-        tabLayout = findViewById(R.id.tabLayout);
-        adpater = new TabAdapter(getSupportFragmentManager());
+        nomeProjeto = projeto.getNome();
+
         toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(nomeProjeto);
         setSupportActionBar(toolbar);
 
-        adpater.addFragment(new SprintFragment(), "Sprint");
-        adpater.addFragment(new TarefaFragment(), "Tarefas");
-        adpater.addFragment(new EquipeFragment(), "Equipe");
+        tabLayout = findViewById(R.id.tabLayout);
+        viewPager = findViewById(R.id.fragmentContainer);
 
-        viewPager.setAdapter(adpater);
-        tabLayout.setupWithViewPager(viewPager);
+        tabAdapter = new TabAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(tabAdapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        nomeProjeto = projeto.getNome();
-        getSupportActionBar().setTitle(nomeProjeto);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         perfil = new PerfilController().procurarPorProjetoUsuario(projeto.getCodigo(), Usuario.getUsuarioLogado().getId());
         Toast.makeText(this, perfil.getPerfil().toString(), Toast.LENGTH_SHORT).show();
@@ -110,7 +118,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        Intent intent = null;
+        Intent intent;
         UsuarioController uc;
         uc = new UsuarioController();
 
@@ -122,7 +130,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_editar) {
-            if (projeto.getUsuarioAdm().getId() == usuario.getId()) {
+            if (projeto.getUsuarioAdm().getId().equals(usuario.getId())) {
                 intent = new Intent(DetalhesProjetoActivity.this, EditarProjetoActivity.class);
                 startActivity(intent);
             } else {

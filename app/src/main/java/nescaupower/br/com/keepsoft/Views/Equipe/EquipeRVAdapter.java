@@ -67,6 +67,9 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
 
         holder.lblNome.setText(usuario.getLogin());
         holder.lblFuncao.setText(perfis.get(position).getPerfil().toString());
+        if (holder.mItem.getDataInicio() == null) {
+            holder.lblObs.setText("");
+        }
 
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {

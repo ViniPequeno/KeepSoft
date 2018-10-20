@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -69,9 +70,9 @@ public class DetalhesMembroActivity extends AppCompatActivity {
                     //Apagar convite da lista
                     //perfis.remove(holder.getAdapterPosition());
                     //notifyItemRemoved(holder.getAdapterPosition());
-
+                    Log.e("seila123", "oi+ "+perfil.getDataInicioFormat()+"+oi");
                     //Apagar o convite do banco
-                    if (perfil.getDataInicio() == null) {
+                    if (!perfil.getDataInicioFormat().equals(" ")) {
                         ConviteController cc = new ConviteController();
                         cc.deletar(cc.procurarPorID(perfil.getUsuario().getId(), perfil.getProjeto().getCodigo()));
                     }

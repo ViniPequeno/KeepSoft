@@ -1,40 +1,38 @@
 package nescaupower.br.com.keepsoft.Views;
 
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
+import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment;
+import nescaupower.br.com.keepsoft.Views.Sprint.SprintFragment;
+import nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment;
 
-public class TabAdapter extends FragmentStatePagerAdapter {
+public class TabAdapter extends FragmentPagerAdapter {
 
-    private final List<Fragment> mFragmentList = new ArrayList<>();
-    private final List<String> mFragmentTitleList = new ArrayList<>();
+    private int numOfTabs;
 
-    public TabAdapter(FragmentManager fm) {
+    public TabAdapter(FragmentManager fm, int numOfTabs) {
         super(fm);
+        this.numOfTabs = numOfTabs;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return mFragmentList.get(position);
-    }
-
-    public void addFragment(Fragment fragment, String title) {
-        mFragmentList.add(fragment);
-        mFragmentTitleList.add(title);
-    }
-
-    @Nullable
-    @Override
-    public CharSequence getPageTitle(int position) {
-        return mFragmentTitleList.get(position);
+        switch (position) {
+            case 0:
+                return new SprintFragment();
+            case 1:
+                return new TarefaFragment();
+            case 2:
+                return new EquipeFragment();
+            default:
+                return null;
+        }
     }
 
     @Override
     public int getCount() {
-        return mFragmentList.size();
+        return numOfTabs;
     }
 }

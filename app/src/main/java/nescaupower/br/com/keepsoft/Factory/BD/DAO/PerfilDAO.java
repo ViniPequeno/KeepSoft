@@ -1,11 +1,5 @@
 package nescaupower.br.com.keepsoft.Factory.BD.DAO;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
-
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -19,11 +13,11 @@ import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 public class PerfilDAO {
 
     public List<Perfil> getAll(){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/perfil", "Get", null).get();
             Type type = new TypeToken<List<Perfil>>(){}.getType();
-            List<Perfil> list = (List<Perfil>) new Gson().fromJson(tJson, type);
+            List<Perfil> list = new Gson().fromJson(tJson, type);
             return list;
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -35,7 +29,7 @@ public class PerfilDAO {
     }
 
     public Perfil findById(Long id){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/perfil/"+id, "Get", null).get();
             Perfil perfil =  new Gson().fromJson(tJson, Perfil.class);
@@ -49,8 +43,8 @@ public class PerfilDAO {
     }
 
 
-    public void insertAll(Perfil... perfiles){
-        for(Perfil perfil : perfiles){
+    public void insertAll(Perfil... perfis) {
+        for (Perfil perfil : perfis) {
             String tJson = new Gson().toJson(perfil);
             try {
                 new HttpService().execute("/perfil", "Post", tJson).get();
@@ -62,8 +56,8 @@ public class PerfilDAO {
         }
     }
 
-    public void updateAll(Perfil... perfiles){
-        for(Perfil perfil : perfiles){
+    public void updateAll(Perfil... perfis) {
+        for (Perfil perfil : perfis) {
             String tJson = new Gson().toJson(perfil);
             try {
                 new HttpService().execute("/perfil/"+perfil.getId(), "Put", tJson).get();
@@ -90,11 +84,11 @@ public class PerfilDAO {
 
 
     public List<Perfil> findByProjectID(Long codProjeto){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/perfil/findByProjeto/"+codProjeto, "Get", null).get();
             Type type = new TypeToken<List<Perfil>>(){}.getType();
-            List<Perfil> list = (List<Perfil>) new Gson().fromJson(tJson, type);
+            List<Perfil> list = new Gson().fromJson(tJson, type);
             return list;
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -107,7 +101,7 @@ public class PerfilDAO {
 
 
     public Perfil findByUserIdAndProjectID(Long codProjeto, Long idUsuario){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/perfil/findByUserIdAndProjectID/"+codProjeto+"/"+idUsuario, "Get", null).get();
             Perfil perfil =  new Gson().fromJson(tJson, Perfil.class);

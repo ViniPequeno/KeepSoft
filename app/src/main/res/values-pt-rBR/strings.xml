@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="accept">Aceitar</string>
+
     <string name="action_delete">Excluir</string>
     <string name="action_edit">Editar</string>
     <string name="action_settings">Configurações</string>
@@ -14,6 +16,7 @@
     <string name="button">Botão</string>
 
     <string name="cancel">Cancelar</string>
+    <string name="cancel_invitation">Cancelar Convite</string>
 
     <string name="change">Alterar</string>
     <string name="change_password">Alterar Senha</string>
@@ -25,9 +28,10 @@
 
     <plurals name="days">
         <item quantity="one" tools:ignore="ImpliedQuantity">Ontem</item>
-        <item quantity="many">Há %1$d dias</item>
         <item quantity="other">Há %1$d dias</item>
     </plurals>
+
+    <string name="decline">Recusar</string>
 
     <string name="description">Descrição</string>
 
@@ -42,7 +46,6 @@
 
     <plurals name="hours">
         <item quantity="one">Há %1$d hora</item>
-        <item quantity="many">Há %1$d horas</item>
         <item quantity="other">Há %1$d horas</item>
     </plurals>
 
@@ -51,7 +54,7 @@
 
     <string name="invite_member">Convidar Membro</string>
 
-    <string name="log_out">Sair</string>
+    <string name="log_out">Sair da conta</string>
 
     <string name="login">Login</string>
 
@@ -59,14 +62,11 @@
 
     <plurals name="minutes">
         <item quantity="one">Há %1$d minuto</item>
-        <item quantity="few">Há alguns minutos</item>
-        <item quantity="many">Há %1$d minutos</item>
         <item quantity="other">Há %1$d minutos</item>
     </plurals>
 
     <plurals name="months">
         <item quantity="one">Há %1$d mês</item>
-        <item quantity="many">Há %1$d meses</item>
         <item quantity="other">Há %1$d meses</item>
     </plurals>
 
@@ -96,6 +96,12 @@
 
     <string name="role">Função</string>
 
+    <string-array name="scrum_roles_array">
+        <item>Scrum Team</item>
+        <item>Scrum Master</item>
+        <item>Product Owner</item>
+    </string-array>
+
     <string name="seconds">Há %1$d segundos</string>
 
     <string name="sign_in">Entrar</string>
@@ -113,6 +119,7 @@
     <string name="title_activity_alterar_perfil_senha">Alterar Senha</string>
     <string name="title_activity_cadastro_projeto">Novo Projeto</string>
     <string name="title_activity_cadastro_sprint">Novo Sprint</string>
+    <string name="title_activity_detalhes_membro">Detalhes do Memebro</string>
     <string name="title_activity_editar_projeto">Editar Projeto</string>
     <string name="title_notifications">Notificações</string>
 
@@ -122,13 +129,11 @@
 
     <plurals name="weeks">
         <item quantity="one">Há %1$d semana</item>
-        <item quantity="many">Há %1$d semanas</item>
         <item quantity="other">Há %1$d semanas</item>
     </plurals>
 
     <string name="wrong_login_password">Login ou senha incorretos</string>
-    <string name="accept">Aceitar</string>
-    <string name="decline">Recusar</string>
-    <string name="title_activity_detalhes_membro">Detalhes do Memebro</string>
-    <string name="cancel_invitation">Cancelar Convite</string>
+    <string name="tasks">Tarefas</string>
+    <string name="team">Equipe</string>
+    <string name="leave">Sair do projeto</string>
 </resources>

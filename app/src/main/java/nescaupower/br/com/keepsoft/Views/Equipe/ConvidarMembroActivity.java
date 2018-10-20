@@ -1,17 +1,13 @@
 package nescaupower.br.com.keepsoft.Views.Equipe;
 
-import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.SearchView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -52,10 +48,9 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
         btnEnivarConvite = findViewById(R.id.btnEnviarConvite);
 
         UsuarioController uc = new UsuarioController();
-        List<Usuario> list = uc.listarUsuariosCursor(" ", new Long(0));
+        List<Usuario> list = uc.listarUsuariosCursor(" ", 0L);
 
         rvAdapter = new PesquisarUsuarioRVAdapter(usuarios, ConvidarMembroActivity.this);
-
 
         searchViewAdapter = new PesquisarUsuarioCursorAdapter(ConvidarMembroActivity.this, getCursor(list), txtPesquisarUsuario, rvAdapter);
 

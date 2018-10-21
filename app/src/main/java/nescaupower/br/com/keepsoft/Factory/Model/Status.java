@@ -7,9 +7,17 @@ public class Status {
     private Long id;
     private String nome;
     private String descricao;
+    private Projeto projeto;
 
-    public Status(Long id) {
-        this.id = id;
+    public Projeto getProjeto() {
+        return projeto;
+    }
+
+    public void setProjeto(Projeto projeto) {
+        this.projeto = projeto;
+    }
+
+    public Status() {
     }
 
     public Long getId() {

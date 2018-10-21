@@ -1,9 +1,4 @@
-package nescaupower.br.com.keepsoft.Factory.BD.DAO;
-
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
+package nescaupower.br.com.keepsoft.Controller;
 
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -15,7 +10,24 @@ import java.util.concurrent.ExecutionException;
 import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
 import nescaupower.br.com.keepsoft.Factory.Model.Status;
 
-public class StatusDAO {
+public class StatusController {
+
+
+
+    public List<Status> getAllFindByProjeto(Long projetoId){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/status/findByProjeto/"+projetoId, "Get", null).get();
+            Type type = new TypeToken<List<Status>>(){}.getType();
+            List<Status> list = (List<Status>) new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public List<Status> getAll(){
         String tJson = null;
@@ -30,7 +42,6 @@ public class StatusDAO {
             e.printStackTrace();
         }
         return null;
-
     }
 
     public Status findByID(long id){
@@ -48,11 +59,11 @@ public class StatusDAO {
     }
 
 
-    void insertAll(Status... statuses){
+    public void insertAll(Status... statuses){
         for(Status status : statuses){
             String tJson = new Gson().toJson(status);
             try {
-                new HttpService().execute("api/status", "Post", tJson).get();
+                new HttpService().execute("/status", "Post", tJson).get();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -61,11 +72,11 @@ public class StatusDAO {
         }
     }
 
-    void updateAll(Status... statuses){
+    public void updateAll(Status... statuses){
         for(Status status : statuses){
             String tJson = new Gson().toJson(status);
             try {
-                new HttpService().execute("api/status/"+status.getId(), "Put", tJson).get();
+                new HttpService().execute("/status/"+status.getId(), "Put", tJson).get();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -74,7 +85,7 @@ public class StatusDAO {
         }
     }
 
-    void delete(Status status){
+    public void delete(Status status){
         String tJson = null;
         try {
             tJson = new HttpService().execute("/status/"+status.getId(), "Delete", null).get();

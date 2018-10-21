@@ -28,6 +28,7 @@ import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Equipe.DetalhesMembroActivity;
 import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment;
 import nescaupower.br.com.keepsoft.Views.Sprint.SprintFragment;
+import nescaupower.br.com.keepsoft.Views.Status.StatusActivity;
 import nescaupower.br.com.keepsoft.Views.TabAdapter;
 import nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment;
 
@@ -139,6 +140,14 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         }
         if (id == R.id.action_excluir) {
             showDialogDigitarSenha();
+        }
+        if(id == R.id.action_status){
+            if (projeto.getUsuarioAdm().getId().equals(usuario.getId())) {
+                intent = new Intent(DetalhesProjetoActivity.this, StatusActivity.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "Você não tem permissão", Toast.LENGTH_SHORT).show();
+            }
         }
         return super.onOptionsItemSelected(item);
     }

@@ -155,7 +155,7 @@ public class UsuarioDAO {
     public void delete(Usuario usuario){
         String tJson = null;
         try {
-            tJson = new HttpService().execute("/usuarios/"+usuario.getId(), "Get", null).get();
+            tJson = new HttpService().execute("/usuarios/"+usuario.getId(), "Delete", null).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

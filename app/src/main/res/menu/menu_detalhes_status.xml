@@ -4,21 +4,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity">
     <item
-        android:id="@+id/action_editar"
+        android:id="@+id/action_editar_status"
         android:icon="@drawable/ic_edit_black_24dp"
         android:orderInCategory="100"
         android:title="@string/action_edit"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_excluir"
+        android:id="@+id/action_excluir_status"
         android:icon="@drawable/ic_delete_black_24dp"
         android:orderInCategory="100"
         android:title="@string/action_delete"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/action_status"
-        android:icon="@drawable/ic_add_black_24dp"
-        android:orderInCategory="100"
-        android:title="@string/action_status"
         app:showAsAction="never" />
 </menu>

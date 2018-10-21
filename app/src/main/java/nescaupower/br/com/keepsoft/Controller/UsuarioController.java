@@ -19,9 +19,6 @@ public class UsuarioController {
         usuarioDAO = new UsuarioDAO();
     }
 
-    public void inserir(Usuario... usuarios) {
-        usuarioDAO.insertAll(usuarios);
-    }
 
     public void atualizar(Usuario... usuarios) {
         usuarioDAO.updateAll(usuarios);
@@ -76,4 +73,6 @@ public class UsuarioController {
     public String getMensagem(){
         return this.mensagem;
     }
+
+    public void delete(Usuario usuario){usuarioDAO.delete(usuario);}
 }

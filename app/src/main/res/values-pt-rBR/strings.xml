@@ -4,10 +4,12 @@
 
     <string name="action_delete">Excluir</string>
     <string name="action_edit">Editar</string>
+    <string name="action_status">Status</string>
     <string name="action_settings">Configurações</string>
 
     <string name="add_project">Adicionar Projeto</string>
     <string name="add_sprint">Adicionar Sprint</string>
+    <string name="add_status">Adicionar Status</string>
     <string name="add_task">Adicionar Tarefa</string>
 
     <string name="app_database">Banquinho</string>
@@ -39,6 +41,7 @@
 
     <string name="edit_profile">Editar Perfil</string>
     <string name="edit_sprint">Editar Sprint</string>
+    <string name="edit_status">Editar Status</string>
 
     <string name="email">Email</string>
 
@@ -117,6 +120,7 @@
     <string name="title">Título</string>
     <string name="title_activity_alterar_perfil">Alterar Informações Pessoais</string>
     <string name="title_activity_alterar_perfil_senha">Alterar Senha</string>
+    <string name="title_activity_deletar_conta">Deletar usuário</string>
     <string name="title_activity_cadastro_projeto">Novo Projeto</string>
     <string name="title_activity_cadastro_sprint">Novo Sprint</string>
     <string name="title_activity_detalhes_membro">Detalhes do Memebro</string>

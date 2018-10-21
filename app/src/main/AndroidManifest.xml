@@ -21,7 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Views.Usuario.PaginaInicialActivity"
+        <activity
+            android:name=".Views.Usuario.PaginaInicialActivity"
             android:launchMode="singleTask" />
         <activity
             android:name=".Views.Login.LoginActivity"
@@ -74,7 +75,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity" />
         </activity>
-        <activity android:name=".Views.Equipe.ConvidarMembroActivity"
+        <activity
+            android:name=".Views.Equipe.ConvidarMembroActivity"
             android:parentActivityName=".Views.Projeto.DetalhesProjetoActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -90,6 +92,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity" />
         </activity>
+        <activity android:name=".Views.Status.StatusActivity" />
+        <activity android:name=".Views.Status.DetalhesStatus" />
+        <activity android:name=".Views.Status.CadastrarStatus" />
+        <activity android:name=".Views.Status.EditarStatus"></activity>
     </application>
 
 </manifest>

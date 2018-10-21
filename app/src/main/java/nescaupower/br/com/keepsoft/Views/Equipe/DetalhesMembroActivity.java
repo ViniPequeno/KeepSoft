@@ -1,15 +1,20 @@
 package nescaupower.br.com.keepsoft.Views.Equipe;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.ConviteController;
 import nescaupower.br.com.keepsoft.Controller.PerfilController;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
@@ -55,12 +60,21 @@ public class DetalhesMembroActivity extends AppCompatActivity {
 
         setLabelsContent();
 
+        //Singleton
+        Usuario usuarioLogado = Usuario.getUsuarioLogado();
+        if (usuarioLogado == null || usuarioLogado.getLogin().equals("")) {
+            SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            usuarioLogado = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
+        }
+
+        Perfil perfilLogado = pc.procurarPorProjetoUsuario(perfil.getProjeto().getCodigo(), usuarioLogado.getId());
+
         // SE não for SCRUM MASTER -> pode sair do proejto apenas
-        if (perfil.getPerfil() != nescaupower.br.com.keepsoft.Enum.Perfil.SCRUM_MASTER) {
+        if (!perfilLogado.getPerfil().equals(nescaupower.br.com.keepsoft.Enum.Perfil.SCRUM_MASTER)) {
             btnDelete.setText(R.string.leave);
 
             //Se for usuário diferente dele mesmo, não verá botão de Sair/Remover Membro
-            if (!perfil.getUsuario().getId().equals(Usuario.getUsuarioLogado().getId())) {
+            if (!perfilLogado.getUsuario().getId().equals(Usuario.getUsuarioLogado().getId())) {
                 btnDelete.setVisibility(View.INVISIBLE);
             } else {//Senão, pode ver botão de sair do projeto
                 btnDelete.setOnClickListener(view -> sairDoProjeto());
@@ -70,7 +84,7 @@ public class DetalhesMembroActivity extends AppCompatActivity {
             // e pode funções de membros
 
             //Se tentou clicou num usuário diferente dele mesmo
-            if (!perfil.getUsuario().getId().equals(Usuario.getUsuarioLogado().getId())) {
+            if (!perfil.getUsuario().getId().equals(usuarioLogado.getId())) {
 
                 //Remover Membro
                 btnDelete.setOnClickListener(view -> {
@@ -83,7 +97,8 @@ public class DetalhesMembroActivity extends AppCompatActivity {
                         //notifyItemRemoved(holder.getAdapterPosition());
 
                         //Apagar o convite do banco se houver
-                        if (perfil.getDataInicio() == null) {
+                        Log.e("Perfil1", "m"+perfil.getDataInicioFormat()+"p");
+                        if (perfil.getDataInicioFormat().equals("")) {
                             ConviteController cc = new ConviteController();
                             cc.deletar(cc.procurarPorID(perfil.getUsuario().getId(), perfil.getProjeto().getCodigo()));
                         }

@@ -9,11 +9,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import java.util.List;
 
@@ -57,12 +55,7 @@ public class ProjetosFragment extends Fragment {
         rv.setAdapter(adapter);
 
         btnCadastrar = rootView.findViewById(R.id.btnCadastrar);
-        btnCadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cadastrar();
-            }
-        });
+        btnCadastrar.setOnClickListener(view -> cadastrar());
 
         //Título
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(res.getString(R.string.projects));

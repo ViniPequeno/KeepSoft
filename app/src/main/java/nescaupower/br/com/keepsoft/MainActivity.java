@@ -2,7 +2,6 @@ package nescaupower.br.com.keepsoft;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
@@ -20,11 +19,7 @@ import java.util.concurrent.ExecutionException;
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
-import nescaupower.br.com.keepsoft.Utils.BroadcastReceiver;
-import nescaupower.br.com.keepsoft.Utils.Notificacao;
-import nescaupower.br.com.keepsoft.Utils.Receiver;
 import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
-import nescaupower.br.com.keepsoft.Views.Usuario.CadastroUsuarioActivity;
 import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -61,9 +56,9 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.activity_main);
             txtInformacao = findViewById(R.id.txtInformacao);
             if(verificaConexao()){
-                txtInformacao.setText("Os serviços estão indisponível no momento!");
+                txtInformacao.setText(R.string.unavailable_services);
             }else{
-                txtInformacao.setText("Verifica sua conexão com a internet!");
+                txtInformacao.setText(R.string.check_internet_connection);
             }
 
         }
@@ -94,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             tJson = new HttpService().execute("/usuarios", "Get", null).get();
             Type type = new TypeToken<List<Usuario>>(){}.getType();
-            List<Usuario> list = (List<Usuario>) new Gson().fromJson(tJson, type);
+            List<Usuario> list = new Gson().fromJson(tJson, type);
             if(list !=null) {
                 for (Usuario usuario : list) {
                     Log.e("Usuario", usuario.getEmail());
@@ -112,13 +107,9 @@ public class MainActivity extends AppCompatActivity {
     public  boolean verificaConexao() {
         boolean conectado;
         ConnectivityManager conectivtyManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (conectivtyManager.getActiveNetworkInfo() != null
+        conectado = conectivtyManager.getActiveNetworkInfo() != null
                 && conectivtyManager.getActiveNetworkInfo().isAvailable()
-                && conectivtyManager.getActiveNetworkInfo().isConnected()) {
-            conectado = true;
-        } else {
-            conectado = false;
-        }
+                && conectivtyManager.getActiveNetworkInfo().isConnected();
         return conectado;
     }
 }

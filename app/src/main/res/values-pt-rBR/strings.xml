@@ -145,4 +145,6 @@
     <string name="tasks">Tarefas</string>
     <string name="team">Equipe</string>
     <string name="leave">Sair do projeto</string>
+    <string name="unavailable_services">Os serviços estão indisponíveis no momento!</string>
+    <string name="check_internet_connection">Verifique sua conexão com a internet!</string>
 </resources>

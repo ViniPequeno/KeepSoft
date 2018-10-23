@@ -62,7 +62,7 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
               2: Nome do projeto para o qual o usuário foi convidado
               3: Função que o usuário assumirá inicialmente no projeto
             */
-            String descricao = this.context.getString(R.string.invitation_description, remetente.getLogin(), projeto.getNome(), convite.getFuncao().toString());
+            String descricao = res.getString(R.string.invitation_description, remetente.getLogin(), projeto.getNome(), convite.getFuncao().toString());
             holder.lblDescricao.setText(descricao);
 
             //Formatando data na notificação

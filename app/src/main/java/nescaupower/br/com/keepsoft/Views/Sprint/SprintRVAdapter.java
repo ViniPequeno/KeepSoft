@@ -7,9 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -58,16 +56,13 @@ public class SprintRVAdapter extends RecyclerView.Adapter<SprintRVAdapter.ViewHo
         String stringDataFim = res.getString(R.string.sprint_until_date, sdf.format(sprints.get(position).getDataFim()));
         holder.lblDataFim.setText(stringDataFim);
 
-        holder.mView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (null != mListener) {
-                    Intent i = new Intent(context, DetalhesSprintActivity.class);
+        holder.mView.setOnClickListener(v -> {
+            if (null != mListener) {
+                Intent i = new Intent(context, DetalhesSprintActivity.class);
 
-                    i.putExtra("EXTRA_CODIGO_SPRINT", holder.mItem.getId());
+                i.putExtra("EXTRA_CODIGO_SPRINT", holder.mItem.getId());
 
-                    context.startActivity(i);
-                }
+                context.startActivity(i);
             }
         });
     }

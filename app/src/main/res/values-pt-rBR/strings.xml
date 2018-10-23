@@ -2,6 +2,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="accept">Aceitar</string>
 
+
+    <string name="default_notification_channel_id">O</string>
+    <string name="default_notification_channel_title">Titulo</string>
+
+
     <string name="action_delete">Excluir</string>
     <string name="action_edit">Editar</string>
     <string name="action_status">Status</string>

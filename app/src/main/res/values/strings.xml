@@ -2,6 +2,10 @@
 <resources>
     <string name="accept">Accept</string>
 
+
+    <string name="default_notification_channel_id">O</string>
+    <string name="default_notification_channel_title">Titulo</string>
+
     <string name="action_delete">Delete</string>
     <string name="action_status">Status</string>
     <string name="action_edit">Edit</string>

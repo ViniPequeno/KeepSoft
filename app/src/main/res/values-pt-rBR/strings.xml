@@ -122,7 +122,11 @@
 
     <string name="task">Task</string>
 
+    <string name="title_activity_receiver_notification">Deseja receber notifações?</string>
+    <string name="title_activity_receiver_email">Deseja receber e-mails?</string>
+
     <string name="title">Título</string>
+    <string name="title_activity_alterar_config">Alterar Configurações</string>
     <string name="title_activity_alterar_perfil">Alterar Informações Pessoais</string>
     <string name="title_activity_alterar_perfil_senha">Alterar Senha</string>
     <string name="title_activity_deletar_conta">Deletar usuário</string>

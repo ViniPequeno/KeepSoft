@@ -36,6 +36,7 @@ public class PerfilFragment extends Fragment {
     private Button btnAlterarSenha;
     private Button btnSair;
     private Button btnDeleteUsrr;
+    private Button btnAlterarConfiguracoes;
     AlertDialog dialogSair, dialogDeleteUser;
     private UsuarioController uc;
 
@@ -76,6 +77,7 @@ public class PerfilFragment extends Fragment {
         btnAlterarSenha = getView().findViewById(R.id.btnAlterarSenha);
         btnDeleteUsrr = getView().findViewById(R.id.btnDeleteUser);
         btnSair = getView().findViewById(R.id.btnSair);
+        btnAlterarConfiguracoes = getView().findViewById(R.id.btnAlterarConfiguracoes);
 
         AlertDialog.Builder dialogDeleteUserBuilder = new AlertDialog.Builder(getContext());
         dialogDeleteUserBuilder.setMessage("Are you sure you want to delete your account?");
@@ -126,6 +128,7 @@ public class PerfilFragment extends Fragment {
         btnAlterarSenha.setOnClickListener(view -> trocarTelaAlterarSenha(view));
         btnSair.setOnClickListener(view -> sair(view));
         btnDeleteUsrr.setOnClickListener(view -> deleteUser(view));
+        btnAlterarConfiguracoes.setOnClickListener(view -> trocarTelaAlterarConfig(view));
     }
 
     private void sair(View view) {
@@ -145,6 +148,12 @@ public class PerfilFragment extends Fragment {
     private void trocarTelaAlterarSenha(View view) {
         Intent intent;
         intent = new Intent(getActivity(), AlterarSenhaActivity.class);
+        startActivity(intent);
+    }
+
+    private void trocarTelaAlterarConfig(View view){
+        Intent intent;
+        intent = new Intent(getActivity(), AlterarConfigActivity.class);
         startActivity(intent);
     }
 

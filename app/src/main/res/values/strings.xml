@@ -126,7 +126,11 @@
 
     <string name="task">Tarefa</string>
 
+    <string name="title_activity_receiver_notification">Do you want to receive notifications?</string>
+    <string name="title_activity_receiver_email">Do you want to receive e-mails?</string>
+
     <string name="title">Title</string>
+    <string name="title_activity_alterar_config">Change Config</string>
     <string name="title_activity_alterar_perfil">Change Personal Information</string>
     <string name="title_activity_alterar_perfil_senha">Change Password</string>
     <string name="title_activity_deletar_conta">Delete user</string>

@@ -13,6 +13,8 @@ public class Usuario {
     private String nome;
     private String senha;
     private String telefone;
+    private boolean receiverNotification;
+    private boolean receiverEmail;
 
     private static Usuario usuarioLogado;
 
@@ -35,6 +37,8 @@ public class Usuario {
         this.nome = "";
         this.senha="";
         this.telefone="";
+        this.receiverEmail = true;
+        this.receiverNotification = true;
     }
 
     public Long getId() {
@@ -83,5 +87,21 @@ public class Usuario {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public boolean isReceiverNotification() {
+        return receiverNotification;
+    }
+
+    public void setReceiverNotification(boolean receiverNotification) {
+        this.receiverNotification = receiverNotification;
+    }
+
+    public boolean isReceiverEmail() {
+        return receiverEmail;
+    }
+
+    public void setReceiverEmail(boolean receiverEmail) {
+        this.receiverEmail = receiverEmail;
     }
 }

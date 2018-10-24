@@ -15,7 +15,9 @@ import java.util.List;
 
 import nescaupower.br.com.keepsoft.Controller.ConviteController;
 import nescaupower.br.com.keepsoft.Controller.PerfilController;
+import nescaupower.br.com.keepsoft.Controller.ProjetoController;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
+import nescaupower.br.com.keepsoft.EmailController.ConviteEmail;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Convite;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
@@ -32,6 +34,8 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
     PesquisarUsuarioRVAdapter rvAdapter; //Adapter da lista que conterá os usuários que serão convidados
     ConviteController cc;
     PerfilController pc;
+    UsuarioController uc;
+    ProjetoController pcon;
     Button btnEnivarConvite;
 
     @Override
@@ -43,6 +47,8 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
         usuarios = new ArrayList<>();
         cc = new ConviteController();
         pc = new PerfilController();
+        uc = new UsuarioController();
+        pcon = new ProjetoController();
 
         txtPesquisarUsuario = findViewById(R.id.txtPesquisarUsuario);
         btnEnivarConvite = findViewById(R.id.btnEnviarConvite);
@@ -87,6 +93,18 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
             }
             cc.cadastrar(convites);
             pc.cadastrar(perfis);
+
+            for(Convite convite : convites){
+                Usuario rementente = uc.procurarPorID(convite.getRemetenteId());
+                Usuario destino = uc.procurarPorID(convite.getDestinatarioId());
+                Projeto projeto = pcon.procurarPorCodigo(convite.getCodProjeto());
+
+                if(destino.isReceiverEmail()){
+                    ConviteEmail.enviarEmail(rementente, destino, convite, projeto);
+                }
+
+            }
+
             ConvidarMembroActivity.this.finish();
         });
     }

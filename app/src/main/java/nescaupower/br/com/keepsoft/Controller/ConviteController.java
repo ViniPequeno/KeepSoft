@@ -25,7 +25,6 @@ public class ConviteController {
         formato.setTimeZone(TimeZone.getTimeZone("GMT-4:00"));
         for (Convite convite1 : convite) {
             if (convite1.getData() != null) {
-                Log.e("format", convite1.getData().toString());
                 convite1.setDataFormat(formato.format(convite1.getData()));
             } else {
                 convite1.setDataFormat("");

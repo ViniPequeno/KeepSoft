@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -13,13 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <receiver android:name=".Utils.Receiver" >
+        <receiver android:name=".Utils.Receiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
-        <activity
-            android:name=".MainActivity">
+
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -100,7 +100,8 @@
         <activity android:name=".Views.Status.StatusActivity" />
         <activity android:name=".Views.Status.DetalhesStatus" />
         <activity android:name=".Views.Status.CadastrarStatus" />
-        <activity android:name=".Views.Status.EditarStatus"></activity>
+        <activity android:name=".Views.Status.EditarStatus" />
+        <activity android:name=".Views.Usuario.AlterarConfigActivity"></activity>
     </application>
 
 </manifest>

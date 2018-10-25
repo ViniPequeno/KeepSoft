@@ -22,6 +22,7 @@ public class CadastrarStatus extends AppCompatActivity {
     private EditText txtDescricaoStatus;
     private EditText txtSeletorCor;
     private ImageView imgColor;
+    private int intColor;
 
     private StatusController sc;
 
@@ -36,6 +37,7 @@ public class CadastrarStatus extends AppCompatActivity {
         txtSeletorCor = findViewById(R.id.txtSeletorCor);
         imgColor = findViewById(R.id.imgColor);
         imgColor.setColorFilter(Color.RED);
+        intColor=(Color.RED);
 
         SpectrumDialog.Builder sdBuilder = new SpectrumDialog.Builder(this);
         sdBuilder.setSelectedColor(0);
@@ -45,10 +47,10 @@ public class CadastrarStatus extends AppCompatActivity {
         sdBuilder.setOnColorSelectedListener((positiveResult, color) -> {
             if (positiveResult) {
                 imgColor.setColorFilter(color);
+                intColor = color;
                 sdBuilder.setSelectedColor(color);
             }
             txtSeletorCor.clearFocus();
-            Toast.makeText(CadastrarStatus.this,"Oi", Toast.LENGTH_SHORT).show();
         });
         sdBuilder.setTitle("Escolha uma cor");
 
@@ -72,6 +74,7 @@ public class CadastrarStatus extends AppCompatActivity {
         Status status = new Status();
         status.setNome(txtNomeStatus.getText().toString());
         status.setDescricao(txtDescricaoStatus.getText().toString());
+        status.setCor(intColor);
 
         Projeto projeto = Projeto.getUltimoProjetoUsado();
 

@@ -6,7 +6,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.View;
 
 import java.util.List;
 
@@ -33,9 +32,7 @@ public class StatusActivity extends AppCompatActivity {
         sc = new StatusController();
         projeto = Projeto.getUltimoProjetoUsado();
 
-
         listStatus = sc.getAllFindByProjeto(projeto.getCodigo());
-
 
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         rv = findViewById(R.id.StatusRV);
@@ -44,12 +41,7 @@ public class StatusActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
 
         btnCadastrar = findViewById(R.id.btnCadastrarStatus);
-        btnCadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cadastrar();
-            }
-        });
+        btnCadastrar.setOnClickListener(view -> cadastrar());
 
     }
 
@@ -57,7 +49,7 @@ public class StatusActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         StatusRVAdapter adapter = (StatusRVAdapter) rv.getAdapter();
-        adapter.setStatuses(listStatus = sc.getAllFindByProjeto(projeto.getCodigo()));
+        adapter.setStatusList(listStatus = sc.getAllFindByProjeto(projeto.getCodigo()));
         adapter.notifyDataSetChanged();
     }
 

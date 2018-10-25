@@ -16,11 +16,11 @@ import nescaupower.br.com.keepsoft.Views.ItemClickListener;
 public class StatusRVAdapter extends RecyclerView.Adapter<MyHolder>  {
 
     private Context c;
-    private List<Status> statuses;
+    private List<Status> statusList;
 
-    public StatusRVAdapter(Context c, List<Status> statuses) {
+    public StatusRVAdapter(Context c, List<Status> statusList) {
         this.c = c;
-        this.statuses = statuses;
+        this.statusList = statusList;
     }
 
     @Override
@@ -32,29 +32,27 @@ public class StatusRVAdapter extends RecyclerView.Adapter<MyHolder>  {
 
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
-        holder.lblNomeStatus.setText(statuses.get(position).getNome());
-        holder.lblDescricaoStatus.setText(statuses.get(position).getDescricao());
+        holder.lblNomeStatus.setText(statusList.get(position).getNome());
+        holder.lblDescricaoStatus.setText(statusList.get(position).getDescricao());
+        holder.imgColor.setColorFilter(statusList.get(position).getCor());
 
-        holder.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onItemClick(View v, int pos) {
-                Intent i = new Intent(c, DetalhesStatus.class);
+        holder.setItemClickListener((v, pos) -> {
+            Intent i = new Intent(c, DetalhesStatus.class);
 
-                i.putExtra("EXTRA_CODIGO_STATUS", statuses.get(pos).getId());
-                i.putExtra("EXTRA_INDEX_STATUS", pos);
+            i.putExtra("EXTRA_CODIGO_STATUS", statusList.get(pos).getId());
+            i.putExtra("EXTRA_INDEX_STATUS", pos);
 
 
-                c.startActivity(i);
-            }
+            c.startActivity(i);
         });
     }
 
-    public void setStatuses(List<Status> statuses) {
-        this.statuses = statuses;
+    public void setStatusList(List<Status> statusList) {
+        this.statusList = statusList;
     }
 
     @Override
     public int getItemCount() {
-        return statuses.size();
+        return statusList.size();
     }
 }

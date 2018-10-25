@@ -1,5 +1,7 @@
 package nescaupower.br.com.keepsoft.Views.Status;
 
+import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -26,28 +28,34 @@ public class CadastrarStatus extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastrar_status);
+        setContentView(R.layout.activity_cadastro_status);
 
         sc = new StatusController();
         txtNomeStatus = findViewById(R.id.txtNomeStatus);
         txtDescricaoStatus = findViewById(R.id.txtDescricaoStatus);
         txtSeletorCor = findViewById(R.id.txtSeletorCor);
         imgColor = findViewById(R.id.imgColor);
+        imgColor.setColorFilter(Color.RED);
 
+        SpectrumDialog.Builder sdBuilder = new SpectrumDialog.Builder(this);
+        sdBuilder.setSelectedColor(0);
+        sdBuilder.setColors(R.array.demo_colors);
+        sdBuilder.setPositiveButtonText(R.string.confirm);
+        sdBuilder.setNegativeButtonText(R.string.cancel);
+        sdBuilder.setOnColorSelectedListener((positiveResult, color) -> {
+            if (positiveResult) {
+                imgColor.setColorFilter(color);
+                sdBuilder.setSelectedColor(color);
+            }
+            txtSeletorCor.clearFocus();
+            Toast.makeText(CadastrarStatus.this,"Oi", Toast.LENGTH_SHORT).show();
+        });
+        sdBuilder.setTitle("Escolha uma cor");
 
         txtSeletorCor.setOnFocusChangeListener((view, hasFocus) -> {
             if (hasFocus) {
-                SpectrumDialog.Builder sd = new SpectrumDialog.Builder(this);
-                sd.setColors(R.array.demo_colors);
-                sd.setPositiveButtonText(R.string.confirm);
-                sd.setOnColorSelectedListener((positiveResult, color) -> {
-                    if (positiveResult) {
-                        imgColor.setColorFilter(color);
-                        view.clearFocus();
-                    }
-                });
-                sd.setNegativeButtonText(R.string.cancel);
-                sd.build().show(getSupportFragmentManager(), "Cor");
+                SpectrumDialog sd = sdBuilder.build();
+                sd.show(getSupportFragmentManager(), "Cor");
             }
         });
     }

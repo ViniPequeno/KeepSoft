@@ -119,12 +119,15 @@
                 android:text="@string/phone"
                 android:textIsSelectable="true" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider" />
+
             <Button
                 android:id="@+id/btnAlterarPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_edit_black_24dp"
                 android:drawablePadding="20dp"
                 android:drawableTint="@android:color/darker_gray"
@@ -132,14 +135,18 @@
                 android:paddingBottom="20dp"
                 android:text="@string/edit_profile"
                 android:textAlignment="textStart"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                style="@style/Widget.AppCompat.Button.Borderless"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider" />
 
             <Button
                 android:id="@+id/btnAlterarSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_lock_black_24dp"
                 android:drawablePadding="20dp"
                 android:drawableTint="@android:color/darker_gray"
@@ -147,14 +154,18 @@
                 android:paddingBottom="20dp"
                 android:text="@string/change_password"
                 android:textAlignment="textStart"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                style="@style/Widget.AppCompat.Button.Borderless" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider" />
 
             <Button
                 android:id="@+id/btnAlterarConfiguracoes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_settings_black_24dp"
                 android:drawablePadding="20dp"
                 android:drawableTint="@android:color/darker_gray"
@@ -162,14 +173,18 @@
                 android:paddingBottom="20dp"
                 android:text="@string/title_activity_alterar_config"
                 android:textAlignment="textStart"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                style="@style/Widget.AppCompat.Button.Borderless" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider" />
 
             <Button
                 android:id="@+id/btnDeleteUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_delete_black_24dp"
                 android:drawablePadding="20dp"
                 android:drawableTint="@android:color/darker_gray"
@@ -177,14 +192,18 @@
                 android:paddingBottom="20dp"
                 android:text="@string/title_activity_deletar_conta"
                 android:textAlignment="textStart"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                style="@style/Widget.AppCompat.Button.Borderless" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider" />
 
             <Button
                 android:id="@+id/btnSair"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
                 android:drawablePadding="20dp"
                 android:drawableTint="@android:color/darker_gray"
@@ -192,7 +211,8 @@
                 android:paddingBottom="20dp"
                 android:text="@string/log_out"
                 android:textAlignment="textStart"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                style="@style/Widget.AppCompat.Button.Borderless" />
         </LinearLayout>
 
     </RelativeLayout>

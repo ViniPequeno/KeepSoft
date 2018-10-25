@@ -8,8 +8,6 @@ import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 
 public abstract class Factory {
 
-
-
     public static Usuario startUsuario(){
         return new Usuario();
     }

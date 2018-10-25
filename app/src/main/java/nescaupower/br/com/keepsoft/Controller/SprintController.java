@@ -1,13 +1,10 @@
 package nescaupower.br.com.keepsoft.Controller;
 
-import android.content.Context;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.SprintDAO;
-import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;

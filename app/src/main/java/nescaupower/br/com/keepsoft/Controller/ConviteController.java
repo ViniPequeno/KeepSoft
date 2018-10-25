@@ -1,6 +1,5 @@
 package nescaupower.br.com.keepsoft.Controller;
 
-import android.content.Context;
 import android.util.Log;
 
 import java.text.ParseException;
@@ -9,7 +8,6 @@ import java.util.List;
 import java.util.TimeZone;
 
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.ConviteDAO;
-import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Convite;
 
 public class ConviteController {

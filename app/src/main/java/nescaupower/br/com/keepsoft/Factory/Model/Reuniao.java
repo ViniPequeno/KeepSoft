@@ -1,9 +1,5 @@
 package nescaupower.br.com.keepsoft.Factory.Model;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-
-import java.util.Calendar;
 import java.util.Date;
 
 public class Reuniao {

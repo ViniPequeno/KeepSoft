@@ -1,12 +1,8 @@
 package nescaupower.br.com.keepsoft.Controller;
 
-import android.content.Context;
-import android.database.Cursor;
-
 import java.util.List;
 
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.UsuarioDAO;
-import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.AlterarSenha;
 import nescaupower.br.com.keepsoft.Factory.Model.Login;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;

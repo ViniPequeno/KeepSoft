@@ -10,7 +10,6 @@
     <string name="action_delete">Excluir</string>
     <string name="action_edit">Editar</string>
     <string name="action_status">Status</string>
-    <string name="action_settings">Configurações</string>
 
     <string name="add_project">Adicionar Projeto</string>
     <string name="add_sprint">Adicionar Sprint</string>
@@ -122,14 +121,14 @@
 
     <string name="task">Task</string>
 
-    <string name="title_activity_receiver_notification">Deseja receber notifações?</string>
+    <string name="title_activity_receiver_notification">Deseja receber notificações?</string>
     <string name="title_activity_receiver_email">Deseja receber e-mails?</string>
 
     <string name="title">Título</string>
-    <string name="title_activity_alterar_config">Alterar Configurações</string>
+    <string name="title_activity_alterar_config">Configurações</string>
     <string name="title_activity_alterar_perfil">Alterar Informações Pessoais</string>
     <string name="title_activity_alterar_perfil_senha">Alterar Senha</string>
-    <string name="title_activity_deletar_conta">Deletar usuário</string>
+    <string name="title_activity_deletar_conta">Deletar conta</string>
     <string name="title_activity_cadastro_projeto">Novo Projeto</string>
     <string name="title_activity_cadastro_sprint">Novo Sprint</string>
     <string name="title_activity_detalhes_membro">Detalhes do Memebro</string>
@@ -151,4 +150,5 @@
     <string name="leave">Sair do projeto</string>
     <string name="unavailable_services">Os serviços estão indisponíveis no momento!</string>
     <string name="check_internet_connection">Verifique sua conexão com a internet!</string>
+    <string name="color">Cor</string>
 </resources>

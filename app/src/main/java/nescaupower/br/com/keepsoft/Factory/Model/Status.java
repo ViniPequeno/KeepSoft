@@ -1,8 +1,5 @@
 package nescaupower.br.com.keepsoft.Factory.Model;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-
 public class Status {
     private Long id;
     private String nome;

@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        tools:listitem="@layout/status_model" />
+        tools:listitem="@layout/activity_status_model" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnCadastrarStatus"

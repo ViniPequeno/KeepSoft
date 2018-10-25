@@ -1,11 +1,5 @@
 package nescaupower.br.com.keepsoft.Factory.BD.DAO;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
-
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -24,7 +18,7 @@ public class SprintDAO {
         try {
             tJson = new HttpService().execute("/sprint", "Get", null).get();
             Type type = new TypeToken<List<Sprint>>(){}.getType();
-            List<Sprint> list = (List<Sprint>) new Gson().fromJson(tJson, type);
+            List<Sprint> list = new Gson().fromJson(tJson, type);
             return list;
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -106,7 +100,7 @@ public class SprintDAO {
         try {
             tJson = new HttpService().execute("/sprint/findByProjectID/"+codProjeto, "Get", null).get();
             Type type = new TypeToken<List<Sprint>>(){}.getType();
-            List<Sprint> list = (List<Sprint>) new Gson().fromJson(tJson, type);
+            List<Sprint> list = new Gson().fromJson(tJson, type);
             return list;
         } catch (InterruptedException e) {
             e.printStackTrace();

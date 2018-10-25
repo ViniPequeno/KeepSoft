@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class HttpService extends AsyncTask<String, Void, String> {
-    private final String IP = "192.168.0.26";
+    private final String IP = "192.168.0.27";
     private final String PORTA = "8000";
     private final String URL = "http://"+IP+":"+PORTA+"/api";
     private StringBuilder resposta;

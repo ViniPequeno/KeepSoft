@@ -155,7 +155,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:drawableStart="@drawable/ic_phone_black_24dp"
+                android:drawableStart="@drawable/ic_settings_black_24dp"
                 android:drawablePadding="20dp"
                 android:drawableTint="@android:color/darker_gray"
                 android:paddingTop="20dp"

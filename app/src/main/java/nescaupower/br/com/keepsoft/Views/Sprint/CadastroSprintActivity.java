@@ -1,13 +1,11 @@
 package nescaupower.br.com.keepsoft.Views.Sprint;
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 

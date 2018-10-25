@@ -1,12 +1,7 @@
 package nescaupower.br.com.keepsoft.Factory.Model;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.TypeConverters;
-
 import nescaupower.br.com.keepsoft.Enum.Dificuldade;
 import nescaupower.br.com.keepsoft.Enum.Prioridade;
-import nescaupower.br.com.keepsoft.Utils.Converters;
 
 public class Requisito {
     private Long codigo;

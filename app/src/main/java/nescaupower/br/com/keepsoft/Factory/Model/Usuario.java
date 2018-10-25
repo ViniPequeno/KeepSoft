@@ -1,9 +1,5 @@
 package nescaupower.br.com.keepsoft.Factory.Model;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
-
 import nescaupower.br.com.keepsoft.Factory.Factory;
 
 public class Usuario {

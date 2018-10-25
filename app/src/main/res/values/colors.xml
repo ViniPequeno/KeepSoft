@@ -3,4 +3,23 @@
     <color name="colorPrimary">#222</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#99c432</color>
+
+    <array name="demo_colors">
+        <item>#dd0000</item>
+        <item>#ddaa00</item>
+        <item>#ddbb00</item>
+        <item>#ddcc00</item>
+        <item>#ccdd00</item>
+        <item>#bbdd00</item>
+        <item>#aadd00</item>
+        <item>#88ddbb</item>
+        <item>#66ccdd</item>
+        <item>#44bbdd</item>
+        <item>#0aaadd</item>
+        <item>#2233dd</item>
+        <item>#ba50bb</item>
+        <item>#777777</item>
+        <item>@color/colorPrimaryDark</item>
+        <item>@color/white</item>
+    </array>
 </resources>

@@ -58,6 +58,7 @@ public class Email {
         props.put("mail.smtp.socketFactory.port", "465");
         props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.port", "587");
 
         Session s = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
@@ -74,6 +75,7 @@ public class Email {
             message.setHeader("content-type", "text/html");
             message.setSubject((this.assunto));
             message.setContent(this.msg, "text/html; charset=utf-8");
+            Log.e("Email",emailDestinario);
 
             Transport.send(message);
 

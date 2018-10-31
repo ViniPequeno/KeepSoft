@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
@@ -28,13 +29,14 @@ public class StatusActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status_list);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         sc = new StatusController();
         projeto = Projeto.getUltimoProjetoUsado();
 
         listStatus = sc.getAllFindByProjeto(projeto.getCodigo());
 
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rv = findViewById(R.id.StatusRV);
         rv.setLayoutManager(layoutManager);
         StatusRVAdapter adapter = new StatusRVAdapter(getApplicationContext(), listStatus);

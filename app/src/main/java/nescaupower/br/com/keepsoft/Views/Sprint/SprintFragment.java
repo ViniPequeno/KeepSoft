@@ -96,6 +96,13 @@ public class SprintFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        SprintRVAdapter adapter = (SprintRVAdapter) rv.getAdapter();
+        adapter.setSprints(sprints = sc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo()));
+        adapter.notifyDataSetChanged();
+    }
 
     @Override
     public void onAttach(Context context) {

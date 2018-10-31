@@ -22,6 +22,7 @@ public class AlterarConfigActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alterar_config);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         reiceverEmail= findViewById(R.id.reiceverEmail);
         reiceverNotification = findViewById(R.id.reiceverNotification);

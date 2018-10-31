@@ -47,7 +47,12 @@
             android:name=".Views.Projeto.DetalhesProjetoActivity"
             android:label="Projeto"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".Views.Usuario.PaginaInicialActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity" />
+        </activity>
         <activity
             android:name=".Views.Usuario.AlterarPerfilActivity"
             android:label="@string/title_activity_alterar_perfil"
@@ -97,11 +102,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity" />
         </activity>
-        <activity android:name=".Views.Status.StatusActivity" />
+        <activity android:name=".Views.Status.StatusActivity">
+            android:parentActivityName=".Views.Usuario.PaginaInicialActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity" />
+        </activity>
         <activity android:name=".Views.Status.DetalhesStatus" />
         <activity android:name=".Views.Status.CadastrarStatus" />
         <activity android:name=".Views.Status.EditarStatus" />
-        <activity android:name=".Views.Usuario.AlterarConfigActivity"></activity>
+        <activity android:name=".Views.Usuario.AlterarConfigActivity">
+            android:parentActivityName=".Views.Usuario.PaginaInicialActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -128,15 +128,10 @@ public class CadastroProjetoActivity extends AppCompatActivity {
                 CadastroProjetoActivity.this.finish();
             } else {
                 Toast.makeText(this, "Não foi possível criar Perfil", Toast.LENGTH_SHORT).show();
-                return;
             }
 
         } else {
             Toast.makeText(this, "Projeto já existe", Toast.LENGTH_SHORT).show();
-            return;
         }
-
-
     }
-
 }

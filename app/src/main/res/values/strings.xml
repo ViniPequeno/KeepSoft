@@ -163,4 +163,5 @@
 
     <string name="wrong_login_password">Wrong login or passwords</string>
     <string name="color">Color</string>
+    <string name="invitation_not_accepted">"Invitation not accepted yet "</string>
 </resources>

@@ -151,4 +151,5 @@
     <string name="unavailable_services">Os serviços estão indisponíveis no momento!</string>
     <string name="check_internet_connection">Verifique sua conexão com a internet!</string>
     <string name="color">Cor</string>
+    <string name="invitation_not_accepted">Convite ainda não aceito</string>
 </resources>

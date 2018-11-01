@@ -15,7 +15,7 @@ import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Usuario.CadastroUsuarioActivity;
-import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity;
+import nescaupower.br.com.keepsoft.Views.PaginaInicialActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

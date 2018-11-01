@@ -14,6 +14,7 @@ import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.AlterarSenha;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
+import nescaupower.br.com.keepsoft.Views.PaginaInicialActivity;
 
 public class AlterarSenhaActivity extends AppCompatActivity {
 

@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Views.Usuario.PaginaInicialActivity"
+            android:name=".Views.PaginaInicialActivity"
             android:launchMode="singleTask" />
         <activity
             android:name=".Views.Login.LoginActivity"
@@ -38,10 +38,10 @@
         <activity
             android:name=".Views.Projeto.CadastroProjetoActivity"
             android:label="@string/title_activity_cadastro_projeto"
-            android:parentActivityName=".Views.Usuario.PaginaInicialActivity">
+            android:parentActivityName=".Views.PaginaInicialActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity" />
+                android:value="nescaupower.br.com.keepsoft.Views.PaginaInicialActivity" />
         </activity>
         <activity
             android:name=".Views.Projeto.DetalhesProjetoActivity"
@@ -51,23 +51,23 @@
             android:parentActivityName=".Views.Usuario.PaginaInicialActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity" />
+                android:value="nescaupower.br.com.keepsoft.Views.PaginaInicialActivity" />
         </activity>
         <activity
             android:name=".Views.Usuario.AlterarPerfilActivity"
             android:label="@string/title_activity_alterar_perfil"
-            android:parentActivityName=".Views.Usuario.PaginaInicialActivity">
+            android:parentActivityName=".Views.PaginaInicialActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity" />
+                android:value="nescaupower.br.com.keepsoft.Views.PaginaInicialActivity" />
         </activity>
         <activity
             android:name=".Views.Usuario.AlterarSenhaActivity"
             android:label="@string/title_activity_alterar_perfil_senha"
-            android:parentActivityName=".Views.Usuario.PaginaInicialActivity">
+            android:parentActivityName=".Views.PaginaInicialActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity" />
+                android:value="nescaupower.br.com.keepsoft.Views.PaginaInicialActivity" />
         </activity>
         <activity
             android:name=".Views.Projeto.EditarProjetoActivity"
@@ -106,7 +106,7 @@
             android:parentActivityName=".Views.Usuario.PaginaInicialActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity" />
+                android:value="nescaupower.br.com.keepsoft.Views.PaginaInicialActivity" />
         </activity>
         <activity android:name=".Views.Status.DetalhesStatus" />
         <activity android:name=".Views.Status.CadastrarStatus" />
@@ -115,7 +115,7 @@
             android:parentActivityName=".Views.Usuario.PaginaInicialActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity" />
+                android:value="nescaupower.br.com.keepsoft.Views.PaginaInicialActivity" />
         </activity>
     </application>
 

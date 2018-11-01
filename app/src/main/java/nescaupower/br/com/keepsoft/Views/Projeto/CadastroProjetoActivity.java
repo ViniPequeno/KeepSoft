@@ -26,7 +26,7 @@ import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity;
+import nescaupower.br.com.keepsoft.Views.PaginaInicialActivity;
 
 public class CadastroProjetoActivity extends AppCompatActivity {
 

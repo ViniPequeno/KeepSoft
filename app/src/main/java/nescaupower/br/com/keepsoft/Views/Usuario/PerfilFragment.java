@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
@@ -27,6 +28,7 @@ import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
  */
 public class PerfilFragment extends Fragment {
 
+    private CircleImageView imgPerfil;
     private TextView lblLogin;
     private TextView lblEmail;
     private TextView lblNome;
@@ -62,11 +64,13 @@ public class PerfilFragment extends Fragment {
             Usuario.setUsuarioLogado(uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, "")));
         }
 
+        imgPerfil = getView().findViewById(R.id.imgPerfil);
         lblLogin = getView().findViewById(R.id.lblLogin);
         lblEmail = getView().findViewById(R.id.lblEmail);
         lblNome = getView().findViewById(R.id.lblNome);
         lblTelefone = getView().findViewById(R.id.lblTelefone);
 
+        //TODO: setImageBitmap em -imgPerfil-
         lblLogin.setText(Usuario.getUsuarioLogado().getLogin());
         lblEmail.setText(Usuario.getUsuarioLogado().getEmail());
         lblNome.setText(Usuario.getUsuarioLogado().getNome());
@@ -79,8 +83,8 @@ public class PerfilFragment extends Fragment {
         btnAlterarConfiguracoes = getView().findViewById(R.id.btnAlterarConfiguracoes);
 
         AlertDialog.Builder dialogDeleteUserBuilder = new AlertDialog.Builder(getContext());
-        dialogDeleteUserBuilder.setMessage("Are you sure you want to delete your account?");
-        dialogDeleteUserBuilder.setPositiveButton("Yes", (dialogInterface, i) ->{
+        dialogDeleteUserBuilder.setMessage(R.string.delete_account_confirm);
+        dialogDeleteUserBuilder.setPositiveButton(R.string.confirm, (dialogInterface, i) ->{
             uc.delete(Usuario.getUsuarioLogado());
             Toast.makeText(getContext(), "Usuário deletado!", Toast.LENGTH_LONG).show();
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -123,11 +127,11 @@ public class PerfilFragment extends Fragment {
 
         dialogSair = dialogSairBuilder.create();
 
-        btnAlterarPerfil.setOnClickListener(view -> trocarTelaAlterarPerfil(view));
-        btnAlterarSenha.setOnClickListener(view -> trocarTelaAlterarSenha(view));
-        btnSair.setOnClickListener(view -> sair(view));
-        btnDeleteUsrr.setOnClickListener(view -> deleteUser(view));
-        btnAlterarConfiguracoes.setOnClickListener(view -> trocarTelaAlterarConfig(view));
+        btnAlterarPerfil.setOnClickListener(this::trocarTelaAlterarPerfil);
+        btnAlterarSenha.setOnClickListener(this::trocarTelaAlterarSenha);
+        btnSair.setOnClickListener(this::sair);
+        btnDeleteUsrr.setOnClickListener(this::deleteUser);
+        btnAlterarConfiguracoes.setOnClickListener(this::trocarTelaAlterarConfig);
     }
 
     private void sair(View view) {

@@ -20,18 +20,18 @@ public class Convite {
     private Usuario remetenteId;
     private Usuario destinatarioId;
     private Projeto codProjeto;
-    private String dataFormat;
-    private Date data;
+    private String dataCriacaoFormat;
+    private Date dataCriacao;
 
     public Convite() {
     }
 
     public String getDataFormat() {
-        return dataFormat;
+        return dataCriacaoFormat;
     }
 
     public void setDataFormat(String dataFormat) {
-        this.dataFormat = dataFormat;
+        this.dataCriacaoFormat = dataFormat;
     }
 
     public Long getId() {
@@ -75,10 +75,10 @@ public class Convite {
     }
 
     public Date getData() {
-        return data;
+        return dataCriacao;
     }
 
     public void setData(Date data) {
-        this.data = data;
+        this.dataCriacao = data;
     }
 }

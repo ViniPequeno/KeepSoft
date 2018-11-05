@@ -23,7 +23,7 @@ public class CadastroTarefaActivity extends AppCompatActivity {
     EditText txtDescricao;
     Spinner spinStatus;
     Spinner spinUsuario;
-    List<Perfil> list;
+    List<Perfil> perfis;
 
     PerfilController pc = new PerfilController();
 
@@ -38,7 +38,7 @@ public class CadastroTarefaActivity extends AppCompatActivity {
         spinStatus = findViewById(R.id.spinStatus);
         spinUsuario = findViewById(R.id.spinUsuario);
 
-        list = pc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
+        perfis = pc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
         spinUsuario.setAdapter(new ListAdapter());
     }
 
@@ -50,12 +50,12 @@ public class CadastroTarefaActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return list.size();
+            return perfis.size();
         }
 
         @Override
         public Object getItem(int position) {
-            return list.get(position);
+            return perfis.get(position);
         }
 
         @Override
@@ -66,7 +66,7 @@ public class CadastroTarefaActivity extends AppCompatActivity {
         @Override
         public View getView(int position, View view, ViewGroup parent) {
             TextView text = new TextView(CadastroTarefaActivity.this);
-            text.setText(list.get(position).getUsuario().getNome());
+            text.setText(perfis.get(position).getUsuario().getNome());
             return text;
         }
 

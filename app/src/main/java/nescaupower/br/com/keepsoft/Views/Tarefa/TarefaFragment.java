@@ -17,7 +17,7 @@ import nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent;
 import nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent.DummyItem;
 
 /**
- * A fragment representing a list of Items.
+ * A fragment representing a perfis of Items.
  * <p/>
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.

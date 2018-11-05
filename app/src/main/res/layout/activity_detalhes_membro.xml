@@ -158,6 +158,5 @@
                 android:background="?android:attr/listDivider" />
 
         </LinearLayout>
-
     </RelativeLayout>
 </ScrollView>

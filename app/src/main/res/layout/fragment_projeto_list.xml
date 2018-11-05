@@ -4,7 +4,6 @@
     android:padding="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="nescaupower.br.com.keepsoft.Views.Projeto.ProjetosFragment">
 
     <android.support.v7.widget.RecyclerView xmlns:tools="http://schemas.android.com/tools"

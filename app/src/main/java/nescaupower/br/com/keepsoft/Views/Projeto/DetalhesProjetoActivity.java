@@ -130,6 +130,8 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
             SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
             usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
         }
+        //perfil = new PerfilController().procurarPorProjetoUsuario(projeto.getCodigo(), Usuario.getUsuarioLogado().getId());
+        //Toast.makeText(this, perfil.getPerfil().toString(), Toast.LENGTH_SHORT).show();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_editar) {
             if (projeto.getUsuarioAdm().getId().equals(usuario.getId())) {
@@ -147,6 +149,13 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
                 intent = new Intent(DetalhesProjetoActivity.this, StatusActivity.class);
                 startActivity(intent);
             } else {
+                Toast.makeText(this, "Você não tem permissão", Toast.LENGTH_SHORT).show();
+            }
+        }
+        if(id == R.id.action_reuniao){
+            if(perfil.getPerfil() == nescaupower.br.com.keepsoft.Enum.Perfil.SCRUM_MASTER){
+
+            }else{
                 Toast.makeText(this, "Você não tem permissão", Toast.LENGTH_SHORT).show();
             }
         }

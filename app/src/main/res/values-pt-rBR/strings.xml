@@ -159,4 +159,5 @@
     <string name="field_name_empty">Campo nome não pode ficar vazio!</string>
     <string name="select_picture">Escolher imagem</string>
     <string name="delete_account_confirm">Tem certeza de que quer deletar sua conta?</string>
+    <string name="action_reuniao">Reunião</string>
 </resources>

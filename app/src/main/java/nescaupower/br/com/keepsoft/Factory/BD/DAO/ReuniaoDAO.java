@@ -24,10 +24,25 @@ public class ReuniaoDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public List<Reuniao> findByProjectID(Long id){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/reuniao/findByProjectID/"+id, "Get", null).get();
+            Type type = new TypeToken<List<Reuniao>>(){}.getType();
+            List<Reuniao> list = new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
 
     }
 
-    public Reuniao findByID(long id){
+    public Reuniao findByID(Long id){
         String tJson = null;
         try {
             tJson = new HttpService().execute("/reuniao/"+id, "Get", null).get();
@@ -42,7 +57,7 @@ public class ReuniaoDAO {
     }
 
 
-    void insertAll(Reuniao... reunaioes){
+    public void insertAll(Reuniao... reunaioes){
         for(Reuniao reuniao : reunaioes){
             String tJson = new Gson().toJson(reuniao);
             try {
@@ -55,7 +70,7 @@ public class ReuniaoDAO {
         }
     }
 
-    void updateAll(Reuniao... reunaioes){
+    public void updateAll(Reuniao... reunaioes){
         for(Reuniao reuniao : reunaioes){
             String tJson = new Gson().toJson(reuniao);
             try {
@@ -68,7 +83,7 @@ public class ReuniaoDAO {
         }
     }
 
-    void delete(Reuniao reuniao){
+    public void delete(Reuniao reuniao){
         String tJson = null;
         try {
             tJson = new HttpService().execute("/reuniao/"+reuniao.getId(), "Get", null).get();

@@ -169,4 +169,5 @@
     <string name="field_name_empty">Field name cannot be empty!</string>
     <string name="select_picture">Select picture</string>
     <string name="delete_account_confirm">Are you sure you want to delete your account?</string>
+    <string name="action_reuniao">Reunion</string>
 </resources>

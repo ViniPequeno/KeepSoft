@@ -21,4 +21,11 @@
         android:orderInCategory="100"
         android:title="@string/action_status"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_reuniao"
+        android:icon="@drawable/ic_more_vert_black_24dp"
+        android:orderInCategory="100"
+        android:title="@string/action_reuniao"
+        app:showAsAction="never"
+        />
 </menu>

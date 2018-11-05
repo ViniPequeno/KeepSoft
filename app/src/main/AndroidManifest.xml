@@ -117,6 +117,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nescaupower.br.com.keepsoft.Views.PaginaInicialActivity" />
         </activity>
+        <activity
+            android:name=".Views.Tarefa.CadastroTarefaActivity"
+            android:label="@string/title_activity_cadastro_tarefa"
+            android:parentActivityName=".Views.Projeto.DetalhesProjetoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity" />
+        </activity>
         <activity android:name=".Views.Reuniao.ReuniaoActivity"></activity>
     </application>
 

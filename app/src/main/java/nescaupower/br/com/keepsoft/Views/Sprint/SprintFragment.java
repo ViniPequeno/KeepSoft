@@ -3,6 +3,7 @@ package nescaupower.br.com.keepsoft.Views.Sprint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class SprintFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
 
     private RecyclerView rv;
-    private Button btnCadastrar;
+    private FloatingActionButton btnCadastrar;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -76,7 +76,7 @@ public class SprintFragment extends Fragment {
         // Set the adapter
         if (rv != null) {
             Context context = rv.getContext();
-            RecyclerView recyclerView = (RecyclerView) rv;
+            RecyclerView recyclerView = rv;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -86,12 +86,7 @@ public class SprintFragment extends Fragment {
         }
 
         btnCadastrar = rootView.findViewById(R.id.btnCadastrar);
-        btnCadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cadastrar();
-            }
-        });
+        btnCadastrar.setOnClickListener(view -> cadastrar());
 
         return rootView;
     }

@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    tools:context="nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment">
 
-    <Button
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnCadastrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:drawableStart="@drawable/ic_add_black_24dp"
-        android:drawableTint="@android:color/white"
-        android:gravity="center"
-        android:text="@string/add_task" />
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        app:srcCompat="@drawable/ic_add_black_24dp"
+        app:tint="@android:color/white" />
 
     <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -24,8 +22,8 @@
         android:name="nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         tools:context="nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment"
         tools:listitem="@layout/fragment_tarefa_model" />
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

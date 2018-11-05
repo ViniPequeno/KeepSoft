@@ -1,7 +1,9 @@
 package nescaupower.br.com.keepsoft.Views.Tarefa;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,7 +17,7 @@ import nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent;
 import nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent.DummyItem;
 
 /**
- * A fragment representing a list of Items.
+ * A fragment representing a perfis of Items.
  * <p/>
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
@@ -27,6 +29,9 @@ public class TarefaFragment extends Fragment {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
+
+    private RecyclerView rv;
+    private FloatingActionButton btnCadastrar;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -58,12 +63,12 @@ public class TarefaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_tarefa_list, container, false);
-        View view = rootView.findViewById(R.id.TarefasRV);
+        rv = rootView.findViewById(R.id.TarefasRV);
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+        if (rv != null) {
+            Context context = rv.getContext();
+            RecyclerView recyclerView = rv;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -71,7 +76,16 @@ public class TarefaFragment extends Fragment {
             }
             recyclerView.setAdapter(new TarefaRVAdapter(DummyContent.ITEMS, mListener));
         }
+
+        btnCadastrar = rootView.findViewById(R.id.btnCadastrar);
+        btnCadastrar.setOnClickListener(view -> cadastrar());
+        
         return rootView;
+    }
+
+    private void cadastrar() {
+        Intent intent = new Intent(getActivity(), CadastroTarefaActivity.class);
+        startActivity(intent);
     }
 
 

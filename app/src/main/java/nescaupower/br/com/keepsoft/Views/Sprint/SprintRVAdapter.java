@@ -23,7 +23,7 @@ import nescaupower.br.com.keepsoft.Views.Sprint.SprintFragment.OnListFragmentInt
  */
 public class SprintRVAdapter extends RecyclerView.Adapter<SprintRVAdapter.ViewHolder> {
     private Context context;
-    private final List<Sprint> sprints;
+    private List<Sprint> sprints;
     private final OnListFragmentInteractionListener mListener;
 
     public SprintRVAdapter(OnListFragmentInteractionListener listener, List<Sprint> items, Context context) {
@@ -94,4 +94,6 @@ public class SprintRVAdapter extends RecyclerView.Adapter<SprintRVAdapter.ViewHo
             return super.toString() + " '" + lblTitulo.getText() + "'";
         }
     }
+
+    public void setSprints(List<Sprint> sprints){this.sprints = sprints;}
 }

@@ -1,12 +1,5 @@
 package nescaupower.br.com.keepsoft.Factory.BD.DAO;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
-import android.util.Log;
-
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -24,7 +17,7 @@ public class ConviteDAO {
         try {
             tJson = new HttpService().execute("/convite", "Get", null).get();
             Type type = new TypeToken<List<Convite>>(){}.getType();
-            List<Convite> list = (List<Convite>) new Gson().fromJson(tJson, type);
+            List<Convite> list = new Gson().fromJson(tJson, type);
             return list;
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -108,7 +101,7 @@ public class ConviteDAO {
         try {
             tJson = new HttpService().execute("/convite/findByProjeto/"+codProjeto, "Get", null).get();
             Type type = new TypeToken<List<Convite>>(){}.getType();
-            List<Convite> list = (List<Convite>) new Gson().fromJson(tJson, type);
+            List<Convite> list = new Gson().fromJson(tJson, type);
             return list;
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -123,7 +116,7 @@ public class ConviteDAO {
         try {
             tJson = new HttpService().execute("/convite/findByReceiverID/"+destinatarioId, "Get", null).get();
             Type type = new TypeToken<List<Convite>>(){}.getType();
-            List<Convite> list = (List<Convite>) new Gson().fromJson(tJson, type);
+            List<Convite> list = new Gson().fromJson(tJson, type);
             return list;
         } catch (InterruptedException e) {
             e.printStackTrace();

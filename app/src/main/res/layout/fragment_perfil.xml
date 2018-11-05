@@ -16,18 +16,19 @@
             android:background="#223300"
             android:scaleType="centerCrop" />
 
-        <ImageButton
-            android:id="@+id/profileImageButton"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgPerfil"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_below="@+id/header_cover_image"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="-60dp"
-            android:background="@drawable/profile_circular_border_imageview"
-            android:elevation="5dp"
-            android:padding="20dp"
+            android:elevation="10dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="center_horizontal"
+            app:civ_border_color="@android:color/white"
+            app:civ_border_width="2dp" />
 
         <RelativeLayout
             android:id="@+id/profile_layout"
@@ -98,7 +99,6 @@
                 android:drawableStart="@drawable/ic_email_black_24dp"
                 android:drawablePadding="20dp"
                 android:drawableTint="@android:color/white"
-                android:elevation="4dp"
                 android:focusable="true"
                 android:padding="10dp"
                 android:text="@string/email"
@@ -113,18 +113,20 @@
                 android:drawableStart="@drawable/ic_phone_black_24dp"
                 android:drawablePadding="20dp"
                 android:drawableTint="@android:color/white"
-                android:elevation="4dp"
                 android:focusable="true"
                 android:padding="10dp"
                 android:text="@string/phone"
                 android:textIsSelectable="true" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider" />
+
             <Button
                 android:id="@+id/btnAlterarPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_edit_black_24dp"
                 android:drawablePadding="20dp"
                 android:drawableTint="@android:color/darker_gray"
@@ -132,14 +134,18 @@
                 android:paddingBottom="20dp"
                 android:text="@string/edit_profile"
                 android:textAlignment="textStart"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                style="@style/Widget.AppCompat.Button.Borderless"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider" />
 
             <Button
                 android:id="@+id/btnAlterarSenha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_lock_black_24dp"
                 android:drawablePadding="20dp"
                 android:drawableTint="@android:color/darker_gray"
@@ -147,29 +153,37 @@
                 android:paddingBottom="20dp"
                 android:text="@string/change_password"
                 android:textAlignment="textStart"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                style="@style/Widget.AppCompat.Button.Borderless" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider" />
 
             <Button
                 android:id="@+id/btnAlterarConfiguracoes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:drawableStart="@drawable/ic_phone_black_24dp"
+                android:drawableStart="@drawable/ic_settings_black_24dp"
                 android:drawablePadding="20dp"
                 android:drawableTint="@android:color/darker_gray"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
                 android:text="@string/title_activity_alterar_config"
                 android:textAlignment="textStart"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                style="@style/Widget.AppCompat.Button.Borderless" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider" />
 
             <Button
                 android:id="@+id/btnDeleteUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_delete_black_24dp"
                 android:drawablePadding="20dp"
                 android:drawableTint="@android:color/darker_gray"
@@ -177,14 +191,18 @@
                 android:paddingBottom="20dp"
                 android:text="@string/title_activity_deletar_conta"
                 android:textAlignment="textStart"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                style="@style/Widget.AppCompat.Button.Borderless" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="?android:attr/listDivider" />
 
             <Button
                 android:id="@+id/btnSair"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
                 android:drawablePadding="20dp"
                 android:drawableTint="@android:color/darker_gray"
@@ -192,7 +210,8 @@
                 android:paddingBottom="20dp"
                 android:text="@string/log_out"
                 android:textAlignment="textStart"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                style="@style/Widget.AppCompat.Button.Borderless" />
         </LinearLayout>
 
     </RelativeLayout>

@@ -1,10 +1,5 @@
 package nescaupower.br.com.keepsoft.Factory.BD.DAO;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
-
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -13,7 +8,6 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
-import nescaupower.br.com.keepsoft.Factory.Model.Requisito;
 import nescaupower.br.com.keepsoft.Factory.Model.Requisito;
 
 
@@ -24,7 +18,7 @@ public class RequisitoDAO {
         try {
             tJson = new HttpService().execute("/requisito", "Get", null).get();
             Type type = new TypeToken<List<Requisito>>(){}.getType();
-            List<Requisito> list = (List<Requisito>) new Gson().fromJson(tJson, type);
+            List<Requisito> list = new Gson().fromJson(tJson, type);
             return list;
         } catch (InterruptedException e) {
             e.printStackTrace();

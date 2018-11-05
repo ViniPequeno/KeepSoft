@@ -1,4 +1,4 @@
-package nescaupower.br.com.keepsoft.Views.Usuario;
+package nescaupower.br.com.keepsoft.Views;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,6 +15,7 @@ import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Notificacao.NotificacoesFragment;
 import nescaupower.br.com.keepsoft.Views.Projeto.ProjetosFragment;
+import nescaupower.br.com.keepsoft.Views.Usuario.PerfilFragment;
 
 public class PaginaInicialActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 

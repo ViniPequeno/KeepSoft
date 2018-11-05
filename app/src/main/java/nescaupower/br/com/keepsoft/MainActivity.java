@@ -20,7 +20,7 @@ import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
-import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity;
+import nescaupower.br.com.keepsoft.Views.PaginaInicialActivity;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,24 +1,13 @@
 package nescaupower.br.com.keepsoft.Factory.Model;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-
 public class Status {
     private Long id;
     private String nome;
     private String descricao;
+    private int cor;
     private Projeto projeto;
 
-    public Projeto getProjeto() {
-        return projeto;
-    }
-
-    public void setProjeto(Projeto projeto) {
-        this.projeto = projeto;
-    }
-
-    public Status() {
-    }
+    public Status() {}
 
     public Long getId() {
         return id;
@@ -43,4 +32,12 @@ public class Status {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+    public int getCor() { return cor; }
+
+    public void setCor(int cor) { this.cor = cor; }
+
+    public Projeto getProjeto() { return projeto; }
+
+    public void setProjeto(Projeto projeto) { this.projeto = projeto; }
 }

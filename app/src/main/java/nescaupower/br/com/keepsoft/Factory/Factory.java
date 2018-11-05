@@ -1,9 +1,5 @@
 package nescaupower.br.com.keepsoft.Factory;
 
-import android.arch.persistence.room.Room;
-import android.content.Context;
-
-import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Factory.Model.Convite;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
@@ -11,8 +7,6 @@ import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 
 public abstract class Factory {
-
-
 
     public static Usuario startUsuario(){
         return new Usuario();

@@ -1,14 +1,8 @@
 package nescaupower.br.com.keepsoft.Factory.Model;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.TypeConverters;
-
 import java.util.Date;
 
 import nescaupower.br.com.keepsoft.Enum.Perfil;
-import nescaupower.br.com.keepsoft.Utils.Converters;
 
 /**
  * Created by Aluno on 28/09/2018.

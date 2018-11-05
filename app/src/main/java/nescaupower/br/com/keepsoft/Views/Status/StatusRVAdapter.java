@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -13,48 +15,73 @@ import nescaupower.br.com.keepsoft.Factory.Model.Status;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.ItemClickListener;
 
-public class StatusRVAdapter extends RecyclerView.Adapter<MyHolder>  {
+public class StatusRVAdapter extends RecyclerView.Adapter<StatusRVAdapter.ViewHolder>  {
 
     private Context c;
-    private List<Status> statuses;
+    private List<Status> statusList;
 
-    public StatusRVAdapter(Context c, List<Status> statuses) {
+    public StatusRVAdapter(Context c, List<Status> statusList) {
         this.c = c;
-        this.statuses = statuses;
+        this.statusList = statusList;
     }
 
     @Override
-    public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.status_model, parent, false);
-        return new MyHolder(v);
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_status_model, parent, false);
+        return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(MyHolder holder, int position) {
-        holder.lblNomeStatus.setText(statuses.get(position).getNome());
-        holder.lblDescricaoStatus.setText(statuses.get(position).getDescricao());
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.lblNomeStatus.setText(statusList.get(position).getNome());
+        holder.lblDescricaoStatus.setText(statusList.get(position).getDescricao());
+        holder.imgColor.setColorFilter(statusList.get(position).getCor());
 
-        holder.setItemClickListener(new ItemClickListener() {
-            @Override
-            public void onItemClick(View v, int pos) {
-                Intent i = new Intent(c, DetalhesStatus.class);
+        holder.setItemClickListener((v, pos) -> {
+            Intent i = new Intent(c, DetalhesStatus.class);
 
-                i.putExtra("EXTRA_CODIGO_STATUS", statuses.get(pos).getId());
-                i.putExtra("EXTRA_INDEX_STATUS", pos);
+            i.putExtra("EXTRA_CODIGO_STATUS", statusList.get(pos).getId());
+            i.putExtra("EXTRA_INDEX_STATUS", pos);
 
 
-                c.startActivity(i);
-            }
+            c.startActivity(i);
         });
     }
 
-    public void setStatuses(List<Status> statuses) {
-        this.statuses = statuses;
+    public void setStatusList(List<Status> statusList) {
+        this.statusList = statusList;
     }
 
     @Override
     public int getItemCount() {
-        return statuses.size();
+        return statusList.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        final TextView lblNomeStatus;
+        final TextView lblDescricaoStatus;
+        final ImageView imgColor;
+        private ItemClickListener itemClickListener;
+
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+
+            lblNomeStatus = itemView.findViewById(R.id.lblNomeStatus);
+            lblDescricaoStatus = itemView.findViewById(R.id.lblDescricaoStatus);
+            imgColor = itemView.findViewById(R.id.imgColor);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            this.itemClickListener.onItemClick(view,getLayoutPosition());
+        }
+
+        public void setItemClickListener(ItemClickListener ic){
+            this.itemClickListener = ic;
+        }
     }
 }

@@ -2,14 +2,12 @@ package nescaupower.br.com.keepsoft.Views.Projeto;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -28,7 +26,7 @@ import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Usuario.PaginaInicialActivity;
+import nescaupower.br.com.keepsoft.Views.PaginaInicialActivity;
 
 public class CadastroProjetoActivity extends AppCompatActivity {
 
@@ -130,15 +128,10 @@ public class CadastroProjetoActivity extends AppCompatActivity {
                 CadastroProjetoActivity.this.finish();
             } else {
                 Toast.makeText(this, "Não foi possível criar Perfil", Toast.LENGTH_SHORT).show();
-                return;
             }
 
         } else {
             Toast.makeText(this, "Projeto já existe", Toast.LENGTH_SHORT).show();
-            return;
         }
-
-
     }
-
 }

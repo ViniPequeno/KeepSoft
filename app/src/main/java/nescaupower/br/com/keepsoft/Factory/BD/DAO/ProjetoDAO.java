@@ -1,10 +1,5 @@
 package nescaupower.br.com.keepsoft.Factory.BD.DAO;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
 import android.util.Log;
 
 import com.google.common.reflect.TypeToken;
@@ -25,7 +20,7 @@ public class ProjetoDAO {
             tJson = new HttpService().execute("/projeto", "Get", null).get();
             Type type = new TypeToken<List<Projeto>>() {
             }.getType();
-            List<Projeto> list = (List<Projeto>) new Gson().fromJson(tJson, type);
+            List<Projeto> list = new Gson().fromJson(tJson, type);
             return list;
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -112,7 +107,7 @@ public class ProjetoDAO {
             tJson = new HttpService().execute("/projeto/findByUserID/" + userID, "Get", null).get();
             Type type = new TypeToken<List<Projeto>>() {
             }.getType();
-            List<Projeto> list = (List<Projeto>) new Gson().fromJson(tJson, type);
+            List<Projeto> list = new Gson().fromJson(tJson, type);
             return list;
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -129,7 +124,7 @@ public class ProjetoDAO {
             tJson = new HttpService().execute("/projeto/findByParticipantingUserID/" + userID, "Get", null).get();
             Type type = new TypeToken<List<Projeto>>() {
             }.getType();
-            List<Projeto> list = (List<Projeto>) new Gson().fromJson(tJson, type);
+            List<Projeto> list = new Gson().fromJson(tJson, type);
             return list;
         } catch (InterruptedException e) {
             e.printStackTrace();

@@ -1,13 +1,9 @@
 package nescaupower.br.com.keepsoft.Controller;
 
-import android.content.Context;
-import android.util.Log;
-
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.ProjetoDAO;
-import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 
 public class ProjetoController {

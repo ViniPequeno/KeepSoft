@@ -5,12 +5,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -110,7 +109,7 @@ public class DetalhesSprintActivity extends AppCompatActivity {
     private void showDialogDigitarSenha() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.type_your_password);
-        final View dialogView = this.getLayoutInflater().inflate(R.layout.dialog_senha, (ViewGroup) findViewById(R.id.content), false);
+        final View dialogView = this.getLayoutInflater().inflate(R.layout.dialog_senha, findViewById(R.id.content), false);
         builder.setView(dialogView);
 
         builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {

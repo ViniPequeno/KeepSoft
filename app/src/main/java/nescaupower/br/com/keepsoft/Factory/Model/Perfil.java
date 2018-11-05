@@ -1,15 +1,6 @@
 package nescaupower.br.com.keepsoft.Factory.Model;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
-import android.arch.persistence.room.Index;
-import android.arch.persistence.room.PrimaryKey;
-import android.arch.persistence.room.TypeConverters;
-
-import java.util.Calendar;
 import java.util.Date;
-
-import nescaupower.br.com.keepsoft.Utils.Converters;
 
 
 public class Perfil {

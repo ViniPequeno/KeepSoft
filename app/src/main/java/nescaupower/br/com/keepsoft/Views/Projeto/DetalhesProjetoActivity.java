@@ -75,6 +75,7 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(nomeProjeto);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.fragmentContainer);

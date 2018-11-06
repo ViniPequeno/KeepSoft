@@ -7,14 +7,13 @@ public class Reuniao {
     private String nome;
     private String relatorio;
     private String assunto;
+    private String local;
 
     private String dataInicioFormat;
-    private String dataFimFormat;
     private String horaInicioFormat;
     private String horaFimFormat;
 
     private Date dataInicio;
-    private Date dataFim;
 
     private Projeto projeto;
 
@@ -61,14 +60,6 @@ public class Reuniao {
         this.dataInicioFormat = dataInicioFormat;
     }
 
-    public String getDataFimFormat() {
-        return dataFimFormat;
-    }
-
-    public void setDataFimFormat(String dataFimFormat) {
-        this.dataFimFormat = dataFimFormat;
-    }
-
     public Date getDataInicio() {
         return dataInicio;
     }
@@ -77,13 +68,6 @@ public class Reuniao {
         this.dataInicio = dataInicio;
     }
 
-    public Date getDataFim() {
-        return dataFim;
-    }
-
-    public void setDataFim(Date dataFim) {
-        this.dataFim = dataFim;
-    }
 
     public boolean isRealizada() {
         return realizada;
@@ -115,5 +99,13 @@ public class Reuniao {
 
     public void setHoraFimFormat(String horaFimFormat) {
         this.horaFimFormat = horaFimFormat;
+    }
+
+    public String getLocal() {
+        return local;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
     }
 }

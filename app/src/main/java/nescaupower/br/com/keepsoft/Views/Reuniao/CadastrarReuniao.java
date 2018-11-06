@@ -32,12 +32,13 @@ public class CadastrarReuniao extends AppCompatActivity {
     private EditText txtReuniaoDataFim;
     private EditText txtReuniaoHoraInicio;
     private EditText txtReuniaoHoraFim;
+    private EditText txtReuniaoLocal;
     private ReuniaoController rc;
 
 
-    private DatePickerDialog dialogDataInicio, dialogDataFim;
-    private DatePickerDialog.OnDateSetListener listenerDataSelecionadaDataInicio, listenerDataSelecionadaDataFim;
-    private DatePickerDialog.OnCancelListener listenerSelecaoCanceladaDataInicio, listenerSelecaoCanceladaDataFim;
+    private DatePickerDialog dialogDataInicio;
+    private DatePickerDialog.OnDateSetListener listenerDataSelecionadaDataInicio;
+    private DatePickerDialog.OnCancelListener listenerSelecaoCanceladaDataInicio;
 
     private TimePickerDialog dialogHoraInicio, dialogHoraFim;
     private TimePickerDialog.OnTimeSetListener listenerHoraDataInicio, listenerHoraDataFim;
@@ -54,9 +55,10 @@ public class CadastrarReuniao extends AppCompatActivity {
 
         txtReuniaoTitulo = findViewById(R.id.txtNomeReuniao);
         txtReuniaoAssunto = findViewById(R.id.txtAssuntoReuniao);
+        txtReuniaoLocal = findViewById(R.id.txtLocalReuniao);
+
         //Datas
         txtReuniaoDataInicio = findViewById(R.id.txtReuniaoDataInicio);
-        txtReuniaoDataFim = findViewById(R.id.txtReuniaoDataFim);
 
         txtReuniaoHoraInicio = findViewById(R.id.txtReuniaoHoraInicio);
         txtReuniaoHoraFim = findViewById(R.id.txtReuniaoHoraFim);
@@ -138,24 +140,6 @@ public class CadastrarReuniao extends AppCompatActivity {
                 .get(Calendar.YEAR), dataAtual.get(Calendar.MONTH), dataAtual.get(Calendar.DAY_OF_MONTH));
         dialogDataInicio.setOnCancelListener(listenerSelecaoCanceladaDataInicio);
 
-        txtReuniaoDataFim.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                dialogDataFim.show();
-            }
-        });
-        //TODO: ajustar foco após selecionar data
-        listenerDataSelecionadaDataFim = (view, year, month, dayOfMonth) -> {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
-            txtReuniaoDataFim.setText(sdf.format(data));
-            root.clearFocus();
-            dialogDataFim.show();
-        };
-        listenerSelecaoCanceladaDataFim = dialogInterface -> root.clearFocus();
-
-        dialogDataFim = new DatePickerDialog(CadastrarReuniao.this, listenerDataSelecionadaDataFim, dataAtual
-                .get(Calendar.YEAR), dataAtual.get(Calendar.MONTH), dataAtual.get(Calendar.DAY_OF_MONTH));
-        dialogDataFim.setOnCancelListener(listenerSelecaoCanceladaDataFim);
     }
 
     public void cadastrar(View view) {
@@ -168,14 +152,14 @@ public class CadastrarReuniao extends AppCompatActivity {
         } else if (txtReuniaoDataInicio.getText().toString() == "") {
             Toast.makeText(this, "A reunião deve ter uma data de início", Toast.LENGTH_SHORT).show();
             return;
-        } else if (txtReuniaoDataFim.getText().toString() == "") {
-            Toast.makeText(this, "A reunião deve ter uma data de finalização", Toast.LENGTH_SHORT).show();
-            return;
-        } else if (txtReuniaoHoraInicio.getText().toString() == "") {
+        }  else if (txtReuniaoHoraInicio.getText().toString() == "") {
             Toast.makeText(this, "A reunião deve ter uma hora de início", Toast.LENGTH_SHORT).show();
             return;
         }else if (txtReuniaoHoraFim.getText().toString() == "") {
             Toast.makeText(this, "A reunião deve ter uma hora de finalização", Toast.LENGTH_SHORT).show();
+            return;
+        }else if(txtReuniaoLocal.getText().toString() == ""){
+            Toast.makeText(this, "A reunião deve ter um local", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -184,14 +168,10 @@ public class CadastrarReuniao extends AppCompatActivity {
         r.setAssunto(txtReuniaoAssunto.getText().toString());
         r.setHoraInicioFormat(txtReuniaoHoraInicio.getText().toString());
         r.setHoraFimFormat(txtReuniaoHoraFim.getText().toString());
+
+        r.setLocal(txtReuniaoLocal.getText().toString());
         try {
             r.setDataInicio(new SimpleDateFormat("dd/MM/yyyy").parse(txtReuniaoDataInicio.getText().toString()));
-        } catch ( ParseException e ) {
-            e.printStackTrace();
-        }
-
-        try {
-            r.setDataFim(new SimpleDateFormat("dd/MM/yyyy").parse(txtReuniaoDataFim.getText().toString()));
         } catch ( ParseException e ) {
             e.printStackTrace();
         }

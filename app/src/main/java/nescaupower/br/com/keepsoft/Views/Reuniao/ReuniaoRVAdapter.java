@@ -34,14 +34,16 @@ public class ReuniaoRVAdapter  extends RecyclerView.Adapter<ReuniaoRVAdapter.Vie
 
     @Override
     public void onBindViewHolder(ReuniaoRVAdapter.ViewHolder holder, int position) {
-        holder.lblReuniaoTitulo.setText(reuniaoList.get(position).getNome());
-        holder.lblReuniaoDescricao.setText(reuniaoList.get(position).getAssunto());
+        holder.lblReuniaoTitulo.setText("Nome: "+reuniaoList.get(position).getNome());
+        holder.lblReuniaoDescricao.setText("Assunto: "+ reuniaoList.get(position).getAssunto());
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         String dataInicio = format.format(reuniaoList.get(position).getDataInicio());
-        String dataFim = format.format(reuniaoList.get(position).getDataFim());
+        String dataFim = "";
 
-        dataInicio += " - "+reuniaoList.get(position).getHoraInicioFormat();
-        dataFim += " - "+reuniaoList.get(position).getHoraFimFormat();
+        holder.lblReuniaoLocal.setText("Local: "+reuniaoList.get(position).getLocal());
+
+
+        dataFim = reuniaoList.get(position).getHoraInicioFormat()+" - "+reuniaoList.get(position).getHoraFimFormat();
         holder.lblReuniaoDataInicio.setText(dataInicio);
         holder.lblReuniaoDataFim.setText(dataFim);
 
@@ -71,6 +73,7 @@ public class ReuniaoRVAdapter  extends RecyclerView.Adapter<ReuniaoRVAdapter.Vie
         final TextView lblReuniaoDescricao;
         final TextView lblReuniaoDataInicio;
         final TextView lblReuniaoDataFim;
+        final TextView lblReuniaoLocal;
         private ItemClickListener itemClickListener;
 
 
@@ -81,7 +84,7 @@ public class ReuniaoRVAdapter  extends RecyclerView.Adapter<ReuniaoRVAdapter.Vie
             lblReuniaoDescricao = itemView.findViewById(R.id.lblReuniaoDescricao );
             lblReuniaoDataInicio = itemView.findViewById(R.id.lblReuniaoDataInicio);
             lblReuniaoDataFim = itemView.findViewById(R.id.lblReuniaoDataFim);
-
+            lblReuniaoLocal = itemView.findViewById(R.id.lblReuniaoLocal);
             itemView.setOnClickListener(this);
         }
 

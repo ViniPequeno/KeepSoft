@@ -24,7 +24,6 @@ public class ReuniaoController {
     public void atualizar(Reuniao reuniao) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         reuniao.setDataInicioFormat(format.format(reuniao.getDataInicio()));
-        reuniao.setDataFimFormat(format.format(reuniao.getDataFim()));
 
         reuniaoDAO.updateAll(reuniao);
     }
@@ -33,7 +32,6 @@ public class ReuniaoController {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         reuniao.setDataInicioFormat(format.format(reuniao.getDataInicio()));
-        reuniao.setDataFimFormat(format.format(reuniao.getDataFim()));
         reuniaoDAO.insertAll(reuniao);
         this.mensagem = "Cadastrado!";
         return true;
@@ -57,7 +55,6 @@ public class ReuniaoController {
         for(int i = 0; i<reuniaoList.size(); i++){
             try {
                 reuniaoList.get(i).setDataInicio(format.parse(reuniaoList.get(i).getDataInicioFormat()));
-                reuniaoList.get(i).setDataFim(format.parse(reuniaoList.get(i).getDataFimFormat()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }

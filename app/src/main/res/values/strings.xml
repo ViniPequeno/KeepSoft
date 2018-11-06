@@ -175,6 +175,7 @@
     <string name="reuniao_start_date">Reunion Start Date</string>
     <string name="reuniao_end_date">Reunion End Date</string>
     <string name="add_reuniao">Add Reunion</string>
-    <string name="reuniao_start_hour">Hour</string>
-    <string name="reuniao_end_hour">Hour</string>
+    <string name="reuniao_start_hour">Hour Start</string>
+    <string name="reuniao_end_hour">Hour End</string>
+    <string name="local">Local</string>
 </resources>

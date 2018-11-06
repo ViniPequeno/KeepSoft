@@ -35,8 +35,8 @@ public class ReuniaoActivity extends AppCompatActivity {
         rv = findViewById(R.id.ReuniaoRV);
         rv.setLayoutManager(layoutManager);
 
-        //StatusRVAdapter adapter = new StatusRVAdapter(getApplicationContext(), listStatus);
-        //rv.setAdapter(adapter);
+        ReuniaoRVAdapter adapter = new ReuniaoRVAdapter(getApplicationContext(), reuniaos);
+        rv.setAdapter(adapter);
 
         btnCadastrar = findViewById(R.id.btnCadastrarReuniao);
         btnCadastrar.setOnClickListener(view -> cadastrar());
@@ -45,13 +45,13 @@ public class ReuniaoActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        //StatusRVAdapter adapter = (StatusRVAdapter) rv.getAdapter();
-        //adapter.setStatusList(listStatus = sc.getAllFindByProjeto(projeto.getCodigo()));
-        //adapter.notifyDataSetChanged();
+        ReuniaoRVAdapter adapter = (ReuniaoRVAdapter) rv.getAdapter();
+        adapter.setReuniaoList(reuniaos = rc.listarPorProjeto(projeto.getCodigo()));
+        adapter.notifyDataSetChanged();
     }
 
     private void cadastrar() {
-        //Intent i = new Intent(StatusActivity.this, CadastrarStatus.class);
-        //startActivity(i);
+        Intent i = new Intent(ReuniaoActivity.this, CadastrarReuniao.class);
+        startActivity(i);
     }
 }

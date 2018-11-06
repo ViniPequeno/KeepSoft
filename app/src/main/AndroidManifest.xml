@@ -125,7 +125,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity" />
         </activity>
-        <activity android:name=".Views.Reuniao.ReuniaoActivity"></activity>
+        <activity
+            android:name=".Views.Reuniao.ReuniaoActivity"
+            android:label="Reunions"
+            android:parentActivityName=".Views.Projeto.DetalhesProjetoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity" />
+        </activity>
+        <activity android:name=".Views.Reuniao.DetalhesReuniao"></activity>
+        <activity android:name=".Views.Reuniao.CadastrarReuniao"></activity>
     </application>
 
 </manifest>

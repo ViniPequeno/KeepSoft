@@ -161,4 +161,10 @@
     <string name="delete_account_confirm">Tem certeza de que quer deletar sua conta?</string>
     <string name="action_reuniao">Reunião</string>
     <string name="title_activity_cadastro_tarefa">Tarefas</string>
+    <string name="assunto">Assunto</string>
+    <string name="reuniao_start_date">Inicio da reunião</string>
+    <string name="reuniao_end_date">FIm da reunião</string>
+    <string name="add_reuniao">Adicionar reunião</string>
+    <string name="reuniao_start_hour">Horário</string>
+    <string name="reuniao_end_hour">Horário</string>
 </resources>

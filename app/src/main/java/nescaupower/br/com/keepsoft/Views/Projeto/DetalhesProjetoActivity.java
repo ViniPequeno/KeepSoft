@@ -27,6 +27,7 @@ import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Equipe.DetalhesMembroActivity;
 import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment;
+import nescaupower.br.com.keepsoft.Views.Reuniao.ReuniaoActivity;
 import nescaupower.br.com.keepsoft.Views.Sprint.SprintFragment;
 import nescaupower.br.com.keepsoft.Views.Status.StatusActivity;
 import nescaupower.br.com.keepsoft.Views.TabAdapter;
@@ -154,7 +155,8 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         }
         if(id == R.id.action_reuniao){
             if(perfil.getPerfil() == nescaupower.br.com.keepsoft.Enum.Perfil.SCRUM_MASTER){
-
+                intent = new Intent(DetalhesProjetoActivity.this, ReuniaoActivity.class);
+                startActivity(intent);
             }else{
                 Toast.makeText(this, "Você não tem permissão", Toast.LENGTH_SHORT).show();
             }

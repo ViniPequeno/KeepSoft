@@ -31,6 +31,7 @@ public class CadastroSprintActivity extends AppCompatActivity {
     private EditText txtDataInicio;
     private EditText txtDataFim;
     private SprintController pc;
+    private Projeto projeto;
     private DatePickerDialog dialogDataInicio, dialogDataFim;
     private DatePickerDialog.OnDateSetListener listenerDataSelecionadaDataInicio, listenerDataSelecionadaDataFim;
     private DatePickerDialog.OnCancelListener listenerSelecaoCanceladaDataInicio, listenerSelecaoCanceladaDataFim;

@@ -10,6 +10,8 @@ public class Reuniao {
 
     private String dataInicioFormat;
     private String dataFimFormat;
+    private String horaInicioFormat;
+    private String horaFimFormat;
 
     private Date dataInicio;
     private Date dataFim;
@@ -97,5 +99,21 @@ public class Reuniao {
 
     public void setProjeto(Projeto projeto) {
         this.projeto = projeto;
+    }
+
+    public String getHoraInicioFormat() {
+        return horaInicioFormat;
+    }
+
+    public void setHoraInicioFormat(String horaInicioFormat) {
+        this.horaInicioFormat = horaInicioFormat;
+    }
+
+    public String getHoraFimFormat() {
+        return horaFimFormat;
+    }
+
+    public void setHoraFimFormat(String horaFimFormat) {
+        this.horaFimFormat = horaFimFormat;
     }
 }

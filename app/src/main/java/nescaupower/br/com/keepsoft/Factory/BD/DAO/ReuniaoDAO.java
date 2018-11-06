@@ -61,7 +61,7 @@ public class ReuniaoDAO {
         for(Reuniao reuniao : reunaioes){
             String tJson = new Gson().toJson(reuniao);
             try {
-                new HttpService().execute("api/reuniao", "Post", tJson).get();
+                new HttpService().execute("/reuniao", "Post", tJson).get();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -74,7 +74,7 @@ public class ReuniaoDAO {
         for(Reuniao reuniao : reunaioes){
             String tJson = new Gson().toJson(reuniao);
             try {
-                new HttpService().execute("api/reuniao/"+reuniao.getId(), "Put", tJson).get();
+                new HttpService().execute("/reuniao/"+reuniao.getId(), "Put", tJson).get();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {

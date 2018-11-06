@@ -22,9 +22,7 @@ public class ReuniaoController {
     }
 
     public void atualizar(Reuniao reuniao) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-        format.setTimeZone(TimeZone.getTimeZone("GMT-4:00"));
-
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         reuniao.setDataInicioFormat(format.format(reuniao.getDataInicio()));
         reuniao.setDataFimFormat(format.format(reuniao.getDataFim()));
 
@@ -32,8 +30,7 @@ public class ReuniaoController {
     }
 
     public boolean cadastrar(Reuniao reuniao) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-        format.setTimeZone(TimeZone.getTimeZone("GMT-4:00"));
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         reuniao.setDataInicioFormat(format.format(reuniao.getDataInicio()));
         reuniao.setDataFimFormat(format.format(reuniao.getDataFim()));
@@ -55,7 +52,17 @@ public class ReuniaoController {
     }
 
     public List<Reuniao> listarPorProjeto(Long codProjeto) {
-        return reuniaoDAO.findByProjectID(codProjeto);
+        List<Reuniao> reuniaoList= reuniaoDAO.findByProjectID(codProjeto);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        for(int i = 0; i<reuniaoList.size(); i++){
+            try {
+                reuniaoList.get(i).setDataInicio(format.parse(reuniaoList.get(i).getDataInicioFormat()));
+                reuniaoList.get(i).setDataFim(format.parse(reuniaoList.get(i).getDataFimFormat()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return  reuniaoList;
     }
 
     public List<Reuniao> listarTodos() {

@@ -51,9 +51,9 @@ public class CadastroTarefaActivity extends AppCompatActivity {
         spinUsuario.setAdapter(adapter);
         spinUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                Toast.makeText(CadastroTarefaActivity.this, "o", Toast.LENGTH_SHORT).show();
+                /*Toast.makeText(CadastroTarefaActivity.this, "o", Toast.LENGTH_SHORT).show();
                 String item = ((TextView) view.findViewById(R.id.lblNome)).getText().toString();
-                perfilSelecionado.setText(item);
+                perfilSelecionado.setText(item);*/
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
@@ -86,16 +86,16 @@ public class CadastroTarefaActivity extends AppCompatActivity {
         @NonNull
         @Override
         public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-            /*TextView text = new TextView(CadastroTarefaActivity.this);
-            text.setText(perfis.get(position).getUsuario().getNome());
-            return text;*/
-            return createItemView(position, convertView, parent);
+            TextView v = (TextView) View.inflate(mContext, android.R.layout.simple_spinner_item,null);
+            v.setText(perfis.get(position).getUsuario().getNome());
+            return v;
         }
 
         @Override
         public View getDropDownView(int position, View convertView, ViewGroup parent) {
-            View v = View.inflate(CadastroTarefaActivity.this, R.layout.fragment_equipe_model, parent);
-            return super.getDropDownView(position, convertView, parent);
+            TextView v = (TextView) View.inflate(mContext, android.R.layout.simple_spinner_dropdown_item,null);
+            v.setText(perfis.get(position).getUsuario().getNome());
+            return v;
         }
 
         private View createItemView(int position, View convertView, ViewGroup parent) {
@@ -103,11 +103,13 @@ public class CadastroTarefaActivity extends AppCompatActivity {
 
             TextView lblNome = view.findViewById(R.id.lblNome);
             TextView lblFuncao = view.findViewById(R.id.lblFuncao);
+            TextView lblObs = view.findViewById(R.id.lblObs);
 
             Perfil perfil = perfis.get(position);
 
             lblNome.setText(perfil.getUsuario().getNome());
             lblFuncao.setText(perfil.getPerfil().toString());
+            lblObs.setText(null);
 
             return view;
         }

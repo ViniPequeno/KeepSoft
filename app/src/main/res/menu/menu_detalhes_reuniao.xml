@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="nescaupower.br.com.keepsoft.Views.Status.DetalhesStatus">
+    tools:context="nescaupower.br.com.keepsoft.Views.Reuniao.DetalhesReuniao">
     <item
-        android:id="@+id/action_editar_status"
+        android:id="@+id/action_editar_reuniao"
         android:icon="@drawable/ic_edit_black_24dp"
         android:orderInCategory="100"
         android:title="@string/action_edit"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_excluir_status"
+        android:id="@+id/action_excluir_reuniao"
         android:icon="@drawable/ic_delete_black_24dp"
         android:orderInCategory="100"
         android:title="@string/action_delete"

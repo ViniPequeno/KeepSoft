@@ -49,17 +49,28 @@ public class ReuniaoController {
         }
     }
 
-    public List<Reuniao> listarPorProjeto(Long codProjeto) {
-        List<Reuniao> reuniaoList= reuniaoDAO.findByProjectID(codProjeto);
+    public Reuniao getReuniao(Long id) {
+        Reuniao reuniao = reuniaoDAO.findByID(id);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        for(int i = 0; i<reuniaoList.size(); i++){
+        try {
+            reuniao.setDataInicio(format.parse(reuniao.getDataInicioFormat()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return reuniao;
+    }
+
+    public List<Reuniao> listarPorProjeto(Long codProjeto) {
+        List<Reuniao> reuniaoList = reuniaoDAO.findByProjectID(codProjeto);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        for (int i = 0; i < reuniaoList.size(); i++) {
             try {
                 reuniaoList.get(i).setDataInicio(format.parse(reuniaoList.get(i).getDataInicioFormat()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
         }
-        return  reuniaoList;
+        return reuniaoList;
     }
 
     public List<Reuniao> listarTodos() {

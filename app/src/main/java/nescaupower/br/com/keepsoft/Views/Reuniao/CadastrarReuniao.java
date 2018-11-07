@@ -29,7 +29,6 @@ public class CadastrarReuniao extends AppCompatActivity {
     private EditText txtReuniaoTitulo;
     private EditText txtReuniaoAssunto;
     private EditText txtReuniaoDataInicio;
-    private EditText txtReuniaoDataFim;
     private EditText txtReuniaoHoraInicio;
     private EditText txtReuniaoHoraFim;
     private EditText txtReuniaoLocal;
@@ -48,6 +47,7 @@ public class CadastrarReuniao extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_reuniao);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         root =findViewById(R.id.reuniao);
 

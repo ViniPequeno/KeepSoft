@@ -86,7 +86,7 @@ public class ReuniaoDAO {
     public void delete(Reuniao reuniao){
         String tJson = null;
         try {
-            tJson = new HttpService().execute("/reuniao/"+reuniao.getId(), "Get", null).get();
+            tJson = new HttpService().execute("/reuniao/"+reuniao.getId(), "Delete", null).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

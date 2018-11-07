@@ -178,4 +178,5 @@
     <string name="reuniao_start_hour">Hour Start</string>
     <string name="reuniao_end_hour">Hour End</string>
     <string name="local">Local</string>
+    <string name="add_reuniao_usuario">Add Participant</string>
 </resources>

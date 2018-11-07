@@ -2,7 +2,9 @@ package nescaupower.br.com.keepsoft.Views.Reuniao;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,9 +18,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.ReuniaoController;
+import nescaupower.br.com.keepsoft.Controller.ReuniaoUsuarioController;
+import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Reuniao;
+import nescaupower.br.com.keepsoft.Factory.Model.ReuniaoUsuario;
+import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Sprint.CadastroSprintActivity;
 
@@ -33,6 +40,8 @@ public class CadastrarReuniao extends AppCompatActivity {
     private EditText txtReuniaoHoraFim;
     private EditText txtReuniaoLocal;
     private ReuniaoController rc;
+    private ReuniaoUsuarioController reuniaoUsuarioController;
+    private UsuarioController uc;
 
 
     private DatePickerDialog dialogDataInicio;
@@ -52,6 +61,7 @@ public class CadastrarReuniao extends AppCompatActivity {
         root =findViewById(R.id.reuniao);
 
         rc = new ReuniaoController();
+        reuniaoUsuarioController = new ReuniaoUsuarioController();
 
         txtReuniaoTitulo = findViewById(R.id.txtNomeReuniao);
         txtReuniaoAssunto = findViewById(R.id.txtAssuntoReuniao);
@@ -179,6 +189,16 @@ public class CadastrarReuniao extends AppCompatActivity {
         r.setProjeto(Projeto.getUltimoProjetoUsado());
 
         if(rc.cadastrar(r)){
+            ReuniaoUsuario reuniaoUsuario = new ReuniaoUsuario();
+            reuniaoUsuario.setReuniao(r);
+            //Singleton
+            Usuario usuario = Usuario.getUsuarioLogado();
+            if (usuario == null || usuario.getLogin().equals("")) {
+                SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
+            }
+            reuniaoUsuario.setUsuario(usuario);
+            reuniaoUsuarioController.cadastrar(reuniaoUsuario);
             Intent i = new Intent(CadastrarReuniao.this, ReuniaoActivity.class);
             startActivity(i);
             CadastrarReuniao.this.finish();

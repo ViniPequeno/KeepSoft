@@ -1,4 +1,4 @@
-package nescaupower.br.com.keepsoft.Views.Equipe;
+package nescaupower.br.com.keepsoft.Views.Reuniao.Participantes;
 
 import android.database.MatrixCursor;
 import android.os.Bundle;
@@ -25,7 +25,7 @@ import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 
-public class ConvidarMembroActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class ParticipanteActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     List<Usuario> usuarios;
     RecyclerView usuariosRV;
@@ -56,9 +56,9 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
         UsuarioController uc = new UsuarioController();
         List<Usuario> list = uc.listarUsuariosCursor(" ", 0L);
 
-        rvAdapter = new PesquisarUsuarioRVAdapter(usuarios, ConvidarMembroActivity.this);
+        rvAdapter = new PesquisarUsuarioRVAdapter(usuarios, ParticipanteActivity.this);
 
-        searchViewAdapter = new PesquisarUsuarioCursorAdapter(ConvidarMembroActivity.this, getCursor(list), txtPesquisarUsuario, rvAdapter);
+        searchViewAdapter = new PesquisarUsuarioCursorAdapter(ParticipanteActivity.this, getCursor(list), txtPesquisarUsuario, rvAdapter);
 
         txtPesquisarUsuario.setOnQueryTextListener(this);
         txtPesquisarUsuario.setSuggestionsAdapter(searchViewAdapter);
@@ -105,7 +105,7 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
 
             }
 
-            ConvidarMembroActivity.this.finish();
+            ParticipanteActivity.this.finish();
         });
     }
 

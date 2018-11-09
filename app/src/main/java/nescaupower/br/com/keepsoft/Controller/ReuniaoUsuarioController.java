@@ -1,5 +1,7 @@
 package nescaupower.br.com.keepsoft.Controller;
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -29,9 +31,13 @@ public class ReuniaoUsuarioController {
         return true;
     }
 
+    public List<Usuario> getUsuariosNotReuniao(Long reuniaoId, String login){
+        return reuniaoDAO.getUsuariosNotReuniao(reuniaoId, login);
+    }
 
-    public List<Usuario> listarPorProjeto(Long id) {
+    public List<Usuario> listarPorReuniao(Long id) {
         List<Usuario> reuniaoList = reuniaoDAO.getAll(id);
+
         return reuniaoList;
     }
 

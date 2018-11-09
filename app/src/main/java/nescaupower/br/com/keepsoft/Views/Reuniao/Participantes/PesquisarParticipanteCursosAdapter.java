@@ -14,13 +14,13 @@ import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 
-public class PesquisarUsuarioCursorAdapter extends CursorAdapter {
-    PesquisarUsuarioRVAdapter rvAdapter;
+public class PesquisarParticipanteCursosAdapter extends CursorAdapter {
+    PesquisarParticipanteRVAdapter rvAdapter;
     private LayoutInflater mLayoutInflater;
     private Context mContext;
     private SearchView searchView;
 
-    public PesquisarUsuarioCursorAdapter(Context context, Cursor cursor, SearchView sv, PesquisarUsuarioRVAdapter rvAdapter) {
+    public PesquisarParticipanteCursosAdapter(Context context, Cursor cursor, SearchView sv, PesquisarParticipanteRVAdapter rvAdapter) {
         super(context, cursor, true);
         mContext = context;
         searchView = sv;
@@ -30,7 +30,7 @@ public class PesquisarUsuarioCursorAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        View v = mLayoutInflater.inflate(R.layout.dropdown_usuario_search_view_model, parent, false);
+        View v = mLayoutInflater.inflate(R.layout.dropdown_participante_search_view_model, parent, false);
         return v;
     }
 
@@ -40,10 +40,10 @@ public class PesquisarUsuarioCursorAdapter extends CursorAdapter {
         final String nome = cursor.getString(cursor.getColumnIndexOrThrow("nome"));
         final long id = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
 
-        TextView lblLogin = view.findViewById(R.id.lblLogin);
+        TextView lblLogin = view.findViewById(R.id.lblLoginParticipante2);
         lblLogin.setText(login);
 
-        TextView lblNome = view.findViewById(R.id.lblNome);
+        TextView lblNome = view.findViewById(R.id.lblNomeParticipante2);
         lblNome.setText(nome);
 
         view.setOnClickListener(new View.OnClickListener() {

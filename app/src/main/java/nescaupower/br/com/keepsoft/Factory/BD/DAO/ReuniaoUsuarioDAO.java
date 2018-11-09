@@ -16,8 +16,8 @@ public class ReuniaoUsuarioDAO {
     public List<Usuario> getAll(Long id){
         String tJson = null;
         try {
-            tJson = new HttpService().execute("/reuniao/usuario/{id}", "Get", null).get();
-            Type type = new TypeToken<List<Reuniao>>(){}.getType();
+            tJson = new HttpService().execute("/reuniao/usuario/"+id, "Get", null).get();
+            Type type = new TypeToken<List<Usuario>>(){}.getType();
             List<Usuario> list = new Gson().fromJson(tJson, type);
             return list;
         } catch (InterruptedException e) {
@@ -42,5 +42,21 @@ public class ReuniaoUsuarioDAO {
             }
         }
     }
+
+    public List<Usuario> getUsuariosNotReuniao(Long reuniaoId, String login){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/reuniao/getUsuariosNotReuniao/"+reuniaoId+"/"+login, "Get", null).get();
+            Type type = new TypeToken<List<Usuario>>(){}.getType();
+            List<Usuario> list = new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 }

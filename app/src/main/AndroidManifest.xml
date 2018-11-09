@@ -143,7 +143,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nescaupower.br.com.keepsoft.Views.Reuniao.ReuniaoActivity" />
         </activity>
-        <activity android:name=".Views.Reuniao.EditarReuniaoActivity"></activity>
+        <activity android:name=".Views.Reuniao.EditarReuniaoActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nescaupower.br.com.keepsoft.Views.Reuniao.ReuniaoActivity" />
+        </activity>
+        <activity android:name=".Views.Reuniao.Participantes.ParticipanteActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nescaupower.br.com.keepsoft.Views.Reuniao.ReuniaoActivity" />
+        </activity>
+        <activity android:name=".Views.Reuniao.Participantes.CadastrarParticipanteActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nescaupower.br.com.keepsoft.Views.Reuniao.ReuniaoActivity" />
+        </activity>
     </application>
 
 </manifest>

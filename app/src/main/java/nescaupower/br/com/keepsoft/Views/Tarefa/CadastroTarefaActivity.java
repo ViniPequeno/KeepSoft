@@ -79,10 +79,9 @@ public class CadastroTarefaActivity extends AppCompatActivity {
         }
 
         @Override
-        public View getDropDownView(int position, View convertView, ViewGroup parent) {
-            TextView v = (TextView) View.inflate(mContext, android.R.layout.simple_spinner_dropdown_item,null);
-            v.setText(perfis.get(position).getUsuario().getNome());
-            return v;
+        public View getDropDownView(int position, View convertView, @NonNull ViewGroup parent) {
+            //return createItemView(position, convertView, parent);
+            return initView(position, convertView, parent);
         }
 
         private View initView(int position, View convertView, ViewGroup parent) {

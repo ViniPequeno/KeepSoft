@@ -11,7 +11,7 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class HttpService extends AsyncTask<String, Void, String> {
-    private final String IP = "192.168.0.24";
+    private final String IP = "10.100.45.240";
     private final String PORTA = "8000";
     private final String URL = "http://"+IP+":"+PORTA+"/api";
     private StringBuilder resposta;
@@ -69,8 +69,6 @@ public class HttpService extends AsyncTask<String, Void, String> {
         return null;
     }
 
-
-
     public String putT(String parte, String t){
         resposta  = new StringBuilder();
         try{
@@ -116,7 +114,6 @@ public class HttpService extends AsyncTask<String, Void, String> {
             return e.getMessage();
         }
     }
-
 
     @Override
     protected String doInBackground(String... strings) {

@@ -43,6 +43,13 @@
 
     <string name="description">Descrição</string>
 
+    <string-array name="difficulties_array">
+        <item>Fácil</item>
+        <item>Médio</item>
+        <item>Difícil</item>
+        <item>Muito Difícil</item>
+    </string-array>
+
     <string name="due_date">Data prevista para finalização</string>
 
     <string name="edit_profile">Editar Perfil</string>
@@ -52,6 +59,9 @@
     <string name="email">Email</string>
 
     <string name="error">Erro</string>
+
+    <string name="field_email_empty">Campo e-mail não pode ficar vazio!</string>
+    <string name="field_name_empty">Campo nome não pode ficar vazio!</string>
 
     <plurals name="hours">
         <item quantity="one">Há %1$d hora</item>
@@ -100,12 +110,20 @@
 
     <string name="phone">Telefone</string>
 
+    <string-array name="priorities_array">
+        <item>Baixa</item>
+        <item>Média</item>
+        <item>Alta</item>
+        <item>Muito Alta</item>
+    </string-array>
+
     <string name="profile">Perfil</string>
 
     <string name="project_name">Nome do Projeto</string>
 
     <string name="projects">Projetos</string>
 
+    <string name="reconnect">Reconectar</string>
     <string name="role">Função</string>
 
     <string-array name="scrum_roles_array">
@@ -136,6 +154,7 @@
     <string name="title_activity_alterar_perfil_senha">Alterar Senha</string>
     <string name="title_activity_cadastro_projeto">Novo Projeto</string>
     <string name="title_activity_cadastro_sprint">Novo Sprint</string>
+    <string name="title_activity_cadastro_tarefa">Tarefas</string>
     <string name="title_activity_deletar_conta">Deletar conta</string>
     <string name="title_activity_detalhes_membro">Detalhes do Memebro</string>
     <string name="title_activity_editar_projeto">Editar Projeto</string>
@@ -155,18 +174,17 @@
     </plurals>
 
     <string name="wrong_login_password">Login ou senha incorretos</string>
-    <string name="field_email_empty">Campo e-mail não pode ficar vazio!</string>
-    <string name="field_name_empty">Campo nome não pode ficar vazio!</string>
     <string name="select_picture">Escolher imagem</string>
     <string name="delete_account_confirm">Tem certeza de que quer deletar sua conta?</string>
     <string name="action_reuniao">Reunião</string>
-    <string name="title_activity_cadastro_tarefa">Tarefas</string>
     <string name="assunto">Assunto</string>
-    <string name="reuniao_start_date">Inicio da reunião</string>
-    <string name="reuniao_end_date">FIm da reunião</string>
+    <string name="reuniao_start_date">Data de início da reunião</string>
     <string name="add_reuniao">Adicionar reunião</string>
-    <string name="reuniao_start_hour">Horário inicio</string>
+    <string name="reuniao_start_hour">Horário de início</string>
     <string name="reuniao_end_hour">Horário final</string>
     <string name="local">Local</string>
     <string name="add_reuniao_usuario">Adicionar participante</string>
+    <string name="priority">Prioridade</string>
+    <string name="difficulty">Dificuldade</string>
+    <string name="user_in_change">Usuário encarregado</string>
 </resources>

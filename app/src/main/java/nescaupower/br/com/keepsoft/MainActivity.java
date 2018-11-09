@@ -5,26 +5,22 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
-
-import java.lang.reflect.Type;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
-import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
 import nescaupower.br.com.keepsoft.Views.PaginaInicialActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView txtInformacao;
+    Button btnReconectar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,20 +37,19 @@ public class MainActivity extends AppCompatActivity {
         //Intent serviceIntent = new Intent(this, BroadcastReceiver.class);
         //startService(serviceIntent);
 
-        String tJson = null;
-        try {
-            tJson = new HttpService().execute("/values/", "Get", null).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        String tJson = testarAPI();
 
         if(tJson != null){
-            semAPI();
+            iniciar();
         }else{
             setContentView(R.layout.activity_main);
             txtInformacao = findViewById(R.id.txtInformacao);
+            btnReconectar = findViewById(R.id.btnReconectar);
+            btnReconectar.setOnClickListener(view -> {
+                if (testarAPI() != null) {
+                    iniciar();
+                }
+            });
             if(verificaConexao()){
                 txtInformacao.setText(R.string.unavailable_services);
             }else{
@@ -65,9 +60,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Nullable
+    private String testarAPI() {
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/values/", "Get", null).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return tJson;
+    }
 
 
-    private void semAPI() {
+    private void iniciar() {
         SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         boolean logado = sharedPreferences.getBoolean(Settings.LOGADO, false);
         Intent intent;
@@ -82,26 +89,6 @@ public class MainActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
         startActivity(intent);
         MainActivity.this.finish();
-    }
-
-    private void apiAccess() {
-        String tJson = null;
-        try {
-            tJson = new HttpService().execute("/usuarios", "Get", null).get();
-            Type type = new TypeToken<List<Usuario>>(){}.getType();
-            List<Usuario> list = new Gson().fromJson(tJson, type);
-            if(list !=null) {
-                for (Usuario usuario : list) {
-                    Log.e("Usuario", usuario.getEmail());
-                }
-            }else{
-                Log.e("Pedro", "erro");
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
     }
 
     public  boolean verificaConexao() {

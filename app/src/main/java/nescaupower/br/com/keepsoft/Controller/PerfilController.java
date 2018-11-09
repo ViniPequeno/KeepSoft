@@ -32,18 +32,18 @@ public class PerfilController {
         perfilDAO.updateAll(perfil);
     }
 
-    public boolean cadastrar(Perfil... perfil) {
+    public boolean cadastrar(Perfil... perfis) {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        for(Perfil perfil1 : perfil) {
-            if(perfil1.getDataInicio() != null) {
-                perfil1.setDataInicioFormat(formato.format(perfil1.getDataInicio()));
+        for (Perfil perfil : perfis) {
+            if (perfil.getDataInicio() != null) {
+                perfil.setDataInicioFormat(formato.format(perfil.getDataInicio()));
             }else{
-                perfil1.setDataInicio(null);
-                perfil1.setDataInicioFormat("");
+                perfil.setDataInicio(null);
+                perfil.setDataInicioFormat("");
             }
 
         }
-        perfilDAO.insertAll(perfil);
+        perfilDAO.insertAll(perfis);
         this.mensagem = "Cadastrado!";
         return true;
     }

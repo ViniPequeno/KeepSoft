@@ -2,7 +2,6 @@ package nescaupower.br.com.keepsoft.Views.Tarefa;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -31,7 +30,6 @@ public class CadastroTarefaActivity extends AppCompatActivity {
     List<Perfil> perfis;
 
     PerfilController pc = new PerfilController();
-    private TextView perfilSelecionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +41,15 @@ public class CadastroTarefaActivity extends AppCompatActivity {
         txtDescricao = findViewById(R.id.txtDescricao);
         spinStatus = findViewById(R.id.spinStatus);
         spinUsuario = findViewById(R.id.spinUsuario);
-        perfilSelecionado = findViewById(R.id.selectedOffer);
 
         perfis = pc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
 
-        CustomArrayAdapter adapter = new CustomArrayAdapter(CadastroTarefaActivity.this, R.layout.fragment_equipe_model, perfis);
+        SpinUsuarioAdapter adapter = new SpinUsuarioAdapter(CadastroTarefaActivity.this, perfis);
         spinUsuario.setAdapter(adapter);
         spinUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                /*Toast.makeText(CadastroTarefaActivity.this, "o", Toast.LENGTH_SHORT).show();
-                String item = ((TextView) view.findViewById(R.id.lblNome)).getText().toString();
-                perfilSelecionado.setText(item);*/
+                Perfil p = (Perfil) parent.getItemAtPosition(pos);
+                Toast.makeText(CadastroTarefaActivity.this, p.getUsuario().getNome(), Toast.LENGTH_SHORT).show();
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
@@ -66,29 +62,20 @@ public class CadastroTarefaActivity extends AppCompatActivity {
 
     }
 
-    public class CustomArrayAdapter extends ArrayAdapter<String> {
+    public class SpinUsuarioAdapter extends ArrayAdapter {
 
-        private final LayoutInflater mInflater;
-        private final Context mContext;
-        private final List<Perfil> perfis;
-        private final int mResource;
-
-        public CustomArrayAdapter(@NonNull Context context, @LayoutRes int resource,
-                                  @NonNull List objects) {
-            super(context, resource, 0, objects);
-
-            mContext = context;
-            mInflater = LayoutInflater.from(context);
-            mResource = resource;
-            perfis = objects;
+        public SpinUsuarioAdapter(@NonNull Context context, @NonNull List<Perfil> perfis) {
+            super(context, 0, perfis);
         }
 
         @NonNull
         @Override
         public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-            TextView v = (TextView) View.inflate(mContext, android.R.layout.simple_spinner_item,null);
-            v.setText(perfis.get(position).getUsuario().getNome());
-            return v;
+            /*TextView text = new TextView(CadastroTarefaActivity.this);
+            text.setText(perfis.get(position).getUsuario().getNome());
+            return text;*/
+            //return createItemView(position, convertView, parent);
+            return initView(position, convertView, parent);
         }
 
         @Override
@@ -98,20 +85,25 @@ public class CadastroTarefaActivity extends AppCompatActivity {
             return v;
         }
 
-        private View createItemView(int position, View convertView, ViewGroup parent) {
-            final View view = mInflater.inflate(mResource, parent, false);
+        private View initView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_equipe_model, parent, false);
+            }
+            convertView.setFocusable(false);
+            convertView.setClickable(false);
 
-            TextView lblNome = view.findViewById(R.id.lblNome);
-            TextView lblFuncao = view.findViewById(R.id.lblFuncao);
-            TextView lblObs = view.findViewById(R.id.lblObs);
+            TextView lblNome = convertView.findViewById(R.id.lblNome);
+            TextView lblFuncao = convertView.findViewById(R.id.lblFuncao);
+            TextView lblObs = convertView.findViewById(R.id.lblObs);
 
-            Perfil perfil = perfis.get(position);
+            Perfil p = perfis.get(position);
 
-            lblNome.setText(perfil.getUsuario().getNome());
-            lblFuncao.setText(perfil.getPerfil().toString());
-            lblObs.setText(null);
-
-            return view;
+            if (p != null) {
+                lblNome.setText(p.getUsuario().getNome());
+                lblFuncao.setText(p.getPerfil().toString());
+                lblObs.setText(null);
+            }
+            return convertView;
         }
     }
 }

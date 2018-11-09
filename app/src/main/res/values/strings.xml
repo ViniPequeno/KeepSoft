@@ -4,15 +4,20 @@
 
     <string name="action_delete">Delete</string>
     <string name="action_edit">Edit</string>
+    <string name="action_reuniao">Reunion</string>
     <string name="action_status">Status</string>
 
     <string name="add_project">Add Project</string>
+    <string name="add_reuniao">Add Reunion</string>
+    <string name="add_reuniao_usuario">Add Participant</string>
     <string name="add_sprint">Add Sprint</string>
     <string name="add_status">Add Status</string>
     <string name="add_task">Add Task</string>
 
     <string name="app_database">Banquinho</string>
     <string name="app_name">KeepSoft</string>
+
+    <string name="assunto">Subject</string>
 
     <string name="button">Button</string>
 
@@ -42,7 +47,16 @@
     <string name="default_notification_channel_id">O</string>
     <string name="default_notification_channel_title">Titulo</string>
 
+    <string name="delete_account_confirm">Are you sure you want to delete your account?</string>
+
     <string name="description">Description</string>
+
+    <string-array name="difficulties_array">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+        <item>Very Hard</item>
+    </string-array>
 
     <string name="due_date">Due date for completion</string>
 
@@ -53,6 +67,9 @@
     <string name="email">Email</string>
 
     <string name="error">Error</string>
+
+    <string name="field_email_empty">Field email cannot be empty!</string>
+    <string name="field_name_empty">Field name cannot be empty!</string>
 
     <plurals name="hours">
         <item quantity="one">One hour ago</item>
@@ -67,6 +84,8 @@
     <string name="invite_member">Invite Member</string>
 
     <string name="leave">Leave</string>
+
+    <string name="local">Local</string>
 
     <string name="log_out">Log Out</string>
 
@@ -107,11 +126,24 @@
 
     <string name="phone">Phone</string>
 
+    <string-array name="priorities_array">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+        <item>Very High</item>
+    </string-array>
+
     <string name="profile">Profile</string>
 
     <string name="project_name">Project Name</string>
 
     <string name="projects">Projects</string>
+
+    <string name="reconnect">Reconnect</string>
+
+    <string name="reuniao_end_hour">Hour End</string>
+    <string name="reuniao_start_date">Reunion Start Date</string>
+    <string name="reuniao_start_hour">Hour Start</string>
 
     <string name="role">Role</string>
 
@@ -122,6 +154,8 @@
     </string-array>
 
     <string name="seconds">%1$d seconds ago</string>
+
+    <string name="select_picture">Select picture</string>
 
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
@@ -145,6 +179,7 @@
     <string name="title_activity_alterar_perfil_senha">Change Password</string>
     <string name="title_activity_cadastro_projeto">New Project</string>
     <string name="title_activity_cadastro_sprint">New Sprint</string>
+    <string name="title_activity_cadastro_tarefa">Tasks</string>
     <string name="title_activity_deletar_conta">Delete account</string>
     <string name="title_activity_detalhes_membro">Member Details</string>
     <string name="title_activity_editar_projeto">Edit Project</string>
@@ -165,18 +200,8 @@
     </plurals>
 
     <string name="wrong_login_password">Wrong login or passwords</string>
-    <string name="field_email_empty">Field email cannot be empty!</string>
-    <string name="field_name_empty">Field name cannot be empty!</string>
-    <string name="select_picture">Select picture</string>
-    <string name="delete_account_confirm">Are you sure you want to delete your account?</string>
-    <string name="action_reuniao">Reunion</string>
-    <string name="title_activity_cadastro_tarefa">Tasks</string>
-    <string name="assunto">Subject</string>
-    <string name="reuniao_start_date">Reunion Start Date</string>
-    <string name="reuniao_end_date">Reunion End Date</string>
-    <string name="add_reuniao">Add Reunion</string>
-    <string name="reuniao_start_hour">Hour Start</string>
-    <string name="reuniao_end_hour">Hour End</string>
-    <string name="local">Local</string>
-    <string name="add_reuniao_usuario">Add Participant</string>
+    <string name="status" translatable="false">Status</string>
+    <string name="priority">Priority</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="user_in_change">User in charge</string>
 </resources>

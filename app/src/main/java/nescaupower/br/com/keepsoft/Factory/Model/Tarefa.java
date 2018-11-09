@@ -13,22 +13,22 @@ public class Tarefa {
     private Date dataLimite;
     private Prioridade prioridade;
     private Dificuldade dificuldade;
-    private Usuario usuario;
+    private Perfil perfil;
 
     public Tarefa() {
     }
 
-    public Tarefa(String titulo, String descricao, String dataLimiteformat, Date dataLimite, Prioridade prioridade, Dificuldade dificuldade, Usuario usuario) {
+    public Tarefa(String titulo, String descricao, String dataLimiteformat, Date dataLimite, Prioridade prioridade, Dificuldade dificuldade, Perfil perfil) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.dataLimiteformat = dataLimiteformat;
         this.dataLimite = dataLimite;
         this.prioridade = prioridade;
         this.dificuldade = dificuldade;
-        this.usuario = usuario;
+        this.perfil = perfil;
     }
 
-    public Tarefa(Long id, String titulo, String descricao, String dataLimiteformat, Date dataLimite, Prioridade prioridade, Dificuldade dificuldade, Usuario usuario) {
+    public Tarefa(Long id, String titulo, String descricao, String dataLimiteformat, Date dataLimite, Prioridade prioridade, Dificuldade dificuldade, Perfil perfil) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
@@ -36,7 +36,7 @@ public class Tarefa {
         this.dataLimite = dataLimite;
         this.prioridade = prioridade;
         this.dificuldade = dificuldade;
-        this.usuario = usuario;
+        this.perfil = perfil;
     }
 
     public Long getId() {
@@ -95,11 +95,11 @@ public class Tarefa {
         this.dificuldade = dificuldade;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Perfil getPerfil() {
+        return perfil;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
     }
 }

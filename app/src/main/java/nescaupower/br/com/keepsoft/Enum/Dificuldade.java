@@ -1,7 +1,7 @@
 package nescaupower.br.com.keepsoft.Enum;
 
 public enum Dificuldade {
-    FACIL("Fácil"), MEDIO("Médio"), DIFICL("Difícil");
+    FACIL("Fácil"), MEDIO("Médio"), DIFICL("Difícil"), MUITO_DIFICIL("Muito Difícil");
 
     private String dificuldade;
 

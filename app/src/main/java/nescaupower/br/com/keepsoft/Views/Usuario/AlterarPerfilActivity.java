@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +15,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import nescaupower.br.com.keepsoft.Config.Settings;
@@ -65,6 +69,8 @@ public class AlterarPerfilActivity extends AppCompatActivity {
         lblEmail.setText(usuario.getEmail());
         lblNome.setText(usuario.getNome());
         lblTelefone.setText(usuario.getTelefone());
+
+        new MyAsyncTask().execute(Settings.URL+"/usuarios/imagem/"+usuario.getId());
     }
 
     @Override
@@ -99,7 +105,11 @@ public class AlterarPerfilActivity extends AppCompatActivity {
             usuario.setEmail(lblEmail.getText().toString());
             usuario.setNome(lblNome.getText().toString());
             usuario.setTelefone(lblTelefone.getText().toString());
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.PNG, 10, stream);
+            byte[] byteArray = stream.toByteArray();
 
+            usuario.setImagem(byteArray);
             uc.atualizar(usuario);
             Usuario.setUsuarioLogado(usuario);
 
@@ -124,5 +134,27 @@ public class AlterarPerfilActivity extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, getResources().getString(R.string.select_picture)), PICK_IMAGE);
+    }
+
+    private class MyAsyncTask extends AsyncTask<String, Void, Bitmap> {
+        protected Bitmap doInBackground(String... params) {
+            try {
+                URL url = new URL(params[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                return myBitmap;
+            } catch(IOException e) {
+                return null;
+            }
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            //do what you want with your bitmap result on the UI thread
+            btnImagemPerfil.setImageBitmap(result);
+        }
+
     }
 }

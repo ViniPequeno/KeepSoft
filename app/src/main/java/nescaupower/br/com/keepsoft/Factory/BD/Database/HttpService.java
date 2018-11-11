@@ -10,10 +10,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
+import nescaupower.br.com.keepsoft.Config.Settings;
+
 public class HttpService extends AsyncTask<String, Void, String> {
-    private final String IP = "10.100.45.240";
-    private final String PORTA = "8000";
-    private final String URL = "http://"+IP+":"+PORTA+"/api";
+    private final String URL = Settings.URL;
     private StringBuilder resposta;
 
     public String getT(String parte){

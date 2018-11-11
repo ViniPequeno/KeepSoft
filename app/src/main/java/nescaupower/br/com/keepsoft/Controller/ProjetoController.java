@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.ProjetoDAO;
+import nescaupower.br.com.keepsoft.Factory.Model.Porcentagem;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 
 public class ProjetoController {
@@ -21,6 +22,9 @@ public class ProjetoController {
 
     public Projeto procurarPorCodigo(Long codigo) {
         return projetoDAO.findById(codigo);
+    }
+    public Porcentagem procurarPorcentagemPorCodigo(Long codigo) {
+        return projetoDAO.findPorcentagemById(codigo);
     }
 
     public void atualizar(Projeto projeto) {

@@ -9,6 +9,7 @@ public class Usuario {
     private String nome;
     private String senha;
     private String telefone;
+    private byte[] imagem;
     private boolean receiverNotification;
     private boolean receiverEmail;
 
@@ -99,5 +100,13 @@ public class Usuario {
 
     public void setReceiverEmail(boolean receiverEmail) {
         this.receiverEmail = receiverEmail;
+    }
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
     }
 }

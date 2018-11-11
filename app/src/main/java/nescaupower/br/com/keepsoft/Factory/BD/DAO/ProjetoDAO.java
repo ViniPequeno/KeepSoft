@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
+import nescaupower.br.com.keepsoft.Factory.Model.Porcentagem;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 
 public class ProjetoDAO {
@@ -37,6 +38,20 @@ public class ProjetoDAO {
             tJson = new HttpService().execute("/projeto/" + id, "Get", null).get();
             Projeto projeto = new Gson().fromJson(tJson, Projeto.class);
             return projeto;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Porcentagem findPorcentagemById(Long id) {
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/projeto/porcentagem/" + id, "Get", null).get();
+            Porcentagem porcentagem = new Gson().fromJson(tJson, Porcentagem.class);
+            return porcentagem;
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

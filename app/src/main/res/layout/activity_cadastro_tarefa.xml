@@ -11,6 +11,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:id="@+id/rootTarefa"
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
@@ -39,6 +40,19 @@
                 android:ems="10"
                 android:hint="@string/description"
                 android:inputType="textPersonName" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <EditText
+                android:id="@+id/txtDataLimite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/due_date"
+                android:inputType="date" />
         </android.support.design.widget.TextInputLayout>
 
         <TextView
@@ -105,11 +119,10 @@
             android:layout_marginTop="10dp" />
 
         <Button
-            android:id="@+id/btnCadastrar"
+            android:id="@+id/btnCadastrarTarefa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:onClick="cadastrar"
             android:text="@string/confirm" />
     </LinearLayout>
 </ScrollView>

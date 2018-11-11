@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import nescaupower.br.com.keepsoft.Controller.ProjetoController;
+import nescaupower.br.com.keepsoft.Factory.Model.Porcentagem;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.R;
 
@@ -35,7 +37,9 @@ public class ProjetoRVAdapter extends RecyclerView.Adapter<MyHolder> {
         Resources res = c.getResources();
         holder.lblNome.setText(projetos.get(position).getNome());
         holder.lblDescricao.setText(projetos.get(position).getDescricao());
-        int porcentagem = 45;
+        ProjetoController pc = new ProjetoController();
+        Porcentagem p = pc.procurarPorcentagemPorCodigo(projetos.get(position).getCodigo());
+        int porcentagem = (int) p.getPorcentagem();
         String stPorcentagem = res.getString(R.string.percentage, porcentagem);
         holder.lblPorcentagem.setText(stPorcentagem);
         holder.cpbProgressoAtual.setProgress(porcentagem);

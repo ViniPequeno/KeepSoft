@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,6 +18,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import nescaupower.br.com.keepsoft.Config.Settings;
@@ -70,7 +78,9 @@ public class PerfilFragment extends Fragment {
         lblNome = getView().findViewById(R.id.lblNome);
         lblTelefone = getView().findViewById(R.id.lblTelefone);
 
-        //TODO: setImageBitmap em -imgPerfil-
+
+        new MyAsyncTask().execute(Settings.URL+"/usuarios/imagem/"+Usuario.getUsuarioLogado().getId());
+
         lblLogin.setText(Usuario.getUsuarioLogado().getLogin());
         lblEmail.setText(Usuario.getUsuarioLogado().getEmail());
         lblNome.setText(Usuario.getUsuarioLogado().getNome());
@@ -84,7 +94,7 @@ public class PerfilFragment extends Fragment {
 
         AlertDialog.Builder dialogDeleteUserBuilder = new AlertDialog.Builder(getContext());
         dialogDeleteUserBuilder.setMessage(R.string.delete_account_confirm);
-        dialogDeleteUserBuilder.setPositiveButton(R.string.confirm, (dialogInterface, i) ->{
+        dialogDeleteUserBuilder.setPositiveButton(R.string.confirm, (dialogInterface, i) -> {
             uc.delete(Usuario.getUsuarioLogado());
             Toast.makeText(getContext(), "Usuário deletado!", Toast.LENGTH_LONG).show();
             SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
@@ -134,11 +144,22 @@ public class PerfilFragment extends Fragment {
         btnAlterarConfiguracoes.setOnClickListener(this::trocarTelaAlterarConfig);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        new MyAsyncTask().execute(Settings.URL+"/usuarios/imagem/"+Usuario.getUsuarioLogado().getId());
+
+        lblLogin.setText(Usuario.getUsuarioLogado().getLogin());
+        lblEmail.setText(Usuario.getUsuarioLogado().getEmail());
+        lblNome.setText(Usuario.getUsuarioLogado().getNome());
+        lblTelefone.setText(Usuario.getUsuarioLogado().getTelefone());
+    }
+
     private void sair(View view) {
         dialogSair.show();
     }
 
-    private void deleteUser(View view){
+    private void deleteUser(View view) {
         dialogDeleteUser.show();
     }
 
@@ -154,10 +175,31 @@ public class PerfilFragment extends Fragment {
         startActivity(intent);
     }
 
-    private void trocarTelaAlterarConfig(View view){
+    private void trocarTelaAlterarConfig(View view) {
         Intent intent;
         intent = new Intent(getActivity(), AlterarConfigActivity.class);
         startActivity(intent);
     }
 
+    private class MyAsyncTask extends AsyncTask<String, Void, Bitmap> {
+        protected Bitmap doInBackground(String... params) {
+            try {
+                URL url = new URL(params[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                return myBitmap;
+            } catch(IOException e) {
+                return null;
+            }
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            //do what you want with your bitmap result on the UI thread
+            imgPerfil.setImageBitmap(result);
+        }
+
+    }
 }

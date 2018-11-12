@@ -12,9 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
+import nescaupower.br.com.keepsoft.Controller.TarefaController;
+import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
+import nescaupower.br.com.keepsoft.Factory.Model.Tarefa;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent;
-import nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent.DummyItem;
 
 /**
  * A fragment representing a perfis of Items.
@@ -23,6 +26,9 @@ import nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent.DummyItem;
  * interface.
  */
 public class TarefaFragment extends Fragment {
+
+    private TarefaController tc;
+    private List<Tarefa> tarefaList;
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -53,6 +59,8 @@ public class TarefaFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        tc = new TarefaController();
+        tarefaList = tc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
@@ -74,7 +82,7 @@ public class TarefaFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new TarefaRVAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new TarefaRVAdapter(tarefaList, mListener));
         }
 
         btnCadastrar = rootView.findViewById(R.id.btnCadastrar);
@@ -118,6 +126,6 @@ public class TarefaFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(Tarefa item);
     }
 }

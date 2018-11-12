@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import nescaupower.br.com.keepsoft.Factory.Model.Tarefa;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment.OnListFragmentInteractionListener;
 import nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent.DummyItem;
@@ -19,10 +20,10 @@ import nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent.DummyItem;
  */
 public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<Tarefa> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public TarefaRVAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public TarefaRVAdapter(List<Tarefa> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -37,8 +38,8 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+        holder.mIdView.setText(mValues.get(position).getId().toString());
+        holder.mContentView.setText(mValues.get(position).getTitulo());
 
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
@@ -58,7 +59,7 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
         public final View mView;
         public final TextView mIdView;
         public final TextView mContentView;
-        public DummyItem mItem;
+        public Tarefa mItem;
 
         public ViewHolder(View view) {
             super(view);

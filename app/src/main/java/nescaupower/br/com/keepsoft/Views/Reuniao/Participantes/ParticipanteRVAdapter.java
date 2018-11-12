@@ -37,16 +37,11 @@ public class ParticipanteRVAdapter extends RecyclerView.Adapter<ParticipanteRVAd
 
         holder.lblParticipanteNome.setText(this.usuarios.get(position).getNome());
         holder.lblParticipantePerfil.setText(this.usuarios.get(position).getLogin());
-        //holder.imgColor.setColorFilter(statusList.get(position).getCor());
 
         holder.setItemClickListener((v, pos) -> {
-            //Intent i = new Intent(c, DetalhesParticipante.class);
-
-            //i.putExtra("EXTRA_CODIGO_STATUS", usuarios.get(pos).getId());
-            //i.putExtra("EXTRA_INDEX_STATUS", pos);
-
-
-            //c.startActivity(i);
+            Intent i = new Intent(c, DetalhesParticipante.class);
+            i.putExtra("EXTRA_PARTICIPANTE_ID", usuarios.get(pos).getId());
+            c.startActivity(i);
         });
     }
 
@@ -63,7 +58,6 @@ public class ParticipanteRVAdapter extends RecyclerView.Adapter<ParticipanteRVAd
 
         final TextView lblParticipanteNome;
         final TextView lblParticipantePerfil;
-        final ImageView deleteParticipante;
         private ItemClickListener itemClickListener;
 
 
@@ -72,7 +66,6 @@ public class ParticipanteRVAdapter extends RecyclerView.Adapter<ParticipanteRVAd
 
             lblParticipanteNome = itemView.findViewById(R.id.lblParticipanteNome);
             lblParticipantePerfil = itemView.findViewById(R.id.lblParticipanteLogin);
-            deleteParticipante = itemView.findViewById(R.id.deleteParticipante);
 
             itemView.setOnClickListener(this);
         }

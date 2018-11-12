@@ -10,9 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.concurrent.ExecutionException;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
+import nescaupower.br.com.keepsoft.EmailController.ReuniaoEmail;
 import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
 import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
 import nescaupower.br.com.keepsoft.Views.PaginaInicialActivity;

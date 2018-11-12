@@ -15,6 +15,8 @@ import nescaupower.br.com.keepsoft.Controller.ProjetoController;
 import nescaupower.br.com.keepsoft.Controller.ReuniaoController;
 import nescaupower.br.com.keepsoft.Controller.ReuniaoUsuarioController;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
+import nescaupower.br.com.keepsoft.EmailController.ReuniaoEmail;
+import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Reuniao;
 import nescaupower.br.com.keepsoft.Factory.Model.ReuniaoUsuario;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
@@ -78,16 +80,15 @@ public class CadastrarParticipanteActivity extends AppCompatActivity implements 
             }
             ruc.cadastrar(reuniaoUsuarios);
 
-//            for(Convite convite : convites){
-//                Usuario rementente = uc.procurarPorID(convite.getRemetenteId());
-//                Usuario destino = uc.procurarPorID(convite.getDestinatarioId());
-//                Projeto projeto = pcon.procurarPorCodigo(convite.getCodProjeto());
-//
-//                if(destino.isReceiverEmail()){
-//                    ConviteEmail.enviarEmail(rementente, destino, convite, projeto);
-//                }
-//
-//            }
+            for(ReuniaoUsuario reuniaoUsuario : reuniaoUsuarios){
+                Usuario rementente = Usuario.getUsuarioLogado();
+                Usuario destino = reuniaoUsuario.getUsuario();
+
+                if(destino.isReceiverEmail()){
+                    ReuniaoEmail.enviarEmail(rementente, destino, reuniao);
+                }
+
+            }
 
             CadastrarParticipanteActivity.this.finish();
         });

@@ -31,9 +31,18 @@ public class ReuniaoUsuarioController {
         return true;
     }
 
+    public ReuniaoUsuario getReuniaoUsuario(Long reuniaoId, Long id){
+        return reuniaoDAO.getReuniaoUsuario(reuniaoId, id);
+    }
+
     public List<Usuario> getUsuariosNotReuniao(Long reuniaoId, String login){
         return reuniaoDAO.getUsuariosNotReuniao(reuniaoId, login);
     }
+
+    public void deleteReuniaoUsuario(ReuniaoUsuario reuniaoUsuario){
+        reuniaoDAO.delete(reuniaoUsuario);
+    }
+
 
     public List<Usuario> listarPorReuniao(Long id) {
         List<Usuario> reuniaoList = reuniaoDAO.getAll(id);

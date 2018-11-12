@@ -49,6 +49,7 @@ public class DetalhesReuniao extends AppCompatActivity {
         rc = new ReuniaoController();
         reuniao = rc.getReuniao(getIntent().getLongExtra("EXTRA_CODIGO_REUNIAO", 0));
 
+        Reuniao.setUltimoReuniao(reuniao);
         txtReuniaoTituloDetalhes = findViewById(R.id.txtNomeReuniaoDetalhes);
         txtReuniaoAssuntoDetalhes = findViewById(R.id.txtAssuntoReuniaoDetalhes);
         txtReuniaoLocalDetalhes = findViewById(R.id.txtLocalReuniaoDetalhes);

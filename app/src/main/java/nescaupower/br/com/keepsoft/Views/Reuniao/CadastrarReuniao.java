@@ -186,19 +186,15 @@ public class CadastrarReuniao extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        Usuario usuario = Usuario.getUsuarioLogado();
+        if (usuario == null || usuario.getLogin().equals("")) {
+            SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
+        }
+
         r.setProjeto(Projeto.getUltimoProjetoUsado());
 
-        if(rc.cadastrar(r)){
-            ReuniaoUsuario reuniaoUsuario = new ReuniaoUsuario();
-            reuniaoUsuario.setReuniao(r);
-            //Singleton
-            Usuario usuario = Usuario.getUsuarioLogado();
-            if (usuario == null || usuario.getLogin().equals("")) {
-                SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-                usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
-            }
-            reuniaoUsuario.setUsuario(usuario);
-            reuniaoUsuarioController.cadastrar(reuniaoUsuario);
+        if(rc.cadastrar(r, usuario.getId())){
             Intent i = new Intent(CadastrarReuniao.this, ReuniaoActivity.class);
             startActivity(i);
             CadastrarReuniao.this.finish();

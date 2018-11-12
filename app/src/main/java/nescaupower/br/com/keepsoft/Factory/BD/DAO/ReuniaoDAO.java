@@ -57,11 +57,11 @@ public class ReuniaoDAO {
     }
 
 
-    public void insertAll(Reuniao... reunaioes){
+    public void insertAll(Long id, Reuniao... reunaioes){
         for(Reuniao reuniao : reunaioes){
             String tJson = new Gson().toJson(reuniao);
             try {
-                new HttpService().execute("/reuniao", "Post", tJson).get();
+                new HttpService().execute("/reuniao/"+id, "Post", tJson).get();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {

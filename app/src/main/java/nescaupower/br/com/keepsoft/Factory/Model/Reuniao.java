@@ -17,6 +17,16 @@ public class Reuniao {
 
     private Projeto projeto;
 
+    private static Reuniao ultimoReuniao;
+
+    public static Reuniao getUltimoReuniao() {
+        return ultimoReuniao;
+    }
+
+    public static void setUltimoReuniao(Reuniao ultimoReuniao) {
+        Reuniao.ultimoReuniao = ultimoReuniao;
+    }
+
     private boolean realizada;
 
 

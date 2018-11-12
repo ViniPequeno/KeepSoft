@@ -158,6 +158,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nescaupower.br.com.keepsoft.Views.Reuniao.ReuniaoActivity" />
         </activity>
+        <activity android:name=".Views.Reuniao.Participantes.DetalhesParticipante"></activity>
     </application>
 
 </manifest>

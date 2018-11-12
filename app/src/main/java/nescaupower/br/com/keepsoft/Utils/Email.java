@@ -14,8 +14,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class Email {
-    private final String EmailEnvio = "";
-    private final String SenhaEnvio = "";
+    private final String EmailEnvio = "viniciuspedro350@gmail.com";
+    private final String SenhaEnvio = "Pedro8251";
 
     private String emailDestinario;
     private String assunto;
@@ -75,7 +75,6 @@ public class Email {
             message.setHeader("content-type", "text/html");
             message.setSubject((this.assunto));
             message.setContent(this.msg, "text/html; charset=utf-8");
-            Log.e("Email",emailDestinario);
 
             Transport.send(message);
 

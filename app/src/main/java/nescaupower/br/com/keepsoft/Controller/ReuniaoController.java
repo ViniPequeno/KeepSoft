@@ -28,11 +28,11 @@ public class ReuniaoController {
         reuniaoDAO.updateAll(reuniao);
     }
 
-    public boolean cadastrar(Reuniao reuniao) {
+    public boolean cadastrar(Reuniao reuniao, Long id) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         reuniao.setDataInicioFormat(format.format(reuniao.getDataInicio()));
-        reuniaoDAO.insertAll(reuniao);
+        reuniaoDAO.insertAll(id, reuniao);
         this.mensagem = "Cadastrado!";
         return true;
     }

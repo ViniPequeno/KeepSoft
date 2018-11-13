@@ -8,15 +8,16 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
-import nescaupower.br.com.keepsoft.Factory.Model.RequisitoStatus;
+import nescaupower.br.com.keepsoft.Factory.Model.TarefaStatus;
 
-public class RequisitoStatusDAO {
-    public List<RequisitoStatus> getAll(){
+public class TarefaStatusDAO {
+    public List<TarefaStatus> getAll() {
         String tJson = null;
         try {
-            tJson = new HttpService().execute("/requisitosStatus", "Get", null).get();
-            Type type = new TypeToken<List<RequisitoStatus>>(){}.getType();
-            List<RequisitoStatus> list = new Gson().fromJson(tJson, type);
+            tJson = new HttpService().execute("/tarefasStatus", "Get", null).get();
+            Type type = new TypeToken<List<TarefaStatus>>() {
+            }.getType();
+            List<TarefaStatus> list = new Gson().fromJson(tJson, type);
             return list;
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -27,12 +28,12 @@ public class RequisitoStatusDAO {
 
     }
 
-    public RequisitoStatus findByID(long id){
+    public TarefaStatus findByID(long id) {
         String tJson = null;
         try {
-            tJson = new HttpService().execute("/requisitosStatus/"+id, "Get", null).get();
-            RequisitoStatus requisitosStatus =  new Gson().fromJson(tJson, RequisitoStatus.class);
-            return requisitosStatus;
+            tJson = new HttpService().execute("/tarefasStatus/" + id, "Get", null).get();
+            TarefaStatus tarefasStatus = new Gson().fromJson(tJson, TarefaStatus.class);
+            return tarefasStatus;
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -42,11 +43,11 @@ public class RequisitoStatusDAO {
     }
 
 
-    void insertAll(RequisitoStatus... requisitosStatuses){
-        for(RequisitoStatus requisitosStatus : requisitosStatuses){
-            String tJson = new Gson().toJson(requisitosStatus);
+    void insertAll(TarefaStatus... tarefasStatuses) {
+        for (TarefaStatus tarefasStatus : tarefasStatuses) {
+            String tJson = new Gson().toJson(tarefasStatus);
             try {
-                new HttpService().execute("api/requisitosStatus", "Post", tJson).get();
+                new HttpService().execute("api/tarefasStatus", "Post", tJson).get();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -55,11 +56,11 @@ public class RequisitoStatusDAO {
         }
     }
 
-    void updateAll(RequisitoStatus... requisitosStatuses){
-        for(RequisitoStatus requisitosStatus : requisitosStatuses){
-            String tJson = new Gson().toJson(requisitosStatus);
+    void updateAll(TarefaStatus... tarefasStatuses) {
+        for (TarefaStatus tarefasStatus : tarefasStatuses) {
+            String tJson = new Gson().toJson(tarefasStatus);
             try {
-                new HttpService().execute("api/requisitosStatus/"+requisitosStatus.getId(), "Put", tJson).get();
+                new HttpService().execute("api/tarefasStatus/" + tarefasStatus.getId(), "Put", tJson).get();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -68,10 +69,10 @@ public class RequisitoStatusDAO {
         }
     }
 
-    void delete(RequisitoStatus requisitosStatus){
+    void delete(TarefaStatus tarefasStatus) {
         String tJson = null;
         try {
-            tJson = new HttpService().execute("/requisitosRequisitoStatus/"+requisitosStatus.getId(), "Get", null).get();
+            tJson = new HttpService().execute("/tarefasStatus/" + tarefasStatus.getId(), "Get", null).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

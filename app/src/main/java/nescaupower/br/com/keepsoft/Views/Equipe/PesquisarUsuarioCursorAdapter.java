@@ -10,6 +10,9 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+import nescaupower.br.com.keepsoft.AsyncTasks.GetImageAsyncTask;
+import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
@@ -40,21 +43,21 @@ public class PesquisarUsuarioCursorAdapter extends CursorAdapter {
         final String nome = cursor.getString(cursor.getColumnIndexOrThrow("nome"));
         final long id = cursor.getLong(cursor.getColumnIndexOrThrow("_id"));
 
+        CircleImageView imgPerfil = view.findViewById(R.id.imgPerfil);
+        new GetImageAsyncTask(imgPerfil).execute(Settings.URL + "/usuarios/imagem/" + id);
+
         TextView lblLogin = view.findViewById(R.id.lblLogin);
         lblLogin.setText(login);
 
         TextView lblNome = view.findViewById(R.id.lblNome);
         lblNome.setText(nome);
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                searchView.setIconified(true);
-                Toast.makeText(context, "ID usuário: " + id,
-                        Toast.LENGTH_LONG).show();
-                Usuario u = new UsuarioController().procurarPorID(id);
-                rvAdapter.add(u);
-            }
+        view.setOnClickListener(view1 -> {
+            searchView.setIconified(true);
+            Toast.makeText(context, "ID usuário: " + id,
+                    Toast.LENGTH_LONG).show();
+            Usuario u = new UsuarioController().procurarPorID(id);
+            rvAdapter.add(u);
         });
     }
 }

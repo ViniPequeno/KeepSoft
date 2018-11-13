@@ -5,9 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,12 +16,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import de.hdodenhof.circleimageview.CircleImageView;
+import nescaupower.br.com.keepsoft.AsyncTasks.GetImageAsyncTask;
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
@@ -79,7 +72,7 @@ public class PerfilFragment extends Fragment {
         lblTelefone = getView().findViewById(R.id.lblTelefone);
 
 
-        new MyAsyncTask().execute(Settings.URL+"/usuarios/imagem/"+Usuario.getUsuarioLogado().getId());
+        new GetImageAsyncTask(imgPerfil).execute(Settings.URL + "/usuarios/imagem/" + Usuario.getUsuarioLogado().getId());
 
         lblLogin.setText(Usuario.getUsuarioLogado().getLogin());
         lblEmail.setText(Usuario.getUsuarioLogado().getEmail());
@@ -149,7 +142,7 @@ public class PerfilFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        new MyAsyncTask().execute(Settings.URL+"/usuarios/imagem/"+Usuario.getUsuarioLogado().getId());
+        new GetImageAsyncTask(imgPerfil).execute(Settings.URL + "/usuarios/imagem/" + Usuario.getUsuarioLogado().getId());
 
         lblLogin.setText(Usuario.getUsuarioLogado().getLogin());
         lblEmail.setText(Usuario.getUsuarioLogado().getEmail());
@@ -181,29 +174,5 @@ public class PerfilFragment extends Fragment {
         Intent intent;
         intent = new Intent(getActivity(), AlterarConfigActivity.class);
         startActivity(intent);
-    }
-
-    private class MyAsyncTask extends AsyncTask<String, Void, Bitmap> {
-        protected Bitmap doInBackground(String... params) {
-            try {
-                URL url = new URL(params[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setDoInput(true);
-                connection.connect();
-                InputStream input = connection.getInputStream();
-                Bitmap myBitmap = BitmapFactory.decodeStream(input);
-                return myBitmap;
-            } catch(IOException e) {
-                return null;
-            }
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            //do what you want with your bitmap result on the UI
-            if(result!= null) {
-                imgPerfil.setImageBitmap(result);
-            }
-        }
-
     }
 }

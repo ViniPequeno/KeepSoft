@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
 
 import java.util.List;
 
@@ -21,7 +20,6 @@ import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Utils.Notificacao;
 import nescaupower.br.com.keepsoft.Utils.NotificationBroadcastReceiver;
 import nescaupower.br.com.keepsoft.Views.PaginaInicialActivity;
-import nescaupower.br.com.keepsoft.Views.Usuario.CadastroUsuarioActivity;
 
 public class NotificationService extends Service implements Runnable {
     public boolean ativo;
@@ -36,25 +34,20 @@ public class NotificationService extends Service implements Runnable {
         return null;
     }
 
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         return START_STICKY;
-
     }
 
     @Override
     public void onCreate() {
         ativo = true;
-        if (ativo) {
-            if(Usuario.getUsuarioLogado() != null) {
-                Thread thread = new Thread(this);
-                thread.start();
-            }
+        if (Usuario.getUsuarioLogado() != null) {
+            Thread thread = new Thread(this);
+            thread.start();
         }
         super.onCreate();
     }
-
 
     @Override
     public void onDestroy() {
@@ -62,7 +55,6 @@ public class NotificationService extends Service implements Runnable {
         sendBroadcast(broadcastIntent);
         super.onDestroy();
     }
-
 
     @Override
     public void run() {
@@ -103,7 +95,6 @@ public class NotificationService extends Service implements Runnable {
                     convite.setVisto(true);
                     cc.atualizar(convite);
                 }
-
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

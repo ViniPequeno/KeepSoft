@@ -2,14 +2,14 @@ package nescaupower.br.com.keepsoft.Factory.Model;
 
 import java.util.Date;
 
-public class RequisitoStatus {
+public class TarefaStatus {
     private Long id;
-    private Requisito codigoRequisito;
+    private Tarefa tarefa;
     private Status idStatus;
     private Date dataInicio;
     private Date dataFim;
 
-    public RequisitoStatus() {
+    public TarefaStatus() {
     }
 
     public Long getId() {
@@ -20,12 +20,12 @@ public class RequisitoStatus {
         this.id = id;
     }
 
-    public Requisito getCodigoRequisito() {
-        return codigoRequisito;
+    public Tarefa getTarefa() {
+        return tarefa;
     }
 
-    public void setCodigoRequisito(Requisito codigoRequisito) {
-        this.codigoRequisito = codigoRequisito;
+    public void setTarefa(Tarefa tarefa) {
+        this.tarefa = tarefa;
     }
 
     public Status getIdStatus() {

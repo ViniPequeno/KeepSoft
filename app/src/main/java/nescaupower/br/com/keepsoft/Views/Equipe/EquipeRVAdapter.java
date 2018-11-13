@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+import nescaupower.br.com.keepsoft.AsyncTasks.GetImageAsyncTask;
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.PerfilController;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
@@ -65,6 +67,8 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
         holder.mItem = perfis.get(position);
         final Usuario usuario = uc.procurarPorID(holder.mItem.getUsuario().getId());
 
+        new GetImageAsyncTask(holder.imgPerfil).execute(Settings.URL + "/usuarios/imagem/" + usuario.getId());
+
         holder.lblNome.setText(usuario.getLogin());
         holder.lblFuncao.setText(perfis.get(position).getPerfil().toString());
         if (holder.mItem.getDataInicio() == null) {
@@ -92,6 +96,7 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
+        public final CircleImageView imgPerfil;
         public final TextView lblNome;
         public final TextView lblFuncao;
         public final TextView lblObs;
@@ -100,6 +105,7 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
         public ViewHolder(View view) {
             super(view);
             mView = view;
+            imgPerfil = view.findViewById(R.id.imgPerfil);
             lblNome = view.findViewById(R.id.lblNome);
             lblFuncao = view.findViewById(R.id.lblFuncao);
             lblObs = view.findViewById(R.id.lblObs);

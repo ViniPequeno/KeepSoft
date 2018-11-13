@@ -48,17 +48,21 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             u.setNome(txtNome.getText().toString());
             u.setTelefone(txtTelefone.getText().toString());
 
-            boolean cadastrou = uc.cadastrar(u);
+            if (u.getEmail() == "" || u.getLogin() == "" || u.getNome() == "" || u.getSenha() == "") {
+                Toast.makeText(this, "Não pode haver campos vazios", Toast.LENGTH_SHORT).show();
+            } else {
+                boolean cadastrou = uc.cadastrar(u);
 
-            if(cadastrou){
-                Intent intent;
-                intent = new Intent(CadastroUsuarioActivity.this, LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
-                Toast.makeText(this, uc.getMensagem(), Toast.LENGTH_SHORT).show();
-                startActivity(intent);
-                CadastroUsuarioActivity.this.finish();
-            }else{
-                Toast.makeText(this, uc.getMensagem(), Toast.LENGTH_SHORT).show();
+                if (cadastrou) {
+                    Intent intent;
+                    intent = new Intent(CadastroUsuarioActivity.this, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
+                    Toast.makeText(this, uc.getMensagem(), Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                    CadastroUsuarioActivity.this.finish();
+                } else {
+                    Toast.makeText(this, uc.getMensagem(), Toast.LENGTH_SHORT).show();
+                }
             }
         }else{
             Toast.makeText(this, "Senhas não são iguais!", Toast.LENGTH_SHORT).show();

@@ -1,5 +1,6 @@
 package nescaupower.br.com.keepsoft;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +18,7 @@ import java.util.concurrent.ExecutionException;
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.EmailController.ReuniaoEmail;
 import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
+import nescaupower.br.com.keepsoft.Services.NotificationService;
 import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
 import nescaupower.br.com.keepsoft.Views.PaginaInicialActivity;
 
@@ -25,20 +27,18 @@ public class MainActivity extends AppCompatActivity {
     TextView txtInformacao;
     Button btnReconectar;
 
+    private Intent intent;
+    private NotificationService  notificationService;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //apiAccess();
-        //Notificacao notificacao = new Notificacao("TITULO", "Texto", R.drawable.ic_home_black_24dp, "Tickef",
-          //      this, new Intent(MainActivity.this, CadastroUsuarioActivity.class));
 
-        //notificacao.notificar();
-
-        /*Intent intent = new Intent();
-        intent.setAction("nescaupower.br.com.keepsoft.SOME_ACTION");
-        sendBroadcast(intent);*/
-        //Intent serviceIntent = new Intent(this, BroadcastReceiver.class);
-        //startService(serviceIntent);
+        notificationService = new NotificationService();
+        if(!isMyServiceRunning(notificationService.getClass())){
+            intent = new Intent(this, notificationService.getClass());
+            startService(intent);
+        }
 
         String tJson = testarAPI();
 
@@ -80,18 +80,18 @@ public class MainActivity extends AppCompatActivity {
     private void iniciar() {
         SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         boolean logado = sharedPreferences.getBoolean(Settings.LOGADO, false);
-        Intent intent;
+        Intent intent1;
 
         //Se usuário já estiver logado, carrega a página inicial, senão, carrega a tela de login
         if (logado) {
-            intent = new Intent(MainActivity.this, PaginaInicialActivity.class);
+            intent1 = new Intent(MainActivity.this, PaginaInicialActivity.class);
         } else {
-            intent = new Intent(MainActivity.this, LoginActivity.class);
+            intent1 = new Intent(MainActivity.this, LoginActivity.class);
         }
 
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
-        startActivity(intent);
-        MainActivity.this.finish();
+        intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
+        startActivity(intent1);
+        //MainActivity.this.finish();
     }
 
     public  boolean verificaConexao() {
@@ -101,5 +101,21 @@ public class MainActivity extends AppCompatActivity {
                 && conectivtyManager.getActiveNetworkInfo().isAvailable()
                 && conectivtyManager.getActiveNetworkInfo().isConnected();
         return conectado;
+    }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    protected void onDestroy() {
+        stopService(intent);
+        super.onDestroy();
     }
 }

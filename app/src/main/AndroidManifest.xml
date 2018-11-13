@@ -13,12 +13,17 @@
         android:roundIcon="@mipmap/ic_launcher1_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <receiver android:name=".Utils.Receiver">
+
+        <service android:name=".Services.NotificationService"
+            android:enabled="true"></service>
+        <receiver android:name=".Utils.NotificationBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:label="NotificationService">
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

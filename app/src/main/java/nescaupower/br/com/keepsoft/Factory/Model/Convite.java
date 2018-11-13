@@ -16,6 +16,7 @@ public class Convite {
     private Projeto codProjeto;
     private String dataCriacaoFormat;
     private Date dataCriacao;
+    private boolean visto;
 
     public Convite() {
     }
@@ -74,5 +75,29 @@ public class Convite {
 
     public void setData(Date data) {
         this.dataCriacao = data;
+    }
+
+    public String getDataCriacaoFormat() {
+        return dataCriacaoFormat;
+    }
+
+    public void setDataCriacaoFormat(String dataCriacaoFormat) {
+        this.dataCriacaoFormat = dataCriacaoFormat;
+    }
+
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
+
+    public boolean isVisto() {
+        return visto;
+    }
+
+    public void setVisto(boolean visto) {
+        this.visto = visto;
     }
 }

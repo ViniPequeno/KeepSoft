@@ -34,12 +34,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        notificationService = new NotificationService();
-        if(!isMyServiceRunning(notificationService.getClass())){
-            intent = new Intent(this, notificationService.getClass());
-            startService(intent);
-        }
-
         String tJson = testarAPI();
 
         if(tJson != null){
@@ -61,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+        notificationService = new NotificationService();
+        if(!isMyServiceRunning(notificationService.getClass())){
+            intent = new Intent(this, notificationService.getClass());
+            startService(intent);
+        }
     }
 
     @Nullable
@@ -115,7 +114,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        stopService(intent);
         super.onDestroy();
     }
 }

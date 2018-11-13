@@ -25,8 +25,23 @@ public class TarefaDAO {
             e.printStackTrace();
         }
         return null;
-
     }
+
+    public List<String> listarTodosOsNomesdeProjeto(Long id) {
+        String tJson;
+        try {
+            tJson = new HttpService().execute("/tarefa/findNamesByProjeto/"+id, "Get", null).get();
+            Type type = new TypeToken<List<String>>() {
+            }.getType();
+            return new Gson().fromJson(tJson, type);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public Tarefa findById(Long id) {
         String tJson;
@@ -42,17 +57,19 @@ public class TarefaDAO {
     }
 
 
-    public void insertAll(Tarefa... perfis) {
+    public Tarefa insertAll(Tarefa... perfis) {
         for (Tarefa tarefa : perfis) {
             String tJson = new Gson().toJson(tarefa);
             try {
-                new HttpService().execute("/tarefa", "Post", tJson).get();
+                String resposta = new HttpService().execute("/tarefa", "Post", tJson).get();
+                return new Gson().fromJson(resposta, Tarefa.class);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
+        return  null;
     }
 
     public void updateAll(Tarefa... perfis) {

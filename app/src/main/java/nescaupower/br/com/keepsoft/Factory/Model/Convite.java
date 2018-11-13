@@ -13,7 +13,7 @@ public class Convite {
     private Perfil funcao;
     private Usuario remetenteId;
     private Usuario destinatarioId;
-    private Projeto codProjeto;
+    private Projeto projeto;
     private String dataCriacaoFormat;
     private Date dataCriacao;
     private boolean visto;
@@ -62,11 +62,11 @@ public class Convite {
     }
 
     public Long getCodProjeto() {
-        return codProjeto.getCodigo();
+        return projeto.getCodigo();
     }
 
     public void setCodProjeto(Projeto codProjeto) {
-        this.codProjeto = codProjeto;
+        this.projeto = codProjeto;
     }
 
     public Date getData() {

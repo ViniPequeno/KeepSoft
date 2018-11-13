@@ -153,7 +153,9 @@ public class AlterarPerfilActivity extends AppCompatActivity {
 
         protected void onPostExecute(Bitmap result) {
             //do what you want with your bitmap result on the UI thread
-            btnImagemPerfil.setImageBitmap(result);
+            if(result != null) {
+                btnImagemPerfil.setImageBitmap(result);
+            }
         }
 
     }

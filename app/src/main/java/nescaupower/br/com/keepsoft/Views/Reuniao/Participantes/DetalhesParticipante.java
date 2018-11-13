@@ -112,7 +112,9 @@ public class DetalhesParticipante extends AppCompatActivity {
 
         protected void onPostExecute(Bitmap result) {
             //do what you want with your bitmap result on the UI thread
-            circleImageView.setImageBitmap(result);
+            if(result != null) {
+                circleImageView.setImageBitmap(result);
+            }
         }
 
     }

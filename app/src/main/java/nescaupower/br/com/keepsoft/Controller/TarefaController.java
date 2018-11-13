@@ -26,13 +26,15 @@ public class TarefaController {
         return tarefaDAO.findByUserIdAndProjectID(codProjeto, idUsuario);
     }
 
-    public List<Tarefa> listarPorProjeto(long codProjeto) {
+    public List<Tarefa> listarPorProjeto(Long codProjeto) {
         return tarefaDAO.findByProjectID(codProjeto);
     }
 
-    public List<Tarefa> listarTodos() {
-        return tarefaDAO.getAll();
+    public List<String> listarTodosOsNomesdeProjeto(Long codProjeto) {
+        return tarefaDAO.listarTodosOsNomesdeProjeto(codProjeto);
     }
+
+
 
     public void atualizar(Tarefa tarefa) {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
@@ -51,9 +53,14 @@ public class TarefaController {
             }
 
         }
-        tarefaDAO.insertAll(perfis);
-        this.mensagem = "Cadastrado!";
-        return true;
+        Tarefa tarefa = tarefaDAO.insertAll(perfis);
+        if(tarefa != null) {
+            this.mensagem = "Cadastrado!";
+            return true;
+        }else{
+            this.mensagem = "Tarefa já existe neste projeto!";
+            return false;
+        }
     }
 
     public boolean deletar(Tarefa tarefa) {

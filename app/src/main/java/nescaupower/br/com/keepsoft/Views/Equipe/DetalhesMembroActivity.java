@@ -4,6 +4,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -13,6 +16,12 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.ConviteController;
 import nescaupower.br.com.keepsoft.Controller.PerfilController;
@@ -25,6 +34,7 @@ public class DetalhesMembroActivity extends AppCompatActivity {
 
     private TextView lblLogin, lblNome, lblFuncao, lblEmail, lblTelefone;
     private Button btnAlterarFuncao, btnDelete;
+    private CircleImageView imgPerfil;
     private UsuarioController uc;
     private PerfilController pc;
     private Usuario usuario;
@@ -56,6 +66,7 @@ public class DetalhesMembroActivity extends AppCompatActivity {
         lblTelefone = findViewById(R.id.lblTelefone);
         btnAlterarFuncao = findViewById(R.id.btnAlterarFuncao);
         btnDelete = findViewById(R.id.btnDelete);
+        imgPerfil = findViewById(R.id.imgPerfil);
 
         setLabelsContent();
 
@@ -192,6 +203,31 @@ public class DetalhesMembroActivity extends AppCompatActivity {
         lblEmail.setText(usuario.getEmail());
         lblTelefone.setText(usuario.getTelefone());
         lblFuncao.setText(perfil.getPerfil().toString());
+        new MyAsyncTask().execute(Settings.URL+"/usuarios/imagem/"+usuario.getId());
     }
 
+
+    private class MyAsyncTask extends AsyncTask<String, Void, Bitmap> {
+        protected Bitmap doInBackground(String... params) {
+            try {
+                URL url = new URL(params[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);
+                connection.connect();
+                InputStream input = connection.getInputStream();
+                Bitmap myBitmap = BitmapFactory.decodeStream(input);
+                return myBitmap;
+            } catch(IOException e) {
+                return null;
+            }
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            //do what you want with your bitmap result on the UI thread
+            if(result != null) {
+                imgPerfil.setImageBitmap(result);
+            }
+        }
+
+    }
 }

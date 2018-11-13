@@ -25,7 +25,6 @@ public class ConviteDAO {
             e.printStackTrace();
         }
         return null;
-
     }
 
     public Convite findByID(Long id){
@@ -34,6 +33,21 @@ public class ConviteDAO {
             tJson = new HttpService().execute("/convite/"+id, "Get", null).get();
             Convite convite =  new Gson().fromJson(tJson, Convite.class);
             return convite;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Convite> findByIDNotVistos(Long id){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/convite/findByReceiverIDNotVistos/"+id, "Get", null).get();
+            Type type = new TypeToken<List<Convite>>(){}.getType();
+            List<Convite> convites =  new Gson().fromJson(tJson, type);
+            return convites;
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

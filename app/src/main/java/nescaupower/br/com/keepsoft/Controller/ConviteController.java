@@ -33,6 +33,20 @@ public class ConviteController {
         return true;
     }
 
+    public void atualizar(Convite... convite) {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        formato.setTimeZone(TimeZone.getTimeZone("GMT-4:00"));
+        for (Convite convite1 : convite) {
+            if (convite1.getData() != null) {
+                convite1.setDataFormat(formato.format(convite1.getData()));
+            } else {
+                convite1.setDataFormat("");
+            }
+        }
+        conviteDAO.updateAll(convite);
+        this.mensagem = "Atualizado!";
+    }
+
     public boolean deletar(Convite convite) {
         Log.e("Convite", convite.getId()+"  "+convite.getDestinatarioId());
         if (conviteDAO.findByID(convite.getDestinatarioId(), convite.getCodProjeto()) != null) {
@@ -47,6 +61,10 @@ public class ConviteController {
 
     public Convite procurarPorID(long idDestinatario, long codProjeto) {
         return conviteDAO.findByID(idDestinatario, codProjeto);
+    }
+
+    public List<Convite> procurarPorIDNotVistos(long idDestinatario) {
+        return conviteDAO.findByIDNotVistos(idDestinatario);
     }
 
     public List<Convite> listarPorProjeto(long codProjeto) {

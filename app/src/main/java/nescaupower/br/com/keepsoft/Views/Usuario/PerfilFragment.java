@@ -126,6 +126,8 @@ public class PerfilFragment extends Fragment {
             editor.putString(Settings.LOGIN, "");
             editor.commit();
 
+            Usuario.setUsuarioLogado(null);
+
             Intent intent;
             intent = new Intent(getActivity(), LoginActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
@@ -197,8 +199,10 @@ public class PerfilFragment extends Fragment {
         }
 
         protected void onPostExecute(Bitmap result) {
-            //do what you want with your bitmap result on the UI thread
-            imgPerfil.setImageBitmap(result);
+            //do what you want with your bitmap result on the UI
+            if(result!= null) {
+                imgPerfil.setImageBitmap(result);
+            }
         }
 
     }

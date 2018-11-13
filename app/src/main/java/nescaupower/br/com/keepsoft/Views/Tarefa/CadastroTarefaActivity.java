@@ -3,10 +3,10 @@ package nescaupower.br.com.keepsoft.Views.Tarefa;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -21,6 +21,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import nescaupower.br.com.keepsoft.Controller.PerfilController;
+import nescaupower.br.com.keepsoft.Controller.StatusController;
 import nescaupower.br.com.keepsoft.Controller.TarefaController;
 import nescaupower.br.com.keepsoft.Enum.Dificuldade;
 import nescaupower.br.com.keepsoft.Enum.Prioridade;
@@ -28,9 +29,7 @@ import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Tarefa;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Projeto.CadastroProjetoActivity;
 import nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity;
-import nescaupower.br.com.keepsoft.Views.Reuniao.Participantes.CadastrarParticipanteActivity;
 
 public class CadastroTarefaActivity extends AppCompatActivity {
 
@@ -45,6 +44,7 @@ public class CadastroTarefaActivity extends AppCompatActivity {
     List<Perfil> perfis;
 
     private TarefaController tc;
+    private StatusController sc;
 
     private LinearLayout root;
     private Calendar dataAtual = Calendar.getInstance();
@@ -73,8 +73,12 @@ public class CadastroTarefaActivity extends AppCompatActivity {
         cadastratTarefa.setOnClickListener(v -> cadastrar(v));
 
         tc = new TarefaController();
+        sc = new StatusController();
 
         perfis = pc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
+
+        spinStatus.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
+                sc.listarTodosOsNomesdeProjeto(Projeto.getUltimoProjetoUsado().getCodigo())));
 
         SpinPerfilAdapter adapter = new SpinPerfilAdapter(CadastroTarefaActivity.this, perfis);
         spinUsuario.setAdapter(adapter);
@@ -85,7 +89,6 @@ public class CadastroTarefaActivity extends AppCompatActivity {
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 

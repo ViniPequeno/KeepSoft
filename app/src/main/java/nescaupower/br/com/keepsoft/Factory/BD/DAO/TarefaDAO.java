@@ -27,22 +27,6 @@ public class TarefaDAO {
         return null;
     }
 
-    public List<String> listarTodosOsNomesdeProjeto(Long id) {
-        String tJson;
-        try {
-            tJson = new HttpService().execute("/tarefa/findNamesByProjeto/"+id, "Get", null).get();
-            Type type = new TypeToken<List<String>>() {
-            }.getType();
-            return new Gson().fromJson(tJson, type);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
     public Tarefa findById(Long id) {
         String tJson;
         try {

@@ -2,7 +2,6 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment">
@@ -22,8 +21,6 @@
         android:name="nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         tools:context="nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment"
         tools:listitem="@layout/fragment_tarefa_model" />
 </android.support.design.widget.CoordinatorLayout>

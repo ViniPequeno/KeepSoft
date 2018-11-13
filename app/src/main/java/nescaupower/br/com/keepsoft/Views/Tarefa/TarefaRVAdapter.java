@@ -20,11 +20,11 @@ import nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent.DummyItem;
  */
 public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHolder> {
 
-    private final List<Tarefa> mValues;
+    private final List<Tarefa> tarefas;
     private final OnListFragmentInteractionListener mListener;
 
     public TarefaRVAdapter(List<Tarefa> items, OnListFragmentInteractionListener listener) {
-        mValues = items;
+        tarefas = items;
         mListener = listener;
     }
 
@@ -37,9 +37,11 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).getId().toString());
-        holder.mContentView.setText(mValues.get(position).getTitulo());
+        holder.mItem = tarefas.get(position);
+        holder.lblNome.setText(tarefas.get(position).getTitulo());
+        holder.lblUsuario.setText(tarefas.get(position).getPerfil().getUsuario().getNome());
+        holder.lblStatus.setText(tarefas.get(position).getDataLimiteformat());
+        holder.lblDataLimite.setText(tarefas.get(position).getDataLimiteformat());
 
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
@@ -52,25 +54,29 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return tarefas.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
+        public final TextView lblNome;
+        public final TextView lblUsuario;
+        public final TextView lblStatus;
+        public final TextView lblDataLimite;
         public Tarefa mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = view.findViewById(R.id.item_number);
-            mContentView = view.findViewById(R.id.content);
+            lblNome = view.findViewById(R.id.lblNome);
+            lblUsuario = view.findViewById(R.id.lblUsuario);
+            lblStatus = view.findViewById(R.id.lblStatus);
+            lblDataLimite = view.findViewById(R.id.lblDataLimite);
         }
 
         @Override
         public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
+            return super.toString() + " '" + lblNome.getText() + "'";
         }
     }
 }

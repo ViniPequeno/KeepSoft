@@ -59,6 +59,21 @@ public class StatusController {
     }
 
 
+    public List<String> listarTodosOsNomesdeProjeto(Long id) {
+        String tJson;
+        try {
+            tJson = new HttpService().execute("/status/findNamesByProjeto/" + id, "Get", null).get();
+            Type type = new TypeToken<List<String>>() {
+            }.getType();
+            return new Gson().fromJson(tJson, type);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public void insertAll(Status... statuses){
         for(Status status : statuses){
             String tJson = new Gson().toJson(status);

@@ -203,11 +203,11 @@ public class DetalhesMembroActivity extends AppCompatActivity {
         lblEmail.setText(usuario.getEmail());
         lblTelefone.setText(usuario.getTelefone());
         lblFuncao.setText(perfil.getPerfil().toString());
-        new MyAsyncTask().execute(Settings.URL+"/usuarios/imagem/"+usuario.getId());
+        new GetImageAsyncTask().execute(Settings.URL + "/usuarios/imagem/" + usuario.getId());
     }
 
 
-    private class MyAsyncTask extends AsyncTask<String, Void, Bitmap> {
+    private class GetImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
         protected Bitmap doInBackground(String... params) {
             try {
                 URL url = new URL(params[0]);

@@ -42,6 +42,20 @@ public class StatusDAO {
         return null;
     }
 
+    public List<String> listarTodosOsNomesdeProjeto(Long id) {
+        String tJson;
+        try {
+            tJson = new HttpService().execute("/status/findNamesByProjeto/" + id, "Get", null).get();
+            Type type = new TypeToken<List<String>>() {
+            }.getType();
+            return new Gson().fromJson(tJson, type);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     void insertAll(Status... statuses){
         for(Status status : statuses){

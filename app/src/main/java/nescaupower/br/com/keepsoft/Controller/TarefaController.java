@@ -30,12 +30,6 @@ public class TarefaController {
         return tarefaDAO.findByProjectID(codProjeto);
     }
 
-    public List<String> listarTodosOsNomesdeProjeto(Long codProjeto) {
-        return tarefaDAO.listarTodosOsNomesdeProjeto(codProjeto);
-    }
-
-
-
     public void atualizar(Tarefa tarefa) {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         tarefa.setDataLimiteformat(formato.format(tarefa.getDataLimite()));

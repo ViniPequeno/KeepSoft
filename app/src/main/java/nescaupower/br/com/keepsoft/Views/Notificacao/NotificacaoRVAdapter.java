@@ -54,7 +54,7 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
             holder.lblTitulo.setText(R.string.invitation);
             Convite convite = (Convite) notificacoes.get(holder.getAdapterPosition());
             Usuario remetente = uc.procurarPorID(convite.getRemetenteId());
-            Projeto projeto = pc.procurarPorCodigo(convite.getCodProjeto());
+            Projeto projeto = pc.procurarPorCodigo(convite.getProjeto().getCodigo());
 
             /*String dinâmica que forma a descrição do convite
               Parâmetros:
@@ -67,7 +67,7 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
 
             //Formatando data na notificação
             //(dataHoraAtual - dataHoraConvite) para segundos
-            long tempoSegundos = (new Date().getTime() - convite.getData().getTime()) / 1000;
+            long tempoSegundos = (new Date().getTime() - convite.getDataEnvio().getTime()) / 1000;
             String tempoFormatado;
             if (tempoSegundos < 60) {                       //Se tempo < 1 minuto
                 tempoFormatado = res.getString(R.string.seconds, tempoSegundos);
@@ -109,11 +109,11 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
 
         //Apagar o convite do banco
         ConviteController cc = new ConviteController();
-        cc.deletar(cc.procurarPorID(convite.getDestinatarioId(), convite.getCodProjeto()));
+        cc.deletar(cc.procurarPorID(convite.getDestinatarioId(), convite.getProjeto().getCodigo()));
 
         //Atualizar perfil correspondente ao projeto
         PerfilController pc = new PerfilController();
-        Perfil perfil = pc.procurarPorProjetoUsuario(convite.getCodProjeto(), convite.getDestinatarioId());
+        Perfil perfil = pc.procurarPorProjetoUsuario(convite.getProjeto().getCodigo(), convite.getDestinatarioId());
         perfil.setDataInicio(new Date());
         pc.atualizar(perfil);
         Toast.makeText(context, "3", Toast.LENGTH_SHORT).show();
@@ -126,11 +126,11 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
 
         //Apagar o convite do banco
         ConviteController cc = new ConviteController();
-        cc.deletar(cc.procurarPorID(convite.getDestinatarioId(), convite.getCodProjeto()));
+        cc.deletar(cc.procurarPorID(convite.getDestinatarioId(), convite.getProjeto().getCodigo()));
 
         //Apagar perfil do banco
         PerfilController pc = new PerfilController();
-        pc.deletar(pc.procurarPorProjetoUsuario(convite.getCodProjeto(), convite.getDestinatarioId()));
+        pc.deletar(pc.procurarPorProjetoUsuario(convite.getProjeto().getCodigo(), convite.getDestinatarioId()));
     }
 
     @Override

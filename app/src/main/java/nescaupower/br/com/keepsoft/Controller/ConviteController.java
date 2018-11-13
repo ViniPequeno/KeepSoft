@@ -22,10 +22,12 @@ public class ConviteController {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
         formato.setTimeZone(TimeZone.getTimeZone("GMT-4:00"));
         for (Convite convite1 : convite) {
-            if (convite1.getData() != null) {
-                convite1.setDataFormat(formato.format(convite1.getData()));
+            if (convite1.getDataEnvio() != null) {
+                convite1.setDataEnvioFormat(formato.format(convite1.getDataEnvio()));
+                Log.e("hey", convite1.getDataEnvioFormat());
+                Log.e("hey", convite1.getDataEnvio().toString());
             } else {
-                convite1.setDataFormat("");
+                convite1.setDataEnvioFormat("");
             }
         }
         conviteDAO.insertAll(convite);
@@ -37,10 +39,10 @@ public class ConviteController {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
         formato.setTimeZone(TimeZone.getTimeZone("GMT-4:00"));
         for (Convite convite1 : convite) {
-            if (convite1.getData() != null) {
-                convite1.setDataFormat(formato.format(convite1.getData()));
+            if (convite1.getDataEnvio() != null) {
+                convite1.setDataEnvioFormat(formato.format(convite1.getDataEnvio()));
             } else {
-                convite1.setDataFormat("");
+                convite1.setDataEnvioFormat("");
             }
         }
         conviteDAO.updateAll(convite);
@@ -49,7 +51,7 @@ public class ConviteController {
 
     public boolean deletar(Convite convite) {
         Log.e("Convite", convite.getId()+"  "+convite.getDestinatarioId());
-        if (conviteDAO.findByID(convite.getDestinatarioId(), convite.getCodProjeto()) != null) {
+        if (conviteDAO.findByID(convite.getDestinatarioId(), convite.getProjeto().getCodigo()) != null) {
             conviteDAO.delete(convite);
             this.mensagem = "O convite foi deletado!";
             return true;
@@ -77,7 +79,7 @@ public class ConviteController {
         formato.setTimeZone(TimeZone.getTimeZone("GMT-4:00"));
         for (Convite convite1 : conviteList) {
             try {
-                convite1.setData(formato.parse(convite1.getDataFormat()));
+                convite1.setDataEnvio(formato.parse(convite1.getDataEnvioFormat()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }

@@ -14,19 +14,11 @@ public class Convite {
     private Usuario remetenteId;
     private Usuario destinatarioId;
     private Projeto projeto;
-    private String dataCriacaoFormat;
-    private Date dataCriacao;
+    private String dataEnvioFormat;
+    private Date dataEnvio;
     private boolean visto;
 
     public Convite() {
-    }
-
-    public String getDataFormat() {
-        return dataCriacaoFormat;
-    }
-
-    public void setDataFormat(String dataFormat) {
-        this.dataCriacaoFormat = dataFormat;
     }
 
     public Long getId() {
@@ -61,36 +53,28 @@ public class Convite {
         this.destinatarioId = destinatarioId;
     }
 
-    public Long getCodProjeto() {
-        return projeto.getCodigo();
+    public Projeto getProjeto() {
+        return projeto;
     }
 
-    public void setCodProjeto(Projeto codProjeto) {
-        this.projeto = codProjeto;
+    public void setProjeto(Projeto projeto) {
+        this.projeto = projeto;
     }
 
-    public Date getData() {
-        return dataCriacao;
+    public String getDataEnvioFormat() {
+        return dataEnvioFormat;
     }
 
-    public void setData(Date data) {
-        this.dataCriacao = data;
+    public void setDataEnvioFormat(String dataEnvioFormat) {
+        this.dataEnvioFormat = dataEnvioFormat;
     }
 
-    public String getDataCriacaoFormat() {
-        return dataCriacaoFormat;
+    public Date getDataEnvio() {
+        return dataEnvio;
     }
 
-    public void setDataCriacaoFormat(String dataCriacaoFormat) {
-        this.dataCriacaoFormat = dataCriacaoFormat;
-    }
-
-    public Date getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
+    public void setDataEnvio(Date dataEnvio) {
+        this.dataEnvio = dataEnvio;
     }
 
     public boolean isVisto() {

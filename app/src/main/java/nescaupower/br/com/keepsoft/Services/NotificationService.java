@@ -78,7 +78,7 @@ public class NotificationService extends Service implements Runnable {
             List<Convite> conviteList = cc.procurarPorIDNotVistos(usuario.getId());
             if(!conviteList.isEmpty()){
                 if(conviteList.size() == 1){
-                    Projeto projeto = pc.procurarPorCodigo(conviteList.get(0).getCodProjeto());
+                    Projeto projeto = pc.procurarPorCodigo(conviteList.get(0).getProjeto().getCodigo());
                     Notificacao notificacao = new Notificacao("Convite - "+projeto.getNome(),
                             "Você recebeu um convite para participar do projeto como "+conviteList.get(0).getFuncao().toString(),
                             R.mipmap.ic_launcher1, "Teset123",

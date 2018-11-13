@@ -73,13 +73,12 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
             Perfil perfis[] = new Perfil[usuarios.size()];
             for (Usuario usuario : usuarios) {
                 convites[index] = Factory.startConvite();
-                convites[index].setCodProjeto(Projeto.getUltimoProjetoUsado());
+                convites[index].setProjeto(Projeto.getUltimoProjetoUsado());
                 convites[index].setRemetenteId(Usuario.getUsuarioLogado());
                 convites[index].setFuncao(rvAdapter.getFuncaoUsuario(index));
                 convites[index].setDestinatarioId(usuario);
-
                 Date hoje = Calendar.getInstance().getTime();
-                convites[index].setData(hoje);
+                convites[index].setDataEnvio(hoje);
 
                 perfis[index] = Factory.startPerfil();
                 perfis[index].setProjeto(Projeto.getUltimoProjetoUsado());
@@ -97,7 +96,7 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
             for(Convite convite : convites){
                 Usuario rementente = uc.procurarPorID(convite.getRemetenteId());
                 Usuario destino = uc.procurarPorID(convite.getDestinatarioId());
-                Projeto projeto = pcon.procurarPorCodigo(convite.getCodProjeto());
+                Projeto projeto = pcon.procurarPorCodigo(convite.getProjeto().getCodigo());
 
                 if(destino.isReceiverEmail()){
                     ConviteEmail.enviarEmail(rementente, destino, convite, projeto);

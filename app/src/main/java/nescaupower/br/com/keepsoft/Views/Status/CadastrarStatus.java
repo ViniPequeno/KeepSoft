@@ -80,8 +80,11 @@ public class CadastrarStatus extends AppCompatActivity {
 
         status.setProjeto(projeto);
 
-        sc.insertAll(status);
+        if(sc.insertAll(status) != null) {
 
-        CadastrarStatus.this.finish();
+            CadastrarStatus.this.finish();
+        }else{
+            Toast.makeText(this, "O Status já existe", Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -21,20 +21,19 @@ public class ReuniaoController {
         reuniaoDAO = new ReuniaoDAO();
     }
 
-    public void atualizar(Reuniao reuniao) {
+    public Reuniao atualizar(Reuniao reuniao) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         reuniao.setDataInicioFormat(format.format(reuniao.getDataInicio()));
 
-        reuniaoDAO.updateAll(reuniao);
+        return reuniaoDAO.updateAll(reuniao);
     }
 
-    public boolean cadastrar(Reuniao reuniao, Long id) {
+    public Reuniao cadastrar(Reuniao reuniao, Long id) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
         reuniao.setDataInicioFormat(format.format(reuniao.getDataInicio()));
-        reuniaoDAO.insertAll(id, reuniao);
         this.mensagem = "Cadastrado!";
-        return true;
+        return reuniaoDAO.insertAll(id, reuniao);
     }
 
     public boolean deletar(Reuniao reuniao) {

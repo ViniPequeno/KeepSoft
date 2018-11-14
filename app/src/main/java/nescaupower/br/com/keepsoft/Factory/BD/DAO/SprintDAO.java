@@ -57,17 +57,19 @@ public class SprintDAO {
         }
     }
 
-    public void updateAll(Sprint... sprintes){
+    public Sprint updateAll(Sprint... sprintes){
         for(Sprint sprint : sprintes){
             String tJson = new Gson().toJson(sprint);
             try {
-                new HttpService().execute("/sprint/"+sprint.getId(), "Put", tJson).get();
+                tJson = new HttpService().execute("/sprint/"+sprint.getId(), "Put", tJson).get();
+                return new Gson().fromJson(tJson, Sprint.class);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
+        return null;
     }
 
     public void delete(Sprint sprint){

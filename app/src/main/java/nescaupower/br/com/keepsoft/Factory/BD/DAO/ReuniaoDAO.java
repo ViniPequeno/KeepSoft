@@ -57,30 +57,34 @@ public class ReuniaoDAO {
     }
 
 
-    public void insertAll(Long id, Reuniao... reunaioes){
+    public Reuniao insertAll(Long id, Reuniao... reunaioes){
         for(Reuniao reuniao : reunaioes){
             String tJson = new Gson().toJson(reuniao);
             try {
-                new HttpService().execute("/reuniao/"+id, "Post", tJson).get();
+                tJson = new HttpService().execute("/reuniao/"+id, "Post", tJson).get();
+                return new Gson().fromJson(tJson, Reuniao.class);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
+        return null;
     }
 
-    public void updateAll(Reuniao... reunaioes){
+    public Reuniao updateAll(Reuniao... reunaioes){
         for(Reuniao reuniao : reunaioes){
             String tJson = new Gson().toJson(reuniao);
             try {
-                new HttpService().execute("/reuniao/"+reuniao.getId(), "Put", tJson).get();
+                tJson = new HttpService().execute("/reuniao/"+reuniao.getId(), "Put", tJson).get();
+                return new Gson().fromJson(tJson, Reuniao.class);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
+        return null;
     }
 
     public void delete(Reuniao reuniao){

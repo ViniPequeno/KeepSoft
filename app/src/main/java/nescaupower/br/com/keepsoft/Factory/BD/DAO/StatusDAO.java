@@ -12,12 +12,14 @@ import nescaupower.br.com.keepsoft.Factory.Model.Status;
 
 public class StatusDAO {
 
-    public List<Status> getAll(){
+
+
+    public List<Status> getAllFindByProjeto(Long projetoId){
         String tJson = null;
         try {
-            tJson = new HttpService().execute("/status", "Get", null).get();
+            tJson = new HttpService().execute("/status/findByProjeto/"+projetoId, "Get", null).get();
             Type type = new TypeToken<List<Status>>(){}.getType();
-            List<Status> list = new Gson().fromJson(tJson, type);
+            List<Status> list = (List<Status>) new Gson().fromJson(tJson, type);
             return list;
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -25,7 +27,21 @@ public class StatusDAO {
             e.printStackTrace();
         }
         return null;
+    }
 
+    public List<Status> getAll(){
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/status", "Get", null).get();
+            Type type = new TypeToken<List<Status>>(){}.getType();
+            List<Status> list = (List<Status>) new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public Status findByID(long id){
@@ -42,6 +58,7 @@ public class StatusDAO {
         return null;
     }
 
+
     public List<String> listarTodosOsNomesdeProjeto(Long id) {
         String tJson;
         try {
@@ -57,33 +74,37 @@ public class StatusDAO {
         return null;
     }
 
-    void insertAll(Status... statuses){
+    public Status insertAll(Status... statuses){
         for(Status status : statuses){
             String tJson = new Gson().toJson(status);
             try {
-                new HttpService().execute("api/status", "Post", tJson).get();
+                tJson = new HttpService().execute("/status", "Post", tJson).get();
+                return new Gson().fromJson(tJson, Status.class);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
+        return null;
     }
 
-    void updateAll(Status... statuses){
+    public Status updateAll(Status... statuses){
         for(Status status : statuses){
             String tJson = new Gson().toJson(status);
             try {
-                new HttpService().execute("api/status/"+status.getId(), "Put", tJson).get();
+                tJson = new HttpService().execute("/status/"+status.getId(), "Put", tJson).get();
+                return new Gson().fromJson(tJson, Status.class);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
+        return null;
     }
 
-    void delete(Status status){
+    public void delete(Status status){
         String tJson = null;
         try {
             tJson = new HttpService().execute("/status/"+status.getId(), "Delete", null).get();

@@ -7,107 +7,44 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import nescaupower.br.com.keepsoft.Factory.BD.DAO.StatusDAO;
 import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
 import nescaupower.br.com.keepsoft.Factory.Model.Status;
 
 public class StatusController {
 
+    private StatusDAO statusDAO;
 
-
-    public List<Status> getAllFindByProjeto(Long projetoId){
-        String tJson = null;
-        try {
-            tJson = new HttpService().execute("/status/findByProjeto/"+projetoId, "Get", null).get();
-            Type type = new TypeToken<List<Status>>(){}.getType();
-            List<Status> list = (List<Status>) new Gson().fromJson(tJson, type);
-            return list;
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public StatusController() {
+        statusDAO = new StatusDAO();
     }
 
-    public List<Status> getAll(){
-        String tJson = null;
-        try {
-            tJson = new HttpService().execute("/status", "Get", null).get();
-            Type type = new TypeToken<List<Status>>(){}.getType();
-            List<Status> list = (List<Status>) new Gson().fromJson(tJson, type);
-            return list;
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public List<Status> getAllFindByProjeto(Long projetoId) {
+        return statusDAO.getAllFindByProjeto(projetoId);
     }
 
-    public Status findByID(long id){
-        String tJson = null;
-        try {
-            tJson = new HttpService().execute("/status/"+id, "Get", null).get();
-            Status status =  new Gson().fromJson(tJson, Status.class);
-            return status;
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public List<Status> getAll() {
+        return statusDAO.getAll();
+    }
+
+    public Status findByID(long id) {
+        return statusDAO.findByID(id);
     }
 
 
     public List<String> listarTodosOsNomesdeProjeto(Long id) {
-        String tJson;
-        try {
-            tJson = new HttpService().execute("/status/findNamesByProjeto/" + id, "Get", null).get();
-            Type type = new TypeToken<List<String>>() {
-            }.getType();
-            return new Gson().fromJson(tJson, type);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return statusDAO.listarTodosOsNomesdeProjeto(id);
     }
 
-    public void insertAll(Status... statuses){
-        for(Status status : statuses){
-            String tJson = new Gson().toJson(status);
-            try {
-                new HttpService().execute("/status", "Post", tJson).get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        }
+    public Status insertAll(Status... statuses) {
+        return statusDAO.insertAll(statuses);
     }
 
-    public void updateAll(Status... statuses){
-        for(Status status : statuses){
-            String tJson = new Gson().toJson(status);
-            try {
-                new HttpService().execute("/status/"+status.getId(), "Put", tJson).get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        }
+    public Status updateAll(Status... statuses) {
+        return statusDAO.updateAll(statuses);
     }
 
-    public void delete(Status status){
-        String tJson = null;
-        try {
-            tJson = new HttpService().execute("/status/"+status.getId(), "Delete", null).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+    public void delete(Status status) {
+        statusDAO.delete(status);
     }
 }

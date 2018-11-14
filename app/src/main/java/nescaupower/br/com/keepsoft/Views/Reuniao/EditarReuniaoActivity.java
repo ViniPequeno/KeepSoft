@@ -199,10 +199,13 @@ public class EditarReuniaoActivity extends AppCompatActivity {
 
         reuniao.setProjeto(Projeto.getUltimoProjetoUsado());
 
-        rc.atualizar(reuniao);
-        Intent i = new Intent(EditarReuniaoActivity.this, ReuniaoActivity.class);
-        startActivity(i);
-        EditarReuniaoActivity.this.finish();
+        if(rc.atualizar(reuniao) != null) {
+            Intent i = new Intent(EditarReuniaoActivity.this, ReuniaoActivity.class);
+            startActivity(i);
+            EditarReuniaoActivity.this.finish();
+        }else{
+            Toast.makeText(this, "A reunião já existi!", Toast.LENGTH_SHORT).show();
+        }
 
     }
 }

@@ -49,14 +49,14 @@ public class SprintController {
         return sprint;
     }
 
-    public void atualizar(Sprint sprint) {
+    public Sprint atualizar(Sprint sprint) {
 
 
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 
         sprint.setDataInicioFormat(formato.format(sprint.getDataInicio()));
         sprint.setDataFimFormat(formato.format(sprint.getDataFim()));
-        sprintDAO.updateAll(sprint);
+        return sprintDAO.updateAll(sprint);
     }
 
     public boolean cadastrar(Sprint sprint) {

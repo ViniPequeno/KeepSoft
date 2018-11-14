@@ -171,12 +171,15 @@ public class EditarSprint extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        sc.atualizar(sprint);
+        if(sc.atualizar(sprint) !=null) {
 
-        Intent i = new Intent(EditarSprint.this, DetalhesSprintActivity.class);
-        i.putExtra("EXTRA_CODIGO_SPRINT", getIntent().getLongExtra("EXTRA_CODIGO_SPRINT", 0));
-        startActivity(i);
-        EditarSprint.this.finish();
+            Intent i = new Intent(EditarSprint.this, DetalhesSprintActivity.class);
+            i.putExtra("EXTRA_CODIGO_SPRINT", getIntent().getLongExtra("EXTRA_CODIGO_SPRINT", 0));
+            startActivity(i);
+            EditarSprint.this.finish();
+        }else{
+            Toast.makeText(this, "Sprint já existe!", Toast.LENGTH_LONG).show();
+        }
 
     }
 }

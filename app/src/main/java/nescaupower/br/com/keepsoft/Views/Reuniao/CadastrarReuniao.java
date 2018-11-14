@@ -194,7 +194,7 @@ public class CadastrarReuniao extends AppCompatActivity {
 
         r.setProjeto(Projeto.getUltimoProjetoUsado());
 
-        if(rc.cadastrar(r, usuario.getId())){
+        if(rc.cadastrar(r, usuario.getId()) != null){
             Intent i = new Intent(CadastrarReuniao.this, ReuniaoActivity.class);
             startActivity(i);
             CadastrarReuniao.this.finish();

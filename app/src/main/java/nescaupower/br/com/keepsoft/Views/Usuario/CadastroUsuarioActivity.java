@@ -23,6 +23,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     private EditText txtTelefone;
 
     private UsuarioController uc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +41,17 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     }
 
     public void cadastrar(View view) {
-        if(txtSenha.getText().toString().equals(txtConfirmarSenha.getText().toString())){
+        if (txtEmail.getText().equals("")) {
+            Toast.makeText(this, "Você deve preencher o campo e-mail!", Toast.LENGTH_SHORT).show();
+        } else if (txtLogin.getText().equals("")) {
+            Toast.makeText(this, "Você deve preencher o campo login!", Toast.LENGTH_SHORT).show();
+        } else if (txtNome.getText().equals("")) {
+            Toast.makeText(this, "Você deve preencher o campo nome", Toast.LENGTH_SHORT).show();
+        } else if (txtSenha.getText().equals("")) {
+            Toast.makeText(this, "Você deve preencher o campo senha", Toast.LENGTH_SHORT).show();
+        } else if (txtConfirmarSenha.getText().equals("")) {
+            Toast.makeText(this, "Você deve preencher o campo confirmar senha", Toast.LENGTH_SHORT).show();
+        } else if (txtSenha.getText().toString().equals(txtConfirmarSenha.getText().toString())) {
             Usuario u = Factory.startUsuario();
             u.setEmail(txtEmail.getText().toString());
             u.setLogin(txtLogin.getText().toString());
@@ -48,23 +59,20 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             u.setNome(txtNome.getText().toString());
             u.setTelefone(txtTelefone.getText().toString());
 
-            if (u.getEmail() == "" || u.getLogin() == "" || u.getNome() == "" || u.getSenha() == "") {
-                Toast.makeText(this, "Não pode haver campos vazios", Toast.LENGTH_SHORT).show();
-            } else {
-                boolean cadastrou = uc.cadastrar(u);
+            boolean cadastrou = uc.cadastrar(u);
 
-                if (cadastrou) {
-                    Intent intent;
-                    intent = new Intent(CadastroUsuarioActivity.this, LoginActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
-                    Toast.makeText(this, uc.getMensagem(), Toast.LENGTH_SHORT).show();
-                    startActivity(intent);
-                    CadastroUsuarioActivity.this.finish();
-                } else {
-                    Toast.makeText(this, uc.getMensagem(), Toast.LENGTH_SHORT).show();
-                }
+            if (cadastrou) {
+                Intent intent;
+                intent = new Intent(CadastroUsuarioActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
+                Toast.makeText(this, uc.getMensagem(), Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                CadastroUsuarioActivity.this.finish();
+            } else {
+                Toast.makeText(this, uc.getMensagem(), Toast.LENGTH_SHORT).show();
             }
-        }else{
+
+        } else {
             Toast.makeText(this, "Senhas não são iguais!", Toast.LENGTH_SHORT).show();
         }
 

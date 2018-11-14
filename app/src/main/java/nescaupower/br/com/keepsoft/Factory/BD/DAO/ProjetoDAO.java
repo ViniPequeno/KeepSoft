@@ -91,17 +91,19 @@ public class ProjetoDAO {
         return null;
     }
 
-    public void updateAll(Projeto... projetoes) {
+    public Projeto updateAll(Projeto... projetoes) {
         for (Projeto projeto : projetoes) {
             String tJson = new Gson().toJson(projeto);
             try {
-                new HttpService().execute("/projeto/" + projeto.getCodigo(), "Put", tJson).get();
+                tJson = new HttpService().execute("/projeto/" + projeto.getCodigo(), "Put", tJson).get();
+                return new Gson().fromJson(tJson, Projeto.class);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
+        return null;
     }
 
     public void delete(Projeto projeto) {

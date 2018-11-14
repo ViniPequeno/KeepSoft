@@ -55,7 +55,7 @@ public class CadastrarParticipanteActivity extends AppCompatActivity implements 
         btnEnivarConviteParticipante = findViewById(R.id.btnEnviarConviteParticipante);
 
         UsuarioController uc = new UsuarioController();
-        List<Usuario> list = uc.listarUsuariosCursor(" ", 0L);
+        List<Usuario> list = uc.listarUsuariosCursor(" ", 0L, 0L);
 
         rvAdapter = new PesquisarParticipanteRVAdapter(usuarios, CadastrarParticipanteActivity.this);
 

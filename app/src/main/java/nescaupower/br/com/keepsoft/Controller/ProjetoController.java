@@ -27,11 +27,12 @@ public class ProjetoController {
         return projetoDAO.findPorcentagemById(codigo);
     }
 
-    public void atualizar(Projeto projeto) {
+    public Projeto atualizar(Projeto projeto) {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
         projeto.setDataCriacaoFormat(formato.format(projeto.getDataCriacao()));
         projeto.setDataPrevFinalizacaoFormat(formato.format(projeto.getDataPrevFinalizacao()));
-        projetoDAO.updateAll(projeto);
+        Projeto projetoAtualizado = projetoDAO.updateAll(projeto);
+        return projetoAtualizado;
     }
 
     public Projeto cadastrar(Projeto projeto) {

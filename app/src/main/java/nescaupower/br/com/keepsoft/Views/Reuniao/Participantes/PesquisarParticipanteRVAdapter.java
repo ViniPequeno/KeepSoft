@@ -59,7 +59,7 @@ public class PesquisarParticipanteRVAdapter extends RecyclerView.Adapter<Pesquis
         if (texto.length() == 0) {
             //usuarios.addAll(arraylist);
         } else {
-            usuarios = uc.listarUsuariosCursor(texto, 0L);
+            usuarios = uc.listarUsuariosCursor(texto, 0L, 0L);
         }
         notifyDataSetChanged();
     }

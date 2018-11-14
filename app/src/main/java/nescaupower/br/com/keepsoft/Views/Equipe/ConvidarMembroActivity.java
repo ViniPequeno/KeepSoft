@@ -54,7 +54,7 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
         btnEnivarConvite = findViewById(R.id.btnEnviarConvite);
 
         UsuarioController uc = new UsuarioController();
-        List<Usuario> list = uc.listarUsuariosCursor(" ", 0L);
+        List<Usuario> list = uc.listarUsuariosCursor(" ", 0L, 0L);
 
         rvAdapter = new PesquisarUsuarioRVAdapter(usuarios, ConvidarMembroActivity.this);
 
@@ -120,7 +120,7 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
             login = " ";
         }
         UsuarioController uc = new UsuarioController();
-        List<Usuario> list = uc.listarUsuariosCursor(login, Usuario.getUsuarioLogado().getId());
+        List<Usuario> list = uc.listarUsuariosCursor(login, Usuario.getUsuarioLogado().getId(), Projeto.getUltimoProjetoUsado().getCodigo());
         atualizarResultados(list);
         return false;
     }

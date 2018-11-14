@@ -75,10 +75,10 @@ public class UsuarioDAO {
     }
 
 
-    public List<Usuario> findByLoginOrName(String search, Long id){
+    public List<Usuario> findByLoginOrName(String search, Long id, Long idProjeto){
         String tJson = null;
         try {
-            tJson = new HttpService().execute("/usuarios/getByLoginOrName/"+search+"/"+id, "Get", null).get();
+            tJson = new HttpService().execute("/usuarios/getByLoginOrName/"+search+"/"+id+"/"+idProjeto, "Get", null).get();
             Type type = new TypeToken<List<Usuario>>(){}.getType();
             List<Usuario> list = new Gson().fromJson(tJson, type);
             return list;

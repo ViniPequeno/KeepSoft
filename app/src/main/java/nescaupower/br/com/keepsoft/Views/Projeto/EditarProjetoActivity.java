@@ -99,15 +99,18 @@ public class EditarProjetoActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        pc.atualizar(projeto);
-        Projeto.setUltimoProjetoUsado(projeto);
+        if(pc.atualizar(projeto) != null) {
+            Projeto.setUltimoProjetoUsado(projeto);
 
-        Toast.makeText(this, "Alterado!", Toast.LENGTH_SHORT).show();
-        Intent intent;
-        intent = new Intent(EditarProjetoActivity.this, DetalhesProjetoActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
-        startActivity(intent);
-        EditarProjetoActivity.this.finish();
+            Toast.makeText(this, "Alterado!", Toast.LENGTH_SHORT).show();
+            Intent intent;
+            intent = new Intent(EditarProjetoActivity.this, DetalhesProjetoActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
+            startActivity(intent);
+            EditarProjetoActivity.this.finish();
+        }else{
+            Toast.makeText(this, "Projeto já existe!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void cancelarAlterarProjeto(View view){

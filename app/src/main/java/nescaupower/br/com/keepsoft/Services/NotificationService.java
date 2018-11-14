@@ -60,13 +60,13 @@ public class NotificationService extends Service implements Runnable {
     public void run() {
         try {
             Thread.sleep(5000);
-            if(cc == null) {
+            if (cc == null) {
                 cc = new ConviteController();
             }
-            if(pc == null){
+            if (pc == null) {
                 pc = new ProjetoController();
             }
-            if(uc == null){
+            if (uc == null) {
                 uc = new UsuarioController();
             }
             //Singleton
@@ -75,26 +75,30 @@ public class NotificationService extends Service implements Runnable {
                 SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
                 usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
             }
-            List<Convite> conviteList = cc.procurarPorIDNotVistos(usuario.getId());
-            if(!conviteList.isEmpty()){
-                if(conviteList.size() == 1){
-                    Projeto projeto = pc.procurarPorCodigo(conviteList.get(0).getProjeto().getCodigo());
-                    Notificacao notificacao = new Notificacao("Convite - "+projeto.getNome(),
-                            "Você recebeu um convite para participar do projeto como "+conviteList.get(0).getFuncao().toString(),
-                            R.mipmap.ic_launcher1, "Teset123",
-                            this, new Intent(this, PaginaInicialActivity.class));
-                    notificacao.notificar();
-                }else{
-                    Notificacao notificacao = new Notificacao(conviteList.size()+" convites",
-                            "Você recebeu "+ conviteList.size()+" convite",
-                            R.mipmap.ic_launcher1, "Teset123",
-                            this, new Intent(this, PaginaInicialActivity.class));
-                    notificacao.notificar();
+            try {
+                List<Convite> conviteList = cc.procurarPorIDNotVistos(usuario.getId());
+                if (!conviteList.isEmpty()) {
+                    if (conviteList.size() == 1) {
+                        Projeto projeto = pc.procurarPorCodigo(conviteList.get(0).getProjeto().getCodigo());
+                        Notificacao notificacao = new Notificacao("Convite - " + projeto.getNome(),
+                                "Você recebeu um convite para participar do projeto como " + conviteList.get(0).getFuncao().toString(),
+                                R.mipmap.ic_launcher1, "Teset123",
+                                this, new Intent(this, PaginaInicialActivity.class));
+                        notificacao.notificar();
+                    } else {
+                        Notificacao notificacao = new Notificacao(conviteList.size() + " convites",
+                                "Você recebeu " + conviteList.size() + " convite",
+                                R.mipmap.ic_launcher1, "Teset123",
+                                this, new Intent(this, PaginaInicialActivity.class));
+                        notificacao.notificar();
+                    }
+                    for (Convite convite : conviteList) {
+                        convite.setVisto(true);
+                        cc.atualizar(convite);
+                    }
                 }
-                for(Convite convite : conviteList){
-                    convite.setVisto(true);
-                    cc.atualizar(convite);
-                }
+            }catch(Exception ex){
+                ex.printStackTrace();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

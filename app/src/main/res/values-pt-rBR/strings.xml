@@ -188,4 +188,5 @@
     <string name="difficulty">Dificuldade</string>
     <string name="user_in_change">Usuário encarregado</string>
     <string name="rememberpass">Esqueceu sua senha?</string>
+    <string name="confirmEmail">É necessário confirmar seu email.</string>
 </resources>

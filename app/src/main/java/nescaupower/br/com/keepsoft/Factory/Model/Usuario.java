@@ -12,6 +12,7 @@ public class Usuario {
     private byte[] imagem;
     private boolean receiverNotification;
     private boolean receiverEmail;
+    private boolean isEmailVerification;
 
     private static Usuario usuarioLogado;
 
@@ -108,5 +109,13 @@ public class Usuario {
 
     public void setImagem(byte[] imagem) {
         this.imagem = imagem;
+    }
+
+    public boolean isIsEmailVerification() {
+        return isEmailVerification;
+    }
+
+    public void setIsEmailVerification(boolean isEmailVerification) {
+        this.isEmailVerification = isEmailVerification;
     }
 }

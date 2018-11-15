@@ -45,22 +45,30 @@ public class LoginActivity extends AppCompatActivity {
         Usuario usuario = uc.realizarLogin(loginText, senhaText);
 
         if (usuario != null) {
-            SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor;
-            editor = sharedPreferences.edit();
-            editor.putBoolean(Settings.LOGADO, true);
-            editor.putString(Settings.LOGIN, usuario.getLogin());
-            editor.commit();
+            if (!usuario.isIsEmailVerification()) {
+                //Mostrar alerta de erro
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                builder.setTitle(R.string.error);
+                builder.setMessage(R.string.confirmEmail);
+                builder.setPositiveButton(R.string.confirm, null);
+                builder.show();
+            } else {
+                SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor;
+                editor = sharedPreferences.edit();
+                editor.putBoolean(Settings.LOGADO, true);
+                editor.putString(Settings.LOGIN, usuario.getLogin());
+                editor.commit();
 
-            //Singleton
-            Factory.setUsuarioLogado(usuario);
+                //Singleton
+                Factory.setUsuarioLogado(usuario);
 
-            Intent intent;
-            intent = new Intent(LoginActivity.this, PaginaInicialActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
-            startActivity(intent);
-            LoginActivity.this.finish();
-
+                Intent intent;
+                intent = new Intent(LoginActivity.this, PaginaInicialActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
+                startActivity(intent);
+                LoginActivity.this.finish();
+            }
         } else {
             //Mostrar alerta de erro
             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);

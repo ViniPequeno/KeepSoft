@@ -23,6 +23,10 @@ public class UsuarioController {
     public Usuario procurarPorLogin(String login) {
         return usuarioDAO.findByLogin(login);
     }
+    public Usuario procurarPorEmail(String email) {
+        return usuarioDAO.findByEmail(email);
+    }
+
 
     public Usuario procurarPorID(Long id) {
         return usuarioDAO.findByID(id);

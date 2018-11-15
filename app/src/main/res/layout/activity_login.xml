@@ -94,6 +94,18 @@
 
         <Space
             android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <Button
+            android:id="@+id/btnEsqueceuASenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="24dp"
+            android:onClick="esqueceuasenha"
+            android:text="@string/rememberpass" />
+
+        <Space
+            android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
     </LinearLayout>

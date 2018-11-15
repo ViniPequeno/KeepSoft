@@ -8,9 +8,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
+import nescaupower.br.com.keepsoft.EmailController.EsqueceuSenhaEmail;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
@@ -55,11 +57,11 @@ public class LoginActivity extends AppCompatActivity {
 
             Intent intent;
             intent = new Intent(LoginActivity.this, PaginaInicialActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK ); // adiciona a flag para a intent
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
             startActivity(intent);
             LoginActivity.this.finish();
 
-        }else{
+        } else {
             //Mostrar alerta de erro
             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
             builder.setTitle(R.string.error);
@@ -73,5 +75,29 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent;
         intent = new Intent(LoginActivity.this, CadastroUsuarioActivity.class);
         startActivity(intent);
+    }
+
+    public void esqueceuasenha(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.rememberpass);
+        final View dialogView = this.getLayoutInflater().inflate(R.layout.remenberpass, findViewById(R.id.content), false);
+        builder.setView(dialogView);
+
+        builder.setPositiveButton(R.string.confirm, (dialogInterface, i) -> {
+            UsuarioController uc = new UsuarioController();
+            EditText txtSenha = dialogView.findViewById(R.id.txtEmail);
+
+            Usuario usuario = uc.procurarPorEmail(txtSenha.getText().toString());
+            if (usuario != null) {
+                new EsqueceuSenhaEmail().enviarEmail(usuario);
+            } else {
+                Toast.makeText(this, "E-mail não cadastrado!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        builder.setNegativeButton(R.string.cancel, (dialogInterface, i) -> Toast.makeText(this, "não", Toast.LENGTH_SHORT).show());
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

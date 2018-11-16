@@ -96,6 +96,13 @@ public class TarefaFragment extends Fragment {
         startActivity(intent);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        TarefaRVAdapter adapter = (TarefaRVAdapter) rv.getAdapter();
+        adapter.setTarefas(tarefaList = tc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo()));
+        adapter.notifyDataSetChanged();
+    }
 
     @Override
     public void onAttach(Context context) {

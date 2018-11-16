@@ -1,14 +1,8 @@
 package nescaupower.br.com.keepsoft.Controller;
 
-import com.google.common.reflect.TypeToken;
-import com.google.gson.Gson;
-
-import java.lang.reflect.Type;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.StatusDAO;
-import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
 import nescaupower.br.com.keepsoft.Factory.Model.Status;
 
 public class StatusController {
@@ -19,21 +13,24 @@ public class StatusController {
         statusDAO = new StatusDAO();
     }
 
-    public List<Status> getAllFindByProjeto(Long projetoId) {
-        return statusDAO.getAllFindByProjeto(projetoId);
-    }
-
     public List<Status> getAll() {
         return statusDAO.getAll();
+    }
+
+    public List<Status> getAllFindByProjeto(Long projetoId) {
+        return statusDAO.findByProjeto(projetoId);
+    }
+
+    public List<String> getNamesByProjeto(Long id) {
+        return statusDAO.getNamesByProjeto(id);
     }
 
     public Status findByID(long id) {
         return statusDAO.findByID(id);
     }
 
-
-    public List<String> listarTodosOsNomesdeProjeto(Long id) {
-        return statusDAO.listarTodosOsNomesdeProjeto(id);
+    public Status findByNameInProjeto(long projetoId, String statusNome) {
+        return statusDAO.findByNameInProjeto(projetoId, statusNome);
     }
 
     public Status insertAll(Status... statuses) {

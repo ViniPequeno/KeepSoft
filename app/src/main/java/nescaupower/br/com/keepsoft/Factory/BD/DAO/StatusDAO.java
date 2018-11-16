@@ -13,13 +13,12 @@ import nescaupower.br.com.keepsoft.Factory.Model.Status;
 public class StatusDAO {
 
 
-
-    public List<Status> getAllFindByProjeto(Long projetoId){
+    public List<Status> getAll() {
         String tJson = null;
         try {
-            tJson = new HttpService().execute("/status/findByProjeto/"+projetoId, "Get", null).get();
+            tJson = new HttpService().execute("/status", "Get", null).get();
             Type type = new TypeToken<List<Status>>(){}.getType();
-            List<Status> list = (List<Status>) new Gson().fromJson(tJson, type);
+            List<Status> list = new Gson().fromJson(tJson, type);
             return list;
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -29,13 +28,28 @@ public class StatusDAO {
         return null;
     }
 
-    public List<Status> getAll(){
+    public List<Status> findByProjeto(Long projetoId) {
         String tJson = null;
         try {
-            tJson = new HttpService().execute("/status", "Get", null).get();
+            tJson = new HttpService().execute("/status/findByProjeto/" + projetoId, "Get", null).get();
             Type type = new TypeToken<List<Status>>(){}.getType();
-            List<Status> list = (List<Status>) new Gson().fromJson(tJson, type);
+            List<Status> list = new Gson().fromJson(tJson, type);
             return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<String> getNamesByProjeto(Long id) {
+        String tJson;
+        try {
+            tJson = new HttpService().execute("/status/findNamesByProjeto/" + id, "Get", null).get();
+            Type type = new TypeToken<List<String>>() {
+            }.getType();
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -58,14 +72,12 @@ public class StatusDAO {
         return null;
     }
 
-
-    public List<String> listarTodosOsNomesdeProjeto(Long id) {
-        String tJson;
+    public Status findByNameInProjeto(long projetoId, String nomeStatus) {
+        String tJson = null;
         try {
-            tJson = new HttpService().execute("/status/findNamesByProjeto/" + id, "Get", null).get();
-            Type type = new TypeToken<List<String>>() {
-            }.getType();
-            return new Gson().fromJson(tJson, type);
+            tJson = new HttpService().execute("/status/findByNameInProjeto/" + projetoId + "/" + nomeStatus, "Get", null).get();
+            Status status = new Gson().fromJson(tJson, Status.class);
+            return status;
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

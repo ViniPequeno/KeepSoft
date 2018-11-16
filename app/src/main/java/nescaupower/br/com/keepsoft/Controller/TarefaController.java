@@ -36,9 +36,9 @@ public class TarefaController {
         tarefaDAO.updateAll(tarefa);
     }
 
-    public boolean cadastrar(Tarefa... perfis) {
+    public boolean cadastrar(Tarefa... tarefas) {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        for (Tarefa tarefa : perfis) {
+        for (Tarefa tarefa : tarefas) {
             if (tarefa.getDataLimite() != null) {
                 tarefa.setDataLimiteformat(formato.format(tarefa.getDataLimite()));
             } else {
@@ -47,7 +47,7 @@ public class TarefaController {
             }
 
         }
-        Tarefa tarefa = tarefaDAO.insertAll(perfis);
+        Tarefa tarefa = tarefaDAO.insertAll(tarefas);
         if(tarefa != null) {
             this.mensagem = "Cadastrado!";
             return true;

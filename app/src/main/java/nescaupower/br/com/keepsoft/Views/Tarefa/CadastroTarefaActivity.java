@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,7 +28,9 @@ import nescaupower.br.com.keepsoft.Enum.Dificuldade;
 import nescaupower.br.com.keepsoft.Enum.Prioridade;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
+import nescaupower.br.com.keepsoft.Factory.Model.Status;
 import nescaupower.br.com.keepsoft.Factory.Model.Tarefa;
+import nescaupower.br.com.keepsoft.Factory.Model.TarefaStatus;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity;
 
@@ -45,6 +48,7 @@ public class CadastroTarefaActivity extends AppCompatActivity {
 
     private TarefaController tc;
     private StatusController sc;
+    //private TarefaStatusController tsc;
 
     private LinearLayout root;
     private Calendar dataAtual = Calendar.getInstance();
@@ -52,7 +56,7 @@ public class CadastroTarefaActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener listenerDataSelecionadaDataLimite;
     private DatePickerDialog.OnCancelListener listenerSelecaoCanceladaDataLimite;
 
-    private Button cadastratTarefa;
+    private Button btnCadastrar;
     PerfilController pc = new PerfilController();
 
     @Override
@@ -69,17 +73,34 @@ public class CadastroTarefaActivity extends AppCompatActivity {
         spinDificuldade = findViewById(R.id.spinDificuldade);
         spinUsuario = findViewById(R.id.spinUsuario);
 
-        cadastratTarefa = findViewById(R.id.btnCadastrarTarefa);
-        cadastratTarefa.setOnClickListener(v -> cadastrar(v));
+        btnCadastrar = findViewById(R.id.btnCadastrar);
+        btnCadastrar.setOnClickListener(this::cadastrar);
 
         tc = new TarefaController();
         sc = new StatusController();
+        //tsc = new TarefaStatusController();
 
         perfis = pc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
 
-        spinStatus.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
-                sc.listarTodosOsNomesdeProjeto(Projeto.getUltimoProjetoUsado().getCodigo())));
+        //Inicializando Spinner de Status
+        ArrayAdapter statusAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                sc.getNamesByProjeto(Projeto.getUltimoProjetoUsado().getCodigo()));
+        statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinStatus.setAdapter(statusAdapter);
+        spinStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                Log.e("oi", parent.getSelectedItem().toString());
+                Status st = sc.findByNameInProjeto(Projeto.getUltimoProjetoUsado().getCodigo(),
+                        parent.getSelectedItem().toString());
+                if (st != null)
+                    Toast.makeText(CadastroTarefaActivity.this, st.getNome(), Toast.LENGTH_SHORT).show();
+            }
 
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        //Inicializando Spinner de Usuário Responsável pela Tarefa
         SpinPerfilAdapter adapter = new SpinPerfilAdapter(CadastroTarefaActivity.this, perfis);
         spinUsuario.setAdapter(adapter);
         spinUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -91,7 +112,6 @@ public class CadastroTarefaActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
 
         txtDataLimite = findViewById(R.id.txtDataLimite);
         txtDataLimite.setOnFocusChangeListener((v, hasFocus) -> {
@@ -115,13 +135,13 @@ public class CadastroTarefaActivity extends AppCompatActivity {
 
 
     public void cadastrar(View v) {
-        if(txtTitulo.getText().equals("")){
+        if (txtTitulo.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "Titulo não pode ser vazio!", Toast.LENGTH_SHORT).show();
             return;
-        }else if(txtDescricao.getText().equals("")){
+        } else if (txtDescricao.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "Descrição não pode ser vazio!", Toast.LENGTH_SHORT).show();
             return;
-        }else if(txtDataLimite.getText().equals("")){
+        } else if (txtDataLimite.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "Data limite não pode ser vazio!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -139,9 +159,17 @@ public class CadastroTarefaActivity extends AppCompatActivity {
             return;
         }
         tc.cadastrar(tarefa);
+
+        TarefaStatus tarefaStatus = new TarefaStatus();
+        tarefaStatus.setTarefa(tarefa);
+        Status status = sc.findByNameInProjeto(Projeto.getUltimoProjetoUsado().getCodigo(),
+                spinStatus.getSelectedItem().toString());
+        tarefaStatus.setStatus(status);
+        tarefaStatus.setDataInicio(Calendar.getInstance().getTime());
+        //tsc.cadastrar(tarefaStatus)
+
         Intent i = new Intent(CadastroTarefaActivity.this, DetalhesProjetoActivity.class);
         startActivity(i);
         CadastroTarefaActivity.this.finish();
     }
-
 }

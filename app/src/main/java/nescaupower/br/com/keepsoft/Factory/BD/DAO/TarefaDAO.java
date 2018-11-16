@@ -41,8 +41,8 @@ public class TarefaDAO {
     }
 
 
-    public Tarefa insertAll(Tarefa... perfis) {
-        for (Tarefa tarefa : perfis) {
+    public Tarefa insertAll(Tarefa... tarefas) {
+        for (Tarefa tarefa : tarefas) {
             String tJson = new Gson().toJson(tarefa);
             try {
                 String resposta = new HttpService().execute("/tarefa", "Post", tJson).get();
@@ -56,8 +56,8 @@ public class TarefaDAO {
         return  null;
     }
 
-    public void updateAll(Tarefa... perfis) {
-        for (Tarefa tarefa : perfis) {
+    public void updateAll(Tarefa... tarefas) {
+        for (Tarefa tarefa : tarefas) {
             String tJson = new Gson().toJson(tarefa);
             try {
                 new HttpService().execute("/tarefa/" + tarefa.getId(), "Put", tJson).get();

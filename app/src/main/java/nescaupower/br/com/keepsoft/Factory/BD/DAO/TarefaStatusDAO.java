@@ -42,8 +42,39 @@ public class TarefaStatusDAO {
         return null;
     }
 
+    public List<TarefaStatus> findByTarefa(long tarefaId) {
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/tarefasStatus/findByTarefa/" + tarefaId, "Get", null).get();
+            Type type = new TypeToken<List<TarefaStatus>>() {
+            }.getType();
+            List<TarefaStatus> list = new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
-    void insertAll(TarefaStatus... tarefasStatuses) {
+    public List<TarefaStatus> findByStatus(long statusId) {
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/tarefasStatus/findByStatus/" + statusId, "Get", null).get();
+            Type type = new TypeToken<List<TarefaStatus>>() {
+            }.getType();
+            List<TarefaStatus> list = new Gson().fromJson(tJson, type);
+            return list;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void insertAll(TarefaStatus... tarefasStatuses) {
         for (TarefaStatus tarefasStatus : tarefasStatuses) {
             String tJson = new Gson().toJson(tarefasStatus);
             try {
@@ -56,7 +87,7 @@ public class TarefaStatusDAO {
         }
     }
 
-    void updateAll(TarefaStatus... tarefasStatuses) {
+    public void updateAll(TarefaStatus... tarefasStatuses) {
         for (TarefaStatus tarefasStatus : tarefasStatuses) {
             String tJson = new Gson().toJson(tarefasStatus);
             try {
@@ -69,7 +100,7 @@ public class TarefaStatusDAO {
         }
     }
 
-    void delete(TarefaStatus tarefasStatus) {
+    public void delete(TarefaStatus tarefasStatus) {
         String tJson = null;
         try {
             tJson = new HttpService().execute("/tarefasStatus/" + tarefasStatus.getId(), "Get", null).get();

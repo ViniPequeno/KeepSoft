@@ -5,7 +5,7 @@ import java.util.Date;
 public class TarefaStatus {
     private Long id;
     private Tarefa tarefa;
-    private Status idStatus;
+    private Status status;
     private Date dataInicio;
     private Date dataFim;
 
@@ -28,12 +28,12 @@ public class TarefaStatus {
         this.tarefa = tarefa;
     }
 
-    public Status getIdStatus() {
-        return idStatus;
+    public Status getStatus() {
+        return status;
     }
 
-    public void setIdStatus(Status idStatus) {
-        this.idStatus = idStatus;
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public Date getDataInicio() {

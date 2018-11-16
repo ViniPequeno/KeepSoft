@@ -20,7 +20,7 @@ import nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent.DummyItem;
  */
 public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHolder> {
 
-    private final List<Tarefa> tarefas;
+    private List<Tarefa> tarefas;
     private final OnListFragmentInteractionListener mListener;
 
     public TarefaRVAdapter(List<Tarefa> items, OnListFragmentInteractionListener listener) {
@@ -55,6 +55,10 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
     @Override
     public int getItemCount() {
         return tarefas.size();
+    }
+
+    public void setTarefas(List<Tarefa> tarefas) {
+        this.tarefas = tarefas;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

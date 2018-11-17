@@ -24,6 +24,7 @@ import java.util.List;
 import nescaupower.br.com.keepsoft.Controller.PerfilController;
 import nescaupower.br.com.keepsoft.Controller.StatusController;
 import nescaupower.br.com.keepsoft.Controller.TarefaController;
+import nescaupower.br.com.keepsoft.Controller.TarefaStatusController;
 import nescaupower.br.com.keepsoft.Enum.Dificuldade;
 import nescaupower.br.com.keepsoft.Enum.Prioridade;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
@@ -48,7 +49,7 @@ public class CadastroTarefaActivity extends AppCompatActivity {
 
     private TarefaController tc;
     private StatusController sc;
-    //private TarefaStatusController tsc;
+    private TarefaStatusController tsc;
 
     private LinearLayout root;
     private Calendar dataAtual = Calendar.getInstance();
@@ -78,7 +79,7 @@ public class CadastroTarefaActivity extends AppCompatActivity {
 
         tc = new TarefaController();
         sc = new StatusController();
-        //tsc = new TarefaStatusController();
+        tsc = new TarefaStatusController();
 
         perfis = pc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
 
@@ -166,7 +167,7 @@ public class CadastroTarefaActivity extends AppCompatActivity {
                 spinStatus.getSelectedItem().toString());
         tarefaStatus.setStatus(status);
         tarefaStatus.setDataInicio(Calendar.getInstance().getTime());
-        //tsc.cadastrar(tarefaStatus)
+        tsc.cadastrar(tarefaStatus);
 
         Intent i = new Intent(CadastroTarefaActivity.this, DetalhesProjetoActivity.class);
         startActivity(i);

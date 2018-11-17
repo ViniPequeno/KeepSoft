@@ -15,14 +15,10 @@ public class ProjetoController {
         projetoDAO = new ProjetoDAO();
     }
 
-    public void inserir(Projeto projeto) {
-        projetoDAO.insertAll(projeto);
-    }
-
-
     public Projeto procurarPorCodigo(Long codigo) {
         return projetoDAO.findById(codigo);
     }
+
     public Porcentagem procurarPorcentagemPorCodigo(Long codigo) {
         return projetoDAO.findPorcentagemById(codigo);
     }

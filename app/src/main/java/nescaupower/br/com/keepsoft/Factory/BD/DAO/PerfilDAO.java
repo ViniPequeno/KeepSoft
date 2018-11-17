@@ -80,9 +80,6 @@ public class PerfilDAO {
         }
     }
 
-
-
-
     public List<Perfil> findByProjectID(Long codProjeto){
         String tJson;
         try {

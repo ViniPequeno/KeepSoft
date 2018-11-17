@@ -20,7 +20,6 @@ public class StatusController {
     public List<Status> getAllFindByProjeto(Long projetoId) {
         return statusDAO.findByProjeto(projetoId);
     }
-
     public List<String> getNamesByProjeto(Long id) {
         return statusDAO.getNamesByProjeto(id);
     }

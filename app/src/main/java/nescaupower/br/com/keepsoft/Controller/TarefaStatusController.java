@@ -1,5 +1,6 @@
 package nescaupower.br.com.keepsoft.Controller;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.TarefaStatusDAO;
@@ -24,7 +25,24 @@ public class TarefaStatusController {
     //public TarefaStatus findByStatus(long statusId) { return tarefaStatusDAO.findByStatus(statusId); }
     //public TarefaStatus findByTarefa(long tarefaId) { return tarefaStatusDAO.findByTarefa(tarefaId); }
 
-    //public TarefaStatus insertAll(TarefaStatus... statuses) { return tarefaStatusDAO.insertAll(statuses); }
+    public void insertAll(TarefaStatus... statuses) {
+        tarefaStatusDAO.insertAll(statuses);
+    }
+
+    public boolean cadastrar(TarefaStatus... tarefaStatuses) {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        for (TarefaStatus tarefaStatus : tarefaStatuses) {
+            if (tarefaStatus.getDataInicio() != null) {
+                tarefaStatus.setDataInicioFormat(formato.format(tarefaStatus.getDataInicio()));
+            } else {
+                tarefaStatus.setDataInicio(null);
+                tarefaStatus.setDataInicioFormat("");
+            }
+
+        }
+        tarefaStatusDAO.insertAll(tarefaStatuses);
+        return true;
+    }
 
     //public TarefaStatus updateAll(TarefaStatus... statuses) { return tarefaStatusDAO.updateAll(statuses); }
 

@@ -7,7 +7,9 @@ public class TarefaStatus {
     private Tarefa tarefa;
     private Status status;
     private Date dataInicio;
+    private String dataInicioFormat;
     private Date dataFim;
+    private String dataFimFormat;
 
     public TarefaStatus() {
     }
@@ -50,5 +52,21 @@ public class TarefaStatus {
 
     public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
+    }
+
+    public String getDataInicioFormat() {
+        return dataInicioFormat;
+    }
+
+    public void setDataInicioFormat(String dataInicioFormat) {
+        this.dataInicioFormat = dataInicioFormat;
+    }
+
+    public String getDataFimFormat() {
+        return dataFimFormat;
+    }
+
+    public void setDataFimFormat(String dataFimFormat) {
+        this.dataFimFormat = dataFimFormat;
     }
 }

@@ -1,6 +1,7 @@
 package nescaupower.br.com.keepsoft.Factory.Model;
 
 import java.util.Date;
+import java.util.List;
 
 public class Sprint {
     private Long id;
@@ -11,6 +12,7 @@ public class Sprint {
     private Date dataInicio;
     private Date dataFim;
     private Projeto projeto;
+    private List<Tarefa> tarefas;
 
     public Sprint() {
     }
@@ -78,5 +80,13 @@ public class Sprint {
 
     public void setDataFimFormat(String dataFimFormat) {
         this.dataFimFormat = dataFimFormat;
+    }
+
+    public List<Tarefa> getTarefas() {
+        return tarefas;
+    }
+
+    public void setTarefas(List<Tarefa> tarefas) {
+        this.tarefas = tarefas;
     }
 }

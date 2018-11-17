@@ -14,6 +14,7 @@ public class Tarefa {
     private Prioridade prioridade;
     private Dificuldade dificuldade;
     private Perfil perfil;
+    private Sprint sprint;
 
     public Tarefa() {
     }
@@ -101,5 +102,13 @@ public class Tarefa {
 
     public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
+    }
+
+    public Sprint getSprint() {
+        return sprint;
+    }
+
+    public void setSprint(Sprint sprint) {
+        this.sprint = sprint;
     }
 }

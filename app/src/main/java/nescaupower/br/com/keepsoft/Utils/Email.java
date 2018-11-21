@@ -14,8 +14,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class Email {
-    private final String EmailEnvio = "viniciuspedro350@gmail.com";
-    private final String SenhaEnvio = "Pedro8251";
+    private final String EmailEnvio = "keepsoft345@gmail.com";
+    private final String SenhaEnvio = "YanPedroSolteiros";
 
     private String emailDestinario;
     private String assunto;

@@ -16,8 +16,10 @@ import java.security.GeneralSecurityException;
 import java.util.concurrent.ExecutionException;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
+import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.EmailController.ReuniaoEmail;
 import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
+import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.Services.NotificationService;
 import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
 import nescaupower.br.com.keepsoft.Views.PaginaInicialActivity;
@@ -75,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         return tJson;
     }
 
-
     private void iniciar() {
         SharedPreferences sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
         boolean logado = sharedPreferences.getBoolean(Settings.LOGADO, false);
@@ -83,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
 
         //Se usuário já estiver logado, carrega a página inicial, senão, carrega a tela de login
         if (logado) {
+            //Singleton
+            Usuario usuario = null;
+            sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
+            UsuarioController uc = new UsuarioController();
+            usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
+            Usuario.setUsuarioLogado(usuario);
             intent1 = new Intent(MainActivity.this, PaginaInicialActivity.class);
         } else {
             intent1 = new Intent(MainActivity.this, LoginActivity.class);

@@ -39,26 +39,6 @@
             android:elevation="4dp"
             android:paddingBottom="24dp">
 
-            <ImageView
-                android:id="@+id/add_friend"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_toStartOf="@+id/drop_down_option_menu"
-                android:tint="@android:color/white"
-                app:srcCompat="@drawable/ic_person_add_black_24dp" />
-
-            <ImageView
-                android:id="@+id/drop_down_option_menu"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:tint="@android:color/white"
-                app:srcCompat="@drawable/ic_more_vert_black_24dp" />
-
             <TextView
                 android:id="@+id/lblLogin"
                 android:layout_width="wrap_content"

@@ -16,8 +16,8 @@ import nescaupower.br.com.keepsoft.EmailController.EsqueceuSenhaEmail;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Usuario.CadastroUsuarioActivity;
 import nescaupower.br.com.keepsoft.Views.PaginaInicialActivity;
+import nescaupower.br.com.keepsoft.Views.Usuario.CadastroUsuarioActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void esqueceuasenha(View view) {
+    public void esqueceuSenha(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.rememberpass);
         final View dialogView = this.getLayoutInflater().inflate(R.layout.remenberpass, findViewById(R.id.content), false);

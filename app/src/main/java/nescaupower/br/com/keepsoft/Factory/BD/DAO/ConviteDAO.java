@@ -27,7 +27,7 @@ public class ConviteDAO {
         return null;
     }
 
-    public Convite findByID(Long id){
+    public Convite findByProjetoUsuariosDestinario(Long id) {
         String tJson = null;
         try {
             tJson = new HttpService().execute("/convite/"+id, "Get", null).get();
@@ -95,8 +95,7 @@ public class ConviteDAO {
     }
 
 
-
-    public Convite findByID(Long destinatarioId, Long codProjeto    ){
+    public Convite findByProjetoUsuariosDestinario(Long destinatarioId, Long codProjeto) {
         String tJson = null;
         try {
             tJson = new HttpService().execute("/convite/findByProjetoUsuariosDestinario/"+codProjeto+"/"+destinatarioId, "Get", null).get();

@@ -11,13 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
 import java.util.concurrent.ExecutionException;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
-import nescaupower.br.com.keepsoft.EmailController.ReuniaoEmail;
 import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.Services.NotificationService;
@@ -97,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
         startActivity(intent1);
-        //MainActivity.this.finish();
+        MainActivity.this.finish();
     }
 
     public  boolean verificaConexao() {

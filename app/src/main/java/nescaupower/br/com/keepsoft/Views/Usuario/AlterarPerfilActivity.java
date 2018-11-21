@@ -7,12 +7,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -106,10 +104,13 @@ public class AlterarPerfilActivity extends AppCompatActivity {
             usuario.setNome(lblNome.getText().toString());
             usuario.setTelefone(lblTelefone.getText().toString());
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            image.compress(Bitmap.CompressFormat.PNG, 10, stream);
-            byte[] byteArray = stream.toByteArray();
 
-            usuario.setImagem(byteArray);
+            if (image != null) {
+                image.compress(Bitmap.CompressFormat.PNG, 10, stream);
+                byte[] byteArray = stream.toByteArray();
+                usuario.setImagem(byteArray);
+            }
+
             uc.atualizar(usuario);
             Usuario.setUsuarioLogado(usuario);
 

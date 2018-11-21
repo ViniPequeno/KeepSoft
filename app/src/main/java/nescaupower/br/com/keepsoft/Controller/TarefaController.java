@@ -31,13 +31,13 @@ public class TarefaController {
     }
 
     public void atualizar(Tarefa tarefa) {
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         tarefa.setDataLimiteformat(formato.format(tarefa.getDataLimite()));
         tarefaDAO.updateAll(tarefa);
     }
 
     public boolean cadastrar(Tarefa... tarefas) {
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         for (Tarefa tarefa : tarefas) {
             if (tarefa.getDataLimite() != null) {
                 tarefa.setDataLimiteformat(formato.format(tarefa.getDataLimite()));

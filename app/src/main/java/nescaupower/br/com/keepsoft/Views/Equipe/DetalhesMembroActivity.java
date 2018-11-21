@@ -88,6 +88,7 @@ public class DetalhesMembroActivity extends AppCompatActivity {
 
             //Se tentou clicou num usuário diferente dele mesmo
             if (!perfil.getUsuario().getId().equals(usuarioLogado.getId())) {
+                btnDelete.setText(R.string.cancel_invitation);
 
                 //Remover Membro
                 btnDelete.setOnClickListener(view -> {
@@ -122,6 +123,7 @@ public class DetalhesMembroActivity extends AppCompatActivity {
                     alterarFuncaoDeMembro();
                 });
             } else { //SENÂO, pode sair do projeto e alterar própria função
+                btnDelete.setText(R.string.leave);
                 btnDelete.setOnClickListener(view -> sairDoProjeto());
 
                 btnAlterarFuncao.setOnClickListener(view -> {

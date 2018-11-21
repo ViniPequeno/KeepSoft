@@ -3,6 +3,7 @@ package nescaupower.br.com.keepsoft.Views.Notificacao;
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,6 +121,8 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
     }
 
     private void apagarConvite(int position, Convite convite) {
+        Log.e("Convite", convite.getId() + "");
+        Log.e("Convite2", convite.getDestinatarioId() + "");
         //Apagar notificação da tela
         notificacoes.remove(position);
         notifyItemRemoved(position);

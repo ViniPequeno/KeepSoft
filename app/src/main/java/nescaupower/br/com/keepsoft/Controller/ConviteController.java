@@ -51,7 +51,7 @@ public class ConviteController {
 
     public boolean deletar(Convite convite) {
         Log.e("Convite", convite.getId()+"  "+convite.getDestinatarioId());
-        if (conviteDAO.findByID(convite.getDestinatarioId(), convite.getProjeto().getCodigo()) != null) {
+        if (conviteDAO.findByProjetoUsuariosDestinario(convite.getDestinatarioId(), convite.getProjeto().getCodigo()) != null) {
             conviteDAO.delete(convite);
             this.mensagem = "O convite foi deletado!";
             return true;
@@ -62,7 +62,7 @@ public class ConviteController {
     }
 
     public Convite procurarPorID(long idDestinatario, long codProjeto) {
-        return conviteDAO.findByID(idDestinatario, codProjeto);
+        return conviteDAO.findByProjetoUsuariosDestinario(idDestinatario, codProjeto);
     }
 
     public List<Convite> procurarPorIDNotVistos(long idDestinatario) {

@@ -13,7 +13,7 @@ public class ConviteEmail {
         msg =  destino.getNome() +
                 " recebeu um convite de " +
                 rementente.getNome() +
-                "para o projeto " +
+                " para o projeto " +
                 projeto.getNome() +
                 " participando como: " +
                 convite.getFuncao().toString();

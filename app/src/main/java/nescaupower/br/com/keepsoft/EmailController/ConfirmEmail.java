@@ -14,7 +14,7 @@ public class ConfirmEmail {
         byte[] bytes = id.getBytes();
         String idBytes = Base64.encodeToString(bytes, Base64.DEFAULT);
         msg = "Acesse o link abaixo para confirmar seu email e acessar o aplicativo do KeepSoft! <br>" +
-                "Link: "+Settings.IPSITE+"/confirmEmail/"+idBytes;
+                "<a href='"+Settings.IPSITE+"/confirmEmail/"+idBytes+"'>Confirme aqui!</a>";
 
         Email email = new Email(usuario.getEmail(), "Cofirmar email.",
                 msg);

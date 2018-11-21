@@ -2,6 +2,7 @@ package nescaupower.br.com.keepsoft.Controller;
 
 import java.util.List;
 
+import nescaupower.br.com.keepsoft.EmailController.ConfirmEmail;
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.UsuarioDAO;
 import nescaupower.br.com.keepsoft.Factory.Model.AlterarSenha;
 import nescaupower.br.com.keepsoft.Factory.Model.Login;
@@ -41,6 +42,8 @@ public class UsuarioController {
             return false;
         } else {
             usuarioDAO.insertAll(usuario);
+            ConfirmEmail confirmEmail = new ConfirmEmail();
+            confirmEmail.enviarEmail(usuario);
             this.mensagem = "Cadastrado!";
             return true;
         }

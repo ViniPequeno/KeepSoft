@@ -9,6 +9,7 @@ import java.util.TimeZone;
 
 import nescaupower.br.com.keepsoft.Factory.BD.DAO.ConviteDAO;
 import nescaupower.br.com.keepsoft.Factory.Model.Convite;
+import nescaupower.br.com.keepsoft.Factory.Model.QuantidadeNotificacoes;
 
 public class ConviteController {
     private String mensagem;
@@ -63,6 +64,10 @@ public class ConviteController {
 
     public Convite procurarPorID(long idDestinatario, long codProjeto) {
         return conviteDAO.findByProjetoUsuariosDestinario(idDestinatario, codProjeto);
+    }
+
+    public QuantidadeNotificacoes findNotVistos(long idDestinatario) {
+        return conviteDAO.findNotVistos(idDestinatario);
     }
 
     public List<Convite> procurarPorIDNotVistos(long idDestinatario) {

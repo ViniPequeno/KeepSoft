@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutionException;
 
 import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
 import nescaupower.br.com.keepsoft.Factory.Model.Convite;
+import nescaupower.br.com.keepsoft.Factory.Model.QuantidadeNotificacoes;
 
 public class ConviteDAO {
 
@@ -108,6 +109,21 @@ public class ConviteDAO {
         }
         return null;
     }
+
+    public QuantidadeNotificacoes findNotVistos(Long destinatarioId) {
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/convite/findNotVistos/"+destinatarioId, "Get", null).get();
+            QuantidadeNotificacoes qn =  new Gson().fromJson(tJson, QuantidadeNotificacoes.class);
+            return qn;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     public List<Convite> findByProjectID(Long codProjeto){
         String tJson = null;

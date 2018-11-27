@@ -164,6 +164,7 @@
                 android:value="nescaupower.br.com.keepsoft.Views.Reuniao.ReuniaoActivity" />
         </activity>
         <activity android:name=".Views.Reuniao.Participantes.DetalhesParticipante"></activity>
+        <activity android:name=".Views.Tarefa.EditarTarefaActivity" />
     </application>
 
 </manifest>

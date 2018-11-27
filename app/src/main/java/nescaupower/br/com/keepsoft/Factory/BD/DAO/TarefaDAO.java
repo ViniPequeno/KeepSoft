@@ -56,17 +56,19 @@ public class TarefaDAO {
         return  null;
     }
 
-    public void updateAll(Tarefa... tarefas) {
+    public Tarefa updateAll(Tarefa... tarefas) {
         for (Tarefa tarefa : tarefas) {
             String tJson = new Gson().toJson(tarefa);
             try {
-                new HttpService().execute("/tarefa/" + tarefa.getId(), "Put", tJson).get();
+                tJson = new HttpService().execute("/tarefa/" + tarefa.getId(), "Put", tJson).get();
+                return new Gson().fromJson(tJson, Tarefa.class);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
+        return null;
     }
 
     public void delete(Tarefa tarefa) {

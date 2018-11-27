@@ -30,10 +30,10 @@ public class TarefaController {
         return tarefaDAO.findByProjectID(codProjeto);
     }
 
-    public void atualizar(Tarefa tarefa) {
+    public Tarefa atualizar(Tarefa tarefa) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         tarefa.setDataLimiteformat(formato.format(tarefa.getDataLimite()));
-        tarefaDAO.updateAll(tarefa);
+        return tarefaDAO.updateAll(tarefa);
     }
 
     public boolean cadastrar(Tarefa... tarefas) {

@@ -84,7 +84,6 @@ public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHo
         });
     }
 
-
     public void setPerfis(List<Perfil> perfis) {
         this.perfis = perfis;
     }

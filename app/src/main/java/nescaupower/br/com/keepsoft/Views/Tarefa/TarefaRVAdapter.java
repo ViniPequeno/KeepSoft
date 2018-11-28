@@ -1,9 +1,12 @@
 package nescaupower.br.com.keepsoft.Views.Tarefa;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -20,12 +23,14 @@ import nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent.DummyItem;
  */
 public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHolder> {
 
+    private Context context;
     private List<Tarefa> tarefas;
     private final OnListFragmentInteractionListener mListener;
 
-    public TarefaRVAdapter(List<Tarefa> items, OnListFragmentInteractionListener listener) {
-        tarefas = items;
-        mListener = listener;
+    public TarefaRVAdapter(OnListFragmentInteractionListener listener, List<Tarefa> tarefas, Context context) {
+        this.tarefas = tarefas;
+        this.mListener = listener;
+        this.context = context;
     }
 
     @Override
@@ -42,6 +47,8 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
         holder.lblUsuario.setText(tarefas.get(position).getPerfil().getUsuario().getNome());
         holder.lblStatus.setText(tarefas.get(position).getDataLimiteformat());
         holder.lblDataLimite.setText(tarefas.get(position).getDataLimiteformat());
+        holder.btnEditar.setOnClickListener(view -> telaEditar(view, holder.mItem.getId()));
+        holder.btnDelete.setOnClickListener(this::deletar);
 
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
@@ -50,6 +57,17 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
                 mListener.onListFragmentInteraction(holder.mItem);
             }
         });
+    }
+
+    private void telaEditar(View view, long tarefaId) {
+        Intent i = new Intent(context, EditarTarefaActivity.class);
+        i.putExtra("tarefaId", tarefaId);
+        context.startActivity(i);
+    }
+
+    private void deletar(View view) {
+        Intent i = new Intent(context, EditarTarefaActivity.class);
+        context.startActivity(i);
     }
 
     @Override
@@ -67,6 +85,8 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
         public final TextView lblUsuario;
         public final TextView lblStatus;
         public final TextView lblDataLimite;
+        public final ImageButton btnEditar;
+        public final ImageButton btnDelete;
         public Tarefa mItem;
 
         public ViewHolder(View view) {
@@ -76,6 +96,8 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
             lblUsuario = view.findViewById(R.id.lblUsuario);
             lblStatus = view.findViewById(R.id.lblStatus);
             lblDataLimite = view.findViewById(R.id.lblDataLimite);
+            btnEditar = view.findViewById(R.id.btnEditar);
+            btnDelete = view.findViewById(R.id.btnDelete);
         }
 
         @Override

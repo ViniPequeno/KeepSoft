@@ -50,6 +50,7 @@ public class CadastroTarefaActivity extends AppCompatActivity {
     private TarefaController tc;
     private StatusController sc;
     private TarefaStatusController tsc;
+    private PerfilController pc;
 
     private LinearLayout root;
     private Calendar dataAtual = Calendar.getInstance();
@@ -58,7 +59,6 @@ public class CadastroTarefaActivity extends AppCompatActivity {
     private DatePickerDialog.OnCancelListener listenerSelecaoCanceladaDataLimite;
 
     private Button btnCadastrar;
-    PerfilController pc = new PerfilController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +69,7 @@ public class CadastroTarefaActivity extends AppCompatActivity {
         root = findViewById(R.id.rootTarefa);
         txtTitulo = findViewById(R.id.txtTitulo);
         txtDescricao = findViewById(R.id.txtDescricao);
+        txtDataLimite = findViewById(R.id.txtDataLimite);
         spinStatus = findViewById(R.id.spinStatus);
         spinPrioridade = findViewById(R.id.spinPrioridade);
         spinDificuldade = findViewById(R.id.spinDificuldade);
@@ -114,7 +115,6 @@ public class CadastroTarefaActivity extends AppCompatActivity {
             }
         });
 
-        txtDataLimite = findViewById(R.id.txtDataLimite);
         txtDataLimite.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 dialogDataLimite.show();

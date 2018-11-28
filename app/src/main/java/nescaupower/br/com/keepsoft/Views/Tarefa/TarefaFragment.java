@@ -82,7 +82,7 @@ public class TarefaFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new TarefaRVAdapter(tarefaList, mListener));
+            recyclerView.setAdapter(new TarefaRVAdapter(mListener, tarefaList, context));
         }
 
         btnCadastrar = rootView.findViewById(R.id.btnCadastrar);

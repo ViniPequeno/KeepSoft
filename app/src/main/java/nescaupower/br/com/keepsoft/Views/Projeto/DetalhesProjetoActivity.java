@@ -29,6 +29,7 @@ import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Equipe.DetalhesMembroActivity;
 import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment;
 import nescaupower.br.com.keepsoft.Views.Reuniao.ReuniaoActivity;
+import nescaupower.br.com.keepsoft.Views.Sprint.DetalhesSprintActivity;
 import nescaupower.br.com.keepsoft.Views.Sprint.SprintFragment;
 import nescaupower.br.com.keepsoft.Views.Status.StatusActivity;
 import nescaupower.br.com.keepsoft.Views.TabAdapter;
@@ -175,12 +176,16 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
 
     @Override
     public void onListFragmentInteraction(Sprint sprint) {
-
+        Intent i = new Intent(DetalhesProjetoActivity.this, DetalhesSprintActivity.class);
+        i.putExtra("EXTRA_CODIGO_SPRINT", sprint.getId());
+        startActivity(i);
     }
 
     @Override
     public void onListFragmentInteraction(Tarefa tarefa) {
-
+        /*Intent i = new Intent(DetalhesProjetoActivity.this, DetalhesMembroActivity.class);
+        i.putExtra("tarefaId", tarefa.getId());
+        startActivity(i);*/
     }
 
     private void showDialogDigitarSenha() {

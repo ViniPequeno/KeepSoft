@@ -1,7 +1,6 @@
 package nescaupower.br.com.keepsoft.Views.Sprint;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -58,11 +57,9 @@ public class SprintRVAdapter extends RecyclerView.Adapter<SprintRVAdapter.ViewHo
 
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
-                Intent i = new Intent(context, DetalhesSprintActivity.class);
-
-                i.putExtra("EXTRA_CODIGO_SPRINT", holder.mItem.getId());
-
-                context.startActivity(i);
+                // Notify the active callbacks interface (the activity, if the
+                // fragment is attached to one) that an item has been selected.
+                mListener.onListFragmentInteraction(holder.mItem);
             }
         });
     }

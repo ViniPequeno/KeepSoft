@@ -15,7 +15,7 @@ public class GetImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
     private WeakReference<ImageView> imageView;
 
     public GetImageAsyncTask(ImageView imageView) {
-        this.imageView = new WeakReference(imageView);
+        this.imageView = new WeakReference<>(imageView);
     }
 
     protected Bitmap doInBackground(String... params) {

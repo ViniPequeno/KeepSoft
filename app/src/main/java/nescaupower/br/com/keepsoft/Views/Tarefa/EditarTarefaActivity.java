@@ -29,6 +29,7 @@ import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Status;
 import nescaupower.br.com.keepsoft.Factory.Model.Tarefa;
+import nescaupower.br.com.keepsoft.Factory.Model.TarefaStatus;
 import nescaupower.br.com.keepsoft.R;
 
 public class EditarTarefaActivity extends AppCompatActivity {
@@ -54,6 +55,7 @@ public class EditarTarefaActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener listenerDataSelecionadaDataLimite;
     private DatePickerDialog.OnCancelListener listenerSelecaoCanceladaDataLimite;
     private Tarefa tarefa;
+    private TarefaStatus tarefaStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,11 +77,11 @@ public class EditarTarefaActivity extends AppCompatActivity {
         spinDificuldade = findViewById(R.id.spinDificuldade);
         spinUsuario = findViewById(R.id.spinUsuario);
 
+        List<String> statusNomes = sc.getNamesByProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
         perfis = pc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
 
         //Inicializando Spinner de Status
-        ArrayAdapter statusAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
-                sc.getNamesByProjeto(Projeto.getUltimoProjetoUsado().getCodigo()));
+        ArrayAdapter statusAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, statusNomes);
         statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinStatus.setAdapter(statusAdapter);
         spinStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -128,12 +130,18 @@ public class EditarTarefaActivity extends AppCompatActivity {
 
         //Preechendo campos com dados da tarefa
         tarefa = tc.procurarPorId(getIntent().getLongExtra("tarefaId", 0));
+        tarefaStatus = tsc.findCuurentStatusOfTarefa(tarefa.getId());
+
         String dataLimite = new SimpleDateFormat("dd/MM/yyyy").format(tarefa.getDataLimite());
         txtTitulo.setText(tarefa.getTitulo());
         txtDescricao.setText(tarefa.getDescricao());
         txtDataLimite.setText(dataLimite);
+        Log.e("ts", tarefaStatus.getStatus().getNome());
+        Log.e("ts", statusNomes.toString());
+        spinStatus.setSelection(statusNomes.indexOf(tarefaStatus.getStatus().getNome()));
         spinPrioridade.setSelection(Prioridade.valueOf(tarefa.getPrioridade().name()).ordinal());
         spinDificuldade.setSelection(Dificuldade.valueOf(tarefa.getDificuldade().name()).ordinal());
+        spinUsuario.setSelection(perfis.indexOf(tarefa.getPerfil()));
     }
 
     public void editar(View view) {

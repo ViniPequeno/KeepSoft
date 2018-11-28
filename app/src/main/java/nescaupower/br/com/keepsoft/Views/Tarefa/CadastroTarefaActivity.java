@@ -81,6 +81,7 @@ public class CadastroTarefaActivity extends AppCompatActivity {
         tc = new TarefaController();
         sc = new StatusController();
         tsc = new TarefaStatusController();
+        pc = new PerfilController();
 
         perfis = pc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
 

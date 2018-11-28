@@ -42,6 +42,20 @@ public class TarefaStatusDAO {
         return null;
     }
 
+    public TarefaStatus findCuurentStatusOfTarefa(long tarefaId) {
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/tarefasStatus/findCuurentStatusOfTarefa/" + tarefaId, "Get", null).get();
+            TarefaStatus tarefaStatus = new Gson().fromJson(tJson, TarefaStatus.class);
+            return tarefaStatus;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public List<TarefaStatus> findByTarefa(long tarefaId) {
         String tJson = null;
         try {
@@ -78,7 +92,7 @@ public class TarefaStatusDAO {
         for (TarefaStatus tarefasStatus : tarefasStatuses) {
             String tJson = new Gson().toJson(tarefasStatus);
             try {
-                new HttpService().execute("api/tarefasStatus", "Post", tJson).get();
+                new HttpService().execute("/tarefasStatus", "Post", tJson).get();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
@@ -87,23 +101,25 @@ public class TarefaStatusDAO {
         }
     }
 
-    public void updateAll(TarefaStatus... tarefasStatuses) {
+    public TarefaStatus updateAll(TarefaStatus... tarefasStatuses) {
         for (TarefaStatus tarefasStatus : tarefasStatuses) {
             String tJson = new Gson().toJson(tarefasStatus);
             try {
-                new HttpService().execute("api/tarefasStatus/" + tarefasStatus.getId(), "Put", tJson).get();
+                new HttpService().execute("/tarefasStatus/" + tarefasStatus.getId(), "Put", tJson).get();
+                return new Gson().fromJson(tJson, TarefaStatus.class);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
             }
         }
+        return null;
     }
 
     public void delete(TarefaStatus tarefasStatus) {
         String tJson = null;
         try {
-            tJson = new HttpService().execute("/tarefasStatus/" + tarefasStatus.getId(), "Get", null).get();
+            tJson = new HttpService().execute("/tarefasStatus/" + tarefasStatus.getId(), "Delete", null).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

@@ -22,8 +22,17 @@ public class TarefaStatusController {
         return tarefaStatusDAO.findByID(id);
     }
 
-    //public TarefaStatus findByStatus(long statusId) { return tarefaStatusDAO.findByStatus(statusId); }
-    //public TarefaStatus findByTarefa(long tarefaId) { return tarefaStatusDAO.findByTarefa(tarefaId); }
+    public TarefaStatus findCuurentStatusOfTarefa(long tarefaId) {
+        return tarefaStatusDAO.findCuurentStatusOfTarefa(tarefaId);
+    }
+
+    public List<TarefaStatus> findByStatus(long statusId) {
+        return tarefaStatusDAO.findByStatus(statusId);
+    }
+
+    public List<TarefaStatus> findByTarefa(long tarefaId) {
+        return tarefaStatusDAO.findByTarefa(tarefaId);
+    }
 
     public void insertAll(TarefaStatus... statuses) {
         tarefaStatusDAO.insertAll(statuses);
@@ -44,7 +53,11 @@ public class TarefaStatusController {
         return true;
     }
 
-    //public TarefaStatus updateAll(TarefaStatus... statuses) { return tarefaStatusDAO.updateAll(statuses); }
+    public TarefaStatus updateAll(TarefaStatus... statuses) {
+        return tarefaStatusDAO.updateAll(statuses);
+    }
 
-    //public void delete(Status status) {tarefaStatusDAO.delete(status);}
+    public void delete(TarefaStatus tarefaStatus) {
+        tarefaStatusDAO.delete(tarefaStatus);
+    }
 }

@@ -57,45 +57,6 @@ public class ConviteDAO {
         return null;
     }
 
-
-    public void insertAll(Convite... convitees){
-        for(Convite convite : convitees){
-            String tJson = new Gson().toJson(convite);
-            try {
-                new HttpService().execute("/convite", "Post", tJson).get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void updateAll(Convite... convitees){
-        for(Convite convite : convitees){
-            String tJson = new Gson().toJson(convite);
-            try {
-                new HttpService().execute("/convite/"+convite.getId(), "Put", tJson).get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void delete(Convite convite){
-        String tJson = null;
-        try {
-            tJson = new HttpService().execute("/convite/"+convite.getId(), "Delete", null).get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public Convite findByProjetoUsuariosDestinario(Long destinatarioId, Long codProjeto) {
         String tJson = null;
         try {
@@ -123,7 +84,6 @@ public class ConviteDAO {
         }
         return null;
     }
-
 
     public List<Convite> findByProjectID(Long codProjeto){
         String tJson = null;
@@ -155,4 +115,40 @@ public class ConviteDAO {
         return null;
     }
 
+    public void insertAll(Convite... convitees) {
+        for (Convite convite : convitees) {
+            String tJson = new Gson().toJson(convite);
+            try {
+                new HttpService().execute("/convite", "Post", tJson).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void updateAll(Convite... convitees) {
+        for (Convite convite : convitees) {
+            String tJson = new Gson().toJson(convite);
+            try {
+                new HttpService().execute("/convite/" + convite.getId(), "Put", tJson).get();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void delete(Convite convite) {
+        String tJson = null;
+        try {
+            tJson = new HttpService().execute("/convite/" + convite.getId(), "Delete", null).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
 }

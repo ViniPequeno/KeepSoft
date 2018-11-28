@@ -43,7 +43,6 @@ public class StatusRVAdapter extends RecyclerView.Adapter<StatusRVAdapter.ViewHo
             i.putExtra("EXTRA_CODIGO_STATUS", statusList.get(pos).getId());
             i.putExtra("EXTRA_INDEX_STATUS", pos);
 
-
             c.startActivity(i);
         });
     }

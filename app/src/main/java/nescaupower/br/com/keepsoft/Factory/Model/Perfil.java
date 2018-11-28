@@ -82,5 +82,17 @@ public class Perfil {
     public void setDataFimFormat(String dataFimFormat) {
         this.dataFimFormat = dataFimFormat;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Perfil)) {
+            return false;
+        }
+        Perfil perfil = (Perfil) obj;
+        return Long.compare(this.id, perfil.getId()) == 0;
+    }
 }
 

@@ -36,7 +36,7 @@ public class TarefaController {
         return tarefaDAO.updateAll(tarefa);
     }
 
-    public boolean cadastrar(Tarefa... tarefas) {
+    public Tarefa cadastrar(Tarefa... tarefas) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         for (Tarefa tarefa : tarefas) {
             if (tarefa.getDataLimite() != null) {
@@ -47,14 +47,7 @@ public class TarefaController {
             }
 
         }
-        Tarefa tarefa = tarefaDAO.insertAll(tarefas);
-        if(tarefa != null) {
-            this.mensagem = "Cadastrado!";
-            return true;
-        }else{
-            this.mensagem = "Tarefa já existe neste projeto!";
-            return false;
-        }
+        return tarefaDAO.insertAll(tarefas);
     }
 
     public boolean deletar(Tarefa tarefa) {

@@ -160,7 +160,7 @@ public class CadastroTarefaActivity extends AppCompatActivity {
             e.printStackTrace();
             return;
         }
-        tc.cadastrar(tarefa);
+        tarefa = tc.cadastrar(tarefa);
 
         TarefaStatus tarefaStatus = new TarefaStatus();
         tarefaStatus.setTarefa(tarefa);
@@ -168,6 +168,7 @@ public class CadastroTarefaActivity extends AppCompatActivity {
                 spinStatus.getSelectedItem().toString());
         tarefaStatus.setStatus(status);
         tarefaStatus.setDataInicio(Calendar.getInstance().getTime());
+        tarefaStatus.setDataFimFormat("");
         tsc.cadastrar(tarefaStatus);
 
         Intent i = new Intent(CadastroTarefaActivity.this, DetalhesProjetoActivity.class);

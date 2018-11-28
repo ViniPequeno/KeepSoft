@@ -7,11 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
+import nescaupower.br.com.keepsoft.Controller.TarefaStatusController;
 import nescaupower.br.com.keepsoft.Factory.Model.Tarefa;
+import nescaupower.br.com.keepsoft.Factory.Model.TarefaStatus;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment.OnListFragmentInteractionListener;
 import nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent.DummyItem;
@@ -45,7 +48,12 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
         holder.mItem = tarefas.get(position);
         holder.lblNome.setText(tarefas.get(position).getTitulo());
         holder.lblUsuario.setText(tarefas.get(position).getPerfil().getUsuario().getNome());
-        holder.lblStatus.setText(tarefas.get(position).getDataLimiteformat());
+
+        TarefaStatusController tsc = new TarefaStatusController();
+        TarefaStatus tarefaStatus = tsc.findCuurentStatusOfTarefa(holder.mItem.getId());
+        holder.lblStatus.setText(tarefaStatus.getStatus().getNome());
+        holder.imgColor.setColorFilter(tarefaStatus.getStatus().getCor());
+
         holder.lblDataLimite.setText(tarefas.get(position).getDataLimiteformat());
         holder.btnEditar.setOnClickListener(view -> telaEditar(view, holder.mItem.getId()));
         holder.btnDelete.setOnClickListener(this::deletar);
@@ -85,6 +93,7 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
         public final TextView lblUsuario;
         public final TextView lblStatus;
         public final TextView lblDataLimite;
+        public final ImageView imgColor;
         public final ImageButton btnEditar;
         public final ImageButton btnDelete;
         public Tarefa mItem;
@@ -96,6 +105,7 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
             lblUsuario = view.findViewById(R.id.lblUsuario);
             lblStatus = view.findViewById(R.id.lblStatus);
             lblDataLimite = view.findViewById(R.id.lblDataLimite);
+            imgColor = view.findViewById(R.id.imgColor);
             btnEditar = view.findViewById(R.id.btnEditar);
             btnDelete = view.findViewById(R.id.btnDelete);
         }

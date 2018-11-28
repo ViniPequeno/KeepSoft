@@ -136,8 +136,6 @@ public class EditarTarefaActivity extends AppCompatActivity {
         txtTitulo.setText(tarefa.getTitulo());
         txtDescricao.setText(tarefa.getDescricao());
         txtDataLimite.setText(dataLimite);
-        Log.e("ts", tarefaStatus.getStatus().getNome());
-        Log.e("ts", statusNomes.toString());
         spinStatus.setSelection(statusNomes.indexOf(tarefaStatus.getStatus().getNome()));
         spinPrioridade.setSelection(Prioridade.valueOf(tarefa.getPrioridade().name()).ordinal());
         spinDificuldade.setSelection(Dificuldade.valueOf(tarefa.getDificuldade().name()).ordinal());

@@ -41,7 +41,6 @@ public class PerfilController {
                 perfil.setDataInicio(null);
                 perfil.setDataInicioFormat("");
             }
-
         }
         perfilDAO.insertAll(perfis);
         this.mensagem = "Cadastrado!";

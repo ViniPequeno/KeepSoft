@@ -17,6 +17,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/imgColor"
+        android:layout_width="27dp"
+        android:layout_height="26dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toStartOf="@+id/lblStatus"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_bookmark_black_24dp" />
+
     <TextView
         android:id="@+id/lblStatus"
         android:layout_width="wrap_content"
@@ -25,8 +37,6 @@
         android:text="@string/status"
         android:textAppearance="?attr/textAppearanceListItem"
         app:layout_constraintEnd_toStartOf="@+id/btnEditar"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -57,7 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="205dp" />
+        app:layout_constraintGuide_begin="175dp" />
 
     <ImageButton
         android:id="@+id/btnEditar"

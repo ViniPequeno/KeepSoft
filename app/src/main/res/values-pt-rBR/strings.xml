@@ -4,15 +4,20 @@
 
     <string name="action_delete">Excluir</string>
     <string name="action_edit">Editar</string>
+    <string name="action_reuniao">Reunião</string>
     <string name="action_status">Status</string>
 
     <string name="add_project">Adicionar Projeto</string>
+    <string name="add_reuniao">Adicionar reunião</string>
+    <string name="add_reuniao_usuario">Adicionar participante</string>
     <string name="add_sprint">Adicionar Sprint</string>
     <string name="add_status">Adicionar Status</string>
     <string name="add_task">Adicionar Tarefa</string>
 
     <string name="app_database">Banquinho</string>
     <string name="app_name">KeepSoft</string>
+
+    <string name="assunto">Assunto</string>
 
     <string name="button">Botão</string>
 
@@ -27,6 +32,9 @@
     <string name="color">Cor</string>
 
     <string name="confirm">Confirmar</string>
+
+    <string name="confirmEmail">É necessário confirmar seu email.</string>
+
     <string name="confirm_log_out">Você realmente deseja sair?</string>
     <string name="confirm_new_password">Confime a nova senha</string>
     <string name="confirm_password">Confirmar Senha</string>
@@ -41,6 +49,8 @@
     <string name="default_notification_channel_id">O</string>
     <string name="default_notification_channel_title">Titulo</string>
 
+    <string name="delete_account_confirm">Tem certeza de que quer deletar sua conta?</string>
+
     <string name="description">Descrição</string>
 
     <string-array name="difficulties_array">
@@ -49,6 +59,8 @@
         <item>Difícil</item>
         <item>Muito Difícil</item>
     </string-array>
+
+    <string name="difficulty">Dificuldade</string>
 
     <string name="due_date">Data prevista para finalização</string>
 
@@ -75,6 +87,8 @@
     <string name="invite_member">Convidar Membro</string>
 
     <string name="leave">Sair do projeto</string>
+
+    <string name="local">Local</string>
 
     <string name="log_out">Sair da conta</string>
 
@@ -117,6 +131,8 @@
         <item>Muito Alta</item>
     </string-array>
 
+    <string name="priority">Prioridade</string>
+
     <string name="profile">Perfil</string>
 
     <string name="project_name">Nome do Projeto</string>
@@ -124,6 +140,13 @@
     <string name="projects">Projetos</string>
 
     <string name="reconnect">Reconectar</string>
+
+    <string name="rememberpass">Esqueceu sua senha?</string>
+
+    <string name="reuniao_end_hour">Horário final</string>
+    <string name="reuniao_start_date">Data de início da reunião</string>
+    <string name="reuniao_start_hour">Horário de início</string>
+
     <string name="role">Função</string>
 
     <string-array name="scrum_roles_array">
@@ -134,8 +157,16 @@
 
     <string name="seconds">Há %1$d segundos</string>
 
+    <string name="select_picture">Escolher imagem</string>
+
     <string name="sign_in">Entrar</string>
     <string name="sign_up">Cadastre-se</string>
+
+    <string name="sort">Ordenar:</string>
+    <string-array name="sort_tasks_array">
+        <item>Data Limite</item>
+        <item>Nome</item>
+    </string-array>
 
     <string name="sprint_end_date">Data de Finalização do Sprint</string>
     <string name="sprint_since_date">Desde: %1$s</string>
@@ -166,6 +197,8 @@
 
     <string name="unavailable_services">Os serviços estão indisponíveis no momento!</string>
 
+    <string name="user_in_change">Usuário encarregado</string>
+
     <string name="username_or_email">Email ou Login</string>
 
     <plurals name="weeks">
@@ -174,19 +207,4 @@
     </plurals>
 
     <string name="wrong_login_password">Login ou senha incorretos</string>
-    <string name="select_picture">Escolher imagem</string>
-    <string name="delete_account_confirm">Tem certeza de que quer deletar sua conta?</string>
-    <string name="action_reuniao">Reunião</string>
-    <string name="assunto">Assunto</string>
-    <string name="reuniao_start_date">Data de início da reunião</string>
-    <string name="add_reuniao">Adicionar reunião</string>
-    <string name="reuniao_start_hour">Horário de início</string>
-    <string name="reuniao_end_hour">Horário final</string>
-    <string name="local">Local</string>
-    <string name="add_reuniao_usuario">Adicionar participante</string>
-    <string name="priority">Prioridade</string>
-    <string name="difficulty">Dificuldade</string>
-    <string name="user_in_change">Usuário encarregado</string>
-    <string name="rememberpass">Esqueceu sua senha?</string>
-    <string name="confirmEmail">É necessário confirmar seu email.</string>
 </resources>

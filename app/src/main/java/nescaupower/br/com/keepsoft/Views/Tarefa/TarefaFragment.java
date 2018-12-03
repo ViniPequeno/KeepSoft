@@ -11,7 +11,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
+import java.util.Collections;
 import java.util.List;
 
 import nescaupower.br.com.keepsoft.Controller.TarefaController;
@@ -37,7 +41,9 @@ public class TarefaFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
 
     private RecyclerView rv;
+    private TarefaRVAdapter rvAdapter;
     private FloatingActionButton btnCadastrar;
+    private Spinner spinSort;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -82,13 +88,42 @@ public class TarefaFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new TarefaRVAdapter(mListener, tarefaList, context));
+            rvAdapter = new TarefaRVAdapter(mListener, tarefaList, context);
+            recyclerView.setAdapter(rvAdapter);
         }
 
         btnCadastrar = rootView.findViewById(R.id.btnCadastrar);
         btnCadastrar.setOnClickListener(view -> cadastrar());
+
+        spinSort = rootView.findViewById(R.id.spinSort);
+        spinSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int index, long l) {
+                sort(index);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         
         return rootView;
+    }
+
+    private void sort(int index) {
+        switch (index) {
+            case 0:
+                Collections.sort(rvAdapter.getTarefas(), (tarefa, t1) -> tarefa.getDataLimite().compareTo(t1.getDataLimite()));
+            case 1:
+                Collections.sort(rvAdapter.getTarefas(), (tarefa, t1) -> tarefa.getTitulo().compareTo(t1.getTitulo()));
+        }
+        StringBuilder s = new StringBuilder();
+        for (Tarefa t : rvAdapter.getTarefas()) {
+            s.append(t.getTitulo());
+        }
+        rvAdapter.notifyDataSetChanged();
+        Toast.makeText(getContext(), index + " " + s.toString(), Toast.LENGTH_SHORT).show();
     }
 
     private void cadastrar() {
@@ -132,7 +167,6 @@ public class TarefaFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(Tarefa item);
     }
 }

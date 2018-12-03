@@ -15,12 +15,36 @@
         app:srcCompat="@drawable/ic_add_black_24dp"
         app:tint="@android:color/white" />
 
-    <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/TarefasRV"
-        android:name="nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment"
-        tools:listitem="@layout/fragment_tarefa_model" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="@string/sort" />
+
+            <Spinner
+                android:id="@+id/spinSort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/sort_tasks_array"
+                android:padding="10dp" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/TarefasRV"
+            android:name="nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context="nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment"
+            tools:listitem="@layout/fragment_tarefa_model" />
+    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

@@ -17,12 +17,10 @@ import nescaupower.br.com.keepsoft.Factory.Model.Tarefa;
 import nescaupower.br.com.keepsoft.Factory.Model.TarefaStatus;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment.OnListFragmentInteractionListener;
-import nescaupower.br.com.keepsoft.Views.Tarefa.dummy.DummyContent.DummyItem;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
+ * {@link RecyclerView.Adapter} that can display a {@link Tarefa} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
  */
 public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHolder> {
 
@@ -81,6 +79,10 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
     @Override
     public int getItemCount() {
         return tarefas.size();
+    }
+
+    public List<Tarefa> getTarefas() {
+        return tarefas;
     }
 
     public void setTarefas(List<Tarefa> tarefas) {

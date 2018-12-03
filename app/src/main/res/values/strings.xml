@@ -153,6 +153,16 @@
         <item>Product Owner</item>
     </string-array>
 
+    <string-array name="sort_tasks_array">
+        <item>Due Date</item>
+        <item>Name</item>
+    </string-array>
+
+    <!--<string-array name="filter_tasks_array">
+        <item>Name</item>
+        <item>Date</item>
+    </string-array>-->
+
     <string name="seconds">%1$d seconds ago</string>
 
     <string name="select_picture">Select picture</string>
@@ -206,4 +216,5 @@
     <string name="user_in_change">User in charge</string>
     <string name="rememberpass">Forgot your password?</string>
     <string name="confirmEmail">You must confirm your email.</string>
+    <string name="sort">Sort:</string>
 </resources>

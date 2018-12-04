@@ -61,6 +61,36 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="8dp"
+            android:text="@string/sprint" />
+
+        <Spinner
+            android:id="@+id/spinSprint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/user_in_change" />
+
+        <Spinner
+            android:id="@+id/spinUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="8dp"
             android:text="@string/status" />
 
         <Spinner
@@ -102,21 +132,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:entries="@array/difficulties_array" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="8dp"
-            android:text="@string/user_in_change" />
-
-        <Spinner
-            android:id="@+id/spinUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp" />
 
         <Button
             android:id="@+id/btnCadastrar"

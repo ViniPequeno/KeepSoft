@@ -207,4 +207,5 @@
     </plurals>
 
     <string name="wrong_login_password">Login ou senha incorretos</string>
+    <string name="delete_task_confirm">Tem certeza de que deseja apagar esta tarefa?</string>
 </resources>

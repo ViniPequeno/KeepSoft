@@ -217,4 +217,6 @@
     <string name="rememberpass">Forgot your password?</string>
     <string name="confirmEmail">You must confirm your email.</string>
     <string name="sort">Sort:</string>
+    <string name="sprint" translatable="false">Sprint</string>
+    <string name="delete_task_confirm">Are you sure you want to delete this task?</string>
 </resources>

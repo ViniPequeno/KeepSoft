@@ -20,6 +20,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import nescaupower.br.com.keepsoft.Controller.PerfilController;
+import nescaupower.br.com.keepsoft.Controller.SprintController;
 import nescaupower.br.com.keepsoft.Controller.StatusController;
 import nescaupower.br.com.keepsoft.Controller.TarefaController;
 import nescaupower.br.com.keepsoft.Controller.TarefaStatusController;
@@ -27,6 +28,7 @@ import nescaupower.br.com.keepsoft.Enum.Dificuldade;
 import nescaupower.br.com.keepsoft.Enum.Prioridade;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
+import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 import nescaupower.br.com.keepsoft.Factory.Model.Status;
 import nescaupower.br.com.keepsoft.Factory.Model.Tarefa;
 import nescaupower.br.com.keepsoft.Factory.Model.TarefaStatus;
@@ -34,20 +36,25 @@ import nescaupower.br.com.keepsoft.R;
 
 public class EditarTarefaActivity extends AppCompatActivity {
 
-    Perfil perfilSelecionado = null;
-    List<Perfil> perfis;
     private EditText txtTitulo;
     private EditText txtDescricao;
     private EditText txtDataLimite;
+    private Spinner spinUsuario;
+    private Spinner spinSprint;
     private Spinner spinStatus;
     private Spinner spinPrioridade;
     private Spinner spinDificuldade;
-    private Spinner spinUsuario;
 
+    Sprint sprintSelecionado = null;
+    Status statusSelecionado = null;
+    Perfil perfilSelecionado = null;
+    List<Perfil> perfis;
+
+    private SprintController spc;
+    private PerfilController pc;
     private TarefaController tc;
     private StatusController sc;
     private TarefaStatusController tsc;
-    private PerfilController pc;
 
     private LinearLayout root;
     private Calendar dataAtual = Calendar.getInstance();
@@ -67,48 +74,23 @@ public class EditarTarefaActivity extends AppCompatActivity {
         sc = new StatusController();
         tsc = new TarefaStatusController();
         pc = new PerfilController();
+        spc = new SprintController();
 
         root = findViewById(R.id.rootTarefa);
         txtTitulo = findViewById(R.id.txtTitulo);
         txtDescricao = findViewById(R.id.txtDescricao);
         txtDataLimite = findViewById(R.id.txtDataLimite);
+        spinUsuario = findViewById(R.id.spinUsuario);
+        spinSprint = findViewById(R.id.spinSprint);
         spinStatus = findViewById(R.id.spinStatus);
         spinPrioridade = findViewById(R.id.spinPrioridade);
         spinDificuldade = findViewById(R.id.spinDificuldade);
-        spinUsuario = findViewById(R.id.spinUsuario);
 
         List<String> statusNomes = sc.getNamesByProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
+        List<String> sprintsNomes = spc.getNamesByProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
         perfis = pc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo());
 
-        //Inicializando Spinner de Status
-        ArrayAdapter statusAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, statusNomes);
-        statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinStatus.setAdapter(statusAdapter);
-        spinStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                Log.e("oi", parent.getSelectedItem().toString());
-                Status st = sc.findByNameInProjeto(Projeto.getUltimoProjetoUsado().getCodigo(),
-                        parent.getSelectedItem().toString());
-                if (st != null)
-                    Toast.makeText(EditarTarefaActivity.this, st.getNome(), Toast.LENGTH_SHORT).show();
-            }
-
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        //Inicializando Spinner de Usuário Responsável pela Tarefa
-        SpinPerfilAdapter adapter = new SpinPerfilAdapter(EditarTarefaActivity.this, perfis);
-        spinUsuario.setAdapter(adapter);
-        spinUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                perfilSelecionado = (Perfil) parent.getItemAtPosition(pos);
-                Toast.makeText(EditarTarefaActivity.this, perfilSelecionado.getUsuario().getNome(), Toast.LENGTH_SHORT).show();
-            }
-
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+        preencherSpinners();
 
         txtDataLimite.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
@@ -136,10 +118,61 @@ public class EditarTarefaActivity extends AppCompatActivity {
         txtTitulo.setText(tarefa.getTitulo());
         txtDescricao.setText(tarefa.getDescricao());
         txtDataLimite.setText(dataLimite);
+        spinSprint.setSelection(sprintsNomes.indexOf(tarefa.getSprint().getTitulo()));
+        spinUsuario.setSelection(perfis.indexOf(tarefa.getPerfil()));
         spinStatus.setSelection(statusNomes.indexOf(tarefaStatus.getStatus().getNome()));
         spinPrioridade.setSelection(Prioridade.valueOf(tarefa.getPrioridade().name()).ordinal());
         spinDificuldade.setSelection(Dificuldade.valueOf(tarefa.getDificuldade().name()).ordinal());
-        spinUsuario.setSelection(perfis.indexOf(tarefa.getPerfil()));
+    }
+
+    private void preencherSpinners() {
+        //Inicializando Spinner de Sprint
+        ArrayAdapter sprintAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                spc.getNamesByProjeto(Projeto.getUltimoProjetoUsado().getCodigo()));
+        sprintAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinSprint.setAdapter(sprintAdapter);
+        spinSprint.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                Log.e("oi", parent.getSelectedItem().toString());
+                sprintSelecionado = spc.procurarPorNome(parent.getSelectedItem().toString());
+                if (sprintSelecionado != null)
+                    Toast.makeText(EditarTarefaActivity.this, sprintSelecionado.getTitulo(), Toast.LENGTH_SHORT).show();
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        //Inicializando Spinner de Status
+        ArrayAdapter statusAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,
+                sc.getNamesByProjeto(Projeto.getUltimoProjetoUsado().getCodigo()));
+        statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinStatus.setAdapter(statusAdapter);
+        spinStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                Log.e("oi", parent.getSelectedItem().toString());
+                statusSelecionado = sc.findByNameInProjeto(Projeto.getUltimoProjetoUsado().getCodigo(),
+                        parent.getSelectedItem().toString());
+                if (statusSelecionado != null)
+                    Toast.makeText(EditarTarefaActivity.this, statusSelecionado.getNome(), Toast.LENGTH_SHORT).show();
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        //Inicializando Spinner de Usuário Responsável pela Tarefa
+        SpinPerfilAdapter adapter = new SpinPerfilAdapter(EditarTarefaActivity.this, perfis);
+        spinUsuario.setAdapter(adapter);
+        spinUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                perfilSelecionado = (Perfil) parent.getItemAtPosition(pos);
+                Toast.makeText(EditarTarefaActivity.this, perfilSelecionado.getUsuario().getNome(), Toast.LENGTH_SHORT).show();
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 
     public void editar(View view) {

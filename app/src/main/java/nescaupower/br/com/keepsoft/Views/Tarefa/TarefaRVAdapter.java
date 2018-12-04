@@ -1,5 +1,6 @@
 package nescaupower.br.com.keepsoft.Views.Tarefa;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import nescaupower.br.com.keepsoft.Controller.TarefaController;
 import nescaupower.br.com.keepsoft.Controller.TarefaStatusController;
 import nescaupower.br.com.keepsoft.Factory.Model.Tarefa;
 import nescaupower.br.com.keepsoft.Factory.Model.TarefaStatus;
@@ -52,28 +54,34 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
         holder.lblStatus.setText(tarefaStatus.getStatus().getNome());
         holder.imgColor.setColorFilter(tarefaStatus.getStatus().getCor());
 
-        holder.lblDataLimite.setText(tarefas.get(position).getDataLimiteformat());
-        holder.btnEditar.setOnClickListener(view -> telaEditar(view, holder.mItem.getId()));
-        holder.btnDelete.setOnClickListener(this::deletar);
+        AlertDialog.Builder alertDelete = new AlertDialog.Builder(context);
+        alertDelete.setTitle(R.string.delete_task_confirm);
+        alertDelete.setPositiveButton(R.string.confirm, (dialogInterface, index) -> {
+            deletar(position);
+        });
+        alertDelete.setNegativeButton(R.string.cancel,null);
 
+        holder.lblDataLimite.setText(tarefas.get(position).getDataLimiteformat());
+        holder.btnEditar.setOnClickListener(view -> telaEditar(holder.mItem.getId()));
+        holder.btnDelete.setOnClickListener(view -> alertDelete.show());
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
-                // Notify the active callbacks interface (the activity, if the
-                // fragment is attached to one) that an item has been selected.
                 mListener.onListFragmentInteraction(holder.mItem);
             }
         });
     }
 
-    private void telaEditar(View view, long tarefaId) {
+    private void telaEditar(long tarefaId) {
         Intent i = new Intent(context, EditarTarefaActivity.class);
         i.putExtra("tarefaId", tarefaId);
         context.startActivity(i);
     }
 
-    private void deletar(View view) {
-        Intent i = new Intent(context, EditarTarefaActivity.class);
-        context.startActivity(i);
+    private void deletar(int position) {
+        TarefaController tc = new TarefaController();
+        tc.deletar(tarefas.get(position));
+        tarefas.remove(tarefas.get(position));
+        notifyDataSetChanged();
     }
 
     @Override

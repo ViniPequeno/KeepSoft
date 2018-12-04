@@ -17,20 +17,15 @@ public class StatusController {
         return statusDAO.getAll();
     }
 
-    public List<Status> getAllFindByProjeto(Long projetoId) {
-        return statusDAO.findByProjeto(projetoId);
-    }
-    public List<String> getNamesByProjeto(Long id) {
-        return statusDAO.getNamesByProjeto(id);
-    }
+    public List<Status> getAllFindByProjeto(Long projetoId) { return statusDAO.findByProjeto(projetoId); }
+
+    public List<String> getNamesByProjeto(Long id) { return statusDAO.getNamesByProjeto(id); }
 
     public Status findByID(long id) {
         return statusDAO.findByID(id);
     }
 
-    public Status findByNameInProjeto(long projetoId, String statusNome) {
-        return statusDAO.findByNameInProjeto(projetoId, statusNome);
-    }
+    public Status findByNameInProjeto(long projetoId, String statusNome) { return statusDAO.findByNameInProjeto(projetoId, statusNome); }
 
     public Status insertAll(Status... statuses) {
         return statusDAO.insertAll(statuses);

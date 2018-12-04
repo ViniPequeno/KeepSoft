@@ -18,6 +18,7 @@ import android.widget.Toast;
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.PerfilController;
 import nescaupower.br.com.keepsoft.Controller.ProjetoController;
+import nescaupower.br.com.keepsoft.Controller.SprintController;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
@@ -105,7 +106,11 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         });
 
         perfil = new PerfilController().procurarPorProjetoUsuario(projeto.getCodigo(), Usuario.getUsuarioLogado().getId());
-        Toast.makeText(this, perfil.getPerfil().toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, perfil.getPerfil().toString(), Toast.LENGTH_SHORT).show();
+
+        SprintController sc = new SprintController();
+        Toast.makeText(this, "Qtde Sprints: "+sc.procurarQuantidadeEmProjeto(projeto.getCodigo()), Toast.LENGTH_SHORT).show();
+
     }
 
 

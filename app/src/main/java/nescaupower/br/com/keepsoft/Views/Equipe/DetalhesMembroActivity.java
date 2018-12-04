@@ -134,14 +134,14 @@ public class DetalhesMembroActivity extends AppCompatActivity {
     }
 
     private void alterarFuncaoDeMembro() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder alertFuncao = new AlertDialog.Builder(this);
 
         final View dialogView = this.getLayoutInflater().inflate(R.layout.dialog_alterar_funcao, findViewById(R.id.content), false);
-        builder.setView(dialogView);
+        alertFuncao.setView(dialogView);
         nescaupower.br.com.keepsoft.Enum.Perfil funcaoAntiga = perfil.getPerfil();
 
-        builder.setTitle("Definir nova função");
-        builder.setMessage("Alterar função do usuário " + usuario.getLogin() + ":");
+        alertFuncao.setTitle("Definir nova função");
+        alertFuncao.setMessage("Alterar função do usuário " + usuario.getLogin() + ":");
         Spinner spinFuncao = dialogView.findViewById(R.id.spinFuncao);
         spinFuncao.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -166,7 +166,7 @@ public class DetalhesMembroActivity extends AppCompatActivity {
             }
         });
 
-        builder.setPositiveButton(R.string.confirm, (dialogInterface, i) -> {
+        alertFuncao.setPositiveButton(R.string.confirm, (dialogInterface, i) -> {
             if (funcaoAntiga != perfil.getPerfil()) {
                 //Alterar função do perfil do usuário selecionado
                 PerfilController pc = new PerfilController();
@@ -174,8 +174,8 @@ public class DetalhesMembroActivity extends AppCompatActivity {
                 lblFuncao.setText(perfil.getPerfil().toString());
             }
         });
-        builder.setNegativeButton(R.string.cancel, null);
-        builder.show();
+        alertFuncao.setNegativeButton(R.string.cancel, null);
+        alertFuncao.show();
     }
 
     private void sairDoProjeto() {

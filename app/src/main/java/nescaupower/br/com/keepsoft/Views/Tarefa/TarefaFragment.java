@@ -18,6 +18,7 @@ import android.widget.Toast;
 import java.util.Collections;
 import java.util.List;
 
+import nescaupower.br.com.keepsoft.Controller.SprintController;
 import nescaupower.br.com.keepsoft.Controller.TarefaController;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Tarefa;
@@ -99,7 +100,9 @@ public class TarefaFragment extends Fragment {
         spinSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int index, long l) {
-                sort(index);
+                if(rvAdapter.getTarefas().size()>0){
+                    sort(index);
+                }
             }
 
             @Override
@@ -115,8 +118,10 @@ public class TarefaFragment extends Fragment {
         switch (index) {
             case 0:
                 Collections.sort(rvAdapter.getTarefas(), (tarefa, t1) -> tarefa.getDataLimite().compareTo(t1.getDataLimite()));
+                break;
             case 1:
                 Collections.sort(rvAdapter.getTarefas(), (tarefa, t1) -> tarefa.getTitulo().compareTo(t1.getTitulo()));
+                break;
         }
         StringBuilder s = new StringBuilder();
         for (Tarefa t : rvAdapter.getTarefas()) {
@@ -127,8 +132,13 @@ public class TarefaFragment extends Fragment {
     }
 
     private void cadastrar() {
-        Intent intent = new Intent(getActivity(), CadastroTarefaActivity.class);
-        startActivity(intent);
+        SprintController sc = new SprintController();
+        if(sc.procurarQuantidadeEmProjeto(Projeto.getUltimoProjetoUsado().getCodigo())>0) {
+            Intent intent = new Intent(getActivity(), CadastroTarefaActivity.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(getContext(), "Precisa cadastrar ao menos um Sprint neste Projeto",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

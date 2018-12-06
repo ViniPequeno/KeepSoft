@@ -200,8 +200,11 @@ public class EditarTarefaActivity extends AppCompatActivity {
         }
 
         if (tc.atualizar(tarefa) != null) {
-            Toast.makeText(this, "Alterado!", Toast.LENGTH_SHORT).show();
-            EditarTarefaActivity.this.finish();
+            tarefaStatus.setStatus(statusSelecionado);
+            if (tsc.cadastrar(tarefaStatus)) {
+                Toast.makeText(this, "Alterado!", Toast.LENGTH_SHORT).show();
+                EditarTarefaActivity.this.finish();
+            }
         } else {
             Toast.makeText(this, "Erro!", Toast.LENGTH_SHORT).show();
         }

@@ -13,10 +13,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import nescaupower.br.com.keepsoft.Controller.PerfilController;
 import nescaupower.br.com.keepsoft.Controller.TarefaController;
 import nescaupower.br.com.keepsoft.Controller.TarefaStatusController;
+import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
+import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Tarefa;
 import nescaupower.br.com.keepsoft.Factory.Model.TarefaStatus;
+import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Tarefa.TarefaFragment.OnListFragmentInteractionListener;
 
@@ -53,17 +57,23 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
         TarefaStatus tarefaStatus = tsc.findCuurentStatusOfTarefa(holder.mItem.getId());
         holder.lblStatus.setText(tarefaStatus.getStatus().getNome());
         holder.imgColor.setColorFilter(tarefaStatus.getStatus().getCor());
-
-        AlertDialog.Builder alertDelete = new AlertDialog.Builder(context);
-        alertDelete.setTitle(R.string.delete_task_confirm);
-        alertDelete.setPositiveButton(R.string.confirm, (dialogInterface, index) -> {
-            deletar(position);
-        });
-        alertDelete.setNegativeButton(R.string.cancel,null);
-
         holder.lblDataLimite.setText(tarefas.get(position).getDataLimiteformat());
-        holder.btnEditar.setOnClickListener(view -> telaEditar(holder.mItem.getId()));
-        holder.btnDelete.setOnClickListener(view -> alertDelete.show());
+
+        Perfil scrumMaster = new PerfilController().procurarPorProjetoUsuario(Projeto.getUltimoProjetoUsado().getCodigo(), Usuario.getUsuarioLogado().getId());
+        if (scrumMaster.getPerfil() == nescaupower.br.com.keepsoft.Enum.Perfil.SCRUM_MASTER) {
+            AlertDialog.Builder alertDelete = new AlertDialog.Builder(context);
+            alertDelete.setTitle(R.string.delete_task_confirm);
+            alertDelete.setPositiveButton(R.string.confirm, (dialogInterface, index) -> {
+                deletar(position);
+            });
+            alertDelete.setNegativeButton(R.string.cancel, null);
+
+            holder.btnEditar.setOnClickListener(view -> telaEditar(holder.mItem.getId()));
+            holder.btnDelete.setOnClickListener(view -> alertDelete.show());
+        } else {
+            holder.btnEditar.setVisibility(View.INVISIBLE);
+            holder.btnDelete.setVisibility(View.INVISIBLE);
+        }
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
                 mListener.onListFragmentInteraction(holder.mItem);

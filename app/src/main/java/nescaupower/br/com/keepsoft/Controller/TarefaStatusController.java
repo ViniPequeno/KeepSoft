@@ -39,7 +39,7 @@ public class TarefaStatusController {
     }
 
     public boolean cadastrar(TarefaStatus... tarefaStatuses) {
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         for (TarefaStatus tarefaStatus : tarefaStatuses) {
             if (tarefaStatus.getDataInicio() != null) {
                 tarefaStatus.setDataInicioFormat(formato.format(tarefaStatus.getDataInicio()));

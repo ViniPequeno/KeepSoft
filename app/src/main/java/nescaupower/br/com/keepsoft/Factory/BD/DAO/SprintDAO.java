@@ -1,7 +1,5 @@
 package nescaupower.br.com.keepsoft.Factory.BD.DAO;
 
-import android.util.Log;
-
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -16,12 +14,11 @@ import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
 public class SprintDAO {
 
     public List<Sprint> getAll(){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/sprint", "Get", null).get();
             Type type = new TypeToken<List<Sprint>>(){}.getType();
-            List<Sprint> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -32,11 +29,10 @@ public class SprintDAO {
     }
 
     public Sprint findById(long id){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/sprint/"+id, "Get", null).get();
-            Sprint sprint =  new Gson().fromJson(tJson, Sprint.class);
-            return sprint;
+            return new Gson().fromJson(tJson, Sprint.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -46,7 +42,7 @@ public class SprintDAO {
     }
 
     public Sprint findByName(String titulo){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/sprint/findByTitulo/"+titulo, "Get", null).get();
             Sprint sprint =  new Gson().fromJson(tJson, Sprint.class);
@@ -60,12 +56,11 @@ public class SprintDAO {
     }
 
     public List<Sprint> findByProjectID(long codProjeto){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/sprint/findByProjectID/"+codProjeto, "Get", null).get();
             Type type = new TypeToken<List<Sprint>>(){}.getType();
-            List<Sprint> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -74,12 +69,11 @@ public class SprintDAO {
         return null;
     }
 
-    public int getCountInProjeto(long codProjeto){
-        String tJson = null;
+    public int getCountInProject(long codProjeto) {
+        String tJson;
         try {
-            tJson = new HttpService().execute("/sprint/getCountInProjeto/"+codProjeto, "Get", null).get();
-            Integer quantidade =  new Gson().fromJson(tJson, Integer.class);
-            return quantidade;
+            tJson = new HttpService().execute("/sprint/getCountInProject/" + codProjeto, "Get", null).get();
+            return new Gson().fromJson(tJson, Integer.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -88,10 +82,10 @@ public class SprintDAO {
         return 0;
     }
 
-    public List<String> getNamesByProjeto(Long id) {
+    public List<String> findTitlesByProject(Long id) {
         String tJson;
         try {
-            tJson = new HttpService().execute("/sprint/findNamesByProjeto/" + id, "Get", null).get();
+            tJson = new HttpService().execute("/sprint/findTitlesByProject/" + id, "Get", null).get();
             Type type = new TypeToken<List<String>>() {}.getType();
             return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
@@ -104,11 +98,10 @@ public class SprintDAO {
 
     public Perfil findPerfilOfSprintUsuario(long id, long codProjeto){
 
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/perfil/findByUserIdAndProjectID/"+codProjeto+"/"+id, "Get", null).get();
-            Perfil perfil =  new Gson().fromJson(tJson, Perfil.class);
-            return perfil;
+            return new Gson().fromJson(tJson, Perfil.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

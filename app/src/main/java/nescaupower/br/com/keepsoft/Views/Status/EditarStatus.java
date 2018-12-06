@@ -1,6 +1,5 @@
 package nescaupower.br.com.keepsoft.Views.Status;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -13,7 +12,6 @@ import com.thebluealliance.spectrum.SpectrumDialog;
 import nescaupower.br.com.keepsoft.Controller.StatusController;
 import nescaupower.br.com.keepsoft.Factory.Model.Status;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Reuniao.ReuniaoActivity;
 
 public class EditarStatus extends AppCompatActivity {
 
@@ -84,8 +82,6 @@ public class EditarStatus extends AppCompatActivity {
         status.setCor(intColor);
 
         if(sc.updateAll(status) !=null) {
-            Intent i = new Intent(this, StatusActivity.class);
-            startActivity(i);
             EditarStatus.this.finish();
         }else{
             Toast.makeText(this, "O Status já existi!", Toast.LENGTH_SHORT).show();

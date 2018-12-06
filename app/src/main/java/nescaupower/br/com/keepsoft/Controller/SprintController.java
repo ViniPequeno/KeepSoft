@@ -50,11 +50,13 @@ public class SprintController {
     }
 
     public int procurarQuantidadeEmProjeto(Long codProjeto) {
-        int quantidade = sprintDAO.getCountInProjeto(codProjeto);
+        int quantidade = sprintDAO.getCountInProject(codProjeto);
         return quantidade;
     }
 
-    public List<String> getNamesByProjeto(Long codProjeto) { return sprintDAO.getNamesByProjeto(codProjeto); }
+    public List<String> getNamesByProjeto(Long codProjeto) {
+        return sprintDAO.findTitlesByProject(codProjeto);
+    }
 
     public Sprint atualizar(Sprint sprint) {
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");

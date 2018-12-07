@@ -67,7 +67,7 @@ public class CadastroProjetoActivity extends AppCompatActivity {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
             txtDataPrevista.setText(sdf.format(data));
-            root.clearFocus();
+            //root.clearFocus();
         };
         listenerSelecaoCanceladaDataPrevista = dialogInterface -> root.clearFocus();
         dialogDataPrevista = new DatePickerDialog(CadastroProjetoActivity.this, listenerDataSelecionadaDataPrevista, dataAtual

@@ -33,9 +33,9 @@ public class AlterarPerfilActivity extends AppCompatActivity {
     private EditText lblEmail;
     private EditText lblTelefone;
     private Button btnAlterar;
-    private Button btnCancelar;
+    private Button btnImagemPerfil;
 
-    private CircleImageView btnImagemPerfil;
+    private CircleImageView circleImageView;
     private Bitmap image;
 
     public static final int PICK_IMAGE = 1;
@@ -61,8 +61,7 @@ public class AlterarPerfilActivity extends AppCompatActivity {
         lblTelefone = findViewById(R.id.alterarTelefone);
 
         btnAlterar = findViewById(R.id.btnAlterarPerfil);
-        btnCancelar = findViewById(R.id.btnAlterarPerfilCancelar);
-        btnImagemPerfil = findViewById(R.id.btnImagemPerfil);
+        circleImageView = findViewById(R.id.circleImageView);
 
         lblEmail.setText(usuario.getEmail());
         lblNome.setText(usuario.getNome());
@@ -83,7 +82,7 @@ public class AlterarPerfilActivity extends AppCompatActivity {
                     InputStream stream = getContentResolver().openInputStream(data.getData());
                     image = BitmapFactory.decodeStream(stream);
                     stream.close();
-                    btnImagemPerfil.setImageBitmap(image);
+                    circleImageView.setImageBitmap(image);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -122,14 +121,6 @@ public class AlterarPerfilActivity extends AppCompatActivity {
         }
     }
 
-    public void alterarPerfilCancelar(View view) {
-        Intent intent;
-        intent = new Intent(AlterarPerfilActivity.this, PaginaInicialActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
-        startActivity(intent);
-        AlterarPerfilActivity.this.finish();
-    }
-
     public void escolherImagem(View view){
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -155,7 +146,7 @@ public class AlterarPerfilActivity extends AppCompatActivity {
         protected void onPostExecute(Bitmap result) {
             //do what you want with your bitmap result on the UI thread
             if(result != null) {
-                btnImagemPerfil.setImageBitmap(result);
+                circleImageView.setImageBitmap(result);
             }
         }
 

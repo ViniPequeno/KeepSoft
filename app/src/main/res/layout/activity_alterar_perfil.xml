@@ -19,17 +19,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/btnImagemPerfil"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@mipmap/ic_launcher"
-            android:layout_gravity="center_horizontal"
-            android:clickable="true"
-            android:onClick="escolherImagem"
-            app:civ_border_color="@android:color/white"
-            app:civ_border_width="2dp"
-            android:focusable="true" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="escolherImagem"
+                android:src="@mipmap/ic_launcher"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_width="2dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:singleLine="false"
+                android:text="Sua foto de perfil é visível para todos os usuários"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/circleImageView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btnImagemPerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/change"
+                android:textAllCaps="false"
+                android:onClick="escolherImagem"
+                app:layout_constraintEnd_toEndOf="@+id/circleImageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+        </android.support.constraint.ConstraintLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -77,12 +111,6 @@
             android:onClick="alterarPerfil"
             android:text="@string/change" />
 
-        <Button
-            android:id="@+id/btnAlterarPerfilCancelar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="alterarPerfilCancelar"
-            android:text="@string/cancel" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

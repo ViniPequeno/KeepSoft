@@ -39,19 +39,19 @@ import nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity;
 
 public class CadastroTarefaActivity extends AppCompatActivity {
 
-    EditText txtTitulo;
-    EditText txtDescricao;
-    EditText txtDataLimite;
-    Spinner spinSprint;
-    Spinner spinUsuario;
-    Spinner spinStatus;
-    Spinner spinPrioridade;
-    Spinner spinDificuldade;
+    private EditText txtTitulo;
+    private EditText txtDescricao;
+    private EditText txtDataLimite;
+    private Spinner spinSprint;
+    private Spinner spinUsuario;
+    private Spinner spinStatus;
+    private Spinner spinPrioridade;
+    private Spinner spinDificuldade;
 
-    Perfil perfilSelecionado = null;
-    Sprint sprintSelecionado = null;
-    Status statusSelecionado = null;
-    List<Perfil> perfis;
+    private Perfil perfilSelecionado = null;
+    private Sprint sprintSelecionado = null;
+    private Status statusSelecionado = null;
+    private List<Perfil> perfis;
 
     private SprintController spc;
     private PerfilController pc;
@@ -166,7 +166,7 @@ public class CadastroTarefaActivity extends AppCompatActivity {
     }
 
 
-    public void cadastrar(View v) {
+    private void cadastrar(View v) {
         if (txtTitulo.getText().toString().equals("")) {
             Toast.makeText(getApplicationContext(), "Titulo não pode ser vazio!", Toast.LENGTH_SHORT).show();
             return;

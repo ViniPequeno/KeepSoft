@@ -87,7 +87,7 @@ public class Notificacao {
             Ringtone toque = RingtoneManager.getRingtone(context, som);
             toque.play();
         }catch(Exception e){
-
+            e.printStackTrace();
         }
     }
 }

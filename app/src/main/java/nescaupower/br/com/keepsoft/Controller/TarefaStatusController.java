@@ -1,5 +1,7 @@
 package nescaupower.br.com.keepsoft.Controller;
 
+import android.util.Log;
+
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -47,14 +49,23 @@ public class TarefaStatusController {
                 tarefaStatus.setDataInicio(null);
                 tarefaStatus.setDataInicioFormat("");
             }
-
         }
         tarefaStatusDAO.insertAll(tarefaStatuses);
         return true;
     }
 
-    public TarefaStatus updateAll(TarefaStatus... statuses) {
-        return tarefaStatusDAO.updateAll(statuses);
+    public TarefaStatus updateAll(TarefaStatus... tarefaStatuses) {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        for (TarefaStatus tarefaStatus : tarefaStatuses) {
+            if (tarefaStatus.getDataFim() != null) {
+                tarefaStatus.setDataFimFormat(formato.format(tarefaStatus.getDataFim()));
+            } else {
+                tarefaStatus.setDataFim(null);
+                tarefaStatus.setDataFimFormat("");
+            }
+            Log.e("dataFim", "oi " + tarefaStatus.getDataFimFormat() + " eai");
+        }
+        return tarefaStatusDAO.updateAll(tarefaStatuses);
     }
 
     public void delete(TarefaStatus tarefaStatus) {

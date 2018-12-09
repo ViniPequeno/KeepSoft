@@ -9,7 +9,7 @@ import nescaupower.br.com.keepsoft.Utils.Email;
 public class ConfirmEmail {
 
     public void enviarEmail(Usuario usuario){
-        String msg = "";
+        String msg;
         String id = usuario.getId().toString();
         byte[] bytes = id.getBytes();
         String idBytes = Base64.encodeToString(bytes, Base64.DEFAULT);

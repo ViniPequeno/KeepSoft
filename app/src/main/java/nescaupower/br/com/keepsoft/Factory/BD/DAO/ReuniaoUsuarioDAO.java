@@ -8,19 +8,17 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import nescaupower.br.com.keepsoft.Factory.BD.Database.HttpService;
-import nescaupower.br.com.keepsoft.Factory.Model.Reuniao;
 import nescaupower.br.com.keepsoft.Factory.Model.ReuniaoUsuario;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 
 public class ReuniaoUsuarioDAO {
     public List<Usuario> getAll(Long id) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/reuniao/usuario/" + id, "Get", null).get();
             Type type = new TypeToken<List<Usuario>>() {
             }.getType();
-            List<Usuario> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -55,13 +53,12 @@ public class ReuniaoUsuarioDAO {
     }
 
     public List<Usuario> getUsuariosNotReuniao(Long reuniaoId, String login) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/reuniao/getUsuariosNotReuniao/" + reuniaoId + "/" + login, "Get", null).get();
             Type type = new TypeToken<List<Usuario>>() {
             }.getType();
-            List<Usuario> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -72,11 +69,10 @@ public class ReuniaoUsuarioDAO {
 
 
     public ReuniaoUsuario getReuniaoUsuario(Long reuniaoId, Long id) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/reuniao/getReuniaoUsuario/" + reuniaoId+"/"+id, "Get", null).get();
-            ReuniaoUsuario list = new Gson().fromJson(tJson, ReuniaoUsuario.class);
-            return list;
+            return new Gson().fromJson(tJson, ReuniaoUsuario.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

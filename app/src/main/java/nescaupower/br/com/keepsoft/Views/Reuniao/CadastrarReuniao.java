@@ -5,9 +5,9 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,10 +24,8 @@ import nescaupower.br.com.keepsoft.Controller.ReuniaoUsuarioController;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Reuniao;
-import nescaupower.br.com.keepsoft.Factory.Model.ReuniaoUsuario;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Sprint.CadastroSprintActivity;
 
 public class CadastrarReuniao extends AppCompatActivity {
 
@@ -96,7 +94,7 @@ public class CadastrarReuniao extends AppCompatActivity {
         listenerHoraDataInicioC = dialogInterface -> root.clearFocus();
 
         dialogHoraInicio = new TimePickerDialog(CadastrarReuniao.this, listenerHoraDataInicio, 12, 0, true);
-        dialogHoraInicio.setOnCancelListener(listenerHoraDataInicioC);;
+        dialogHoraInicio.setOnCancelListener(listenerHoraDataInicioC);
         /////
 
 
@@ -125,7 +123,7 @@ public class CadastrarReuniao extends AppCompatActivity {
         dialogHoraFim =
                 new TimePickerDialog(CadastrarReuniao.this, listenerHoraDataFim,
                         12, 00, true);
-        dialogHoraFim.setOnCancelListener(listenerHoraDataFimC);;
+        dialogHoraFim.setOnCancelListener(listenerHoraDataFimC);
         /////
 
 

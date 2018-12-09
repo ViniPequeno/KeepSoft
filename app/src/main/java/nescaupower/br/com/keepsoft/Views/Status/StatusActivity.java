@@ -6,7 +6,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import java.util.List;
 
@@ -24,6 +23,7 @@ public class StatusActivity extends AppCompatActivity {
     private List<Status> listStatus;
     private FloatingActionButton btnCadastrar;
     private RecyclerView rv;
+    private StatusRVAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class StatusActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rv = findViewById(R.id.StatusRV);
         rv.setLayoutManager(layoutManager);
-        StatusRVAdapter adapter = new StatusRVAdapter(getApplicationContext(), listStatus);
+        adapter = new StatusRVAdapter(getApplicationContext(), listStatus);
         rv.setAdapter(adapter);
 
         btnCadastrar = findViewById(R.id.btnCadastrarStatus);
@@ -50,7 +50,6 @@ public class StatusActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        StatusRVAdapter adapter = (StatusRVAdapter) rv.getAdapter();
         adapter.setStatusList(listStatus = sc.getAllFindByProjeto(projeto.getCodigo()));
         adapter.notifyDataSetChanged();
     }
@@ -59,8 +58,4 @@ public class StatusActivity extends AppCompatActivity {
         Intent i = new Intent(StatusActivity.this, CadastrarStatus.class);
         startActivity(i);
     }
-
-
-
-
 }

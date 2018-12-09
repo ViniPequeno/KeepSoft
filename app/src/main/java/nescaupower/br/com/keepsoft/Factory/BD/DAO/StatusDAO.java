@@ -14,12 +14,11 @@ public class StatusDAO {
 
 
     public List<Status> getAll() {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/status", "Get", null).get();
             Type type = new TypeToken<List<Status>>(){}.getType();
-            List<Status> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -29,12 +28,11 @@ public class StatusDAO {
     }
 
     public List<Status> findByProjeto(Long projetoId) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/status/findByProjeto/" + projetoId, "Get", null).get();
             Type type = new TypeToken<List<Status>>(){}.getType();
-            List<Status> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -58,11 +56,10 @@ public class StatusDAO {
     }
 
     public Status findByID(long id){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/status/"+id, "Get", null).get();
-            Status status =  new Gson().fromJson(tJson, Status.class);
-            return status;
+            return new Gson().fromJson(tJson, Status.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -72,11 +69,10 @@ public class StatusDAO {
     }
 
     public Status findByNameInProjeto(long projetoId, String nomeStatus) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/status/findByNameInProjeto/" + projetoId + "/" + nomeStatus, "Get", null).get();
-            Status status = new Gson().fromJson(tJson, Status.class);
-            return status;
+            return new Gson().fromJson(tJson, Status.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

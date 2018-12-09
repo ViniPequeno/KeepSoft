@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         //Se usuário já estiver logado, carrega a página inicial, senão, carrega a tela de login
         if (logado) {
             //Singleton
-            Usuario usuario = null;
+            Usuario usuario;
             sharedPreferences = getSharedPreferences(Settings.SHARED_PREF_NAME, Context.MODE_PRIVATE);
             UsuarioController uc = new UsuarioController();
             usuario = uc.procurarPorLogin(sharedPreferences.getString(Settings.LOGIN, ""));
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         MainActivity.this.finish();
     }
 
-    public  boolean verificaConexao() {
+    private boolean verificaConexao() {
         boolean conectado;
         ConnectivityManager conectivtyManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         conectado = conectivtyManager.getActiveNetworkInfo() != null

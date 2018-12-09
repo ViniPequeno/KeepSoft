@@ -12,12 +12,11 @@ import nescaupower.br.com.keepsoft.Factory.Model.Reuniao;
 
 public class ReuniaoDAO {
     public List<Reuniao> getAll(){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/reuniao", "Get", null).get();
             Type type = new TypeToken<List<Reuniao>>(){}.getType();
-            List<Reuniao> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -27,12 +26,11 @@ public class ReuniaoDAO {
     }
 
     public List<Reuniao> findByProjectID(Long id){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/reuniao/findByProjectID/"+id, "Get", null).get();
             Type type = new TypeToken<List<Reuniao>>(){}.getType();
-            List<Reuniao> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -43,11 +41,10 @@ public class ReuniaoDAO {
     }
 
     public Reuniao findByID(Long id){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/reuniao/"+id, "Get", null).get();
-            Reuniao reuniao =  new Gson().fromJson(tJson, Reuniao.class);
-            return reuniao;
+            return new Gson().fromJson(tJson, Reuniao.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

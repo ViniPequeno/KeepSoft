@@ -27,16 +27,16 @@ import nescaupower.br.com.keepsoft.R;
 
 public class ConvidarMembroActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
-    List<Usuario> usuarios;
-    RecyclerView usuariosRV;
-    SearchView txtPesquisarUsuario;
-    PesquisarUsuarioCursorAdapter searchViewAdapter; //Adapter da lista do campo de pesquisa
-    PesquisarUsuarioRVAdapter rvAdapter; //Adapter da lista que conterá os usuários que serão convidados
-    ConviteController cc;
-    PerfilController pc;
-    UsuarioController uc;
-    ProjetoController pcon;
-    Button btnEnivarConvite;
+    private List<Usuario> usuarios;
+    private RecyclerView usuariosRV;
+    private SearchView txtPesquisarUsuario;
+    private PesquisarUsuarioCursorAdapter searchViewAdapter; //Adapter da lista do campo de pesquisa
+    private PesquisarUsuarioRVAdapter rvAdapter; //Adapter da lista que conterá os usuários que serão convidados
+    private ConviteController cc;
+    private PerfilController pc;
+    private UsuarioController uc;
+    private ProjetoController pcon;
+    private Button btnEnivarConvite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

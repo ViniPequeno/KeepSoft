@@ -17,8 +17,7 @@ public class PerfilDAO {
         try {
             tJson = new HttpService().execute("/perfil", "Get", null).get();
             Type type = new TypeToken<List<Perfil>>(){}.getType();
-            List<Perfil> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -32,8 +31,7 @@ public class PerfilDAO {
         String tJson;
         try {
             tJson = new HttpService().execute("/perfil/"+id, "Get", null).get();
-            Perfil perfil =  new Gson().fromJson(tJson, Perfil.class);
-            return perfil;
+            return new Gson().fromJson(tJson, Perfil.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -85,8 +83,7 @@ public class PerfilDAO {
         try {
             tJson = new HttpService().execute("/perfil/findByProjeto/"+codProjeto, "Get", null).get();
             Type type = new TypeToken<List<Perfil>>(){}.getType();
-            List<Perfil> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -101,8 +98,7 @@ public class PerfilDAO {
         String tJson;
         try {
             tJson = new HttpService().execute("/perfil/findByUserIdAndProjectID/"+codProjeto+"/"+idUsuario, "Get", null).get();
-            Perfil perfil =  new Gson().fromJson(tJson, Perfil.class);
-            return perfil;
+            return new Gson().fromJson(tJson, Perfil.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

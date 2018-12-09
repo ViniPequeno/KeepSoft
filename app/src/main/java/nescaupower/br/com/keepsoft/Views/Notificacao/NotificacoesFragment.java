@@ -27,7 +27,7 @@ public class NotificacoesFragment extends Fragment {
     private RecyclerView rv;
     private ConviteController cc;
     private List<Object> notificacoes;
-    NotificacaoRVAdapter adapter;
+    private NotificacaoRVAdapter adapter;
 
     @Override
     public void onResume() {

@@ -1,8 +1,8 @@
 package nescaupower.br.com.keepsoft.Views.Reuniao.Participantes;
 
 import android.database.MatrixCursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
@@ -16,7 +16,6 @@ import nescaupower.br.com.keepsoft.Controller.ReuniaoController;
 import nescaupower.br.com.keepsoft.Controller.ReuniaoUsuarioController;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.EmailController.ReuniaoEmail;
-import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Reuniao;
 import nescaupower.br.com.keepsoft.Factory.Model.ReuniaoUsuario;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
@@ -24,17 +23,17 @@ import nescaupower.br.com.keepsoft.R;
 
 public class CadastrarParticipanteActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
-    List<Usuario> usuarios;
-    RecyclerView usuariosRV;
-    SearchView txtPesquisarParticipante;
-    PesquisarParticipanteCursosAdapter searchViewAdapter; //Adapter da lista do campo de pesquisa
-    PesquisarParticipanteRVAdapter rvAdapter; //Adapter da lista que conterá os usuários que serão convidados
-    ReuniaoController rc;
-    ReuniaoUsuarioController ruc;
-    UsuarioController uc;
-    ProjetoController pc;
+    private List<Usuario> usuarios;
+    private RecyclerView usuariosRV;
+    private SearchView txtPesquisarParticipante;
+    private PesquisarParticipanteCursosAdapter searchViewAdapter; //Adapter da lista do campo de pesquisa
+    private PesquisarParticipanteRVAdapter rvAdapter; //Adapter da lista que conterá os usuários que serão convidados
+    private ReuniaoController rc;
+    private ReuniaoUsuarioController ruc;
+    private UsuarioController uc;
+    private ProjetoController pc;
     private Reuniao reuniao;
-    Button btnEnivarConviteParticipante;
+    private Button btnEnivarConviteParticipante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -192,6 +192,7 @@ public class EditarTarefaActivity extends AppCompatActivity {
         tarefa.setPrioridade(Prioridade.values()[spinPrioridade.getSelectedItemPosition()]);
         tarefa.setDificuldade(Dificuldade.values()[spinDificuldade.getSelectedItemPosition()]);
         tarefa.setPerfil(perfilSelecionado);
+        tarefa.setSprint(sprintSelecionado);
         try {
             tarefa.setDataLimite(new SimpleDateFormat("dd/MM/yyyy").
                     parse(txtDataLimite.getText().toString()));
@@ -200,10 +201,19 @@ public class EditarTarefaActivity extends AppCompatActivity {
         }
 
         if (tc.atualizar(tarefa) != null) {
-            tarefaStatus.setStatus(statusSelecionado);
-            if (tsc.cadastrar(tarefaStatus)) {
-                Toast.makeText(this, "Alterado!", Toast.LENGTH_SHORT).show();
-                EditarTarefaActivity.this.finish();
+            TarefaStatus newTarefaStatus = new TarefaStatus();
+            tarefaStatus.setDataFim(Calendar.getInstance().getTime());
+
+            if (tsc.updateAll(tarefaStatus) != null) {
+                newTarefaStatus.setStatus(statusSelecionado);
+                newTarefaStatus.setTarefa(tarefa);
+                newTarefaStatus.setDataInicio(tarefaStatus.getDataFim());
+                newTarefaStatus.setDataFimFormat("");
+
+                if (tsc.cadastrar(newTarefaStatus)) {
+                    Toast.makeText(this, "Alterado!", Toast.LENGTH_SHORT).show();
+                    EditarTarefaActivity.this.finish();
+                }
             }
         } else {
             Toast.makeText(this, "Erro!", Toast.LENGTH_SHORT).show();

@@ -14,9 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <service android:name=".Services.NotificationService"
-            android:enabled="true"></service>
-        <receiver android:name=".Utils.NotificationBroadcastReceiver"
+        <service
+            android:name=".Services.NotificationService"
+            android:enabled="true" />
+        <receiver
+            android:name=".Utils.NotificationBroadcastReceiver"
             android:enabled="true"
             android:exported="true"
             android:label="NotificationService">
@@ -24,6 +26,7 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,8 +55,8 @@
             android:name=".Views.Projeto.DetalhesProjetoActivity"
             android:label="Projeto"
             android:launchMode="singleTask"
+            android:parentActivityName=".Views.PaginaInicialActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            android:parentActivityName=".Views.Usuario.PaginaInicialActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nescaupower.br.com.keepsoft.Views.PaginaInicialActivity" />
@@ -107,8 +110,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nescaupower.br.com.keepsoft.Views.Projeto.DetalhesProjetoActivity" />
         </activity>
-        <activity android:name=".Views.Status.StatusActivity">
-            android:parentActivityName=".Views.Usuario.PaginaInicialActivity">
+        <activity
+            android:name=".Views.Status.StatusActivity"
+            android:parentActivityName=".Views.PaginaInicialActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nescaupower.br.com.keepsoft.Views.PaginaInicialActivity" />
@@ -116,8 +120,9 @@
         <activity android:name=".Views.Status.DetalhesStatus" />
         <activity android:name=".Views.Status.CadastrarStatus" />
         <activity android:name=".Views.Status.EditarStatus" />
-        <activity android:name=".Views.Usuario.AlterarConfigActivity">
-            android:parentActivityName=".Views.Usuario.PaginaInicialActivity">
+        <activity
+            android:name=".Views.Usuario.AlterarConfigActivity"
+            android:parentActivityName=".Views.PaginaInicialActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nescaupower.br.com.keepsoft.Views.PaginaInicialActivity" />
@@ -163,7 +168,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nescaupower.br.com.keepsoft.Views.Reuniao.ReuniaoActivity" />
         </activity>
-        <activity android:name=".Views.Reuniao.Participantes.DetalhesParticipante"></activity>
+        <activity android:name=".Views.Reuniao.Participantes.DetalhesParticipante" />
         <activity android:name=".Views.Tarefa.EditarTarefaActivity" />
     </application>
 

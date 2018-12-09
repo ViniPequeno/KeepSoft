@@ -123,12 +123,7 @@ public class TarefaFragment extends Fragment {
                 Collections.sort(rvAdapter.getTarefas(), (tarefa, t1) -> tarefa.getTitulo().compareTo(t1.getTitulo()));
                 break;
         }
-        StringBuilder s = new StringBuilder();
-        for (Tarefa t : rvAdapter.getTarefas()) {
-            s.append(t.getTitulo());
-        }
         rvAdapter.notifyDataSetChanged();
-        Toast.makeText(getContext(), index + " " + s.toString(), Toast.LENGTH_SHORT).show();
     }
 
     private void cadastrar() {

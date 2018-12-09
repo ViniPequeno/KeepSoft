@@ -1,7 +1,6 @@
 package nescaupower.br.com.keepsoft.Views.Status;
 
 import android.graphics.Color;
-import android.graphics.ColorFilter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -81,7 +80,6 @@ public class CadastrarStatus extends AppCompatActivity {
         status.setProjeto(projeto);
 
         if(sc.insertAll(status) != null) {
-
             CadastrarStatus.this.finish();
         }else{
             Toast.makeText(this, "O Status já existe", Toast.LENGTH_SHORT).show();

@@ -37,6 +37,7 @@ public class EquipeFragment extends Fragment {
     private OnListFragmentInteractionListener mListener;
 
     private RecyclerView rv;
+    private EquipeRVAdapter adapter;
     private FloatingActionButton btnCadastrar;
 
     /**
@@ -81,7 +82,8 @@ public class EquipeFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new EquipeRVAdapter(mListener, perfis, getActivity()));
+            adapter = new EquipeRVAdapter(mListener, perfis, getActivity());
+            recyclerView.setAdapter(adapter);
         }
 
         btnCadastrar = rootView.findViewById(R.id.btnCadastrar);
@@ -93,7 +95,6 @@ public class EquipeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        EquipeRVAdapter adapter = (EquipeRVAdapter) rv.getAdapter();
         adapter.setPerfis(perfis = pc.listarPorProjeto(Projeto.getUltimoProjetoUsado().getCodigo()));
         adapter.notifyDataSetChanged();
     }

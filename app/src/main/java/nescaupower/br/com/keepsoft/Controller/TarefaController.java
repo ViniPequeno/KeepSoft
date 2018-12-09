@@ -30,6 +30,10 @@ public class TarefaController {
         return tarefaDAO.findByProjectID(codProjeto);
     }
 
+    public List<Tarefa> listarPorSprint(Long sprintId) {
+        return tarefaDAO.findBySprintID(sprintId);
+    }
+
     public Tarefa atualizar(Tarefa tarefa) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
         tarefa.setDataLimiteformat(formato.format(tarefa.getDataLimite()));

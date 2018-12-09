@@ -7,6 +7,7 @@ import nescaupower.br.com.keepsoft.Factory.BD.DAO.ProjetoDAO;
 import nescaupower.br.com.keepsoft.Factory.Model.Porcentagem;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 
+@SuppressWarnings("ALL")
 public class ProjetoController {
     private String mensagem;
     private ProjetoDAO projetoDAO;

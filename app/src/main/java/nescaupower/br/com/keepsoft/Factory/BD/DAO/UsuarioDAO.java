@@ -18,12 +18,11 @@ import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 public class UsuarioDAO {
 
     public List<Usuario> getAll(){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("usuarios", "Get", null).get();
             Type type = new TypeToken<List<Usuario>>(){}.getType();
-            List<Usuario> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -35,11 +34,10 @@ public class UsuarioDAO {
 
 
     public Usuario findByID(long id){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/usuarios/"+id, "Get", null).get();
-            Usuario usuario =  new Gson().fromJson(tJson, Usuario.class);
-            return usuario;
+            return new Gson().fromJson(tJson, Usuario.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -50,11 +48,10 @@ public class UsuarioDAO {
 
 
     public Usuario findByLogin(String login){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/usuarios/getByLogin/"+login, "Get", null).get();
-            Usuario usuario =  new Gson().fromJson(tJson, Usuario.class);
-            return usuario;
+            return new Gson().fromJson(tJson, Usuario.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -76,12 +73,11 @@ public class UsuarioDAO {
 
 
     public List<Usuario> findByLoginOrName(String search, Long id, Long idProjeto){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/usuarios/getByLoginOrName/"+search+"/"+id+"/"+idProjeto, "Get", null).get();
             Type type = new TypeToken<List<Usuario>>(){}.getType();
-            List<Usuario> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -92,11 +88,10 @@ public class UsuarioDAO {
 
 
     public Usuario findByEmail(String email){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/usuarios/getByEmail/"+email, "Get", null).get();
-            Usuario usuario =  new Gson().fromJson(tJson, Usuario.class);
-            return usuario;
+            return new Gson().fromJson(tJson, Usuario.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -111,8 +106,7 @@ public class UsuarioDAO {
             tJson = new HttpService().execute("/login", "Post", tJson).get();
             Gson gson = new GsonBuilder().disableHtmlEscaping().create();
             Log.e("Json", tJson);
-            Usuario usuario =  gson.fromJson(tJson, Usuario.class);
-            return usuario;
+            return gson.fromJson(tJson, Usuario.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

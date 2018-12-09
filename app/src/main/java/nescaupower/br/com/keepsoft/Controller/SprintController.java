@@ -50,8 +50,7 @@ public class SprintController {
     }
 
     public int procurarQuantidadeEmProjeto(Long codProjeto) {
-        int quantidade = sprintDAO.getCountInProject(codProjeto);
-        return quantidade;
+        return sprintDAO.getCountInProject(codProjeto);
     }
 
     public List<String> getNamesByProjeto(Long codProjeto) {

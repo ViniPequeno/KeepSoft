@@ -30,7 +30,8 @@
             android:src="@mipmap/ic_launcher"
             android:layout_gravity="center_horizontal"
             app:civ_border_color="@android:color/white"
-            app:civ_border_width="2dp" />
+            app:civ_border_width="2dp"
+            tools:targetApi="lollipop" />
 
         <RelativeLayout
             android:id="@+id/profile_layout"
@@ -39,7 +40,8 @@
             android:layout_below="@id/header_cover_image"
             android:background="@color/colorAccent"
             android:elevation="4dp"
-            android:paddingBottom="24dp">
+            android:paddingBottom="24dp"
+            tools:targetApi="lollipop">
 
             <TextView
                 android:id="@+id/lblLoginParticipanteDetalhes"
@@ -84,7 +86,8 @@
                 android:focusable="true"
                 android:padding="10dp"
                 android:text="@string/email"
-                android:textIsSelectable="true" />
+                android:textIsSelectable="true"
+                tools:targetApi="m" />
 
             <TextView
                 android:id="@+id/lblTelefoneParticipanteDetalhes"
@@ -98,7 +101,8 @@
                 android:focusable="true"
                 android:padding="10dp"
                 android:text="@string/phone"
-                android:textIsSelectable="true" />
+                android:textIsSelectable="true"
+                tools:targetApi="m" />
 
             <View
                 android:layout_width="match_parent"
@@ -117,7 +121,8 @@
                 android:text="@string/action_delete"
                 android:textAlignment="textStart"
                 android:textAllCaps="false"
-                style="@style/Widget.AppCompat.Button.Borderless" />
+                style="@style/Widget.AppCompat.Button.Borderless"
+                tools:targetApi="m" />
         </LinearLayout>
     </RelativeLayout>
 </ScrollView>

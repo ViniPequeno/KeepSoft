@@ -16,13 +16,12 @@ import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 public class ProjetoDAO {
 
     public List<Projeto> getAll() {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/projeto", "Get", null).get();
             Type type = new TypeToken<List<Projeto>>() {
             }.getType();
-            List<Projeto> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -33,11 +32,10 @@ public class ProjetoDAO {
     }
 
     public Projeto findById(Long id) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/projeto/" + id, "Get", null).get();
-            Projeto projeto = new Gson().fromJson(tJson, Projeto.class);
-            return projeto;
+            return new Gson().fromJson(tJson, Projeto.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -47,11 +45,10 @@ public class ProjetoDAO {
     }
 
     public Porcentagem findPorcentagemById(Long id) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/projeto/porcentagem/" + id, "Get", null).get();
-            Porcentagem porcentagem = new Gson().fromJson(tJson, Porcentagem.class);
-            return porcentagem;
+            return new Gson().fromJson(tJson, Porcentagem.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -61,11 +58,10 @@ public class ProjetoDAO {
     }
 
     public Projeto findByName(String nome) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/projeto/findByName/" + nome, "Get", null).get();
-            Projeto projeto = new Gson().fromJson(tJson, Projeto.class);
-            return projeto;
+            return new Gson().fromJson(tJson, Projeto.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -81,8 +77,7 @@ public class ProjetoDAO {
         Log.e("cadastro2", tJson);
         try {
             tJson = new HttpService().execute("/projeto", "Post", tJson).get();
-            Projeto projetoRetorno = new Gson().fromJson(tJson, Projeto.class);
-            return projetoRetorno;
+            return new Gson().fromJson(tJson, Projeto.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -119,13 +114,12 @@ public class ProjetoDAO {
 
 
     public List<Projeto> findByUserID(Long userID) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/projeto/findByUserID/" + userID, "Get", null).get();
             Type type = new TypeToken<List<Projeto>>() {
             }.getType();
-            List<Projeto> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -136,13 +130,12 @@ public class ProjetoDAO {
 
 
     public List<Projeto> findByParticipatingUserID(Long userID) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/projeto/findByParticipantingUserID/" + userID, "Get", null).get();
             Type type = new TypeToken<List<Projeto>>() {
             }.getType();
-            List<Projeto> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

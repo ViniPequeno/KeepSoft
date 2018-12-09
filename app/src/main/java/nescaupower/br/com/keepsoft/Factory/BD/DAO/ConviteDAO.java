@@ -14,12 +14,11 @@ import nescaupower.br.com.keepsoft.Factory.Model.QuantidadeNotificacoes;
 public class ConviteDAO {
 
     public List<Convite> getAll(){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/convite", "Get", null).get();
             Type type = new TypeToken<List<Convite>>(){}.getType();
-            List<Convite> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -29,11 +28,10 @@ public class ConviteDAO {
     }
 
     public Convite findByProjetoUsuariosDestinario(Long id) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/convite/"+id, "Get", null).get();
-            Convite convite =  new Gson().fromJson(tJson, Convite.class);
-            return convite;
+            return new Gson().fromJson(tJson, Convite.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -43,12 +41,11 @@ public class ConviteDAO {
     }
 
     public List<Convite> findByIDNotVistos(Long id){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/convite/findByReceiverIDNotVistos/"+id, "Get", null).get();
             Type type = new TypeToken<List<Convite>>(){}.getType();
-            List<Convite> convites =  new Gson().fromJson(tJson, type);
-            return convites;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -58,11 +55,10 @@ public class ConviteDAO {
     }
 
     public Convite findByProjetoUsuariosDestinario(Long destinatarioId, Long codProjeto) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/convite/findByProjetoUsuariosDestinario/"+codProjeto+"/"+destinatarioId, "Get", null).get();
-            Convite convite =  new Gson().fromJson(tJson, Convite.class);
-            return convite;
+            return new Gson().fromJson(tJson, Convite.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -72,11 +68,10 @@ public class ConviteDAO {
     }
 
     public QuantidadeNotificacoes findNotVistos(Long destinatarioId) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/convite/findNotVistos/"+destinatarioId, "Get", null).get();
-            QuantidadeNotificacoes qn =  new Gson().fromJson(tJson, QuantidadeNotificacoes.class);
-            return qn;
+            return new Gson().fromJson(tJson, QuantidadeNotificacoes.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -86,12 +81,11 @@ public class ConviteDAO {
     }
 
     public List<Convite> findByProjectID(Long codProjeto){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/convite/findByProjeto/"+codProjeto, "Get", null).get();
             Type type = new TypeToken<List<Convite>>(){}.getType();
-            List<Convite> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -101,7 +95,7 @@ public class ConviteDAO {
     }
 
     public List<Convite> findByReceiverID(long destinatarioId){
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/convite/findByReceiverID/"+destinatarioId, "Get", null).get();
             Type type = new TypeToken<List<Convite>>(){}.getType();

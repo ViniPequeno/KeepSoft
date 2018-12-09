@@ -3,10 +3,9 @@ package nescaupower.br.com.keepsoft.Views.Reuniao;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,7 +20,6 @@ import nescaupower.br.com.keepsoft.Controller.ReuniaoController;
 import nescaupower.br.com.keepsoft.Factory.Model.Projeto;
 import nescaupower.br.com.keepsoft.Factory.Model.Reuniao;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Sprint.CadastroSprintActivity;
 
 public class EditarReuniaoActivity extends AppCompatActivity {
 
@@ -137,7 +135,6 @@ public class EditarReuniaoActivity extends AppCompatActivity {
                 new TimePickerDialog(EditarReuniaoActivity.this, listenerHoraDataFim,
                         horaFim, minutoFim, true);
         dialogHoraFim.setOnCancelListener(listenerHoraDataFimC);
-        ;
         /////
 
 

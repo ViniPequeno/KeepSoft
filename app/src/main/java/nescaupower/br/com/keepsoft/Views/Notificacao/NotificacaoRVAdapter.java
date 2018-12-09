@@ -28,8 +28,8 @@ import nescaupower.br.com.keepsoft.R;
 public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdapter.ViewHolder> {
 
     private Context context;
-    ProjetoController pc;
-    UsuarioController uc;
+    private ProjetoController pc;
+    private UsuarioController uc;
     private List<Object> notificacoes;
 
     public NotificacaoRVAdapter(Context c, List<Object> notificacoes) {
@@ -141,22 +141,17 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
         return notificacoes.size();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return super.getItemViewType(position);
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView lblTitulo;
-        public final TextView lblDescricao;
-        public final TextView lblData;
-        public final ImageButton btnDelete;
-        public final Button btnRecusar;
-        public final Button btnAceitar;
-        public Object mItem;
+        final View mView;
+        final TextView lblTitulo;
+        final TextView lblDescricao;
+        final TextView lblData;
+        final ImageButton btnDelete;
+        final Button btnRecusar;
+        final Button btnAceitar;
+        Object mItem;
 
-        public ViewHolder(View view) {
+        ViewHolder(View view) {
             super(view);
             mView = view;
             lblTitulo = view.findViewById(R.id.lblTitulo);

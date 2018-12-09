@@ -45,8 +45,7 @@ public class SprintDAO {
         String tJson;
         try {
             tJson = new HttpService().execute("/sprint/findByTitulo/"+titulo, "Get", null).get();
-            Sprint sprint =  new Gson().fromJson(tJson, Sprint.class);
-            return sprint;
+            return new Gson().fromJson(tJson, Sprint.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

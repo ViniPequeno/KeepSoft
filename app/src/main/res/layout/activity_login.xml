@@ -78,7 +78,8 @@
             android:layout_height="wrap_content"
             android:elevation="24dp"
             android:onClick="entrar"
-            android:text="@string/sign_in" />
+            android:text="@string/sign_in"
+            tools:targetApi="lollipop" />
 
         <Space
             android:layout_width="match_parent"
@@ -90,7 +91,8 @@
             android:layout_height="wrap_content"
             android:elevation="24dp"
             android:onClick="cadastrar"
-            android:text="@string/sign_up" />
+            android:text="@string/sign_up"
+            tools:targetApi="lollipop" />
 
         <Space
             android:layout_width="match_parent"
@@ -102,7 +104,8 @@
             android:layout_height="wrap_content"
             android:elevation="24dp"
             android:onClick="esqueceuSenha"
-            android:text="@string/rememberpass" />
+            android:text="@string/rememberpass"
+            tools:targetApi="lollipop" />
 
         <Space
             android:layout_width="match_parent"

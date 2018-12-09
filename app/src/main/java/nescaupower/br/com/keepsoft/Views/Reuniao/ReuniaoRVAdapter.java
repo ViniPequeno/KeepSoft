@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -15,7 +14,6 @@ import java.util.List;
 import nescaupower.br.com.keepsoft.Factory.Model.Reuniao;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.ItemClickListener;
-import nescaupower.br.com.keepsoft.Views.Reuniao.DetalhesReuniao;
 
 public class ReuniaoRVAdapter  extends RecyclerView.Adapter<ReuniaoRVAdapter.ViewHolder>  {
     private Context c;
@@ -38,7 +36,7 @@ public class ReuniaoRVAdapter  extends RecyclerView.Adapter<ReuniaoRVAdapter.Vie
         holder.lblReuniaoDescricao.setText("Assunto: "+ reuniaoList.get(position).getAssunto());
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         String dataInicio = format.format(reuniaoList.get(position).getDataInicio());
-        String dataFim = "";
+        String dataFim;
 
         holder.lblReuniaoLocal.setText("Local: "+reuniaoList.get(position).getLocal());
 

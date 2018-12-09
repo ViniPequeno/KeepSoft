@@ -8,7 +8,8 @@
     android:descendantFocusability="beforeDescendants"
     android:fillViewport="true"
     android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    tools:context="nescaupower.br.com.keepsoft.Views.Sprint.DetalhesSprintActivity">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/teste"
@@ -25,69 +26,103 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:context="nescaupower.br.com.keepsoft.Views.Projeto.CadastroProjetoActivity">
+            app:layout_constraintVertical_bias="0.0">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/txtTituloDetalhes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:hint="@string/title"
-                    android:inputType="textPersonName" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/txtDescricaoDetalhes"
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/title"
+                        android:padding="10dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/description"
+                        android:padding="10dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/sprint_start_date"
+                        android:padding="10dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/sprint_end_date"
+                        android:padding="10dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:hint="@string/description"
-                    android:inputType="textMultiLine"
-                    android:singleLine="false" />
-            </android.support.design.widget.TextInputLayout>
+                    android:orientation="vertical">
 
-            <android.support.design.widget.TextInputLayout
+                    <TextView
+                        android:id="@+id/lblTituloDetalhes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/title"
+                        android:padding="10dp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/lblDescricaoDetalhes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/description"
+                        android:padding="10dp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/lblDataInicioDetalhes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/sprint_start_date"
+                        android:padding="10dp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/lblDataFimDetalhes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/sprint_end_date"
+                        android:padding="10dp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:hint="@string/tasks"
+                android:padding="10dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                <EditText
-                    android:id="@+id/txtDataInicioDetalhes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:enabled="false"
-                    android:hint="@string/sprint_start_date"
-                    android:inputType="date" />
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
+            <android.support.v7.widget.RecyclerView xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/TarefasRV"
+                android:name="nescaupower.br.com.keepsoft.Views.Sprint.DetalhesSprintActivity"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
-
-                <EditText
-                    android:id="@+id/txtDataFimDetalhes"
-                    android:enabled="false"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/sprint_end_date"
-                    android:inputType="date" />
-            </android.support.design.widget.TextInputLayout>
-
+                android:layout_height="match_parent"
+                tools:context="nescaupower.br.com.keepsoft.Views.Sprint.DetalhesSprintActivity"
+                tools:listitem="@layout/fragment_tarefa_model" />
         </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

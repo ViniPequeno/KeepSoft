@@ -39,7 +39,8 @@ public class PerfilFragment extends Fragment {
     private Button btnSair;
     private Button btnDeleteUsrr;
     private Button btnAlterarConfiguracoes;
-    AlertDialog dialogSair, dialogDeleteUser;
+    AlertDialog dialogSair;
+    private AlertDialog dialogDeleteUser;
     private UsuarioController uc;
 
     @Nullable

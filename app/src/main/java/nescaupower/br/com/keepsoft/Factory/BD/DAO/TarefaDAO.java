@@ -88,8 +88,22 @@ public class TarefaDAO {
             tJson = new HttpService().execute("/tarefa/findByProjeto/" + codProjeto, "Get", null).get();
             Type type = new TypeToken<List<Tarefa>>() {
             }.getType();
-            List<Tarefa> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Tarefa> findBySprintID(Long sprintId) {
+        String tJson;
+        try {
+            tJson = new HttpService().execute("/tarefa/findBySprint/" + sprintId, "Get", null).get();
+            Type type = new TypeToken<List<Tarefa>>() {
+            }.getType();
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

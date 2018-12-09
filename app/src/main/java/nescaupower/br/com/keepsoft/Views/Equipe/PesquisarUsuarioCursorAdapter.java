@@ -33,8 +33,7 @@ public class PesquisarUsuarioCursorAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        View v = mLayoutInflater.inflate(R.layout.dropdown_usuario_search_view_model, parent, false);
-        return v;
+        return mLayoutInflater.inflate(R.layout.dropdown_usuario_search_view_model, parent, false);
     }
 
     @Override

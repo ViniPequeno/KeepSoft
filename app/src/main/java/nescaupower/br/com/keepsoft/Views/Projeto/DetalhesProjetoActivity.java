@@ -106,11 +106,8 @@ public class DetalhesProjetoActivity extends AppCompatActivity implements
         });
 
         perfil = new PerfilController().procurarPorProjetoUsuario(projeto.getCodigo(), Usuario.getUsuarioLogado().getId());
-        //Toast.makeText(this, perfil.getPerfil().toString(), Toast.LENGTH_SHORT).show();
 
         SprintController sc = new SprintController();
-        Toast.makeText(this, "Qtde Sprints: "+sc.procurarQuantidadeEmProjeto(projeto.getCodigo()), Toast.LENGTH_SHORT).show();
-
     }
 
 

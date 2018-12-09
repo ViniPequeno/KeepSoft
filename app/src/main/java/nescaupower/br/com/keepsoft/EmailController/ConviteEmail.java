@@ -9,7 +9,7 @@ public class ConviteEmail {
 
     public static  void enviarEmail(Usuario rementente, Usuario destino, Convite convite, Projeto projeto){
 
-        String msg = "";
+        String msg;
         msg =  destino.getNome() +
                 " recebeu um convite de " +
                 rementente.getNome() +

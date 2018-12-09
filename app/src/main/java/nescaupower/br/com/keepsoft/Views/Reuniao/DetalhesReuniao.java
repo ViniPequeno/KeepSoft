@@ -3,10 +3,9 @@ package nescaupower.br.com.keepsoft.Views.Reuniao;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,8 +24,6 @@ import nescaupower.br.com.keepsoft.Factory.Model.Reuniao;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 import nescaupower.br.com.keepsoft.Views.Reuniao.Participantes.ParticipanteActivity;
-import nescaupower.br.com.keepsoft.Views.Status.DetalhesStatus;
-import nescaupower.br.com.keepsoft.Views.Status.EditarStatus;
 
 public class DetalhesReuniao extends AppCompatActivity {
 

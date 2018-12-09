@@ -16,7 +16,7 @@ public class HttpService extends AsyncTask<String, Void, String> {
     private final String URL = Settings.URL;
     private StringBuilder resposta;
 
-    public String getT(String parte){
+    private String getT(String parte) {
         resposta  = new StringBuilder();
         try{
             URL url = new URL(URL+parte);
@@ -40,7 +40,7 @@ public class HttpService extends AsyncTask<String, Void, String> {
     }
 
 
-    public String postT(String parte, String t){
+    private String postT(String parte, String t) {
         resposta  = new StringBuilder();
         try{
             URL url = new URL(URL+parte);
@@ -69,7 +69,7 @@ public class HttpService extends AsyncTask<String, Void, String> {
         return null;
     }
 
-    public String putT(String parte, String t){
+    private String putT(String parte, String t) {
         resposta  = new StringBuilder();
         try{
             URL url = new URL(URL+parte);
@@ -96,7 +96,7 @@ public class HttpService extends AsyncTask<String, Void, String> {
         return null;
     }
 
-    public String deleteT(String parte){
+    private String deleteT(String parte) {
         resposta  = new StringBuilder();
         try{
             URL url = new URL(URL+parte);

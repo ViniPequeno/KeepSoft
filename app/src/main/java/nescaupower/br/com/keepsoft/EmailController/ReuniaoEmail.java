@@ -10,7 +10,7 @@ import nescaupower.br.com.keepsoft.Utils.Email;
 public class ReuniaoEmail {
     public static void enviarEmail(Usuario rementente, Usuario destino, Reuniao reuniao) {
 
-        String msg = "";
+        String msg;
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         String horario = format.format(reuniao.getDataInicio()) + " - das "+reuniao.getHoraInicioFormat() + " às "+reuniao.getHoraFimFormat();
         msg = destino.getNome() +

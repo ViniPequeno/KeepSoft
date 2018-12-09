@@ -1,5 +1,7 @@
 package nescaupower.br.com.keepsoft.Factory.BD.DAO;
 
+import android.util.Log;
+
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 
@@ -12,13 +14,12 @@ import nescaupower.br.com.keepsoft.Factory.Model.TarefaStatus;
 
 public class TarefaStatusDAO {
     public List<TarefaStatus> getAll() {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/tarefasStatus", "Get", null).get();
             Type type = new TypeToken<List<TarefaStatus>>() {
             }.getType();
-            List<TarefaStatus> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -29,11 +30,10 @@ public class TarefaStatusDAO {
     }
 
     public TarefaStatus findByID(long id) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/tarefasStatus/" + id, "Get", null).get();
-            TarefaStatus tarefasStatus = new Gson().fromJson(tJson, TarefaStatus.class);
-            return tarefasStatus;
+            return new Gson().fromJson(tJson, TarefaStatus.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -43,11 +43,10 @@ public class TarefaStatusDAO {
     }
 
     public TarefaStatus findCuurentStatusOfTarefa(long tarefaId) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/tarefasStatus/findCuurentStatusOfTarefa/" + tarefaId, "Get", null).get();
-            TarefaStatus tarefaStatus = new Gson().fromJson(tJson, TarefaStatus.class);
-            return tarefaStatus;
+            return new Gson().fromJson(tJson, TarefaStatus.class);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -57,13 +56,12 @@ public class TarefaStatusDAO {
     }
 
     public List<TarefaStatus> findByTarefa(long tarefaId) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/tarefasStatus/findByTarefa/" + tarefaId, "Get", null).get();
             Type type = new TypeToken<List<TarefaStatus>>() {
             }.getType();
-            List<TarefaStatus> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -73,13 +71,12 @@ public class TarefaStatusDAO {
     }
 
     public List<TarefaStatus> findByStatus(long statusId) {
-        String tJson = null;
+        String tJson;
         try {
             tJson = new HttpService().execute("/tarefasStatus/findByStatus/" + statusId, "Get", null).get();
             Type type = new TypeToken<List<TarefaStatus>>() {
             }.getType();
-            List<TarefaStatus> list = new Gson().fromJson(tJson, type);
-            return list;
+            return new Gson().fromJson(tJson, type);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -102,10 +99,11 @@ public class TarefaStatusDAO {
     }
 
     public TarefaStatus updateAll(TarefaStatus... tarefasStatuses) {
-        for (TarefaStatus tarefasStatus : tarefasStatuses) {
-            String tJson = new Gson().toJson(tarefasStatus);
+        for (TarefaStatus tarefaStatus : tarefasStatuses) {
+            String tJson = new Gson().toJson(tarefaStatus);
             try {
-                new HttpService().execute("/tarefasStatus/" + tarefasStatus.getId(), "Put", tJson).get();
+                tJson = new HttpService().execute("/tarefasStatus/" + tarefaStatus.getId(), "Put", tJson).get();
+                Log.e("dataFim3", "oi " + tarefaStatus.getDataFimFormat() + " eai3");
                 return new Gson().fromJson(tJson, TarefaStatus.class);
             } catch (InterruptedException e) {
                 e.printStackTrace();

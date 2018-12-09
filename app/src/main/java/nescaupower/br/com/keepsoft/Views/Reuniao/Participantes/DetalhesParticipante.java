@@ -4,29 +4,17 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import de.hdodenhof.circleimageview.CircleImageView;
+import nescaupower.br.com.keepsoft.AsyncTasks.GetImageAsyncTask;
 import nescaupower.br.com.keepsoft.Config.Settings;
-import nescaupower.br.com.keepsoft.Controller.PerfilController;
-import nescaupower.br.com.keepsoft.Controller.ReuniaoController;
 import nescaupower.br.com.keepsoft.Controller.ReuniaoUsuarioController;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Model.Reuniao;
-import nescaupower.br.com.keepsoft.Factory.Model.ReuniaoUsuario;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
 
@@ -92,31 +80,7 @@ public class DetalhesParticipante extends AppCompatActivity {
         lblNomeParticipanteDetalhes.setText(usuario.getNome());
         lblEmailParticipanteDetalhes.setText(usuario.getEmail());
         lblTelefoneParticipanteDetalhes.setText(usuario.getTelefone());
-        new MyAsyncTask().execute(Settings.URL+"/usuarios/imagem/"+usuario.getId());
-    }
-
-    private class MyAsyncTask extends AsyncTask<String, Void, Bitmap> {
-        protected Bitmap doInBackground(String... params) {
-            try {
-                URL url = new URL(params[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setDoInput(true);
-                connection.connect();
-                InputStream input = connection.getInputStream();
-                Bitmap myBitmap = BitmapFactory.decodeStream(input);
-                return myBitmap;
-            } catch(IOException e) {
-                return null;
-            }
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            //do what you want with your bitmap result on the UI thread
-            if(result != null) {
-                circleImageView.setImageBitmap(result);
-            }
-        }
-
+        new GetImageAsyncTask(circleImageView).execute(Settings.URL + "/usuarios/imagem/" + usuario.getId());
     }
 
 }

@@ -37,7 +37,8 @@ public class ProjetoRVAdapter extends RecyclerView.Adapter<MyHolder> {
         Resources res = c.getResources();
         holder.lblNome.setText(projetos.get(position).getNome());
         holder.lblDescricao.setText(projetos.get(position).getDescricao());
-        holder.lblDataProximoSprint.setText(c.getString(R.string.next_sprint, "ola"));
+        //holder.lblDataProximoSprint.setText(c.getString(R.string.next_sprint, "ola"));
+        holder.lblDataProximoSprint.setText(R.string.progress);
         ProjetoController pc = new ProjetoController();
         Porcentagem p = pc.procurarPorcentagemPorCodigo(projetos.get(position).getCodigo());
         int porcentagem = (int) p.getPorcentagem();

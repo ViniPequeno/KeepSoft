@@ -214,4 +214,5 @@
     </plurals>
 
     <string name="wrong_login_password">Login ou senha incorretos</string>
+    <string name="progress">"Progresso: "</string>
 </resources>

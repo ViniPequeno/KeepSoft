@@ -201,18 +201,22 @@ public class EditarTarefaActivity extends AppCompatActivity {
         }
 
         if (tc.atualizar(tarefa) != null) {
-            TarefaStatus newTarefaStatus = new TarefaStatus();
-            tarefaStatus.setDataFim(Calendar.getInstance().getTime());
+            if (statusSelecionado.getNome().equals(tarefaStatus.getStatus().getNome())) {
+                Toast.makeText(this, "Eai", Toast.LENGTH_SHORT).show();
+                EditarTarefaActivity.this.finish();
+            } else {
+                tarefaStatus.setDataFim(Calendar.getInstance().getTime());
+                if (tsc.updateAll(tarefaStatus) != null) {
+                    TarefaStatus newTarefaStatus = new TarefaStatus();
+                    newTarefaStatus.setStatus(statusSelecionado);
+                    newTarefaStatus.setTarefa(tarefa);
+                    newTarefaStatus.setDataInicio(tarefaStatus.getDataFim());
+                    newTarefaStatus.setDataFimFormat("");
 
-            if (tsc.updateAll(tarefaStatus) != null) {
-                newTarefaStatus.setStatus(statusSelecionado);
-                newTarefaStatus.setTarefa(tarefa);
-                newTarefaStatus.setDataInicio(tarefaStatus.getDataFim());
-                newTarefaStatus.setDataFimFormat("");
-
-                if (tsc.cadastrar(newTarefaStatus)) {
-                    Toast.makeText(this, "Alterado!", Toast.LENGTH_SHORT).show();
-                    EditarTarefaActivity.this.finish();
+                    if (tsc.cadastrar(newTarefaStatus)) {
+                        Toast.makeText(this, "Alterado!", Toast.LENGTH_SHORT).show();
+                        EditarTarefaActivity.this.finish();
+                    }
                 }
             }
         } else {

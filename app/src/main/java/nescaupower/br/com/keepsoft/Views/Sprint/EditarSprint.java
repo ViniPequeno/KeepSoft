@@ -2,14 +2,11 @@ package nescaupower.br.com.keepsoft.Views.Sprint;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -78,60 +75,38 @@ public class EditarSprint extends AppCompatActivity {
         txtDataInicioEditar.setText(dateFormat.format(sprint.getDataInicio()));
         txtDataFimEditar.setText(dateFormat.format(sprint.getDataFim()));
 
-        txtDataInicioEditar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    dialogDataInicio.show();
-                }
+        txtDataInicioEditar.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                dialogDataInicio.show();
             }
         });
 
         //TODO: ajustar foco após selecionar data
-        listenerDataSelecionadaDataInicio = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
-                txtDataInicioEditar.setText(sdf.format(data));
-                root.clearFocus();
-            }
+        listenerDataSelecionadaDataInicio = (view, year, month, dayOfMonth) -> {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
+            txtDataInicioEditar.setText(sdf.format(data));
+            root.clearFocus();
         };
-        listenerSelecaoCanceladaDataInicio = new DatePickerDialog.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialogInterface) {
-                root.clearFocus();
-            }
-        };
+        listenerSelecaoCanceladaDataInicio = dialogInterface -> root.clearFocus();
 
         dialogDataInicio = new DatePickerDialog(EditarSprint.this, listenerDataSelecionadaDataInicio, dataAtual
                 .get(Calendar.YEAR), dataAtual.get(Calendar.MONTH), dataAtual.get(Calendar.DAY_OF_MONTH));
         dialogDataInicio.setOnCancelListener(listenerSelecaoCanceladaDataInicio);
 
-        txtDataFimEditar.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    dialogDataFim.show();
-                }
+        txtDataFimEditar.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                dialogDataFim.show();
             }
         });
         //TODO: ajustar foco após selecionar data
-        listenerDataSelecionadaDataFim = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
-                txtDataFimEditar.setText(sdf.format(data));
-                root.clearFocus();
-            }
+        listenerDataSelecionadaDataFim = (view, year, month, dayOfMonth) -> {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
+            txtDataFimEditar.setText(sdf.format(data));
+            root.clearFocus();
         };
-        listenerSelecaoCanceladaDataFim = new DatePickerDialog.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialogInterface) {
-                root.clearFocus();
-            }
-        };
+        listenerSelecaoCanceladaDataFim = dialogInterface -> root.clearFocus();
 
         dialogDataFim = new DatePickerDialog(EditarSprint.this, listenerDataSelecionadaDataFim, dataAtual
                 .get(Calendar.YEAR), dataAtual.get(Calendar.MONTH), dataAtual.get(Calendar.DAY_OF_MONTH));
@@ -172,10 +147,6 @@ public class EditarSprint extends AppCompatActivity {
         }
 
         if(sc.atualizar(sprint) !=null) {
-
-            Intent i = new Intent(EditarSprint.this, DetalhesSprintActivity.class);
-            i.putExtra("EXTRA_CODIGO_SPRINT", getIntent().getLongExtra("EXTRA_CODIGO_SPRINT", 0));
-            startActivity(i);
             EditarSprint.this.finish();
         }else{
             Toast.makeText(this, "Sprint já existe!", Toast.LENGTH_LONG).show();

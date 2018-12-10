@@ -10,9 +10,9 @@ public class Usuario {
     private String senha;
     private String telefone;
     private byte[] imagem;
-    private boolean receiverNotification;
-    private boolean receiverEmail;
-    private boolean isEmailVerification;
+    private boolean receiveNotification;
+    private boolean receiveEmail;
+    private boolean emailVerificated;
 
     private static Usuario usuarioLogado;
 
@@ -35,8 +35,8 @@ public class Usuario {
         this.nome = "";
         this.senha="";
         this.telefone="";
-        this.receiverEmail = true;
-        this.receiverNotification = true;
+        this.receiveEmail = true;
+        this.receiveNotification = true;
     }
 
     public Long getId() {
@@ -87,20 +87,20 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    public boolean isReceiverNotification() {
-        return receiverNotification;
+    public boolean isReceiveNotification() {
+        return receiveNotification;
     }
 
-    public void setReceiverNotification(boolean receiverNotification) {
-        this.receiverNotification = receiverNotification;
+    public void setReceiveNotification(boolean receiveNotification) {
+        this.receiveNotification = receiveNotification;
     }
 
-    public boolean isReceiverEmail() {
-        return receiverEmail;
+    public boolean isReceiveEmail() {
+        return receiveEmail;
     }
 
-    public void setReceiverEmail(boolean receiverEmail) {
-        this.receiverEmail = receiverEmail;
+    public void setReceiveEmail(boolean receiveEmail) {
+        this.receiveEmail = receiveEmail;
     }
 
     public byte[] getImagem() {
@@ -111,11 +111,11 @@ public class Usuario {
         this.imagem = imagem;
     }
 
-    public boolean isIsEmailVerification() {
-        return isEmailVerification;
+    public boolean isEmailVerificated() {
+        return emailVerificated;
     }
 
-    public void setIsEmailVerification(boolean isEmailVerification) {
-        this.isEmailVerification = isEmailVerification;
+    public void setEmailVerificated(boolean isEmailVerification) {
+        this.emailVerificated = isEmailVerification;
     }
 }

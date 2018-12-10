@@ -57,14 +57,13 @@ public class CadastroSprintActivity extends AppCompatActivity {
             }
         });
 
-        //TODO: ajustar foco após selecionar data
         listenerDataSelecionadaDataInicio = (view, year, month, dayOfMonth) -> {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
             txtDataInicio.setText(sdf.format(data));
-            root.clearFocus();
+            root.requestFocus();
         };
-        listenerSelecaoCanceladaDataInicio = dialogInterface -> root.clearFocus();
+        listenerSelecaoCanceladaDataInicio = dialogInterface -> root.requestFocus();
 
         dialogDataInicio = new DatePickerDialog(CadastroSprintActivity.this, listenerDataSelecionadaDataInicio, dataAtual
                 .get(Calendar.YEAR), dataAtual.get(Calendar.MONTH), dataAtual.get(Calendar.DAY_OF_MONTH));
@@ -75,14 +74,14 @@ public class CadastroSprintActivity extends AppCompatActivity {
                 dialogDataFim.show();
             }
         });
-        //TODO: ajustar foco após selecionar data
+
         listenerDataSelecionadaDataFim = (view, year, month, dayOfMonth) -> {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             Date data = new GregorianCalendar(year, month, dayOfMonth).getTime();
             txtDataFim.setText(sdf.format(data));
-            root.clearFocus();
+            root.requestFocus();
         };
-        listenerSelecaoCanceladaDataFim = dialogInterface -> root.clearFocus();
+        listenerSelecaoCanceladaDataFim = dialogInterface -> root.requestFocus();
 
         dialogDataFim = new DatePickerDialog(CadastroSprintActivity.this, listenerDataSelecionadaDataFim, dataAtual
                 .get(Calendar.YEAR), dataAtual.get(Calendar.MONTH), dataAtual.get(Calendar.DAY_OF_MONTH));

@@ -6,9 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import nescaupower.br.com.keepsoft.Factory.Model.Sprint;
@@ -55,6 +59,25 @@ public class SprintRVAdapter extends RecyclerView.Adapter<SprintRVAdapter.ViewHo
         String stringDataFim = res.getString(R.string.sprint_until_date, sdf.format(sprints.get(position).getDataFim()));
         holder.lblDataFim.setText(stringDataFim);
 
+        Date hoje = Calendar.getInstance().getTime();
+
+        System.out.println(hoje.getTime() - holder.mItem.getDataInicio().getTime() + " t1");
+
+        System.out.println(holder.mItem.getDataFim().getTime() - holder.mItem.getDataInicio().getTime() + " t2");
+
+        System.out.println((hoje.getTime() - holder.mItem.getDataInicio().getTime()) /
+                (holder.mItem.getDataFim().getTime() - holder.mItem.getDataInicio().getTime()) + " t3");
+
+        System.out.println(((hoje.getTime() - holder.mItem.getDataInicio().getTime()) /
+                (holder.mItem.getDataFim().getTime() - holder.mItem.getDataInicio().getTime()) * 100) + " t4");
+
+        if (hoje.getTime() > holder.mItem.getDataInicio().getTime()) {
+            int progress = (int) (Long.valueOf(hoje.getTime() - holder.mItem.getDataInicio().getTime()).doubleValue() /
+                    (Long.valueOf(holder.mItem.getDataFim().getTime() - holder.mItem.getDataInicio().getTime()).doubleValue()) * 100);
+            holder.test.setProgress(progress);
+            Toast.makeText(context, " " + progress, Toast.LENGTH_SHORT).show();
+        }
+
         holder.mView.setOnClickListener(v -> {
             if (null != mListener) {
                 // Notify the active callbacks interface (the activity, if the
@@ -75,6 +98,7 @@ public class SprintRVAdapter extends RecyclerView.Adapter<SprintRVAdapter.ViewHo
         public final TextView lblTitulo;
         public final TextView lblDataInicio;
         public final TextView lblDataFim;
+        public final ProgressBar test;
         public Sprint mItem;
 
         public ViewHolder(View view) {
@@ -84,6 +108,7 @@ public class SprintRVAdapter extends RecyclerView.Adapter<SprintRVAdapter.ViewHo
             lblTitulo = view.findViewById(R.id.lblTitulo);
             lblDataInicio = view.findViewById(R.id.lblDataInicio);
             lblDataFim = view.findViewById(R.id.lblDataFim);
+            test = view.findViewById(R.id.test);
         }
 
         @Override

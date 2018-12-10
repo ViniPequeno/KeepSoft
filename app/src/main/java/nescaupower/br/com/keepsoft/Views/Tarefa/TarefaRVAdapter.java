@@ -58,6 +58,8 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
         holder.lblStatus.setText(tarefaStatus.getStatus().getNome());
         holder.imgColor.setColorFilter(tarefaStatus.getStatus().getCor());
         holder.lblDataLimite.setText(tarefas.get(position).getDataLimiteformat());
+        holder.lblPrioridade.setText(tarefas.get(position).getPrioridade().toString());
+        holder.lblDificuldade.setText(tarefas.get(position).getDificuldade().toString());
 
         Perfil scrumMaster = new PerfilController().procurarPorProjetoUsuario(Projeto.getUltimoProjetoUsado().getCodigo(), Usuario.getUsuarioLogado().getId());
         if (scrumMaster.getPerfil() == nescaupower.br.com.keepsoft.Enum.Perfil.SCRUM_MASTER) {
@@ -113,6 +115,8 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
         public final TextView lblUsuario;
         public final TextView lblStatus;
         public final TextView lblDataLimite;
+        public final TextView lblDificuldade;
+        public final TextView lblPrioridade;
         public final ImageView imgColor;
         public final ImageButton btnEditar;
         public final ImageButton btnDelete;
@@ -125,6 +129,8 @@ public class TarefaRVAdapter extends RecyclerView.Adapter<TarefaRVAdapter.ViewHo
             lblUsuario = view.findViewById(R.id.lblUsuario);
             lblStatus = view.findViewById(R.id.lblStatus);
             lblDataLimite = view.findViewById(R.id.lblDataLimite);
+            lblDificuldade = view.findViewById(R.id.lblDificuldade);
+            lblPrioridade = view.findViewById(R.id.lblPrioridade);
             imgColor = view.findViewById(R.id.imgColor);
             btnEditar = view.findViewById(R.id.btnEditar);
             btnDelete = view.findViewById(R.id.btnDelete);

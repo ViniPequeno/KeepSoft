@@ -71,8 +71,7 @@ public class ProjetoDAO {
     }
 
 
-    public Projeto
-    insertAll(Projeto projeto) {
+    public Projeto insert(Projeto projeto) {
         String tJson = new Gson().toJson(projeto);
         Log.e("cadastro2", tJson);
         try {

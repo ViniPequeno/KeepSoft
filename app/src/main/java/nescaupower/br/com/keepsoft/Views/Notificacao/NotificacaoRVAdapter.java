@@ -32,8 +32,8 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
     private UsuarioController uc;
     private List<Object> notificacoes;
 
-    public NotificacaoRVAdapter(Context c, List<Object> notificacoes) {
-        this.context = c;
+    public NotificacaoRVAdapter(Context context, List<Object> notificacoes) {
+        this.context = context;
         this.notificacoes = notificacoes;
         pc = new ProjetoController();
         uc = new UsuarioController();
@@ -117,7 +117,7 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
         Perfil perfil = pc.procurarPorProjetoUsuario(convite.getProjeto().getCodigo(), convite.getDestinatarioId());
         perfil.setDataInicio(new Date());
         pc.atualizar(perfil);
-        Toast.makeText(context, "3", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Convite aceito", Toast.LENGTH_SHORT).show();
     }
 
     private void apagarConvite(int position, Convite convite) {

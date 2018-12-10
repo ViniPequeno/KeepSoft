@@ -50,6 +50,7 @@
     <string name="default_notification_channel_title">Titulo</string>
 
     <string name="delete_account_confirm">Tem certeza de que quer deletar sua conta?</string>
+    <string name="delete_task_confirm">Tem certeza de que deseja apagar esta tarefa?</string>
 
     <string name="description">Descrição</string>
 
@@ -87,6 +88,7 @@
     <string name="invite_member">Convidar Membro</string>
 
     <string name="leave">Sair do projeto</string>
+    <string name="leave_project_confirm">Deseja realmente sair deste projeto?</string>
 
     <string name="local">Local</string>
 
@@ -110,7 +112,7 @@
 
     <string name="new_password">Senha nova</string>
 
-    <string name="next_sprint">"Próximo Sprint: "</string>
+    <string name="next_sprint">Próximo Sprint: %1$s</string>
 
     <string name="no_notification">Nenhuma Notificação</string>
 
@@ -142,6 +144,9 @@
     <string name="reconnect">Reconectar</string>
 
     <string name="rememberpass">Esqueceu sua senha?</string>
+
+    <string name="remove_member">Remover membro</string>
+    <string name="remove_member_confirm">Deseja realmente remover %1$s deste projeto?</string>
 
     <string name="reuniao_end_hour">Horário final</string>
     <string name="reuniao_start_date">Data de início da reunião</string>
@@ -201,11 +206,12 @@
 
     <string name="username_or_email">Email ou Login</string>
 
+    <string name="warning">Aviso!</string>
+
     <plurals name="weeks">
         <item quantity="one">Há %1$d semana</item>
         <item quantity="other">Há %1$d semanas</item>
     </plurals>
 
     <string name="wrong_login_password">Login ou senha incorretos</string>
-    <string name="delete_task_confirm">Tem certeza de que deseja apagar esta tarefa?</string>
 </resources>

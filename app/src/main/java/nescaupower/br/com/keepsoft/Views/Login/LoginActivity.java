@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         Usuario usuario = uc.realizarLogin(loginText, senhaText);
 
         if (usuario != null) {
-            if (!usuario.isIsEmailVerification()) {
+            if (!usuario.isEmailVerificated()) {
                 //Mostrar alerta de erro
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                 builder.setTitle(R.string.error);

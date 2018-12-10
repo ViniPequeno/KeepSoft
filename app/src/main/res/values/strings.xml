@@ -32,6 +32,9 @@
     <string name="color">Color</string>
 
     <string name="confirm">Confirm</string>
+
+    <string name="confirmEmail">You must confirm your email.</string>
+
     <string name="confirm_log_out">Are you sure you want to log out?</string>
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="confirm_password">Confirm Password</string>
@@ -48,6 +51,7 @@
     <string name="default_notification_channel_title">Titulo</string>
 
     <string name="delete_account_confirm">Are you sure you want to delete your account?</string>
+    <string name="delete_task_confirm">Are you sure you want to delete this task?</string>
 
     <string name="description">Description</string>
 
@@ -57,6 +61,8 @@
         <item>Hard</item>
         <item>Very Hard</item>
     </string-array>
+
+    <string name="difficulty">Difficulty</string>
 
     <string name="due_date">Due date for completion</string>
 
@@ -84,6 +90,7 @@
     <string name="invite_member">Invite Member</string>
 
     <string name="leave">Leave</string>
+    <string name="leave_project_confirm">Do you really want to leave this project?</string>
 
     <string name="local">Local</string>
 
@@ -110,7 +117,7 @@
 
     <string name="new_password">New password</string>
 
-    <string name="next_sprint">"Next Sprint: "</string>
+    <string name="next_sprint">Next Sprint: %1$s</string>
 
     <string name="no_notification">No Notification</string>
 
@@ -133,6 +140,8 @@
         <item>Very High</item>
     </string-array>
 
+    <string name="priority">Priority</string>
+
     <string name="profile">Profile</string>
 
     <string name="project_name">Project Name</string>
@@ -140,6 +149,11 @@
     <string name="projects">Projects</string>
 
     <string name="reconnect">Reconnect</string>
+
+    <string name="rememberpass">Forgot your password?</string>
+
+    <string name="remove_member">Remove member</string>
+    <string name="remove_member_confirm">Do you really want to remove %1$s from this project?</string>
 
     <string name="reuniao_end_hour">Hour End</string>
     <string name="reuniao_start_date">Reunion Start Date</string>
@@ -153,16 +167,7 @@
         <item>Product Owner</item>
     </string-array>
 
-    <string-array name="sort_tasks_array">
-        <item>Due Date</item>
-        <item>Name</item>
-    </string-array>
-
-    <!--<string-array name="filter_tasks_array">
-        <item>Name</item>
-        <item>Date</item>
-    </string-array>-->
-
+    <!--<string-array name="filter_tasks_array"><item>Name</item><item>Date</item></string-array>-->
     <string name="seconds">%1$d seconds ago</string>
 
     <string name="select_picture">Select picture</string>
@@ -170,12 +175,21 @@
     <string name="sign_in">Sign in</string>
     <string name="sign_up">Sign up</string>
 
+    <string name="sort">Sort:</string>
+    <string-array name="sort_tasks_array">
+        <item>Due Date</item>
+        <item>Name</item>
+    </string-array>
+
+    <string name="sprint" translatable="false">Sprint</string>
     <string name="sprint_end_date">Sprint End Date</string>
     <string name="sprint_since_date">Since: \n%1$s</string>
     <string name="sprint_start_date">Sprint Start Date</string>
     <string name="sprint_until_date">Until: \n%1$s</string>
 
     <string name="sprints" translatable="false">Sprints</string>
+
+    <string name="status" translatable="false">Status</string>
 
     <string name="task">Tarefa</string>
 
@@ -201,7 +215,11 @@
 
     <string name="unavailable_services">Services are currently unavailable!</string>
 
+    <string name="user_in_change">User in charge</string>
+
     <string name="username_or_email">Username or email</string>
+
+    <string name="warning">Warning!</string>
 
     <plurals name="weeks">
         <item quantity="one">A week ago</item>
@@ -210,13 +228,4 @@
     </plurals>
 
     <string name="wrong_login_password">Wrong login or passwords</string>
-    <string name="status" translatable="false">Status</string>
-    <string name="priority">Priority</string>
-    <string name="difficulty">Difficulty</string>
-    <string name="user_in_change">User in charge</string>
-    <string name="rememberpass">Forgot your password?</string>
-    <string name="confirmEmail">You must confirm your email.</string>
-    <string name="sort">Sort:</string>
-    <string name="sprint" translatable="false">Sprint</string>
-    <string name="delete_task_confirm">Are you sure you want to delete this task?</string>
 </resources>

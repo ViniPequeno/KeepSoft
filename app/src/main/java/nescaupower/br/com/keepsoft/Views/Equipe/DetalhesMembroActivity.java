@@ -19,6 +19,7 @@ import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Controller.ConviteController;
 import nescaupower.br.com.keepsoft.Controller.PerfilController;
 import nescaupower.br.com.keepsoft.Controller.UsuarioController;
+import nescaupower.br.com.keepsoft.Factory.Model.Convite;
 import nescaupower.br.com.keepsoft.Factory.Model.Perfil;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
@@ -88,23 +89,26 @@ public class DetalhesMembroActivity extends AppCompatActivity {
 
             //Se tentou clicou num usuário diferente dele mesmo
             if (!perfil.getUsuario().getId().equals(usuarioLogado.getId())) {
-                btnDelete.setText(R.string.cancel_invitation);
+                ConviteController cc = new ConviteController();
+                Convite convite = cc.procurarPorID(perfil.getUsuario().getId(), perfil.getProjeto().getCodigo());
+                if (convite != null) {
+                    btnDelete.setText(R.string.cancel_invitation);
+                } else {
+                    btnDelete.setText(R.string.remove_member);
+                }
 
                 //Remover Membro
                 btnDelete.setOnClickListener(view -> {
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setTitle("Aviso!");
-                    builder.setMessage("Deseja realmente remover " + usuario.getLogin() + " deste projeto?");
+                    builder.setTitle(R.string.warning);
+                    String msg = getString(R.string.remove_member_confirm, usuario.getLogin());
+                    builder.setMessage(msg);
                     builder.setPositiveButton(R.string.confirm, (dialogInterface, i) -> {
-                        //Apagar convite da lista
-                        //perfis.remove(holder.getAdapterPosition());
-                        //notifyItemRemoved(holder.getAdapterPosition());
 
                         //Apagar o convite do banco se houver
                         Log.e("Perfil1", "m"+perfil.getDataInicioFormat()+"p");
                         if (perfil.getDataInicioFormat().equals("")) {
-                            ConviteController cc = new ConviteController();
-                            cc.deletar(cc.procurarPorID(perfil.getUsuario().getId(), perfil.getProjeto().getCodigo()));
+                            cc.deletar(convite);
                         }
 
                         //Apagar perfil do banco
@@ -180,8 +184,8 @@ public class DetalhesMembroActivity extends AppCompatActivity {
 
     private void sairDoProjeto() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Aviso!");
-        builder.setMessage("Deseja realmente sair deste projeto?");
+        builder.setTitle(R.string.warning);
+        builder.setMessage(R.string.leave_project_confirm);
         builder.setPositiveButton(R.string.confirm, (dialogInterface, i) -> {
             //Apagar perfil do banco
             PerfilController pc = new PerfilController();

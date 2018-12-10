@@ -98,7 +98,7 @@ public class ConvidarMembroActivity extends AppCompatActivity implements SearchV
                 Usuario destino = uc.procurarPorID(convite.getDestinatarioId());
                 Projeto projeto = pcon.procurarPorCodigo(convite.getProjeto().getCodigo());
 
-                if(destino.isReceiverEmail()){
+                if (destino.isReceiveEmail()) {
                     ConviteEmail.enviarEmail(rementente, destino, convite, projeto);
                 }
 

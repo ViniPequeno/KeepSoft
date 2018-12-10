@@ -40,7 +40,7 @@ public class ProjetoController {
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             projeto.setDataCriacaoFormat(formato.format(projeto.getDataCriacao()));
             projeto.setDataPrevFinalizacaoFormat(formato.format(projeto.getDataPrevFinalizacao()));
-            Projeto projetoRetorno =  projetoDAO.insertAll(projeto);
+            Projeto projetoRetorno = projetoDAO.insert(projeto);
             this.mensagem = "Cadastrado!";
             return projetoRetorno;
         }

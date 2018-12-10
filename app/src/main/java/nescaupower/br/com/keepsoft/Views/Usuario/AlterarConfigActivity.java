@@ -36,8 +36,8 @@ public class AlterarConfigActivity extends AppCompatActivity {
 
         uc = new UsuarioController();
 
-        reiceverEmail.setChecked(usuario.isReceiverEmail());
-        reiceverNotification.setChecked(usuario.isReceiverNotification());
+        reiceverEmail.setChecked(usuario.isReceiveEmail());
+        reiceverNotification.setChecked(usuario.isReceiveNotification());
 
         reiceverEmail.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
@@ -46,7 +46,7 @@ public class AlterarConfigActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Você não irá receber notificiações a partir de agora!", Toast.LENGTH_SHORT).show();
             }
 
-            usuario.setReceiverNotification(isChecked);
+            usuario.setReceiveNotification(isChecked);
             uc.atualizar(usuario);
 
 
@@ -59,7 +59,7 @@ public class AlterarConfigActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Você não irá receber e-mails a partir de agora!", Toast.LENGTH_SHORT).show();
             }
 
-            usuario.setReceiverEmail(isChecked);
+            usuario.setReceiveEmail(isChecked);
             uc.atualizar(usuario);
         });
 

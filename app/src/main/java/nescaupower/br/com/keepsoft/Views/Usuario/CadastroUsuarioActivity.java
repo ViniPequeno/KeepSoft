@@ -1,6 +1,5 @@
 package nescaupower.br.com.keepsoft.Views.Usuario;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,7 +10,6 @@ import nescaupower.br.com.keepsoft.Controller.UsuarioController;
 import nescaupower.br.com.keepsoft.Factory.Factory;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
 import nescaupower.br.com.keepsoft.R;
-import nescaupower.br.com.keepsoft.Views.Login.LoginActivity;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
 
@@ -37,7 +35,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         txtSenha = findViewById(R.id.txtSenha);
         txtConfirmarSenha = findViewById(R.id.txtConfirmarSenha);
         txtTelefone = findViewById(R.id.txtTelefone);
-
     }
 
     public void cadastrar(View view) {
@@ -61,21 +58,12 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
             boolean cadastrou = uc.cadastrar(u);
 
+            Toast.makeText(this, uc.getMensagem(), Toast.LENGTH_SHORT).show();
             if (cadastrou) {
-                Intent intent;
-                intent = new Intent(CadastroUsuarioActivity.this, LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK); // adiciona a flag para a intent
-                Toast.makeText(this, uc.getMensagem(), Toast.LENGTH_SHORT).show();
-                startActivity(intent);
                 CadastroUsuarioActivity.this.finish();
-            } else {
-                Toast.makeText(this, uc.getMensagem(), Toast.LENGTH_SHORT).show();
             }
-
         } else {
             Toast.makeText(this, "Senhas não são iguais!", Toast.LENGTH_SHORT).show();
         }
-
-
     }
 }

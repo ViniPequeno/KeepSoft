@@ -29,9 +29,7 @@ public class UsuarioDAO {
             e.printStackTrace();
         }
         return null;
-
     }
-
 
     public Usuario findByID(long id){
         String tJson;
@@ -45,7 +43,6 @@ public class UsuarioDAO {
         }
         return null;
     }
-
 
     public Usuario findByLogin(String login){
         String tJson;
@@ -71,7 +68,6 @@ public class UsuarioDAO {
         }
     }
 
-
     public List<Usuario> findByLoginOrName(String search, Long id, Long idProjeto){
         String tJson;
         try {
@@ -85,7 +81,6 @@ public class UsuarioDAO {
         }
         return null;
     }
-
 
     public Usuario findByEmail(String email){
         String tJson;
@@ -115,17 +110,17 @@ public class UsuarioDAO {
         return null;
     }
 
-    public void insertAll(Usuario... usuarios){
-        for(Usuario usuario : usuarios){
-            String tJson = new Gson().toJson(usuario);
-            try {
-                new HttpService().execute("/usuarios", "Post", tJson).get();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
+    public Usuario insert(Usuario usuario) {
+        String tJson = new Gson().toJson(usuario);
+        try {
+            tJson = new HttpService().execute("/usuarios", "Post", tJson).get();
+            return new Gson().fromJson(tJson, Usuario.class);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
         }
+        return null;
     }
 
     public void updateAll(Usuario... usuarios){

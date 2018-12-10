@@ -20,8 +20,8 @@ public class ProjetoRVAdapter extends RecyclerView.Adapter<MyHolder> {
     private Context c;
     private List<Projeto> projetos;
 
-    public ProjetoRVAdapter(Context c, List<Projeto> projetos) {
-        this.c = c;
+    public ProjetoRVAdapter(Context context, List<Projeto> projetos) {
+        this.c = context;
         this.projetos = projetos;
     }
 
@@ -37,6 +37,7 @@ public class ProjetoRVAdapter extends RecyclerView.Adapter<MyHolder> {
         Resources res = c.getResources();
         holder.lblNome.setText(projetos.get(position).getNome());
         holder.lblDescricao.setText(projetos.get(position).getDescricao());
+        holder.lblDataProximoSprint.setText(c.getString(R.string.next_sprint, "ola"));
         ProjetoController pc = new ProjetoController();
         Porcentagem p = pc.procurarPorcentagemPorCodigo(projetos.get(position).getCodigo());
         int porcentagem = (int) p.getPorcentagem();

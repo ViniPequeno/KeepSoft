@@ -1,5 +1,7 @@
 package nescaupower.br.com.keepsoft.Controller;
 
+import android.util.Log;
+
 import java.util.List;
 
 import nescaupower.br.com.keepsoft.EmailController.ConfirmEmail;
@@ -41,7 +43,8 @@ public class UsuarioController {
             this.mensagem = "O endereço de email já existe!";
             return false;
         } else {
-            usuarioDAO.insertAll(usuario);
+            usuario = usuarioDAO.insert(usuario);
+            Log.e("tesConfirm", usuario.getId() + "");
             ConfirmEmail confirmEmail = new ConfirmEmail();
             confirmEmail.enviarEmail(usuario);
             this.mensagem = "Cadastrado!";

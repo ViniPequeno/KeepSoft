@@ -30,6 +30,7 @@ public class HttpService extends AsyncTask<String, Void, String> {
             while (scanner.hasNextLine()) {
                 resposta.append(scanner.nextLine());
             }
+            connection.disconnect();
             return resposta.toString();
         }catch (MalformedURLException e) {
             e.printStackTrace();
@@ -60,6 +61,7 @@ public class HttpService extends AsyncTask<String, Void, String> {
                 resposta.append(scanner.nextLine());
             }
 
+            connection.disconnect();
             return  resposta.toString();
         }catch (MalformedURLException e) {
             e.printStackTrace();
@@ -87,6 +89,7 @@ public class HttpService extends AsyncTask<String, Void, String> {
                 resposta.append(scanner.nextLine());
             }
 
+            connection.disconnect();
             return  resposta.toString();
         }catch (MalformedURLException e) {
             e.printStackTrace();
@@ -107,6 +110,7 @@ public class HttpService extends AsyncTask<String, Void, String> {
             while (scanner.hasNext()) {
                 resposta.append(scanner.next());
             }
+            connection.disconnect();
             return "OKY";
         }catch (MalformedURLException e) {
             return e.getMessage();

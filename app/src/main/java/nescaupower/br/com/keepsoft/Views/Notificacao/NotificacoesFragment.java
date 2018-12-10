@@ -1,5 +1,6 @@
 package nescaupower.br.com.keepsoft.Views.Notificacao;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,7 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,15 +28,7 @@ public class NotificacoesFragment extends Fragment {
     private ConviteController cc;
     private List<Object> notificacoes;
     private NotificacaoRVAdapter adapter;
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        notificacoes = new ArrayList<>();
-        notificacoes.addAll(cc.listarPorDestinatario(Usuario.getUsuarioLogado().getId()));
-
-        Toast.makeText(getActivity(), ""+notificacoes.size(), Toast.LENGTH_SHORT).show();
-    }
+    private OnViewNoticationsListener viewNoticationsListener;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,8 +65,35 @@ public class NotificacoesFragment extends Fragment {
             adapter = new NotificacaoRVAdapter(this.getActivity(), notificacoes);
             rv.setAdapter(adapter);
         }
-
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        notificacoes = new ArrayList<>();
+        notificacoes.addAll(cc.listarPorDestinatario(Usuario.getUsuarioLogado().getId()));
+        viewNoticationsListener.updateNotificationsCount();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnViewNoticationsListener) {
+            viewNoticationsListener = (OnViewNoticationsListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnViewNoticationsListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        viewNoticationsListener = null;
+    }
+
+    public interface OnViewNoticationsListener {
+        void updateNotificationsCount();
+    }
 }

@@ -24,7 +24,6 @@ import nescaupower.br.com.keepsoft.Views.Equipe.EquipeFragment.OnListFragmentInt
 /**
  * {@link RecyclerView.Adapter} that can display a {@link Perfil} and makes a call to the
  * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
  */
 public class EquipeRVAdapter extends RecyclerView.Adapter<EquipeRVAdapter.ViewHolder> {
 

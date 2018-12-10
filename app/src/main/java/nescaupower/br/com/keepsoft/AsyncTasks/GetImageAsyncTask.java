@@ -25,7 +25,9 @@ public class GetImageAsyncTask extends AsyncTask<String, Void, Bitmap> {
             connection.setDoInput(true);
             connection.connect();
             InputStream input = connection.getInputStream();
-            return BitmapFactory.decodeStream(input);
+            Bitmap img = BitmapFactory.decodeStream(input);
+            connection.disconnect();
+            return img;
         } catch (IOException e) {
             return null;
         }

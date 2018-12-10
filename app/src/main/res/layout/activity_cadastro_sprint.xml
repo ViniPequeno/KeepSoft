@@ -4,15 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="0dp"
-    android:descendantFocusability="beforeDescendants"
-    android:fillViewport="true"
-    android:focusable="true"
-    android:focusableInTouchMode="true">
+    android:fillViewport="true">
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/sprint"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:id="@+id/sprint"
+        android:layout_height="wrap_content"
+        android:descendantFocusability="beforeDescendants"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <LinearLayout
             android:layout_width="match_parent"

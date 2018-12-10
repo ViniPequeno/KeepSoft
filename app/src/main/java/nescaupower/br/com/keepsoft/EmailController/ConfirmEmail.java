@@ -1,6 +1,7 @@
 package nescaupower.br.com.keepsoft.EmailController;
 
 import android.util.Base64;
+import android.util.Log;
 
 import nescaupower.br.com.keepsoft.Config.Settings;
 import nescaupower.br.com.keepsoft.Factory.Model.Usuario;
@@ -15,7 +16,7 @@ public class ConfirmEmail {
         String idBytes = Base64.encodeToString(bytes, Base64.DEFAULT);
         msg = "Acesse o link abaixo para confirmar seu email e acessar o aplicativo do KeepSoft! <br>" +
                 "<a href='"+Settings.IPSITE+"/confirmEmail/"+idBytes+"'>Confirme aqui!</a>";
-
+        Log.e("myConfirm", id + " - " + idBytes);
         Email email = new Email(usuario.getEmail(), "Cofirmar email.",
                 msg);
         new Thread() {

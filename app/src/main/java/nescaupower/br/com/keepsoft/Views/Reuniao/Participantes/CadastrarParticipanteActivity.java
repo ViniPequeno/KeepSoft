@@ -83,7 +83,7 @@ public class CadastrarParticipanteActivity extends AppCompatActivity implements 
                 Usuario rementente = Usuario.getUsuarioLogado();
                 Usuario destino = reuniaoUsuario.getUsuario();
 
-                if(destino.isReceiverEmail()){
+                if (destino.isReceiveEmail()) {
                     ReuniaoEmail.enviarEmail(rementente, destino, reuniao);
                 }
 

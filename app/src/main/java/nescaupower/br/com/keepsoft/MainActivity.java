@@ -54,11 +54,11 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        notificationService = new NotificationService();
+        /*notificationService = new NotificationService();
         if(!isMyServiceRunning(notificationService.getClass())){
             intent = new Intent(this, notificationService.getClass());
             startService(intent);
-        }
+        }*/
     }
 
     @Nullable

@@ -31,12 +31,14 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
     private ProjetoController pc;
     private UsuarioController uc;
     private List<Object> notificacoes;
+    private NotificacoesFragment.OnViewNoticationsListener  listener;
 
-    public NotificacaoRVAdapter(Context context, List<Object> notificacoes) {
+    public NotificacaoRVAdapter(Context context, List<Object> notificacoes, NotificacoesFragment.OnViewNoticationsListener listener) {
         this.context = context;
         this.notificacoes = notificacoes;
         pc = new ProjetoController();
         uc = new UsuarioController();
+        this.listener = listener;
     }
 
     @Override
@@ -118,6 +120,9 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
         perfil.setDataInicio(new Date());
         pc.atualizar(perfil);
         Toast.makeText(context, "Convite aceito", Toast.LENGTH_SHORT).show();
+        if(listener != null){
+            listener.updateNotificationsCount();
+        }
     }
 
     private void apagarConvite(int position, Convite convite) {
@@ -134,6 +139,9 @@ public class NotificacaoRVAdapter extends RecyclerView.Adapter<NotificacaoRVAdap
         //Apagar perfil do banco
         PerfilController pc = new PerfilController();
         pc.deletar(pc.procurarPorProjetoUsuario(convite.getProjeto().getCodigo(), convite.getDestinatarioId()));
+        if(listener != null){
+            listener.updateNotificationsCount();
+        }
     }
 
     @Override

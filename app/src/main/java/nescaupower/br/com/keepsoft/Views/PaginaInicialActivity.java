@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Locale;
 
@@ -65,6 +66,7 @@ public class PaginaInicialActivity extends AppCompatActivity implements BottomNa
         BottomNavigationItemView itemView = (BottomNavigationItemView) bottomNavigationMenuView.getChildAt(1);
 
         if (qn.getQuantidade() > 0) {
+            itemView.removeView(badge);
             itemView.addView(badge);
             TextView lblNotificationBadge = badge.findViewById(R.id.lblNotificationBadge);
             lblNotificationBadge.setText(String.format(Locale.ENGLISH, "%1$d", qn.getQuantidade()));

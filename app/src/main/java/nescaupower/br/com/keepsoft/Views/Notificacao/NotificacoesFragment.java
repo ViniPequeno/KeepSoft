@@ -62,7 +62,7 @@ public class NotificacoesFragment extends Fragment {
             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
             rv.setLayoutManager(layoutManager);
 
-            adapter = new NotificacaoRVAdapter(this.getActivity(), notificacoes);
+            adapter = new NotificacaoRVAdapter(this.getActivity(), notificacoes, viewNoticationsListener);
             rv.setAdapter(adapter);
         }
         return rootView;
@@ -73,7 +73,6 @@ public class NotificacoesFragment extends Fragment {
         super.onResume();
         notificacoes = new ArrayList<>();
         notificacoes.addAll(cc.listarPorDestinatario(Usuario.getUsuarioLogado().getId()));
-        viewNoticationsListener.updateNotificationsCount();
     }
 
     @Override

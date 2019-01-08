@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private String testarAPI() {
         String tJson = null;
         try {
-            tJson = new HttpService().execute("/values/", "Get", null).get();
+            tJson = new HttpService().execute("/values", "Get", null).get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
